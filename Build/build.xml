@@ -93,6 +93,7 @@
 		<phingcall target="introduction-package-raw" />
 		<phingcall target="introduction-package-app" />
 		<phingcall target="md5" />
+		<!-- <phingcall target="publish" /> -->
 	</target>
 
 	<target name="md5">
@@ -264,11 +265,13 @@
 		publishes the existing archives to sourceforge
 		watch it: untested, and the folder structure is still unclear
 	-->
-	<target name="t3source-publisharchives" description="Upload existing archives of the TYPO3 source to SourceForce">
+	<target name="publish" depends="init" description="Upload existing archives of the TYPO3 source to SourceForce">
 		<!-- the only way to create a folder via ssh, thanks FLOW3 -->
-		<exec logoutput="true" checkreturn="true" command="ssh shell.sourceforge.net create"/>
-		<exec logoutput="true" checkreturn="true" command="ssh shell.sourceforge.net mkdir -p /home/frs/project/t/ty/typo3/TYPO3/${env.RELEASE_VERSION}"/>
-		<exec logoutput="true" checkreturn="true" command="ssh shell.sourceforge.net shutdown"/>
-		<exec logoutput="true" checkreturn="true" command="scp ${project.baseDirectory}{baseName}.* frs.sourceforge.net:/home/frs/project/t/ty/typo3/TYPO3//"/>
+		<exec logoutput="true" checkreturn="true" command="ssh shell.sourceforge.net create" />
+		<!-- <exec logoutput="true" checkreturn="true" command="ssh shell.sourceforge.net mkdir -p '/home/frs/project/t/ty/typo3/TYPO3 Source and Dummy/TYPO3 ${archiveprefix}'" /> -->
+		<exec logoutput="true" checkreturn="true" command="ssh shell.sourceforge.net mkdir -p '/home/frs/project/t/ty/typo3/TYPO3v4Testing/TYPO3\ ${archiveprefix}'" />
+		<exec logoutput="true" checkreturn="true" command="ssh shell.sourceforge.net shutdown" />
+		<!-- <exec logoutput="true" checkreturn="true" command="scp ${project.baseDirectory}{baseName}.* 'frs.sourceforge.net:/home/frs/project/t/ty/typo3/TYPO3 Source and Dummy/TYPO3 ${archiveprefix}/'" /> -->
+		<exec logoutput="true" checkreturn="true" command="scp ${project.targetsDirectory}* frs.sourceforge.net:'/home/frs/project/t/ty/typo3/TYPO3v4Testing/TYPO3\ ${archiveprefix}/'" />
 	</target>
 </project>
