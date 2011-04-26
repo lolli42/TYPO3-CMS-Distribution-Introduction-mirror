@@ -89,10 +89,8 @@
 		</phingcall>
 		<!-- COPY RESOURCES end -->
 
-<!--
 		<phingcall target="introduction-package-linked" />
 		<phingcall target="introduction-package-raw" />
--->
 		<phingcall target="introduction-package-app" />
 		<phingcall target="md5" />
 	</target>
