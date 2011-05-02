@@ -18,112 +18,50 @@
  *                                                                        *
  * The TYPO3 project - inspiring people to share!                         *
 -->
-<project name="TYPO3v4IntroductionPackage" basedir="." default="introduction-package">
-	<taskdef file="${project.basedir}/Tasks.properties" />
+<project name="TYPO3v4IntroductionPackage" basedir="." default="introduction">
+	<import file="${project.basedir}/Common/Build/build.xml" />
 
-	<property name="git.remoterepository" value="git://git.typo3.org/TYPO3v4/Core.git" />
-	<property name="project.targetsDirectory" value="${project.basedir}/Targets/" />
-	<property name="project.workDirectory" value="${project.basedir}/Work/" />
-	<property name="project.resourcesDirectory" value="${project.basedir}/Resources/" />
-	<property name="project.apsStandardDirectory" value="${project.basedir}/ApsStandard/" />
+	<property name="introduction.workDirectory" value="${project.workDirectory}Introduction/" />
+	<property name="introduction.apsStandardDirectory" value="${project.basedir}/ApsStandard/" />
 
-	<!--
-		should be depended by any action
-		asks for parameters "t3branch" and "t3version" that can be set from
-		outside as well via -Dt3branch=4-5 or Dt3version=4.5.8
-		please make sure that branch is written with a "-" for the branch
-		in git: "TYPO3_4-5" and the version with a "." (dot) for typo3_src-4.5.8
-		the target also creates the releases directory
-	-->
-	<target name="init" description="Ask the user for TYPO3 version and branch, prerequisite for any target.">
-		<propertyprompt propertyName="t3version" defaultValue="snapshot" useExistingValue="true" promptText="Enter the TYPO3 version you want to release ('4.5.2', '4.4.9', '4.6.0beta3' or 'snapshot')" />
+	<target name="introduction" depends="common,project-initialize">
+		<delete dir="${introduction.workDirectory}" quiet="true" />
+		<mkdir dir="${introduction.workDirectory}" />
+
 		<if>
-			<equals arg1="${t3version}" arg2="snapshot" />
+			<equals arg1="${common.type}" arg2="snapshot" />
 			<then>
-				<property name="archiveprefix" value="snapshot" />
-				<property name="gitreference" value="HEAD" />
+				<property name="introduction.versionName" value="${common.major}-snapshot-${common.date}" />
+				<property name="introduction.gitName" value="${common.info.branchName}" />
 			</then>
 			<else>
-				<property name="archiveprefix" value="${t3version}" />
-				<typo3convertversion value="${t3version}" returnProperty="gitreference" failIfEmpty="true" />
+				<fail unless="common.info.currentTag" message="There is no release tag available." />
+				<property name="introduction.versionName" value="${common.info.currentVersion}" />
+				<property name="introduction.gitName" value="${common.info.currentTag}" />
 			</else>
 		</if>
-	</target>
 
-	<target name="clean">
-		<delete dir="${project.targetsDirectory}" quiet="true" />
-		<delete dir="${project.workDirectory}" quiet="true" />
-	</target>
+		<property name="introduction.sourceName" value="typo3_src-${introduction.versionName}" />
+		<property name="introduction.packageName" value="introductionpackage-${introduction.versionName}" />
+		<property name="introduction.workAppDirectory" value="${introduction.workDirectory}${introduction.packageName}.app/" />
+		<property name="introduction.workBaseDirectory" value="${introduction.workDirectory}${introduction.packageName}/" />
+		<property name="introduction.workSourceDirectory" value="${introduction.workDirectory}${introduction.sourceName}/" />
 
-	<!--
-		takes a GIT branch / tag, cleans up the installation and merges it with
-		the Resources/ from the current branch, and then zips it up with
-		the "createarchives" target
-	-->
-	<target name="introduction-package" depends="init,clean" description="Create archives out of a certain git hash of the TYPO3 Core project for a release / snapshot">
-		<property name="package.baseName" value="introductionpackage-${archiveprefix}" />
-		<property name="package.sourceName" value="typo3_src-${archiveprefix}" />
-
-		<property name="package.workBaseDirectory" value="${project.workDirectory}${package.baseName}/" />
-		<property name="package.workAppDirectory" value="${project.workDirectory}${package.baseName}.app/" />
-		<property name="package.workSourceDirectory" value="${project.workDirectory}${package.sourceName}/" />
-
-		<!-- SETUP DIRECTORIES begin -->
-		<mkdir dir="${project.targetsDirectory}" />
-		<mkdir dir="${project.workDirectory}" />
-		<mkdir dir="${package.workBaseDirectory}" />
-		<mkdir dir="${package.workSourceDirectory}" />
-		<!-- SETUP DIRECTORIES end -->
-
-		<!-- GET SOURCE begin -->
-		<phingcall target="introduction-source">
-			<property name="introduction-source.gitreference" value="${gitreference}" />
-			<property name="introduction-source.filePath" value="${project.workDirectory}${package.sourceName}.zip" />
-			<property name="introduction-source.directory" value="${package.workSourceDirectory}" />
+		<phingcall target="repository-export">
+			<property name="repository-export.gitName" value="${introduction.gitName}" />
+			<property name="repository-export.filePath" value="${introduction.workDirectory}${introduction.sourceName}.zip" />
+			<property name="repository-export.directory" value="${introduction.workSourceDirectory}" />
 		</phingcall>
-		<!-- GET SOURCE end -->
-
-		<!-- COPY RESOURCES begin -->
-		<phingcall target="introduction-resources">
-			<property name="introduction-resources.directory" value="${package.workBaseDirectory}" />
-		</phingcall>
-		<!-- COPY RESOURCES end -->
-
+		
 		<phingcall target="introduction-package-linked" />
 		<phingcall target="introduction-package-raw" />
-		<phingcall target="introduction-package-app" />
-		<phingcall target="md5" />
-		<!-- <phingcall target="publish" /> -->
-	</target>
+		<!-- <phingcall target="introduction-package-app" /> -->
 
-	<target name="md5">
-		<typo3filehash dir="${project.targetsDirectory}" returnProperty="md5" method="md5" />
-		<echo message="${md5}" />
-	</target>
+		<phingcall target="project-md5" />
 
-	<target name="introduction-source">
-		<fail unless="introduction-source.gitreference" message="You must set $introduction-source.gitreference for this target" />
-		<fail unless="introduction-source.filePath" message="You must set $introduction-source.filePath for this target" />
-		<fail unless="introduction-source.directory" message="You must set $introduction-source.directory for this target" />
-
-		<exec logoutput="true" checkreturn="true" command="git archive --format=zip --remote=${git.remoterepository} ${introduction-source.gitreference} -o ${introduction-source.filePath}" />
-
-		<!-- extract base file of source -->
-		<unzip file="${introduction-source.filePath}" todir="${introduction-source.directory}">
-			<!-- clean up files from VCS -->
-			<fileset dir="${introduction-source.directory}">
-				<exclude name="src" />
-				<exclude name="tests" />
-				<exclude name="CVS" />
-				<exclude name="SVNreadme.txt" />
-				<exclude name=".svn" />
-				<exclude name="*.webprj" />
-				<exclude name="*.orig" />
-				<exclude name="*~" />
-			</fileset>
-		</unzip>
-
-		<delete file="${introduction-source.filePath}" quiet="true"/>
+		<phingcall target="publish-sourceforge">
+			<property name="publish-sourceforge.directory" value="" />
+		</phingcall>
 	</target>
 
 	<target name="introduction-resources">
@@ -134,144 +72,92 @@
 		</copy>
 	</target>
 
-	<target name="introduction-permissions">
-		<fail unless="introduction-permissions.directory" message="You must set the $introduction-permissions.directory for this target" />
-
-		<!-- fix file permissions and make some files executable -->
-		<!-- Change ownership -->
-		<chown user="root" quiet="true" verbose="false">
-			<fileset dir="${introduction-permissions.directory}" />
-		</chown>
-
-		<!-- Set readonly permissions for everyone except the owner -->
-		<chmod mode="0755" quiet="true" verbose="false">
-			<fileset dir="${introduction-permissions.directory}" />
-		</chmod>
-
-		<!-- files should not remain executable -->
-		<exec command="find ${introduction-permissions.directory} -type f | xargs chmod a-x" />
-
-		<!--  ... except those listed in EXEC_FILES -->
-		<chmod mode="0755" quiet="true" verbose="false">
-			<!-- Files that must be made executable -->
-			<fileset dir="${introduction-permissions.directory}">
-				<include name="*.phpcron" />
-				<include name="*.phpsh" />
-				<include name="*.sh" />
-				<include name="*.pl" />
-			</fileset>
-		</chmod>
-	</target>
-
 	<target name="introduction-package-linked">
-		<delete dir="${package.workBaseDirectory}" quiet="true" />
-		<mkdir dir="${package.workBaseDirectory}" />
+		<delete dir="${introduction.workBaseDirectory}" quiet="true" />
+		<mkdir dir="${introduction.workBaseDirectory}" />
 
 		<phingcall target="introduction-resources">
-			<property name="introduction-resources.directory" value="${package.workBaseDirectory}" />
+			<property name="introduction-resources.directory" value="${introduction.workBaseDirectory}" />
 		</phingcall>
 
-		<symlink target="../${package.sourceName}" link="${package.workBaseDirectory}typo3_src" />
-		<symlink target="typo3_src/index.php" link="${package.workBaseDirectory}index.php" />
-		<symlink target="typo3_src/t3lib" link="${package.workBaseDirectory}t3lib" />
-		<symlink target="typo3_src/typo3" link="${package.workBaseDirectory}typo3" />
+		<symlink target="../${introduction.sourceName}" link="${introduction.workBaseDirectory}typo3_src" />
+		<symlink target="typo3_src/index.php" link="${introduction.workBaseDirectory}index.php" />
+		<symlink target="typo3_src/t3lib" link="${introduction.workBaseDirectory}t3lib" />
+		<symlink target="typo3_src/typo3" link="${introduction.workBaseDirectory}typo3" />
 
-		<phingcall target="introduction-permissions">
-			<property name="introduction-permissions.directory" value="${package.workBaseDirectory}" />
+		<phingcall target="project-permissions">
+			<property name="project-permissions.directory" value="${introduction.workBaseDirectory}" />
 		</phingcall>
 
-		<delete file="${project.targetsDirectory}${package.baseName}.tar.gz" quiet="true"/>
-		<tar destfile="${project.targetsDirectory}${package.baseName}.tar.gz"
+		<delete file="${project.targetsDirectory}${introduction.packageName}.tar.gz" quiet="true"/>
+		<tar destfile="${project.targetsDirectory}${introduction.packageName}.tar.gz"
 			includeemptydirs="true"
 			compression="gzip">
-			<fileset dir="${package.workBaseDirectory}" />
+			<fileset dir="${introduction.workBaseDirectory}" />
 		</tar>
 	</target>
 
 	<target name="introduction-package-raw">
-		<delete dir="${package.workBaseDirectory}" quiet="true" />
-		<mkdir dir="${package.workBaseDirectory}" />
+		<delete dir="${introduction.workBaseDirectory}" quiet="true" />
+		<mkdir dir="${introduction.workBaseDirectory}" />
 
-		<copy todir="${package.workBaseDirectory}">
-			<fileset dir="${package.workSourceDirectory}" />
+		<copy todir="${introduction.workBaseDirectory}">
+			<fileset dir="${introduction.workSourceDirectory}" />
 		</copy>
 
 		<phingcall target="introduction-resources">
-			<property name="introduction-resources.directory" value="${package.workBaseDirectory}" />
+			<property name="introduction-resources.directory" value="${introduction.workBaseDirectory}" />
 		</phingcall>
 
-		<phingcall target="introduction-permissions">
-			<property name="introduction-permissions.directory" value="${package.workBaseDirectory}" />
+		<phingcall target="project-permissions">
+			<property name="project-permissions.directory" value="${introduction.workBaseDirectory}" />
 		</phingcall>
 
-		<delete file="${project.targetsDirectory}${package.baseName}.zip" quiet="true"/>
-		<zip destfile="${project.targetsDirectory}${package.baseName}.zip">
-			<fileset dir="${package.workBaseDirectory}" />
+		<delete file="${project.targetsDirectory}${introduction.packageName}.zip" quiet="true"/>
+		<zip destfile="${project.targetsDirectory}${introduction.packageName}.zip">
+			<fileset dir="${introduction.workBaseDirectory}" />
 		</zip>
 	</target>
 
 	<target name="introduction-package-app">
-		<delete dir="${package.workAppDirectory}" quiet="true" />
-		<mkdir dir="${package.workAppDirectory}" />
-		<mkdir dir="${package.workAppDirectory}htdocs/" />
+		<delete dir="${introduction.workAppDirectory}" quiet="true" />
+		<mkdir dir="${introduction.workAppDirectory}" />
+		<mkdir dir="${introduction.workAppDirectory}htdocs/" />
 
-		<copy todir="${package.workAppDirectory}">
-			<fileset dir="${project.apsStandardDirectory}" />
+		<copy todir="${introduction.workAppDirectory}">
+			<fileset dir="${introduction.apsStandardDirectory}" />
 			<filterchain>
 				<replaceregexp>
-					<regexp pattern="###T3VERSION###" replace="${t3version}" />
+					<regexp pattern="###T3VERSION###" replace="${introduction.versionName}" />
 				</replaceregexp>
 			</filterchain>
 		</copy>
 
-		<copy todir="${package.workAppDirectory}htdocs/">
-			<fileset dir="${package.workSourceDirectory}" />
+		<copy todir="${introduction.workAppDirectory}htdocs/">
+			<fileset dir="${introduction.workSourceDirectory}" />
 		</copy>
 
 		<phingcall target="introduction-resources">
-			<property name="introduction-resources.directory" value="${package.workAppDirectory}htdocs/" />
+			<property name="introduction-resources.directory" value="${introduction.workAppDirectory}htdocs/" />
 		</phingcall>
 
-		<phingcall target="introduction-permissions">
-			<property name="introduction-permissions.directory" value="${package.workAppDirectory}htdocs/" />
+		<phingcall target="project-permissions">
+			<property name="project-permissions.directory" value="${introduction.workAppDirectory}htdocs/" />
 		</phingcall>
 
-		<typo3applist file="${package.workAppDirectory}APP-LIST.xml">
-			<fileset dir="${package.workAppDirectory}">
+		<typo3applist file="${introduction.workAppDirectory}APP-LIST.xml">
+			<fileset dir="${introduction.workAppDirectory}">
 				<include name="APP-META.xml" />
 			</fileset>
-			<fileset dir="${package.workAppDirectory}htdocs/" />
-			<fileset dir="${package.workAppDirectory}scripts/" />
-			<fileset dir="${package.workAppDirectory}images/" />
-			<fileset dir="${package.workAppDirectory}test/" />
+			<fileset dir="${introduction.workAppDirectory}htdocs/" />
+			<fileset dir="${introduction.workAppDirectory}scripts/" />
+			<fileset dir="${introduction.workAppDirectory}images/" />
+			<fileset dir="${introduction.workAppDirectory}test/" />
 		</typo3applist>
 
-		<delete file="${project.targetsDirectory}${package.baseName}.app.zip" quiet="true"/>
-		<zip destfile="${project.targetsDirectory}${package.baseName}.app.zip">
-			<fileset dir="${package.workAppDirectory}" />
+		<delete file="${project.targetsDirectory}${introduction.packageName}.app.zip" quiet="true"/>
+		<zip destfile="${project.targetsDirectory}${introduction.packageName}.app.zip">
+			<fileset dir="${introduction.workAppDirectory}" />
 		</zip>
-	</target>
-
-	<target name="introduction-filehash">
-		<fail unless="introduction-filehash.fileName" message="You must define $introduction-filehash.fileName for this target" />
-		<fail unless="introduction-filehash.filePath" message="You must define $introduction-filehash.filePath for this target" />
-
-		<!-- hastype: 0=MD5, 1=SHA1 -->
-		<filehash file="${introduction-filehash.filePath}" hashtype="0" propertyname="introduction-filehash.hash"/>
-		<echo message="${introduction-filehash.fileName}  ${introduction-filehash.hash}" level="info" />
-	</target>
-
-	<!--
-		publishes the existing archives to sourceforge
-		watch it: untested, and the folder structure is still unclear
-	-->
-	<target name="publish" depends="init" description="Upload existing archives of the TYPO3 source to SourceForce">
-		<!-- the only way to create a folder via ssh, thanks FLOW3 -->
-		<exec logoutput="true" checkreturn="true" command="ssh shell.sourceforge.net create" />
-		<!-- <exec logoutput="true" checkreturn="true" command="ssh shell.sourceforge.net mkdir -p '/home/frs/project/t/ty/typo3/TYPO3 Source and Dummy/TYPO3 ${archiveprefix}'" /> -->
-		<exec logoutput="true" checkreturn="true" command="ssh shell.sourceforge.net mkdir -p '/home/frs/project/t/ty/typo3/TYPO3v4Testing/TYPO3\ ${archiveprefix}'" />
-		<exec logoutput="true" checkreturn="true" command="ssh shell.sourceforge.net shutdown" />
-		<!-- <exec logoutput="true" checkreturn="true" command="scp ${project.baseDirectory}{baseName}.* 'frs.sourceforge.net:/home/frs/project/t/ty/typo3/TYPO3 Source and Dummy/TYPO3 ${archiveprefix}/'" /> -->
-		<exec logoutput="true" checkreturn="true" command="scp ${project.targetsDirectory}* frs.sourceforge.net:'/home/frs/project/t/ty/typo3/TYPO3v4Testing/TYPO3\ ${archiveprefix}/'" />
 	</target>
 </project>
