@@ -49,7 +49,6 @@
 
 		<phingcall target="repository-export">
 			<property name="repository-export.gitName" value="${introduction.gitName}" />
-			<property name="repository-export.filePath" value="${introduction.workDirectory}${introduction.sourceName}.zip" />
 			<property name="repository-export.directory" value="${introduction.workSourceDirectory}" />
 		</phingcall>
 		
