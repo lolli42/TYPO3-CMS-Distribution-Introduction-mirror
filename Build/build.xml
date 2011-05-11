@@ -19,7 +19,10 @@
  * The TYPO3 project - inspiring people to share!                         *
 -->
 <project name="TYPO3v4IntroductionPackage" basedir="." default="introduction">
-	<import file="${project.basedir}/Common/Build/build.xml" />
+	<if>
+		<not><isset property="common.isLoaded" /></not>
+		<then><import file="${project.basedir}/Common/Build/common.xml" /></then>
+	</if>
 
 	<property name="introduction.workDirectory" value="${project.workDirectory}Introduction/" />
 	<property name="introduction.apsStandardDirectory" value="${project.basedir}/ApsStandard/" />
