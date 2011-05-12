@@ -28,14 +28,14 @@
 	<property name="introduction.apsStandardDirectory" value="${project.basedir}/ApsStandard/" />
 
 	<target name="introduction" depends="common,project-initialize">
-		<phingcall target="introduction-exectue" />
+		<phingcall target="introduction-execute" />
 		<phingcall target="project-md5" />
 		<phingcall target="publish-sourceforge">
 			<property name="publish-sourceforge.directory" value="TYPO3 ${introduction.versionName}" />
 		</phingcall>
 	</target>
 
-	<target name="introcution-execute">
+	<target name="introduction-execute">
 		<delete dir="${introduction.workDirectory}" quiet="true" />
 		<mkdir dir="${introduction.workDirectory}" />
 
