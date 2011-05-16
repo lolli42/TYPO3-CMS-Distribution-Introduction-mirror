@@ -57,6 +57,7 @@
 		<property name="introduction.workAppDirectory" value="${introduction.workDirectory}${introduction.packageName}.app/" />
 		<property name="introduction.workBaseDirectory" value="${introduction.workDirectory}${introduction.packageName}/" />
 		<property name="introduction.workSourceDirectory" value="${introduction.workDirectory}${introduction.sourceName}/" />
+		<property name="introduction.prefixDirectory" value="${introduction.packageName}/" />
 
 		<phingcall target="repository-export">
 			<property name="repository-export.gitName" value="${introduction.gitName}" />
@@ -95,6 +96,7 @@
 
 		<delete file="${project.targetsDirectory}${introduction.packageName}.tar.gz" quiet="true"/>
 		<tar destfile="${project.targetsDirectory}${introduction.packageName}.tar.gz"
+			prefix="${introduction.prefixDirectory}"
 			includeemptydirs="true"
 			compression="gzip">
 			<fileset dir="${introduction.workBaseDirectory}" />
@@ -118,7 +120,9 @@
 		</phingcall>
 
 		<delete file="${project.targetsDirectory}${introduction.packageName}.zip" quiet="true"/>
-		<zip destfile="${project.targetsDirectory}${introduction.packageName}.zip">
+		<zip destfile="${project.targetsDirectory}${introduction.packageName}.zip"
+			prefix="${introduction.prefixDirectory}"
+			includeemptydirs="true">
 			<fileset dir="${introduction.workBaseDirectory}" />
 		</zip>
 	</target>
