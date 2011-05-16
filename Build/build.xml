@@ -85,7 +85,11 @@
 			<property name="introduction-resources.directory" value="${introduction.workBaseDirectory}" />
 		</phingcall>
 
-		<symlink target="../${introduction.sourceName}" link="${introduction.workBaseDirectory}typo3_src" />
+		<copy todir="${introduction.workBaseDirectory}{introduction.sourceName}/">
+			<fileset dir="${introduction.workSourceDirectory}" />
+		</copy>
+
+		<symlink target="${introduction.sourceName}/" link="${introduction.workBaseDirectory}typo3_src" />
 		<symlink target="typo3_src/index.php" link="${introduction.workBaseDirectory}index.php" />
 		<symlink target="typo3_src/t3lib" link="${introduction.workBaseDirectory}t3lib" />
 		<symlink target="typo3_src/typo3" link="${introduction.workBaseDirectory}typo3" />
