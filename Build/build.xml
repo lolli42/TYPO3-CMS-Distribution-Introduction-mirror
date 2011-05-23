@@ -45,6 +45,15 @@
 				<property name="introduction.versionName" value="${common.major}-snapshot-${common.date}" />
 				<property name="introduction.gitName" value="${common.info.branchName}" />
 			</then>
+			<!-- if all distributions are called and thus a new base version was created -->
+			<elseif>
+				<istrue value="${common.all}" />
+				<then>
+					<fail unless="common.info.nextTag" message="There is no release tag available." />
+				<property name="introduction.versionName" value="${common.info.nextVersion}" />
+				<property name="introduction.gitName" value="${common.info.nextTag}" />
+				</then>
+			</elseif>
 			<else>
 				<fail unless="common.info.currentTag" message="There is no release tag available." />
 				<property name="introduction.versionName" value="${common.info.currentVersion}" />
