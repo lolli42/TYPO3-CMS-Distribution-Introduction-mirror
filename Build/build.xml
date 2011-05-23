@@ -94,7 +94,7 @@
 			<property name="introduction-resources.directory" value="${introduction.workBaseDirectory}" />
 		</phingcall>
 
-		<copy todir="${introduction.workBaseDirectory}{introduction.sourceName}/">
+		<copy todir="${introduction.workBaseDirectory}${introduction.sourceName}/">
 			<fileset dir="${introduction.workSourceDirectory}" />
 		</copy>
 
