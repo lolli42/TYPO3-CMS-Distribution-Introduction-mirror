@@ -27,8 +27,7 @@
 	<property name="introduction.workDirectory" value="${project.workDirectory}Introduction/" />
 	<property name="introduction.apsStandardDirectory" value="${project.basedir}/ApsStandard/" />
 
-	<target name="introduction" depends="common,project-initialize">
-		<phingcall target="introduction-execute" />
+	<target name="introduction" depends="common,project-initialize,introduction-execute">
 		<phingcall target="project-md5" />
 		<phingcall target="publish-sourceforge">
 			<property name="publish-sourceforge.directory" value="TYPO3 ${introduction.versionName}" />
