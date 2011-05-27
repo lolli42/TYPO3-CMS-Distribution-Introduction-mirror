@@ -107,12 +107,9 @@
 		</phingcall>
 
 		<delete file="${project.targetsDirectory}${introduction.packageName}.tar.gz" quiet="true"/>
-		<tar destfile="${project.targetsDirectory}${introduction.packageName}.tar.gz"
-			prefix="${introduction.prefixDirectory}"
-			includeemptydirs="true"
-			compression="gzip">
-			<fileset dir="${introduction.workBaseDirectory}" />
-		</tar>
+		<echo message="Creating ${introduction.packageName}.tar.gz" />
+		<exec logoutput="true" checkreturn="true"
+			command="cd ${introduction.workDirectory}; tar -czf ${project.targetsDirectory}${introduction.packageName}.tar.gz ${introduction.prefixDirectory}" />
 	</target>
 
 	<target name="introduction-package-raw">
@@ -132,11 +129,9 @@
 		</phingcall>
 
 		<delete file="${project.targetsDirectory}${introduction.packageName}.zip" quiet="true"/>
-		<zip destfile="${project.targetsDirectory}${introduction.packageName}.zip"
-			prefix="${introduction.prefixDirectory}"
-			includeemptydirs="true">
-			<fileset dir="${introduction.workBaseDirectory}" />
-		</zip>
+		<echo message="Creating ${introduction.packageName}.zip" />
+		<exec logoutput="true" checkreturn="true"
+			command="cd ${introduction.workDirectory}; zip -rq9 ${project.targetsDirectory}${introduction.packageName}.zip ${introduction.prefixDirectory}" />
 	</target>
 
 	<target name="introduction-package-app">
@@ -176,8 +171,9 @@
 		</typo3applist>
 
 		<delete file="${project.targetsDirectory}${introduction.packageName}.app.zip" quiet="true"/>
-		<zip destfile="${project.targetsDirectory}${introduction.packageName}.app.zip">
-			<fileset dir="${introduction.workAppDirectory}" />
-		</zip>
+
+		<echo message="Creating ${introduction.packageName}.app.zip" />
+		<exec logoutput="true" checkreturn="true"
+			command="zip -rq9 ${project.targetsDirectory}${introduction.packageName}.app.zip ${introduction.workAppDirectory}" />
 	</target>
 </project>
