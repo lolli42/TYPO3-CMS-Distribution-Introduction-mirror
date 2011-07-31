@@ -39,13 +39,13 @@ abstract class tx_introduction_view_abstract {
 	 *
 	 * @var string
 	 */
-	private $template;
+	protected $template;
 
 	/**
 	 * The assigned variables
 	 * @var array
 	 */
-	private $assignedVariables = array();
+	protected $assignedVariables = array();
 
 	/**
 	 * The template file
@@ -108,7 +108,7 @@ abstract class tx_introduction_view_abstract {
 	 *
 	 * @return string The HTML with markers
 	 */
-	private function getTemplate() {
+	protected function getTemplate() {
 		$html = @file_get_contents(PATH_site . $this->templateFile);
 		$this->template = $this->contentObject->getSubpart($html, '###TEMPLATE###');
 	}
