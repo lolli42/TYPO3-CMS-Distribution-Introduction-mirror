@@ -1,8 +1,8 @@
--- MySQL dump 10.11
+-- MySQL dump 10.13  Distrib 5.1.57, for apple-darwin11.0.0 (i386)
 --
--- Host: localhost    Database: introduction45
+-- Host: 127.0.0.1    Database: t3_ip45_local
 -- ------------------------------------------------------
--- Server version	5.0.32-Debian_7etch12
+-- Server version	5.1.57
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -16,41 +16,89 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `backend_layout`
+--
+
+DROP TABLE IF EXISTS backend_layout;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE backend_layout (
+  uid int(11) NOT NULL AUTO_INCREMENT,
+  pid int(11) NOT NULL DEFAULT '0',
+  t3ver_oid int(11) NOT NULL DEFAULT '0',
+  t3ver_id int(11) NOT NULL DEFAULT '0',
+  t3ver_wsid int(11) NOT NULL DEFAULT '0',
+  t3ver_label varchar(255) DEFAULT NULL,
+  t3ver_state tinyint(4) NOT NULL DEFAULT '0',
+  t3ver_stage int(11) NOT NULL DEFAULT '0',
+  t3ver_count int(11) NOT NULL DEFAULT '0',
+  t3ver_tstamp int(11) NOT NULL DEFAULT '0',
+  t3ver_move_id int(11) NOT NULL DEFAULT '0',
+  t3_origuid int(11) NOT NULL DEFAULT '0',
+  tstamp int(11) unsigned NOT NULL DEFAULT '0',
+  crdate int(11) unsigned NOT NULL DEFAULT '0',
+  cruser_id int(11) unsigned NOT NULL DEFAULT '0',
+  hidden tinyint(4) unsigned NOT NULL DEFAULT '0',
+  deleted tinyint(4) NOT NULL DEFAULT '0',
+  sorting int(11) unsigned NOT NULL DEFAULT '0',
+  title varchar(255) DEFAULT NULL,
+  description text NOT NULL,
+  config text NOT NULL,
+  icon text NOT NULL,
+  PRIMARY KEY (uid),
+  KEY parent (pid),
+  KEY t3ver_oid (t3ver_oid,t3ver_wsid)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `backend_layout`
+--
+
+LOCK TABLES backend_layout WRITE;
+/*!40000 ALTER TABLE backend_layout DISABLE KEYS */;
+/*!40000 ALTER TABLE backend_layout ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `be_groups`
 --
 
 DROP TABLE IF EXISTS be_groups;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE be_groups (
-  uid int(11) unsigned NOT NULL auto_increment,
-  pid int(11) unsigned NOT NULL default '0',
-  tstamp int(11) unsigned NOT NULL default '0',
-  title varchar(50) default NULL,
+  uid int(11) unsigned NOT NULL AUTO_INCREMENT,
+  pid int(11) unsigned NOT NULL DEFAULT '0',
+  tstamp int(11) unsigned NOT NULL DEFAULT '0',
+  title varchar(50) DEFAULT NULL,
   non_exclude_fields text,
   explicit_allowdeny text,
-  allowed_languages varchar(255) default NULL,
+  allowed_languages varchar(255) DEFAULT NULL,
   custom_options text,
-  db_mountpoints varchar(255) default NULL,
-  pagetypes_select varchar(255) default NULL,
+  db_mountpoints varchar(255) DEFAULT NULL,
+  pagetypes_select varchar(255) DEFAULT NULL,
   tables_select text,
   tables_modify text,
-  crdate int(11) unsigned NOT NULL default '0',
-  cruser_id int(11) unsigned NOT NULL default '0',
+  crdate int(11) unsigned NOT NULL DEFAULT '0',
+  cruser_id int(11) unsigned NOT NULL DEFAULT '0',
   groupMods text,
-  file_mountpoints varchar(255) default NULL,
-  fileoper_perms tinyint(4) NOT NULL default '0',
-  hidden tinyint(1) unsigned NOT NULL default '0',
-  inc_access_lists tinyint(3) unsigned NOT NULL default '0',
+  file_mountpoints varchar(255) DEFAULT NULL,
+  fileoper_perms tinyint(4) NOT NULL DEFAULT '0',
+  hidden tinyint(1) unsigned NOT NULL DEFAULT '0',
+  inc_access_lists tinyint(3) unsigned NOT NULL DEFAULT '0',
   description text,
-  lockToDomain varchar(50) default NULL,
-  deleted tinyint(1) unsigned NOT NULL default '0',
+  lockToDomain varchar(50) DEFAULT NULL,
+  deleted tinyint(1) unsigned NOT NULL DEFAULT '0',
   TSconfig text,
-  subgroup varchar(255) default NULL,
-  hide_in_lists tinyint(4) NOT NULL default '0',
-  workspace_perms tinyint(3) NOT NULL default '1',
-  tt_news_categorymounts varchar(255) NOT NULL,
-  PRIMARY KEY  (uid),
+  subgroup varchar(255) DEFAULT NULL,
+  hide_in_lists tinyint(4) NOT NULL DEFAULT '0',
+  workspace_perms tinyint(3) NOT NULL DEFAULT '1',
+  tt_news_categorymounts varchar(255) DEFAULT NULL,
+  PRIMARY KEY (uid),
   KEY parent (pid)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `be_groups`
@@ -63,63 +111,24 @@ INSERT INTO be_groups VALUES (1,0,1280259524,'Simple editors',NULL,'tt_content:C
 UNLOCK TABLES;
 
 --
--- Table structure for table `backend_layout`
---
-
-DROP TABLE IF EXISTS backend_layout;
-CREATE TABLE backend_layout (
-  uid int(11) NOT NULL auto_increment,
-  pid int(11) NOT NULL default '0',
-  t3ver_oid int(11) NOT NULL default '0',
-  t3ver_id int(11) NOT NULL default '0',
-  t3ver_wsid int(11) NOT NULL default '0',
-  t3ver_label varchar(255) default NULL,
-  t3ver_state tinyint(4) NOT NULL default '0',
-  t3ver_stage int(11) NOT NULL default '0',
-  t3ver_count int(11) NOT NULL default '0',
-  t3ver_tstamp int(11) NOT NULL default '0',
-  t3ver_move_id int(11) NOT NULL default '0',
-  t3_origuid int(11) NOT NULL default '0',
-  tstamp int(11) unsigned NOT NULL default '0',
-  crdate int(11) unsigned NOT NULL default '0',
-  cruser_id int(11) unsigned NOT NULL default '0',
-  hidden tinyint(4) unsigned NOT NULL default '0',
-  deleted tinyint(4) NOT NULL default '0',
-  sorting int(11) unsigned NOT NULL default '0',
-  title varchar(255) default NULL,
-  description text NOT NULL,
-  config text NOT NULL,
-  icon text NOT NULL,
-  PRIMARY KEY  (uid),
-  KEY parent (pid),
-  KEY t3ver_oid (t3ver_oid,t3ver_wsid)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `backend_layout`
---
-
-LOCK TABLES backend_layout WRITE;
-/*!40000 ALTER TABLE backend_layout DISABLE KEYS */;
-/*!40000 ALTER TABLE backend_layout ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `be_sessions`
 --
 
 DROP TABLE IF EXISTS be_sessions;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE be_sessions (
-  ses_id varchar(32) NOT NULL,
-  ses_name varchar(32) NOT NULL,
-  ses_iplock varchar(39) default NULL,
-  ses_hashlock int(11) NOT NULL default '0',
-  ses_userid int(11) unsigned NOT NULL default '0',
-  ses_tstamp int(11) unsigned NOT NULL default '0',
+  ses_id varchar(32) NOT NULL DEFAULT '',
+  ses_name varchar(32) NOT NULL DEFAULT '',
+  ses_iplock varchar(39) DEFAULT NULL,
+  ses_hashlock int(11) NOT NULL DEFAULT '0',
+  ses_userid int(11) unsigned NOT NULL DEFAULT '0',
+  ses_tstamp int(11) unsigned NOT NULL DEFAULT '0',
   ses_data longtext,
-  ses_backuserid int(11) NOT NULL default '0',
-  PRIMARY KEY  (ses_id,ses_name)
+  ses_backuserid int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (ses_id,ses_name)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `be_sessions`
@@ -135,44 +144,47 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS be_users;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE be_users (
-  uid int(11) unsigned NOT NULL auto_increment,
-  pid int(11) unsigned NOT NULL default '0',
-  tstamp int(11) unsigned NOT NULL default '0',
-  username varchar(50) default NULL,
-  `password` varchar(40) default NULL,
-  admin tinyint(4) unsigned NOT NULL default '0',
-  usergroup varchar(255) default NULL,
-  `disable` tinyint(1) unsigned NOT NULL default '0',
-  starttime int(11) unsigned NOT NULL default '0',
-  endtime int(11) unsigned NOT NULL default '0',
-  lang char(2) default NULL,
-  email varchar(80) default NULL,
-  db_mountpoints varchar(255) default NULL,
-  options tinyint(4) unsigned NOT NULL default '0',
-  crdate int(11) unsigned NOT NULL default '0',
-  cruser_id int(11) unsigned NOT NULL default '0',
-  realName varchar(80) default NULL,
-  userMods varchar(255) default NULL,
-  allowed_languages varchar(255) default NULL,
+  uid int(11) unsigned NOT NULL AUTO_INCREMENT,
+  pid int(11) unsigned NOT NULL DEFAULT '0',
+  tstamp int(11) unsigned NOT NULL DEFAULT '0',
+  username varchar(50) DEFAULT NULL,
+  `password` varchar(60) DEFAULT '',
+  admin tinyint(4) unsigned NOT NULL DEFAULT '0',
+  usergroup varchar(255) DEFAULT NULL,
+  `disable` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  starttime int(11) unsigned NOT NULL DEFAULT '0',
+  endtime int(11) unsigned NOT NULL DEFAULT '0',
+  lang char(2) DEFAULT NULL,
+  email varchar(80) DEFAULT NULL,
+  db_mountpoints varchar(255) DEFAULT NULL,
+  `options` tinyint(4) unsigned NOT NULL DEFAULT '0',
+  crdate int(11) unsigned NOT NULL DEFAULT '0',
+  cruser_id int(11) unsigned NOT NULL DEFAULT '0',
+  realName varchar(80) DEFAULT NULL,
+  userMods varchar(255) DEFAULT NULL,
+  allowed_languages varchar(255) DEFAULT NULL,
   uc text,
-  file_mountpoints varchar(255) default NULL,
-  fileoper_perms tinyint(4) NOT NULL default '0',
-  workspace_perms tinyint(3) NOT NULL default '1',
-  lockToDomain varchar(50) default NULL,
-  disableIPlock tinyint(1) unsigned NOT NULL default '0',
-  deleted tinyint(1) unsigned NOT NULL default '0',
+  file_mountpoints varchar(255) DEFAULT NULL,
+  fileoper_perms tinyint(4) NOT NULL DEFAULT '0',
+  workspace_perms tinyint(3) NOT NULL DEFAULT '1',
+  lockToDomain varchar(50) DEFAULT NULL,
+  disableIPlock tinyint(1) unsigned NOT NULL DEFAULT '0',
+  deleted tinyint(1) unsigned NOT NULL DEFAULT '0',
   TSconfig text,
-  lastlogin int(10) unsigned NOT NULL default '0',
-  createdByAction int(11) NOT NULL default '0',
-  usergroup_cached_list varchar(255) default NULL,
-  workspace_id int(11) NOT NULL default '0',
-  workspace_preview tinyint(3) NOT NULL default '1',
-  tt_news_categorymounts varchar(255) NOT NULL,
-  PRIMARY KEY  (uid),
+  lastlogin int(10) unsigned NOT NULL DEFAULT '0',
+  createdByAction int(11) NOT NULL DEFAULT '0',
+  usergroup_cached_list varchar(255) DEFAULT NULL,
+  workspace_id int(11) NOT NULL DEFAULT '0',
+  workspace_preview tinyint(3) NOT NULL DEFAULT '1',
+  tt_news_categorymounts varchar(255) DEFAULT NULL,
+  PRIMARY KEY (uid),
   KEY parent (pid),
   KEY username (username)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `be_users`
@@ -189,30 +201,33 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS cache_extensions;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE cache_extensions (
-  extkey varchar(60) NOT NULL,
-  repository int(11) unsigned NOT NULL default '1',
-  version varchar(10) NOT NULL,
-  alldownloadcounter int(11) unsigned NOT NULL default '0',
-  downloadcounter int(11) unsigned NOT NULL default '0',
-  title varchar(150) default NULL,
+  extkey varchar(60) NOT NULL DEFAULT '',
+  repository int(11) unsigned NOT NULL DEFAULT '1',
+  version varchar(10) NOT NULL DEFAULT '',
+  alldownloadcounter int(11) unsigned NOT NULL DEFAULT '0',
+  downloadcounter int(11) unsigned NOT NULL DEFAULT '0',
+  title varchar(150) DEFAULT NULL,
   description mediumtext,
-  state int(4) NOT NULL default '0',
-  reviewstate int(4) NOT NULL default '0',
-  category int(4) NOT NULL default '0',
-  lastuploaddate int(11) unsigned NOT NULL default '0',
+  state int(4) NOT NULL DEFAULT '0',
+  reviewstate int(4) NOT NULL DEFAULT '0',
+  category int(4) NOT NULL DEFAULT '0',
+  lastuploaddate int(11) unsigned NOT NULL DEFAULT '0',
   dependencies mediumtext,
-  authorname varchar(100) default NULL,
-  authoremail varchar(100) default NULL,
-  ownerusername varchar(50) default NULL,
-  t3xfilemd5 varchar(35) default NULL,
+  authorname varchar(100) DEFAULT NULL,
+  authoremail varchar(100) DEFAULT NULL,
+  ownerusername varchar(50) DEFAULT NULL,
+  t3xfilemd5 varchar(35) DEFAULT NULL,
   uploadcomment mediumtext,
-  authorcompany varchar(100) default NULL,
-  intversion int(11) NOT NULL default '0',
-  lastversion int(3) NOT NULL default '0',
-  lastreviewedversion int(3) NOT NULL default '0',
-  PRIMARY KEY  (extkey,version,repository)
+  authorcompany varchar(100) DEFAULT NULL,
+  intversion int(11) NOT NULL DEFAULT '0',
+  lastversion int(3) NOT NULL DEFAULT '0',
+  lastreviewedversion int(3) NOT NULL DEFAULT '0',
+  PRIMARY KEY (extkey,version,repository)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `cache_extensions`
@@ -224,43 +239,22 @@ LOCK TABLES cache_extensions WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `cache_hash`
---
-
-DROP TABLE IF EXISTS cache_hash;
-CREATE TABLE cache_hash (
-  id int(11) unsigned NOT NULL auto_increment,
-  `hash` varchar(32) default NULL,
-  content mediumblob,
-  tstamp int(11) unsigned NOT NULL default '0',
-  ident varchar(32) default NULL,
-  PRIMARY KEY  (id),
-  KEY `hash` (`hash`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `cache_hash`
---
-
-LOCK TABLES cache_hash WRITE;
-/*!40000 ALTER TABLE cache_hash DISABLE KEYS */;
-/*!40000 ALTER TABLE cache_hash ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `cache_imagesizes`
 --
 
 DROP TABLE IF EXISTS cache_imagesizes;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE cache_imagesizes (
-  md5hash varchar(32) default NULL,
-  md5filename varchar(32) NOT NULL,
-  tstamp int(11) NOT NULL default '0',
-  filename varchar(255) default NULL,
-  imagewidth mediumint(11) unsigned NOT NULL default '0',
-  imageheight mediumint(11) unsigned NOT NULL default '0',
-  PRIMARY KEY  (md5filename)
+  md5hash varchar(32) DEFAULT NULL,
+  md5filename varchar(32) NOT NULL DEFAULT '',
+  tstamp int(11) NOT NULL DEFAULT '0',
+  filename varchar(255) DEFAULT NULL,
+  imagewidth mediumint(11) unsigned NOT NULL DEFAULT '0',
+  imageheight mediumint(11) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (md5filename)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `cache_imagesizes`
@@ -276,13 +270,16 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS cache_md5params;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE cache_md5params (
-  md5hash varchar(20) NOT NULL,
-  tstamp int(11) NOT NULL default '0',
-  `type` tinyint(3) NOT NULL default '0',
+  md5hash varchar(20) NOT NULL DEFAULT '',
+  tstamp int(11) NOT NULL DEFAULT '0',
+  `type` tinyint(3) NOT NULL DEFAULT '0',
   params text,
-  PRIMARY KEY  (md5hash)
+  PRIMARY KEY (md5hash)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `cache_md5params`
@@ -294,69 +291,21 @@ LOCK TABLES cache_md5params WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `cache_pages`
---
-
-DROP TABLE IF EXISTS cache_pages;
-CREATE TABLE cache_pages (
-  id int(11) unsigned NOT NULL auto_increment,
-  `hash` varchar(32) default NULL,
-  page_id int(11) unsigned NOT NULL default '0',
-  reg1 int(11) unsigned NOT NULL default '0',
-  HTML mediumblob,
-  temp_content int(1) NOT NULL default '0',
-  tstamp int(11) unsigned NOT NULL default '0',
-  expires int(10) unsigned NOT NULL default '0',
-  cache_data mediumblob,
-  PRIMARY KEY  (id),
-  KEY page_id (page_id),
-  KEY sel (`hash`,page_id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `cache_pages`
---
-
-LOCK TABLES cache_pages WRITE;
-/*!40000 ALTER TABLE cache_pages DISABLE KEYS */;
-/*!40000 ALTER TABLE cache_pages ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `cache_pagesection`
---
-
-DROP TABLE IF EXISTS cache_pagesection;
-CREATE TABLE cache_pagesection (
-  page_id int(11) unsigned NOT NULL default '0',
-  mpvar_hash int(11) unsigned NOT NULL default '0',
-  content blob,
-  tstamp int(11) unsigned NOT NULL default '0',
-  PRIMARY KEY  (page_id,mpvar_hash)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `cache_pagesection`
---
-
-LOCK TABLES cache_pagesection WRITE;
-/*!40000 ALTER TABLE cache_pagesection DISABLE KEYS */;
-/*!40000 ALTER TABLE cache_pagesection ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `cache_treelist`
 --
 
 DROP TABLE IF EXISTS cache_treelist;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE cache_treelist (
-  md5hash char(32) NOT NULL,
-  pid int(11) NOT NULL default '0',
+  md5hash char(32) NOT NULL DEFAULT '',
+  pid int(11) NOT NULL DEFAULT '0',
   treelist text,
-  tstamp int(11) NOT NULL default '0',
-  expires int(11) unsigned NOT NULL default '0',
-  PRIMARY KEY  (md5hash)
+  tstamp int(11) NOT NULL DEFAULT '0',
+  expires int(11) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (md5hash)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `cache_treelist`
@@ -372,13 +321,16 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS cache_typo3temp_log;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE cache_typo3temp_log (
-  md5hash varchar(32) NOT NULL,
-  tstamp int(11) NOT NULL default '0',
-  filename varchar(255) default NULL,
-  orig_filename varchar(255) default NULL,
-  PRIMARY KEY  (md5hash)
+  md5hash varchar(32) NOT NULL DEFAULT '',
+  tstamp int(11) NOT NULL DEFAULT '0',
+  filename varchar(255) DEFAULT NULL,
+  orig_filename varchar(255) DEFAULT NULL,
+  PRIMARY KEY (md5hash)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `cache_typo3temp_log`
@@ -390,169 +342,31 @@ LOCK TABLES cache_typo3temp_log WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `cachingframework_cache_hash`
---
-
-DROP TABLE IF EXISTS cachingframework_cache_hash;
-CREATE TABLE cachingframework_cache_hash (
-  id int(11) unsigned NOT NULL auto_increment,
-  identifier varchar(128) default NULL,
-  crdate int(11) unsigned NOT NULL default '0',
-  content mediumblob,
-  lifetime int(11) unsigned NOT NULL default '0',
-  PRIMARY KEY  (id),
-  KEY cache_id (identifier)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `cachingframework_cache_hash`
---
-
-LOCK TABLES cachingframework_cache_hash WRITE;
-/*!40000 ALTER TABLE cachingframework_cache_hash DISABLE KEYS */;
-/*!40000 ALTER TABLE cachingframework_cache_hash ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `cachingframework_cache_hash_tags`
---
-
-DROP TABLE IF EXISTS cachingframework_cache_hash_tags;
-CREATE TABLE cachingframework_cache_hash_tags (
-  id int(11) unsigned NOT NULL auto_increment,
-  identifier varchar(128) default NULL,
-  tag varchar(128) default NULL,
-  PRIMARY KEY  (id),
-  KEY cache_id (identifier),
-  KEY cache_tag (tag)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `cachingframework_cache_hash_tags`
---
-
-LOCK TABLES cachingframework_cache_hash_tags WRITE;
-/*!40000 ALTER TABLE cachingframework_cache_hash_tags DISABLE KEYS */;
-/*!40000 ALTER TABLE cachingframework_cache_hash_tags ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `cachingframework_cache_pages`
---
-
-DROP TABLE IF EXISTS cachingframework_cache_pages;
-CREATE TABLE cachingframework_cache_pages (
-  id int(11) unsigned NOT NULL auto_increment,
-  identifier varchar(128) default NULL,
-  crdate int(11) unsigned NOT NULL default '0',
-  content mediumblob,
-  lifetime int(11) unsigned NOT NULL default '0',
-  PRIMARY KEY  (id),
-  KEY cache_id (identifier)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `cachingframework_cache_pages`
---
-
-LOCK TABLES cachingframework_cache_pages WRITE;
-/*!40000 ALTER TABLE cachingframework_cache_pages DISABLE KEYS */;
-/*!40000 ALTER TABLE cachingframework_cache_pages ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `cachingframework_cache_pages_tags`
---
-
-DROP TABLE IF EXISTS cachingframework_cache_pages_tags;
-CREATE TABLE cachingframework_cache_pages_tags (
-  id int(11) unsigned NOT NULL auto_increment,
-  identifier varchar(128) default NULL,
-  tag varchar(128) default NULL,
-  PRIMARY KEY  (id),
-  KEY cache_id (identifier),
-  KEY cache_tag (tag)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `cachingframework_cache_pages_tags`
---
-
-LOCK TABLES cachingframework_cache_pages_tags WRITE;
-/*!40000 ALTER TABLE cachingframework_cache_pages_tags DISABLE KEYS */;
-/*!40000 ALTER TABLE cachingframework_cache_pages_tags ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `cachingframework_cache_pagesection`
---
-
-DROP TABLE IF EXISTS cachingframework_cache_pagesection;
-CREATE TABLE cachingframework_cache_pagesection (
-  id int(11) unsigned NOT NULL auto_increment,
-  identifier varchar(128) default NULL,
-  crdate int(11) unsigned NOT NULL default '0',
-  content mediumblob,
-  lifetime int(11) unsigned NOT NULL default '0',
-  PRIMARY KEY  (id),
-  KEY cache_id (identifier)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `cachingframework_cache_pagesection`
---
-
-LOCK TABLES cachingframework_cache_pagesection WRITE;
-/*!40000 ALTER TABLE cachingframework_cache_pagesection DISABLE KEYS */;
-/*!40000 ALTER TABLE cachingframework_cache_pagesection ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `cachingframework_cache_pagesection_tags`
---
-
-DROP TABLE IF EXISTS cachingframework_cache_pagesection_tags;
-CREATE TABLE cachingframework_cache_pagesection_tags (
-  id int(11) unsigned NOT NULL auto_increment,
-  identifier varchar(128) default NULL,
-  tag varchar(128) default NULL,
-  PRIMARY KEY  (id),
-  KEY cache_id (identifier),
-  KEY cache_tag (tag)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `cachingframework_cache_pagesection_tags`
---
-
-LOCK TABLES cachingframework_cache_pagesection_tags WRITE;
-/*!40000 ALTER TABLE cachingframework_cache_pagesection_tags DISABLE KEYS */;
-/*!40000 ALTER TABLE cachingframework_cache_pagesection_tags ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `fe_groups`
 --
 
 DROP TABLE IF EXISTS fe_groups;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE fe_groups (
-  uid int(11) unsigned NOT NULL auto_increment,
-  pid int(11) unsigned NOT NULL default '0',
-  tstamp int(11) unsigned NOT NULL default '0',
-  crdate int(11) unsigned NOT NULL default '0',
-  cruser_id int(11) unsigned NOT NULL default '0',
-  title varchar(50) default NULL,
-  hidden tinyint(3) unsigned NOT NULL default '0',
-  lockToDomain varchar(50) default NULL,
-  deleted tinyint(3) unsigned NOT NULL default '0',
+  uid int(11) unsigned NOT NULL AUTO_INCREMENT,
+  pid int(11) unsigned NOT NULL DEFAULT '0',
+  tstamp int(11) unsigned NOT NULL DEFAULT '0',
+  crdate int(11) unsigned NOT NULL DEFAULT '0',
+  cruser_id int(11) unsigned NOT NULL DEFAULT '0',
+  title varchar(50) DEFAULT NULL,
+  hidden tinyint(3) unsigned NOT NULL DEFAULT '0',
+  lockToDomain varchar(50) DEFAULT NULL,
+  deleted tinyint(3) unsigned NOT NULL DEFAULT '0',
   description text,
   subgroup tinytext,
   TSconfig text,
   felogin_redirectPid tinytext,
-  tx_extbase_type varchar(255) default NULL,
-  PRIMARY KEY  (uid),
+  tx_extbase_type varchar(255) DEFAULT NULL,
+  PRIMARY KEY (uid),
   KEY parent (pid)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `fe_groups`
@@ -569,13 +383,16 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS fe_session_data;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE fe_session_data (
-  `hash` varchar(32) NOT NULL,
+  `hash` varchar(32) NOT NULL DEFAULT '',
   content mediumblob,
-  tstamp int(11) unsigned NOT NULL default '0',
-  PRIMARY KEY  (`hash`),
+  tstamp int(11) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`hash`),
   KEY tstamp (tstamp)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `fe_session_data`
@@ -591,17 +408,20 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS fe_sessions;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE fe_sessions (
-  ses_id varchar(32) NOT NULL,
-  ses_name varchar(32) NOT NULL,
-  ses_iplock varchar(39) default NULL,
-  ses_hashlock int(11) NOT NULL default '0',
-  ses_userid int(11) unsigned NOT NULL default '0',
-  ses_tstamp int(11) unsigned NOT NULL default '0',
+  ses_id varchar(32) NOT NULL DEFAULT '',
+  ses_name varchar(32) NOT NULL DEFAULT '',
+  ses_iplock varchar(39) DEFAULT NULL,
+  ses_hashlock int(11) NOT NULL DEFAULT '0',
+  ses_userid int(11) unsigned NOT NULL DEFAULT '0',
+  ses_tstamp int(11) unsigned NOT NULL DEFAULT '0',
   ses_data blob,
-  ses_permanent tinyint(1) unsigned NOT NULL default '0',
-  PRIMARY KEY  (ses_id,ses_name)
+  ses_permanent tinyint(1) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (ses_id,ses_name)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `fe_sessions`
@@ -617,48 +437,51 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS fe_users;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE fe_users (
-  uid int(11) unsigned NOT NULL auto_increment,
-  pid int(11) unsigned NOT NULL default '0',
-  tstamp int(11) unsigned NOT NULL default '0',
-  username varchar(50) default NULL,
-  `password` varchar(40) default NULL,
+  uid int(11) unsigned NOT NULL AUTO_INCREMENT,
+  pid int(11) unsigned NOT NULL DEFAULT '0',
+  tstamp int(11) unsigned NOT NULL DEFAULT '0',
+  username varchar(50) DEFAULT NULL,
+  `password` varchar(60) DEFAULT '',
   usergroup tinytext,
-  `disable` tinyint(4) unsigned NOT NULL default '0',
-  starttime int(11) unsigned NOT NULL default '0',
-  endtime int(11) unsigned NOT NULL default '0',
-  `name` varchar(80) default NULL,
-  first_name varchar(50) default NULL,
-  middle_name varchar(50) default NULL,
-  last_name varchar(50) default NULL,
-  address varchar(255) default NULL,
-  telephone varchar(20) default NULL,
-  fax varchar(20) default NULL,
-  email varchar(80) default NULL,
-  crdate int(11) unsigned NOT NULL default '0',
-  cruser_id int(11) unsigned NOT NULL default '0',
-  lockToDomain varchar(50) default NULL,
-  deleted tinyint(3) unsigned NOT NULL default '0',
+  `disable` tinyint(4) unsigned NOT NULL DEFAULT '0',
+  starttime int(11) unsigned NOT NULL DEFAULT '0',
+  endtime int(11) unsigned NOT NULL DEFAULT '0',
+  `name` varchar(80) DEFAULT NULL,
+  first_name varchar(50) DEFAULT NULL,
+  middle_name varchar(50) DEFAULT NULL,
+  last_name varchar(50) DEFAULT NULL,
+  address varchar(255) DEFAULT NULL,
+  telephone varchar(20) DEFAULT NULL,
+  fax varchar(20) DEFAULT NULL,
+  email varchar(80) DEFAULT NULL,
+  crdate int(11) unsigned NOT NULL DEFAULT '0',
+  cruser_id int(11) unsigned NOT NULL DEFAULT '0',
+  lockToDomain varchar(50) DEFAULT NULL,
+  deleted tinyint(3) unsigned NOT NULL DEFAULT '0',
   uc blob,
-  title varchar(40) default NULL,
-  zip varchar(10) default NULL,
-  city varchar(50) default NULL,
-  country varchar(40) default NULL,
-  www varchar(80) default NULL,
-  company varchar(80) default NULL,
+  title varchar(40) DEFAULT NULL,
+  zip varchar(10) DEFAULT NULL,
+  city varchar(50) DEFAULT NULL,
+  country varchar(40) DEFAULT NULL,
+  www varchar(80) DEFAULT NULL,
+  company varchar(80) DEFAULT NULL,
   image tinytext,
   TSconfig text,
-  fe_cruser_id int(10) unsigned NOT NULL default '0',
-  lastlogin int(10) unsigned NOT NULL default '0',
-  is_online int(10) unsigned NOT NULL default '0',
+  fe_cruser_id int(10) unsigned NOT NULL DEFAULT '0',
+  lastlogin int(10) unsigned NOT NULL DEFAULT '0',
+  is_online int(10) unsigned NOT NULL DEFAULT '0',
   felogin_redirectPid tinytext,
-  felogin_forgotHash varchar(80) default NULL,
-  tx_extbase_type varchar(255) default NULL,
-  PRIMARY KEY  (uid),
+  felogin_forgotHash varchar(80) DEFAULT NULL,
+  tx_extbase_type varchar(255) DEFAULT NULL,
+  PRIMARY KEY (uid),
   KEY parent (pid,username),
   KEY username (username),
   KEY is_online (is_online)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `fe_users`
@@ -675,38 +498,41 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS index_config;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE index_config (
-  uid int(11) NOT NULL auto_increment,
-  pid int(11) NOT NULL default '0',
-  tstamp int(11) NOT NULL default '0',
-  crdate int(11) NOT NULL default '0',
-  cruser_id int(11) NOT NULL default '0',
-  hidden tinyint(4) NOT NULL default '0',
-  starttime int(11) NOT NULL default '0',
-  set_id int(11) NOT NULL default '0',
+  uid int(11) NOT NULL AUTO_INCREMENT,
+  pid int(11) NOT NULL DEFAULT '0',
+  tstamp int(11) NOT NULL DEFAULT '0',
+  crdate int(11) NOT NULL DEFAULT '0',
+  cruser_id int(11) NOT NULL DEFAULT '0',
+  hidden tinyint(4) NOT NULL DEFAULT '0',
+  starttime int(11) NOT NULL DEFAULT '0',
+  set_id int(11) NOT NULL DEFAULT '0',
   session_data mediumtext,
-  title varchar(255) default NULL,
+  title varchar(255) DEFAULT NULL,
   description text,
-  `type` varchar(30) default NULL,
-  depth int(11) unsigned NOT NULL default '0',
-  table2index varchar(255) default NULL,
-  alternative_source_pid int(11) unsigned NOT NULL default '0',
-  get_params varchar(255) default NULL,
-  fieldlist varchar(255) default NULL,
-  externalUrl varchar(255) default NULL,
+  `type` varchar(30) DEFAULT NULL,
+  depth int(11) unsigned NOT NULL DEFAULT '0',
+  table2index varchar(255) DEFAULT NULL,
+  alternative_source_pid int(11) unsigned NOT NULL DEFAULT '0',
+  get_params varchar(255) DEFAULT NULL,
+  fieldlist varchar(255) DEFAULT NULL,
+  externalUrl varchar(255) DEFAULT NULL,
   indexcfgs text,
-  chashcalc tinyint(3) unsigned NOT NULL default '0',
-  filepath varchar(255) default NULL,
-  extensions varchar(255) default NULL,
-  timer_next_indexing int(11) NOT NULL default '0',
-  timer_frequency int(11) NOT NULL default '0',
-  timer_offset int(11) NOT NULL default '0',
+  chashcalc tinyint(3) unsigned NOT NULL DEFAULT '0',
+  filepath varchar(255) DEFAULT NULL,
+  extensions varchar(255) DEFAULT NULL,
+  timer_next_indexing int(11) NOT NULL DEFAULT '0',
+  timer_frequency int(11) NOT NULL DEFAULT '0',
+  timer_offset int(11) NOT NULL DEFAULT '0',
   url_deny text,
-  recordsbatch int(11) NOT NULL default '0',
-  records_indexonchange tinyint(4) NOT NULL default '0',
-  PRIMARY KEY  (uid),
+  recordsbatch int(11) NOT NULL DEFAULT '0',
+  records_indexonchange tinyint(4) NOT NULL DEFAULT '0',
+  PRIMARY KEY (uid),
   KEY parent (pid)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `index_config`
@@ -722,11 +548,14 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS index_debug;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE index_debug (
-  phash int(11) NOT NULL default '0',
+  phash int(11) NOT NULL DEFAULT '0',
   debuginfo mediumtext,
-  PRIMARY KEY  (phash)
+  PRIMARY KEY (phash)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `index_debug`
@@ -742,11 +571,14 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS index_fulltext;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE index_fulltext (
-  phash int(11) NOT NULL default '0',
+  phash int(11) NOT NULL DEFAULT '0',
   fulltextdata mediumtext,
-  PRIMARY KEY  (phash)
+  PRIMARY KEY (phash)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `index_fulltext`
@@ -763,16 +595,19 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS index_grlist;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE index_grlist (
-  phash int(11) NOT NULL default '0',
-  phash_x int(11) NOT NULL default '0',
-  hash_gr_list int(11) NOT NULL default '0',
-  gr_list varchar(255) default NULL,
-  uniqid int(11) NOT NULL auto_increment,
-  PRIMARY KEY  (uniqid),
+  phash int(11) NOT NULL DEFAULT '0',
+  phash_x int(11) NOT NULL DEFAULT '0',
+  hash_gr_list int(11) NOT NULL DEFAULT '0',
+  gr_list varchar(255) DEFAULT NULL,
+  uniqid int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (uniqid),
   KEY joinkey (phash,hash_gr_list),
   KEY phash_grouping (phash_x,hash_gr_list)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `index_grlist`
@@ -789,35 +624,38 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS index_phash;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE index_phash (
-  phash int(11) NOT NULL default '0',
-  phash_grouping int(11) NOT NULL default '0',
+  phash int(11) NOT NULL DEFAULT '0',
+  phash_grouping int(11) NOT NULL DEFAULT '0',
   cHashParams blob,
-  data_filename varchar(255) default NULL,
-  data_page_id int(11) unsigned NOT NULL default '0',
-  data_page_reg1 int(11) unsigned NOT NULL default '0',
-  data_page_type int(11) unsigned NOT NULL default '0',
-  data_page_mp varchar(255) default NULL,
-  gr_list varchar(255) default NULL,
-  item_type varchar(5) default NULL,
-  item_title varchar(255) default NULL,
-  item_description varchar(255) default NULL,
-  item_mtime int(11) NOT NULL default '0',
-  tstamp int(11) unsigned NOT NULL default '0',
-  item_size int(11) NOT NULL default '0',
-  contentHash int(11) NOT NULL default '0',
-  crdate int(11) NOT NULL default '0',
-  parsetime int(11) NOT NULL default '0',
-  sys_language_uid int(11) NOT NULL default '0',
-  item_crdate int(11) NOT NULL default '0',
-  externalUrl tinyint(3) NOT NULL default '0',
-  recordUid int(11) NOT NULL default '0',
-  freeIndexUid int(11) NOT NULL default '0',
-  freeIndexSetId int(11) NOT NULL default '0',
-  PRIMARY KEY  (phash),
+  data_filename varchar(255) DEFAULT NULL,
+  data_page_id int(11) unsigned NOT NULL DEFAULT '0',
+  data_page_reg1 int(11) unsigned NOT NULL DEFAULT '0',
+  data_page_type int(11) unsigned NOT NULL DEFAULT '0',
+  data_page_mp varchar(255) DEFAULT NULL,
+  gr_list varchar(255) DEFAULT NULL,
+  item_type varchar(5) DEFAULT NULL,
+  item_title varchar(255) DEFAULT NULL,
+  item_description varchar(255) DEFAULT NULL,
+  item_mtime int(11) NOT NULL DEFAULT '0',
+  tstamp int(11) unsigned NOT NULL DEFAULT '0',
+  item_size int(11) NOT NULL DEFAULT '0',
+  contentHash int(11) NOT NULL DEFAULT '0',
+  crdate int(11) NOT NULL DEFAULT '0',
+  parsetime int(11) NOT NULL DEFAULT '0',
+  sys_language_uid int(11) NOT NULL DEFAULT '0',
+  item_crdate int(11) NOT NULL DEFAULT '0',
+  externalUrl tinyint(3) NOT NULL DEFAULT '0',
+  recordUid int(11) NOT NULL DEFAULT '0',
+  freeIndexUid int(11) NOT NULL DEFAULT '0',
+  freeIndexSetId int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (phash),
   KEY phash_grouping (phash_grouping),
   KEY freeIndexUid (freeIndexUid)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `index_phash`
@@ -825,7 +663,7 @@ CREATE TABLE index_phash (
 
 LOCK TABLES index_phash WRITE;
 /*!40000 ALTER TABLE index_phash DISABLE KEYS */;
-INSERT INTO index_phash VALUES (1315879,128659280,'a:0:{}','',42,0,0,'','0,-2,1','0','Text and images','Position:  In text, left            Nam aliquam, lorem nec dapibus feugiat, ipsum quam laoreet arcu, sed ullamcorper augue augue vitae magna.     Hambiam est lectus, interdum id, accumsan a, blandit q',1258643924,1258644172,15100,237807018,1258644172,1488,0,1258542915,0,0,0,0),(12178519,19799004,'a:1:{s:3:\"key\";i:0;}','uploads/media/typo3_image2.jpg',0,0,0,'','0,-1','jpeg','typo3_image2.jpg','',1277207398,1277448847,453106,47826143,1277448847,4,0,1277207398,0,0,0,0),(17721842,88315949,'a:1:{s:3:\"key\";i:0;}','uploads/media/test.jpg',0,0,0,'','0,-1','jpeg','test.jpg','',1258542938,1258634309,114994,4271145,1258546231,27,0,1258542938,0,0,0,0),(26732467,117169532,'a:0:{}','',51,0,0,'','0,-2,2','0','About TYPO3','TYPO3 - The Enterprise CMS        TYPO3 is a free, open source content management framework designed to simplify the creation of feature-rich websites that can be updated by nontechnical editors. It i',1277209431,1277209991,10838,155317887,1277209991,128,0,1258560852,0,0,0,0),(27979961,264873999,'a:0:{}',NULL,38,0,0,'','0,-1','0','Tables','RTE table    Caption       Area A    Area B    Area C        2008            50.000            50.000            50.000      2009            50.000            50.000            50.000         Table la',1280747403,1291231758,13479,201906171,1290519094,106,0,1258542915,0,0,0,0),(32314300,249525235,'a:0:{}','',25,0,0,'','0,-2,1','0','Any language, any character','TYPO3 knows no boundaries   TYPO3 supports all languages, characters and encoding out-of-the-box. All front-end, back-end and database interactions fully support UTF-8.      Bulgarian:  Жълтата',1280747403,1290541287,12082,127704245,1277112593,349,0,1258457261,0,0,0,0),(35642906,157991628,'a:0:{}','',62,0,0,'','0,-1','0','Resources','TYPO3: A True Open Source Community   A widespread, international community of users and developers contributes to the ongoing evolution and success of TYPO3. Get acquainted with the latest enhancemen',1280747403,1291116482,9880,42506647,1277098649,168,0,1276894889,0,0,0,0),(38657581,61152230,'a:0:{}','',31,0,0,'','0,-2,2','0','Any login page','',1277039417,1277039807,6212,227580399,1258566877,237,0,1258479835,0,0,0,0),(41054942,98299018,'a:0:{}','',30,0,0,'','0,-2,1','0','Protected customer page','',1277112544,1277150075,8086,22770837,1277033475,54,0,1258479801,0,0,0,0),(48560649,172990358,'a:0:{}','',23,0,0,'','0,-2,2','0','News','All news articles                               Monday 16. of November 2009    Lorem ipsum dolor sit amet                   Vivamus elementum dui vitae turpis ultrices aliquam volutpat justo accumsan.',1258481203,1258482803,8191,42236307,1258482803,327,0,1258388433,0,0,0,0),(52511554,199047133,'a:0:{}','',57,0,0,'','0,-1','0','Features','Feature Complete Out-of-the-Box   TYPO3 is unique in the number and quality of features that are built-in to its core. While there are over 4,500 extensions in the TYPO3 extension repository, the foll',1280747403,1291210663,10502,102701671,1277143453,197,0,1258639563,0,0,0,0),(54995076,4367276,'a:0:{}','',35,0,0,'','0,-2,1','0','File downloads','Download no icon, no filesize       TYPO3_Logo_Guide_v3.pdf         Download with icon, no filesize            TYPO3_Logo_Guide_v3.pdf         Download with icon and filesize            TYPO3_Logo_Gui',1277151860,1277156671,12752,195322679,1277156671,45,0,1258542915,0,0,0,0),(61178092,149352455,'a:2:{s:18:\"tx_ttnews[tt_news]\";s:1:\"7\";s:5:\"cHash\";s:32:\"59f1b098e97f03943f7f531de3332e1c\";}','',23,0,0,'','0,-2,1','0','Internal news item','06/21/2010 11:16     Internal news item     Category: Internal          This news item has been categorized as \"Internal\"         This news item will only show up on pages displaying news from the cat',1277112201,1277112473,10459,253913104,1277112473,61,0,1258388433,0,0,0,0),(63934828,180254528,'a:2:{s:18:\"tx_ttnews[tt_news]\";s:1:\"2\";s:5:\"cHash\";s:32:\"9e2ecfc909376055dec01aa2425b0ecd\";}','',23,0,0,'','0,-1','0','News','Skip to navigation          Skip to content                         Introduction Package            Customer login                                            First Level Navigation        Get Started ',1277209431,1277210984,11554,90460568,1276372482,175,0,1258388433,0,0,0,0),(64875351,120126124,'a:0:{}',NULL,6,0,0,'','0,-1','0','Welcome to TYPO3','',1280747403,1291191197,2544,54875953,1287576720,1015,0,1257766279,0,0,0,0),(66959257,53732654,'a:0:{}','',37,0,0,'','0,-1','0','Lists','Multiple Layouts for Standard Content Types   Ordered and unordered lists are available in TYPO3 as a standard content element. Users are able to create multiple predefined list layouts, which help',1280747403,1291231852,11644,171785797,1277207217,89,0,1258542915,0,0,0,0),(76981466,253804256,'a:0:{}','',67,0,0,'','0,-2,1','0','Thank you for your feedback','Thank you for your feedback   An email has been sent, we appreciate your feedback.',1277149308,1277154368,7704,227866698,1277154368,44,0,1277149038,0,0,0,0),(78471282,187444578,'a:0:{}','',25,0,0,'','0,-2,1','0','Elke taal, elk karakter','TYPO3 knows no boundaries   TYPO3 supports all languages, characters and encoding out-of-the-box. All front-end, back-end and database interactions fully support UTF-8.       TYPO3 kent geen grenzen  ',1277082332,1277112602,10307,146085509,1277112602,134,1,1258457261,0,0,0,0),(81676894,249525235,'a:0:{}','',25,0,0,'','0,-2,2','0','Any language, any character','TYPO3 has no boundaries   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus aliquet magna tincidunt tortor sagittis auctor. Pellentesque sed erat metus. Donec turpis orci, cursus id f',1258481203,1258482883,5856,238747428,1258482883,411,0,1258457261,0,0,0,0),(81925491,88496334,'a:0:{}','',3,0,0,'','0,-1','0','Customizing TYPO3','4,500 Extensions and Counting   TYPO3 is an extremely modular system that can be easily enhanced with custom extensions. All TYPO3 sites are built on top of the TYPO3 core, which contains the system\'s',1290049034,1291200350,9926,166764217,1277038899,135,0,1257766279,0,0,0,0),(84776878,218666618,'a:0:{}','',63,0,0,'','0,-1','0','Consultancies','Need Help? Tap into the TYPO3 Consultancy Network   Many of TYPO3\'s most knowledgeable contributors are the web developers and consultants around the world who use it everyday. These  certified consul',1280747403,1291231125,8804,109416015,1276982155,112,0,1276894949,0,0,0,0),(88605078,164951480,'a:0:{}','',4,0,0,'','0,-1','0','Examples','Content Management Made Easy   To help get you started with TYPO3, we’ve included usage examples of the core content elements that have made TYPO3 so popular.     These examples illustrate how strai',1280747403,1291210670,9489,67776341,1276944884,87,0,1257766279,0,0,0,0),(89245927,136022155,'a:0:{}','',45,0,0,'','0,-1','0','Frames','Content-specific Layouts   Frames  are centrally configured layouts for different content elements. Frames can be used, for example, to allow a content editor to apply a specific background image and/',1280747403,1291231787,12428,100552255,1277207216,224,0,1258548941,0,0,0,0),(91553626,61959816,'a:0:{}','',53,0,0,'','0,-2,1','0','Community','TYPO3: Inspiring People to Share   The real driving force behind TYPO3’s development is its expanding, vibrant community of nearly 100,000 members. Over the past decade, TYPO3 has been installed mor',1277146036,1277156594,9399,199210428,1277156594,120,0,1258561250,0,0,0,0),(93199155,120126124,'a:0:{}','',6,0,0,'','0,-2,2','0','Welcome to TYPO3','Welcome to TYPO3   Diese Website dient der Pr?sentation der TYPO3 Testsite f?r das Content Management System (CMS) TYPO3.    Do we have any encoding problems? ? ? ? ???    Die TYPO3 Testsite is',1276970409,1277043372,7931,214882953,1258482911,496,0,1257766279,0,0,0,0),(95671238,157991628,'a:0:{}','',62,0,0,'','0,-2,2','0','Resources','TYPO3: A True Open Source Community   A widespread, international community of users and developers contributes to the ongoing evolution and success of TYPO3. Get acquainted with the latest enhancemen',1276985324,1277043376,9880,47956479,1277043376,154,0,1276894889,0,0,0,0),(112269630,180254528,'a:2:{s:18:\"tx_ttnews[tt_news]\";s:1:\"2\";s:5:\"cHash\";s:32:\"9e2ecfc909376055dec01aa2425b0ecd\";}','',23,0,0,'','0,-2,1','0','The TYPO3 Association is founded','09/16/2004 17:33     The TYPO3 Association is founded     Category: Research          Months in the planning, on this very day the TYPO3 Association was founded by a group of long-time contributors he',1277112201,1277112570,11297,51245155,1277112570,84,0,1258388433,0,0,0,0),(116404532,82176641,'a:0:{}','',40,0,0,'','0,-1','0','Image groups','Multiple Image Layout Options   TYPO3 provides users with numerous possibilities for laying out images on a page. The back-end interface provides users with easy control over image formats, sizes, wid',1280747403,1291231657,17357,61385693,1277448789,100,0,1258542915,0,0,0,0),(116627476,209034526,'a:0:{}','',43,0,0,'','0,-1','0','Examples of Rich Text','TYPO3\'s Built-in Rich Text Editor   TYPO3 contains a sophisticated, built-in rich text editor (RTE). This editor contains all of the features one would expect from an enterprise CMS, and is highly con',1280747403,1291231393,12101,161400157,1277157406,151,0,1258542915,0,0,0,0),(120716485,144774419,'a:0:{}','',28,0,0,'','0,-2,1','0','Customer login','You can now view the protected pages!   You are logged in, so you can now view the protected pages which you can find in the navigation menu on the left.',1280747403,1291027984,8015,147198484,1277033469,54,0,1258478965,0,0,0,0),(122144994,67169286,'a:0:{}','',52,0,0,'','0,-2,1','0','The History','Great things take time!   TYPO3 is nothing new or specifically trendy like many other Open Source tools that have risen in popularity recently because they focus strongly on Web 2.0 or blogging. In fa',1276970409,1277156590,8781,35008462,1258644113,1961,0,1258561250,0,0,0,0),(123427353,45146822,'a:2:{s:18:\"tx_ttnews[tt_news]\";s:1:\"7\";s:5:\"cHash\";s:32:\"59f1b098e97f03943f7f531de3332e1c\";}','',31,0,0,'','0,-2,1','0','Any login page','',1277040534,1277112348,8476,160104036,1277112348,39,0,1258479835,0,0,0,0),(125853710,207201635,'a:2:{s:18:\"tx_ttnews[tt_news]\";s:1:\"6\";s:5:\"cHash\";s:32:\"d6b8b0c0e0b2045ff2c953444a33b1a9\";}','',23,0,0,'','0,-1','0','News','Skip to navigation          Skip to content                         Introduction Package            Customer login                                     First Level Navigation        Get Started    Abou',1272213644,1273219594,9478,8130118,1273219594,174,0,1258388433,0,0,0,0),(134246624,249525235,'a:0:{}','',25,0,0,'','0,-1','0','Any language, any character','TYPO3 Speaks Your Language   TYPO3 supports all languages, characters and encoding out-of-the-box. All front-end, back-end and database interactions fully support UTF-8.      Bulgarian:  Жълтат',1280747403,1291227074,12050,130993499,1277157400,284,0,1258457261,0,0,0,0),(139410890,199047133,'a:0:{}','',57,0,0,'','0,-2,1','0','Features','Feature Complete Out-of-the-box   TYPO3 is unique in the quantity and quality of features that are part of its core. While there are over 4,500 extensions in the TYPO3 extension repository, the follo',1280747403,1291028246,10518,236552681,1277156725,199,0,1258639563,0,0,0,0),(144359339,197669825,'a:2:{s:18:\"tx_ttnews[tt_news]\";s:1:\"1\";s:5:\"cHash\";s:32:\"4104653f79b957da4f31a901d9a94d9d\";}','',23,0,0,'','0,-1','0','TYPO3 celebrates 20th anniversary','06/16/2017 17:33     TYPO3 celebrates 20th anniversary     Category: General          TYPO3 celebrates it\'s 20th anniversary. Having been one of the very first Content Management Systems on the market',1277112201,1277157498,11191,6028228,1276375421,102,0,1258388433,0,0,0,0),(146845407,61959816,'a:0:{}','',53,0,0,'','0,-1','0','Community','TYPO3: Inspiring People to Share   The real driving force behind TYPO3’s development is its expanding, vibrant community of nearly 100,000 members. Over the past decade, TYPO3 has been installed mor',1280747403,1291230276,11613,33081419,1277448620,187,0,1258561250,0,0,0,0),(149398503,108673342,'a:2:{s:18:\"tx_ttnews[tt_news]\";s:1:\"3\";s:5:\"cHash\";s:32:\"1321f088be1b631979c159487f62e6dd\";}','',23,0,0,'','0,-1','0','T3UXW09 - The first TYPO3 User eXperience Week','11/16/2009 17:33     T3UXW09 - The first TYPO3 User eXperience Week     Category: General          30 attendants for the T3UXW09 have arrived in rural Behringen (Germany) to work on TYPO3\'s usability ',1277202238,1277203425,12724,209908380,1277203425,143,0,1258388433,0,0,0,0),(149622811,157991628,'a:0:{}','',62,0,0,'','0,-2,1','0','Resources','TYPO3: A True Open Source Community   A widespread, international community of users and developers contributes to the ongoing evolution and success of TYPO3. Get acquainted with the latest enhancemen',1277150421,1277152384,11716,252408042,1277152384,141,0,1276894889,0,0,0,0),(150043169,237127975,'a:1:{s:3:\"key\";i:0;}','uploads/media/typo3_image1.jpg',0,0,0,'','0,-1','jpeg','typo3_image1.jpg','',1260486135,1277156671,235380,239077117,1258722656,24,0,1258713884,0,0,0,0),(157731686,172990358,'a:0:{}','',23,0,0,'','0,-2,1','0','News','All news articles                                   11/16/09        Lorem ipsum dolor sit amet                          Vivamus elementum dui vitae turpis ultrices aliquam volutpat justo accumsan. Pel',1277112201,1277158328,8758,151460233,1258568090,353,0,1258388433,0,0,0,0),(158064379,2037256,'a:0:{}',NULL,36,0,0,'','0,-1','0','Forms','Powerful Form Handling   Setting up a contact or mail form is very easy. The layout of forms is handled centrally, which allows editors to focus on the content of the form.',1280747403,1291231914,10220,25261953,1290502777,59,0,1258542915,0,0,0,0),(163353051,173087200,'a:2:{s:18:\"tx_ttnews[tt_news]\";s:1:\"4\";s:5:\"cHash\";s:32:\"7db2942944fea994440a3e157b50cfc2\";}','',23,0,0,'','0,-1','0','TYPO3 - An idea is born','02/22/1997 17:33     TYPO3 - An idea is born     Category: General          Kasper Skårhøj was contracted this week by a Danish company to build a content management solution for their corporate web',1277209431,1277448873,11759,239687426,1276705325,101,0,1258388433,0,0,0,0),(163830517,56986632,'a:0:{}','',44,0,0,'','0,-1','0','Headers','Full Control Over All Content Elements   TYPO3 offers editors full control over all content elements; even simple content elements like headers are accompanied by several configuration options. Site a',1280747403,1291227081,12582,149645895,1277448739,74,0,1258542915,0,0,0,0),(168651738,120126124,'a:0:{}','',6,0,0,'','0,-2,1','0','Welcome to TYPO3','Congratulations , you have succesfully installed TYPO3          So&mdash;what\'s next ?          Grab a cup of coffee and start browsing through this site to learn why TYPO3 is the most powerful open s',1280747403,1291027992,9063,149584763,1277158309,149,0,1257766279,0,0,0,0),(171502981,209034526,'a:0:{}','',43,0,0,'','0,-2,1','0','Text','11/15/09  Texts written in the RTE (Rich Text Editor)   All functions can be configured individually for the editors.     Continuous text:  text, optional in  bold  or  italic  or in a combination of ',1258642903,1258644124,8395,264922474,1258644124,859,0,1258542915,0,0,0,0),(173470407,164951480,'a:0:{}','',4,0,0,'','0,-2,2','0','Flexible layout','Text mit Bild 1      Bild im Text rechts            Das Inhaltselement \"Text mit Bild\" bietet verschiedene M?glichkeiten den Text und das Bild bzw. die Bilder zu positionieren. Hier ein Beispiel f?r \"',1276970421,1277043379,5941,88979810,1258482863,149,0,1257766279,0,0,0,0),(183755409,201073602,'a:0:{}','',64,0,0,'','0,-1','0','Documentation','Extensive Documentation   As a global, user-supported project, documentation for TYPO3 exists in many locations (and, thankfully, in many different languages). For the answer to most questions look fi',1280747403,1291231134,10188,116477371,1276982159,125,0,1276894949,0,0,0,0),(185924216,4367276,'a:0:{}','',35,0,0,'','0,-1','0','File downloads','Download no icon, no filesize       TYPO3_Logo_Guide_v3.pdf         Download with icon, no filesize            TYPO3_Logo_Guide_v3.pdf         Download with icon and filesize            TYPO3_Logo_Gui',1280747403,1291227095,13303,9699970,1277448847,74,0,1258542915,0,0,0,0),(188989748,54706291,'a:0:{}','',41,0,0,'','0,-1','0','Images with links','No HTML Required   With TYPO3, controlling the behavior of images is simple. Editors with no knowledge of HTML can easily manage links, popups, captions, alignment, and more.         Image Click-en',1280747403,1291231594,13139,52929820,1277157413,88,0,1258542915,0,0,0,0),(190878933,144774419,'a:0:{}','',28,0,0,'','0,-2,2','0','Customer login','Use this link to log in as customer1      Use this link to log in as someone       You can now view the protected pages!   You are logged in, so you can now view the protected pages which you can find',1280747403,1290503042,8478,52429061,1277153138,66,0,1258478965,0,0,0,0),(206124384,88496334,'a:0:{}','',3,0,0,'','0,-2,1','0','Customizing TYPO3','4,500 Extensions and Counting   TYPO3 is an extremely modular system that can be easily enhanced with custom extensions. All TYPO3 sites are built on top of the TYPO3 core, which contains the system\'s',1290049034,1291028240,10296,27502421,1277158305,224,0,1257766279,0,0,0,0),(210554717,61152230,'a:0:{}','',31,0,0,'','0,-2,1','0','Any login page','',1277112418,1277150074,8050,160104036,1277034646,38,0,1258479835,0,0,0,0),(212479328,144774419,'a:0:{}',NULL,28,0,0,'','0,-1','0','Customer login','Login to this website   You are currently not logged in. Visitors who have an account can login to the website to get access to protected pages and content on this website.     By default this website',1280747403,1291200325,9893,10022795,1290503005,71,0,1258478965,0,0,0,0),(214608940,241186343,'a:0:{}','',39,0,0,'','0,-1','0','Image effects','TYPO3 and ImageMagick   TYPO3 takes full advantage of the rich functionality provided by the ImageMagick library including the ability to post-process images, manage colors, and apply effects. TYPO3 a',1280747403,1291231722,17867,239529903,1277207083,101,0,1258542915,0,0,0,0),(216325184,172990358,'a:0:{}',NULL,23,0,0,'','0,-1','0','News','All news articles                                   02/22/97        TYPO3 - An idea is born                            Kasper Skårhøj was contracted this week by a Danish company to build a content ',1280747403,1291231936,14803,196767188,1290512546,86,0,1258388433,0,0,0,0),(218230472,200823011,'a:2:{s:18:\"tx_ttnews[tt_news]\";s:1:\"3\";s:5:\"cHash\";s:32:\"c16353cfdc5eab748b9c9578d56efd70\";}','',31,0,0,'','0,-2,1','0','Any login page','',1258483805,1258484992,5735,931610,1258484992,43,0,1258479835,0,0,0,0),(218322511,164951480,'a:0:{}','',4,0,0,'','0,-2,1','0','Flexible layout','Text mit Bild 1      Bild im Text rechts            Das Inhaltselement \"Text mit Bild\" bietet verschiedene M?glichkeiten den Text und das Bild bzw. die Bilder zu positionieren. Hier ein Beispiel f?r \"',1280747403,1290541696,7870,196382955,1258561105,162,0,1257766279,0,0,0,0),(220434487,197669825,'a:2:{s:18:\"tx_ttnews[tt_news]\";s:1:\"1\";s:5:\"cHash\";s:32:\"4104653f79b957da4f31a901d9a94d9d\";}','',23,0,0,'','0,-2,1','0','TYPO3 celebrates 20th anniversary','06/16/2017 17:33     TYPO3 celebrates 20th anniversary     Category: General          TYPO3 celebrates it\'s 20th anniversary. Having been one of the very first Content Management Systems on the market',1277112201,1277112562,11124,120061782,1277112562,107,0,1258388433,0,0,0,0),(227455480,117169532,'a:0:{}','',51,0,0,'','0,-1','0','About TYPO3','TYPO3 - The Enterprise CMS   TYPO3 is a free, open source content management framework designed to simplify the creation of feature-rich websites that can be updated by nontechnical editors. It is wri',1280747403,1291211029,9990,262134928,1277143151,161,0,1258560852,0,0,0,0),(236810892,250315705,'a:0:{}','',34,0,0,'','0,-1','0','Site map','Dynamic Site Maps   In addition to generating basic site maps based on the structure of the page tree, TYPO3 is able to build advanced site maps such as a key-word based site map of related pages.    ',1280747403,1291232002,13811,252921128,1277203413,120,0,1258542915,0,0,0,0),(237842645,108673342,'a:2:{s:18:\"tx_ttnews[tt_news]\";s:1:\"3\";s:5:\"cHash\";s:32:\"1321f088be1b631979c159487f62e6dd\";}','',23,0,0,'','0,-2,1','0','T3UXW09 - The first TYPO3 User eXperience Week','11/16/2009 17:33     T3UXW09 - The first TYPO3 User eXperience Week     Category: General          30 attendants for the T3UXW09 have arrived in rural Behringen (Germany) to work on TYPO3\'s usability ',1277112201,1277112566,12757,131402343,1277112566,260,0,1258388433,0,0,0,0),(239332432,117169532,'a:0:{}','',51,0,0,'','0,-2,1','0','About TYPO3','TYPO3 - The Enterprise CMS   TYPO3 is a  free Open Source content management system  for enterprise purposes on the web and in intranets. It offers full flexibility and extendability while featuring a',1277152395,1277152401,6569,160797914,1258568082,419,0,1258560852,0,0,0,0),(240453576,175841696,'a:0:{}','',65,0,0,'','0,-1','0','TYPO3 Association','Backed by the TYPO3 Association   In November 2004 a group of longstanding contributors from the TYPO3 community, including Kasper Skårhøj, founded a non-profit organization called the TYPO3 Associa',1280747403,1291116486,9513,7705528,1276985496,309,0,1276894949,0,0,0,0),(244852572,67169286,'a:0:{}','',52,0,0,'','0,-1','0','History','A Mature, Reliable CMS   TYPO3 is a mature, stable, and secure platform that has been actively developed and improved for over ten years. Unlike many newer, less sophisticated CMS solutions, TYPO3 is ',1280747403,1291230018,10859,125157153,1277448614,213,0,1258561250,0,0,0,0),(246636034,175841696,'a:0:{}','',65,0,0,'','0,-2,1','0','TYPO3 Association','Backed by the TYPO3 Association        In November 2004 a group of longstanding contributors from the TYPO3 community, including Kasper Skårhøj, founded a non-profit organization called the TYPO3 As',1277152755,1277156627,9797,232353826,1277156627,86,0,1276894949,0,0,0,0),(249515596,47420977,'a:0:{}','',2,0,0,'','0,-2,1','0','We like feedback','Kontakt und Impressum      IT-Bo.com   Daniel Stateczny    Feldsieper Str. 132 D- 44809 Bochum    Telefon: +49 (0) 234 / 589 13 37    E-Mail:   d.stateczny@ remove-this. it-bo.com      Angaben gem?? ?',1280747403,1290503032,6926,236203811,1258568094,558,0,1257766279,0,0,0,0),(257878307,128659280,'a:0:{}','',42,0,0,'','0,-1','0','Text and images','Easily Position Text and Images   TYPO3 makes working with text and images a snap. TYPO3\'s text with image content element gives editors precise control over captions, alternative text attributes, ima',1280747403,1291231549,17899,207302531,1277157411,149,0,1258542915,0,0,0,0),(258126034,201073602,'a:0:{}','',64,0,0,'','0,-2,1','0','Documentation','Extensive Documentation   As a global, user-supported project, documentation for TYPO3 exists in many locations (and, thankfully, in many different languages). For the answer to most questions look f',1277155575,1277156619,11538,224551110,1277156619,104,0,1276894949,0,0,0,0),(260439973,47420977,'a:0:{}','',2,0,0,'','0,-1','0','Feedback','You Make TYPO3 Better!   TYPO3 has always been about its users and about inspiring people to share. Share your experiences with us. Send us a note. Let us know how we can improve TYPO3 or, even better',1280747403,1291232019,8848,144514525,1280253789,412,0,1257766279,0,0,0,0),(263393582,187444578,'a:0:{}',NULL,25,0,0,'','0,-1','0','Alle sprog, ethvert tegnsæt','TYPO3 kender ingen grænser   TYPO3 understøtter alle sprog og tegnsæt. Alle frontend-, backend- og database-interaktioner understøtter fuldt ud UTF-8.        Bulgarian:  Жълтата дюля б',1280747403,1290844351,12971,108287477,1290540860,318,1,1258457261,0,0,0,0);
+INSERT INTO index_phash VALUES (1315879,128659280,'a:0:{}','',42,0,0,'','0,-2,1','0','Text and images','Position:  In text, left            Nam aliquam, lorem nec dapibus feugiat, ipsum quam laoreet arcu, sed ullamcorper augue augue vitae magna.     Hambiam est lectus, interdum id, accumsan a, blandit q',1258643924,1258644172,15100,237807018,1258644172,1488,0,1258542915,0,0,0,0),(12178519,19799004,'a:1:{s:3:\"key\";i:0;}','uploads/media/typo3_image2.jpg',0,0,0,'','0,-1','jpeg','typo3_image2.jpg','',1277207398,1277448847,453106,47826143,1277448847,4,0,1277207398,0,0,0,0),(17721842,88315949,'a:1:{s:3:\"key\";i:0;}','uploads/media/test.jpg',0,0,0,'','0,-1','jpeg','test.jpg','',1258542938,1258634309,114994,4271145,1258546231,27,0,1258542938,0,0,0,0),(26732467,117169532,'a:0:{}','',51,0,0,'','0,-2,2','0','About TYPO3','TYPO3 - The Enterprise CMS        TYPO3 is a free, open source content management framework designed to simplify the creation of feature-rich websites that can be updated by nontechnical editors. It i',1277209431,1277209991,10838,155317887,1277209991,128,0,1258560852,0,0,0,0),(27979961,264873999,'a:0:{}',NULL,38,0,0,'','0,-1','0','Tables','RTE table    Caption       Area A    Area B    Area C        2008            50.000            50.000            50.000      2009            50.000            50.000            50.000         Table la',1280747403,1291231758,13479,201906171,1290519094,106,0,1258542915,0,0,0,0),(32314300,249525235,'a:0:{}','',25,0,0,'','0,-2,1','0','Any language, any character','TYPO3 knows no boundaries   TYPO3 supports all languages, characters and encoding out-of-the-box. All front-end, back-end and database interactions fully support UTF-8.      Bulgarian:  Жълтата',1280747403,1290541287,12082,127704245,1277112593,349,0,1258457261,0,0,0,0),(35642906,157991628,'a:0:{}','',62,0,0,'','0,-1','0','Resources','TYPO3: A True Open Source Community   A widespread, international community of users and developers contributes to the ongoing evolution and success of TYPO3. Get acquainted with the latest enhancemen',1280747403,1291116482,9880,42506647,1277098649,168,0,1276894889,0,0,0,0),(38657581,61152230,'a:0:{}','',31,0,0,'','0,-2,2','0','Any login page','',1277039417,1277039807,6212,227580399,1258566877,237,0,1258479835,0,0,0,0),(41054942,98299018,'a:0:{}','',30,0,0,'','0,-2,1','0','Protected customer page','',1277112544,1277150075,8086,22770837,1277033475,54,0,1258479801,0,0,0,0),(48560649,172990358,'a:0:{}','',23,0,0,'','0,-2,2','0','News','All news articles                               Monday 16. of November 2009    Lorem ipsum dolor sit amet                   Vivamus elementum dui vitae turpis ultrices aliquam volutpat justo accumsan.',1258481203,1258482803,8191,42236307,1258482803,327,0,1258388433,0,0,0,0),(52511554,199047133,'a:0:{}','',57,0,0,'','0,-1','0','Features','Feature Complete Out-of-the-Box   TYPO3 is unique in the number and quality of features that are built-in to its core. While there are over 4,500 extensions in the TYPO3 extension repository, the foll',1280747403,1291210663,10502,102701671,1277143453,197,0,1258639563,0,0,0,0),(54995076,4367276,'a:0:{}','',35,0,0,'','0,-2,1','0','File downloads','Download no icon, no filesize       TYPO3_Logo_Guide_v3.pdf         Download with icon, no filesize            TYPO3_Logo_Guide_v3.pdf         Download with icon and filesize            TYPO3_Logo_Gui',1277151860,1277156671,12752,195322679,1277156671,45,0,1258542915,0,0,0,0),(61178092,149352455,'a:2:{s:18:\"tx_ttnews[tt_news]\";s:1:\"7\";s:5:\"cHash\";s:32:\"59f1b098e97f03943f7f531de3332e1c\";}','',23,0,0,'','0,-2,1','0','Internal news item','06/21/2010 11:16     Internal news item     Category: Internal          This news item has been categorized as \"Internal\"         This news item will only show up on pages displaying news from the cat',1277112201,1277112473,10459,253913104,1277112473,61,0,1258388433,0,0,0,0),(63934828,180254528,'a:2:{s:18:\"tx_ttnews[tt_news]\";s:1:\"2\";s:5:\"cHash\";s:32:\"9e2ecfc909376055dec01aa2425b0ecd\";}','',23,0,0,'','0,-1','0','News','Skip to navigation          Skip to content                         Introduction Package            Customer login                                            First Level Navigation        Get Started ',1277209431,1277210984,11554,90460568,1276372482,175,0,1258388433,0,0,0,0),(64875351,120126124,'a:0:{}',NULL,6,0,0,'','0,-1','0','Welcome to TYPO3','',1280747403,1312130900,2544,54875953,1287576720,1015,0,1257766279,0,0,0,0),(66959257,53732654,'a:0:{}','',37,0,0,'','0,-1','0','Lists','Multiple Layouts for Standard Content Types   Ordered and unordered lists are available in TYPO3 as a standard content element. Users are able to create multiple predefined list layouts, which help',1280747403,1291231852,11644,171785797,1277207217,89,0,1258542915,0,0,0,0),(76981466,253804256,'a:0:{}','',67,0,0,'','0,-2,1','0','Thank you for your feedback','Thank you for your feedback   An email has been sent, we appreciate your feedback.',1277149308,1277154368,7704,227866698,1277154368,44,0,1277149038,0,0,0,0),(78471282,187444578,'a:0:{}','',25,0,0,'','0,-2,1','0','Elke taal, elk karakter','TYPO3 knows no boundaries   TYPO3 supports all languages, characters and encoding out-of-the-box. All front-end, back-end and database interactions fully support UTF-8.       TYPO3 kent geen grenzen  ',1277082332,1277112602,10307,146085509,1277112602,134,1,1258457261,0,0,0,0),(81676894,249525235,'a:0:{}','',25,0,0,'','0,-2,2','0','Any language, any character','TYPO3 has no boundaries   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus aliquet magna tincidunt tortor sagittis auctor. Pellentesque sed erat metus. Donec turpis orci, cursus id f',1258481203,1258482883,5856,238747428,1258482883,411,0,1258457261,0,0,0,0),(81925491,88496334,'a:0:{}','',3,0,0,'','0,-1','0','Customizing TYPO3','4,500 Extensions and Counting   TYPO3 is an extremely modular system that can be easily enhanced with custom extensions. All TYPO3 sites are built on top of the TYPO3 core, which contains the system\'s',1290049034,1291200350,9926,166764217,1277038899,135,0,1257766279,0,0,0,0),(84776878,218666618,'a:0:{}','',63,0,0,'','0,-1','0','Consultancies','Need Help? Tap into the TYPO3 Consultancy Network   Many of TYPO3\'s most knowledgeable contributors are the web developers and consultants around the world who use it everyday. These  certified consul',1280747403,1291231125,8804,109416015,1276982155,112,0,1276894949,0,0,0,0),(88605078,164951480,'a:0:{}','',4,0,0,'','0,-1','0','Examples','Content Management Made Easy   To help get you started with TYPO3, we’ve included usage examples of the core content elements that have made TYPO3 so popular.     These examples illustrate how strai',1280747403,1291210670,9489,67776341,1276944884,87,0,1257766279,0,0,0,0),(89245927,136022155,'a:0:{}','',45,0,0,'','0,-1','0','Frames','Content-specific Layouts   Frames  are centrally configured layouts for different content elements. Frames can be used, for example, to allow a content editor to apply a specific background image and/',1280747403,1291231787,12428,100552255,1277207216,224,0,1258548941,0,0,0,0),(91553626,61959816,'a:0:{}','',53,0,0,'','0,-2,1','0','Community','TYPO3: Inspiring People to Share   The real driving force behind TYPO3’s development is its expanding, vibrant community of nearly 100,000 members. Over the past decade, TYPO3 has been installed mor',1277146036,1277156594,9399,199210428,1277156594,120,0,1258561250,0,0,0,0),(93199155,120126124,'a:0:{}','',6,0,0,'','0,-2,2','0','Welcome to TYPO3','Welcome to TYPO3   Diese Website dient der Pr?sentation der TYPO3 Testsite f?r das Content Management System (CMS) TYPO3.    Do we have any encoding problems? ? ? ? ???    Die TYPO3 Testsite is',1276970409,1277043372,7931,214882953,1258482911,496,0,1257766279,0,0,0,0),(95671238,157991628,'a:0:{}','',62,0,0,'','0,-2,2','0','Resources','TYPO3: A True Open Source Community   A widespread, international community of users and developers contributes to the ongoing evolution and success of TYPO3. Get acquainted with the latest enhancemen',1276985324,1277043376,9880,47956479,1277043376,154,0,1276894889,0,0,0,0),(112269630,180254528,'a:2:{s:18:\"tx_ttnews[tt_news]\";s:1:\"2\";s:5:\"cHash\";s:32:\"9e2ecfc909376055dec01aa2425b0ecd\";}','',23,0,0,'','0,-2,1','0','The TYPO3 Association is founded','09/16/2004 17:33     The TYPO3 Association is founded     Category: Research          Months in the planning, on this very day the TYPO3 Association was founded by a group of long-time contributors he',1277112201,1277112570,11297,51245155,1277112570,84,0,1258388433,0,0,0,0),(116404532,82176641,'a:0:{}','',40,0,0,'','0,-1','0','Image groups','Multiple Image Layout Options   TYPO3 provides users with numerous possibilities for laying out images on a page. The back-end interface provides users with easy control over image formats, sizes, wid',1280747403,1291231657,17357,61385693,1277448789,100,0,1258542915,0,0,0,0),(116627476,209034526,'a:0:{}','',43,0,0,'','0,-1','0','Examples of Rich Text','TYPO3\'s Built-in Rich Text Editor   TYPO3 contains a sophisticated, built-in rich text editor (RTE). This editor contains all of the features one would expect from an enterprise CMS, and is highly con',1280747403,1291231393,12101,161400157,1277157406,151,0,1258542915,0,0,0,0),(120716485,144774419,'a:0:{}','',28,0,0,'','0,-2,1','0','Customer login','You can now view the protected pages!   You are logged in, so you can now view the protected pages which you can find in the navigation menu on the left.',1280747403,1291027984,8015,147198484,1277033469,54,0,1258478965,0,0,0,0),(122144994,67169286,'a:0:{}','',52,0,0,'','0,-2,1','0','The History','Great things take time!   TYPO3 is nothing new or specifically trendy like many other Open Source tools that have risen in popularity recently because they focus strongly on Web 2.0 or blogging. In fa',1276970409,1277156590,8781,35008462,1258644113,1961,0,1258561250,0,0,0,0),(123427353,45146822,'a:2:{s:18:\"tx_ttnews[tt_news]\";s:1:\"7\";s:5:\"cHash\";s:32:\"59f1b098e97f03943f7f531de3332e1c\";}','',31,0,0,'','0,-2,1','0','Any login page','',1277040534,1277112348,8476,160104036,1277112348,39,0,1258479835,0,0,0,0),(125853710,207201635,'a:2:{s:18:\"tx_ttnews[tt_news]\";s:1:\"6\";s:5:\"cHash\";s:32:\"d6b8b0c0e0b2045ff2c953444a33b1a9\";}','',23,0,0,'','0,-1','0','News','Skip to navigation          Skip to content                         Introduction Package            Customer login                                     First Level Navigation        Get Started    Abou',1272213644,1273219594,9478,8130118,1273219594,174,0,1258388433,0,0,0,0),(134246624,249525235,'a:0:{}','',25,0,0,'','0,-1','0','Any language, any character','TYPO3 Speaks Your Language   TYPO3 supports all languages, characters and encoding out-of-the-box. All front-end, back-end and database interactions fully support UTF-8.      Bulgarian:  Жълтат',1280747403,1291227074,12050,130993499,1277157400,284,0,1258457261,0,0,0,0),(139410890,199047133,'a:0:{}','',57,0,0,'','0,-2,1','0','Features','Feature Complete Out-of-the-box   TYPO3 is unique in the quantity and quality of features that are part of its core. While there are over 4,500 extensions in the TYPO3 extension repository, the follo',1280747403,1291028246,10518,236552681,1277156725,199,0,1258639563,0,0,0,0),(144359339,197669825,'a:2:{s:18:\"tx_ttnews[tt_news]\";s:1:\"1\";s:5:\"cHash\";s:32:\"4104653f79b957da4f31a901d9a94d9d\";}','',23,0,0,'','0,-1','0','TYPO3 celebrates 20th anniversary','06/16/2017 17:33     TYPO3 celebrates 20th anniversary     Category: General          TYPO3 celebrates it\'s 20th anniversary. Having been one of the very first Content Management Systems on the market',1277112201,1277157498,11191,6028228,1276375421,102,0,1258388433,0,0,0,0),(146845407,61959816,'a:0:{}','',53,0,0,'','0,-1','0','Community','TYPO3: Inspiring People to Share   The real driving force behind TYPO3’s development is its expanding, vibrant community of nearly 100,000 members. Over the past decade, TYPO3 has been installed mor',1280747403,1291230276,11613,33081419,1277448620,187,0,1258561250,0,0,0,0),(149398503,108673342,'a:2:{s:18:\"tx_ttnews[tt_news]\";s:1:\"3\";s:5:\"cHash\";s:32:\"1321f088be1b631979c159487f62e6dd\";}','',23,0,0,'','0,-1','0','T3UXW09 - The first TYPO3 User eXperience Week','11/16/2009 17:33     T3UXW09 - The first TYPO3 User eXperience Week     Category: General          30 attendants for the T3UXW09 have arrived in rural Behringen (Germany) to work on TYPO3\'s usability ',1277202238,1277203425,12724,209908380,1277203425,143,0,1258388433,0,0,0,0),(149622811,157991628,'a:0:{}','',62,0,0,'','0,-2,1','0','Resources','TYPO3: A True Open Source Community   A widespread, international community of users and developers contributes to the ongoing evolution and success of TYPO3. Get acquainted with the latest enhancemen',1277150421,1277152384,11716,252408042,1277152384,141,0,1276894889,0,0,0,0),(150043169,237127975,'a:1:{s:3:\"key\";i:0;}','uploads/media/typo3_image1.jpg',0,0,0,'','0,-1','jpeg','typo3_image1.jpg','',1260486135,1277156671,235380,239077117,1258722656,24,0,1258713884,0,0,0,0),(157731686,172990358,'a:0:{}','',23,0,0,'','0,-2,1','0','News','All news articles                                   11/16/09        Lorem ipsum dolor sit amet                          Vivamus elementum dui vitae turpis ultrices aliquam volutpat justo accumsan. Pel',1277112201,1277158328,8758,151460233,1258568090,353,0,1258388433,0,0,0,0),(158064379,2037256,'a:0:{}',NULL,36,0,0,'','0,-1','0','Forms','Powerful Form Handling   Setting up a contact or mail form is very easy. The layout of forms is handled centrally, which allows editors to focus on the content of the form.',1280747403,1291231914,10220,25261953,1290502777,59,0,1258542915,0,0,0,0),(163353051,173087200,'a:2:{s:18:\"tx_ttnews[tt_news]\";s:1:\"4\";s:5:\"cHash\";s:32:\"7db2942944fea994440a3e157b50cfc2\";}','',23,0,0,'','0,-1','0','TYPO3 - An idea is born','02/22/1997 17:33     TYPO3 - An idea is born     Category: General          Kasper Skårhøj was contracted this week by a Danish company to build a content management solution for their corporate web',1277209431,1277448873,11759,239687426,1276705325,101,0,1258388433,0,0,0,0),(163830517,56986632,'a:0:{}','',44,0,0,'','0,-1','0','Headers','Full Control Over All Content Elements   TYPO3 offers editors full control over all content elements; even simple content elements like headers are accompanied by several configuration options. Site a',1280747403,1291227081,12582,149645895,1277448739,74,0,1258542915,0,0,0,0),(168651738,120126124,'a:0:{}','',6,0,0,'','0,-2,1','0','Welcome to TYPO3','Congratulations , you have succesfully installed TYPO3          So&mdash;what\'s next ?          Grab a cup of coffee and start browsing through this site to learn why TYPO3 is the most powerful open s',1280747403,1291027992,9063,149584763,1277158309,149,0,1257766279,0,0,0,0),(171502981,209034526,'a:0:{}','',43,0,0,'','0,-2,1','0','Text','11/15/09  Texts written in the RTE (Rich Text Editor)   All functions can be configured individually for the editors.     Continuous text:  text, optional in  bold  or  italic  or in a combination of ',1258642903,1258644124,8395,264922474,1258644124,859,0,1258542915,0,0,0,0),(173470407,164951480,'a:0:{}','',4,0,0,'','0,-2,2','0','Flexible layout','Text mit Bild 1      Bild im Text rechts            Das Inhaltselement \"Text mit Bild\" bietet verschiedene M?glichkeiten den Text und das Bild bzw. die Bilder zu positionieren. Hier ein Beispiel f?r \"',1276970421,1277043379,5941,88979810,1258482863,149,0,1257766279,0,0,0,0),(183755409,201073602,'a:0:{}','',64,0,0,'','0,-1','0','Documentation','Extensive Documentation   As a global, user-supported project, documentation for TYPO3 exists in many locations (and, thankfully, in many different languages). For the answer to most questions look fi',1280747403,1291231134,10188,116477371,1276982159,125,0,1276894949,0,0,0,0),(185924216,4367276,'a:0:{}','',35,0,0,'','0,-1','0','File downloads','Download no icon, no filesize       TYPO3_Logo_Guide_v3.pdf         Download with icon, no filesize            TYPO3_Logo_Guide_v3.pdf         Download with icon and filesize            TYPO3_Logo_Gui',1280747403,1291227095,13303,9699970,1277448847,74,0,1258542915,0,0,0,0),(188989748,54706291,'a:0:{}','',41,0,0,'','0,-1','0','Images with links','No HTML Required   With TYPO3, controlling the behavior of images is simple. Editors with no knowledge of HTML can easily manage links, popups, captions, alignment, and more.         Image Click-en',1280747403,1291231594,13139,52929820,1277157413,88,0,1258542915,0,0,0,0),(190878933,144774419,'a:0:{}','',28,0,0,'','0,-2,2','0','Customer login','Use this link to log in as customer1      Use this link to log in as someone       You can now view the protected pages!   You are logged in, so you can now view the protected pages which you can find',1280747403,1290503042,8478,52429061,1277153138,66,0,1258478965,0,0,0,0),(206124384,88496334,'a:0:{}','',3,0,0,'','0,-2,1','0','Customizing TYPO3','4,500 Extensions and Counting   TYPO3 is an extremely modular system that can be easily enhanced with custom extensions. All TYPO3 sites are built on top of the TYPO3 core, which contains the system\'s',1290049034,1291028240,10296,27502421,1277158305,224,0,1257766279,0,0,0,0),(210554717,61152230,'a:0:{}','',31,0,0,'','0,-2,1','0','Any login page','',1277112418,1277150074,8050,160104036,1277034646,38,0,1258479835,0,0,0,0),(212479328,144774419,'a:0:{}',NULL,28,0,0,'','0,-1','0','Customer login','Login to this website   You are currently not logged in. Visitors who have an account can login to the website to get access to protected pages and content on this website.     By default this website',1280747403,1291200325,9893,10022795,1290503005,71,0,1258478965,0,0,0,0),(214608940,241186343,'a:0:{}','',39,0,0,'','0,-1','0','Image effects','TYPO3 and ImageMagick   TYPO3 takes full advantage of the rich functionality provided by the ImageMagick library including the ability to post-process images, manage colors, and apply effects. TYPO3 a',1280747403,1291231722,17867,239529903,1277207083,101,0,1258542915,0,0,0,0),(216325184,172990358,'a:0:{}',NULL,23,0,0,'','0,-1','0','News','All news articles                                   02/22/97        TYPO3 - An idea is born                            Kasper Skårhøj was contracted this week by a Danish company to build a content ',1280747403,1291231936,14803,196767188,1290512546,86,0,1258388433,0,0,0,0),(218230472,200823011,'a:2:{s:18:\"tx_ttnews[tt_news]\";s:1:\"3\";s:5:\"cHash\";s:32:\"c16353cfdc5eab748b9c9578d56efd70\";}','',31,0,0,'','0,-2,1','0','Any login page','',1258483805,1258484992,5735,931610,1258484992,43,0,1258479835,0,0,0,0),(218322511,164951480,'a:0:{}','',4,0,0,'','0,-2,1','0','Flexible layout','Text mit Bild 1      Bild im Text rechts            Das Inhaltselement \"Text mit Bild\" bietet verschiedene M?glichkeiten den Text und das Bild bzw. die Bilder zu positionieren. Hier ein Beispiel f?r \"',1280747403,1290541696,7870,196382955,1258561105,162,0,1257766279,0,0,0,0),(220434487,197669825,'a:2:{s:18:\"tx_ttnews[tt_news]\";s:1:\"1\";s:5:\"cHash\";s:32:\"4104653f79b957da4f31a901d9a94d9d\";}','',23,0,0,'','0,-2,1','0','TYPO3 celebrates 20th anniversary','06/16/2017 17:33     TYPO3 celebrates 20th anniversary     Category: General          TYPO3 celebrates it\'s 20th anniversary. Having been one of the very first Content Management Systems on the market',1277112201,1277112562,11124,120061782,1277112562,107,0,1258388433,0,0,0,0),(227455480,117169532,'a:0:{}','',51,0,0,'','0,-1','0','About TYPO3','TYPO3 - The Enterprise CMS   TYPO3 is a free, open source content management framework designed to simplify the creation of feature-rich websites that can be updated by nontechnical editors. It is wri',1280747403,1291211029,9990,262134928,1277143151,161,0,1258560852,0,0,0,0),(236810892,250315705,'a:0:{}','',34,0,0,'','0,-1','0','Site map','Dynamic Site Maps   In addition to generating basic site maps based on the structure of the page tree, TYPO3 is able to build advanced site maps such as a key-word based site map of related pages.    ',1280747403,1291232002,13811,252921128,1277203413,120,0,1258542915,0,0,0,0),(237842645,108673342,'a:2:{s:18:\"tx_ttnews[tt_news]\";s:1:\"3\";s:5:\"cHash\";s:32:\"1321f088be1b631979c159487f62e6dd\";}','',23,0,0,'','0,-2,1','0','T3UXW09 - The first TYPO3 User eXperience Week','11/16/2009 17:33     T3UXW09 - The first TYPO3 User eXperience Week     Category: General          30 attendants for the T3UXW09 have arrived in rural Behringen (Germany) to work on TYPO3\'s usability ',1277112201,1277112566,12757,131402343,1277112566,260,0,1258388433,0,0,0,0),(239332432,117169532,'a:0:{}','',51,0,0,'','0,-2,1','0','About TYPO3','TYPO3 - The Enterprise CMS   TYPO3 is a  free Open Source content management system  for enterprise purposes on the web and in intranets. It offers full flexibility and extendability while featuring a',1277152395,1277152401,6569,160797914,1258568082,419,0,1258560852,0,0,0,0),(240453576,175841696,'a:0:{}','',65,0,0,'','0,-1','0','TYPO3 Association','Backed by the TYPO3 Association   In November 2004 a group of longstanding contributors from the TYPO3 community, including Kasper Skårhøj, founded a non-profit organization called the TYPO3 Associa',1280747403,1291116486,9513,7705528,1276985496,309,0,1276894949,0,0,0,0),(244852572,67169286,'a:0:{}','',52,0,0,'','0,-1','0','History','A Mature, Reliable CMS   TYPO3 is a mature, stable, and secure platform that has been actively developed and improved for over ten years. Unlike many newer, less sophisticated CMS solutions, TYPO3 is ',1280747403,1291230018,10859,125157153,1277448614,213,0,1258561250,0,0,0,0),(246636034,175841696,'a:0:{}','',65,0,0,'','0,-2,1','0','TYPO3 Association','Backed by the TYPO3 Association        In November 2004 a group of longstanding contributors from the TYPO3 community, including Kasper Skårhøj, founded a non-profit organization called the TYPO3 As',1277152755,1277156627,9797,232353826,1277156627,86,0,1276894949,0,0,0,0),(249515596,47420977,'a:0:{}','',2,0,0,'','0,-2,1','0','We like feedback','Kontakt und Impressum      IT-Bo.com   Daniel Stateczny    Feldsieper Str. 132 D- 44809 Bochum    Telefon: +49 (0) 234 / 589 13 37    E-Mail:   d.stateczny@ remove-this. it-bo.com      Angaben gem?? ?',1280747403,1290503032,6926,236203811,1258568094,558,0,1257766279,0,0,0,0),(257878307,128659280,'a:0:{}','',42,0,0,'','0,-1','0','Text and images','Easily Position Text and Images   TYPO3 makes working with text and images a snap. TYPO3\'s text with image content element gives editors precise control over captions, alternative text attributes, ima',1280747403,1291231549,17899,207302531,1277157411,149,0,1258542915,0,0,0,0),(258126034,201073602,'a:0:{}','',64,0,0,'','0,-2,1','0','Documentation','Extensive Documentation   As a global, user-supported project, documentation for TYPO3 exists in many locations (and, thankfully, in many different languages). For the answer to most questions look f',1277155575,1277156619,11538,224551110,1277156619,104,0,1276894949,0,0,0,0),(260439973,47420977,'a:0:{}','',2,0,0,'','0,-1','0','Feedback','You Make TYPO3 Better!   TYPO3 has always been about its users and about inspiring people to share. Share your experiences with us. Send us a note. Let us know how we can improve TYPO3 or, even better',1280747403,1291232019,8848,144514525,1280253789,412,0,1257766279,0,0,0,0),(263393582,187444578,'a:0:{}',NULL,25,0,0,'','0,-1','0','Alle sprog, ethvert tegnsæt','TYPO3 kender ingen grænser   TYPO3 understøtter alle sprog og tegnsæt. Alle frontend-, backend- og database-interaktioner understøtter fuldt ud UTF-8.        Bulgarian:  Жълтата дюля б',1280747403,1290844351,12971,108287477,1290540860,318,1,1258457261,0,0,0,0);
 /*!40000 ALTER TABLE index_phash ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -834,16 +672,19 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS index_rel;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE index_rel (
-  phash int(11) NOT NULL default '0',
-  wid int(11) NOT NULL default '0',
-  count tinyint(3) unsigned NOT NULL default '0',
-  `first` tinyint(3) unsigned NOT NULL default '0',
-  freq smallint(5) unsigned NOT NULL default '0',
-  flags tinyint(3) unsigned NOT NULL default '0',
-  PRIMARY KEY  (phash,wid),
+  phash int(11) NOT NULL DEFAULT '0',
+  wid int(11) NOT NULL DEFAULT '0',
+  count tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `first` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  freq smallint(5) unsigned NOT NULL DEFAULT '0',
+  flags tinyint(3) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (phash,wid),
   KEY wid (wid,phash)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `index_rel`
@@ -860,20 +701,23 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS index_section;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE index_section (
-  phash int(11) NOT NULL default '0',
-  phash_t3 int(11) NOT NULL default '0',
-  rl0 int(11) unsigned NOT NULL default '0',
-  rl1 int(11) unsigned NOT NULL default '0',
-  rl2 int(11) unsigned NOT NULL default '0',
-  page_id int(11) NOT NULL default '0',
-  uniqid int(11) NOT NULL auto_increment,
-  PRIMARY KEY  (uniqid),
+  phash int(11) NOT NULL DEFAULT '0',
+  phash_t3 int(11) NOT NULL DEFAULT '0',
+  rl0 int(11) unsigned NOT NULL DEFAULT '0',
+  rl1 int(11) unsigned NOT NULL DEFAULT '0',
+  rl2 int(11) unsigned NOT NULL DEFAULT '0',
+  page_id int(11) NOT NULL DEFAULT '0',
+  uniqid int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (uniqid),
   KEY joinkey (phash,rl0),
   KEY page_id (page_id),
   KEY rl0 (rl0,rl1,phash),
   KEY rl0_2 (rl0,phash)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `index_section`
@@ -890,17 +734,20 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS index_stat_search;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE index_stat_search (
-  uid int(11) NOT NULL auto_increment,
-  searchstring varchar(255) default NULL,
+  uid int(11) NOT NULL AUTO_INCREMENT,
+  searchstring varchar(255) DEFAULT NULL,
   searchoptions blob,
-  tstamp int(11) NOT NULL default '0',
-  feuser_id int(11) unsigned NOT NULL default '0',
-  cookie varchar(10) default NULL,
-  IP varchar(255) default NULL,
-  hits int(11) NOT NULL default '0',
-  PRIMARY KEY  (uid)
+  tstamp int(11) NOT NULL DEFAULT '0',
+  feuser_id int(11) unsigned NOT NULL DEFAULT '0',
+  cookie varchar(10) DEFAULT NULL,
+  IP varchar(255) DEFAULT NULL,
+  hits int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (uid)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `index_stat_search`
@@ -916,15 +763,18 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS index_stat_word;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE index_stat_word (
-  uid int(11) NOT NULL auto_increment,
-  word varchar(30) default NULL,
-  index_stat_search_id int(11) NOT NULL default '0',
-  tstamp int(11) NOT NULL default '0',
-  pageid int(11) NOT NULL default '0',
-  PRIMARY KEY  (uid),
+  uid int(11) NOT NULL AUTO_INCREMENT,
+  word varchar(30) DEFAULT NULL,
+  index_stat_search_id int(11) NOT NULL DEFAULT '0',
+  tstamp int(11) NOT NULL DEFAULT '0',
+  pageid int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (uid),
   KEY tstamp (tstamp,word)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `index_stat_word`
@@ -940,15 +790,18 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS index_words;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE index_words (
-  wid int(11) NOT NULL default '0',
-  baseword varchar(60) default NULL,
-  metaphone int(11) NOT NULL default '0',
-  is_stopword tinyint(3) NOT NULL default '0',
-  PRIMARY KEY  (wid),
+  wid int(11) NOT NULL DEFAULT '0',
+  baseword varchar(60) DEFAULT NULL,
+  metaphone int(11) NOT NULL DEFAULT '0',
+  is_stopword tinyint(3) NOT NULL DEFAULT '0',
+  PRIMARY KEY (wid),
   KEY baseword (baseword,wid),
   KEY metaphone (metaphone,wid)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `index_words`
@@ -965,83 +818,86 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS pages;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE pages (
-  uid int(11) NOT NULL auto_increment,
-  pid int(11) NOT NULL default '0',
-  t3ver_oid int(11) NOT NULL default '0',
-  t3ver_id int(11) NOT NULL default '0',
-  t3ver_wsid int(11) NOT NULL default '0',
-  t3ver_label varchar(255) default NULL,
-  t3ver_state tinyint(4) NOT NULL default '0',
-  t3ver_stage int(11) NOT NULL default '0',
-  t3ver_count int(11) NOT NULL default '0',
-  t3ver_tstamp int(11) NOT NULL default '0',
-  t3ver_swapmode tinyint(4) NOT NULL default '0',
-  t3ver_move_id int(11) NOT NULL default '0',
-  t3_origuid int(11) NOT NULL default '0',
-  tstamp int(11) unsigned NOT NULL default '0',
-  sorting int(11) unsigned NOT NULL default '0',
-  deleted tinyint(1) unsigned NOT NULL default '0',
-  perms_userid int(11) unsigned NOT NULL default '0',
-  perms_groupid int(11) unsigned NOT NULL default '0',
-  perms_user tinyint(4) unsigned NOT NULL default '0',
-  perms_group tinyint(4) unsigned NOT NULL default '0',
-  perms_everybody tinyint(4) unsigned NOT NULL default '0',
-  editlock tinyint(4) unsigned NOT NULL default '0',
-  crdate int(11) unsigned NOT NULL default '0',
-  cruser_id int(11) unsigned NOT NULL default '0',
-  hidden tinyint(4) unsigned NOT NULL default '0',
-  title varchar(255) default NULL,
-  doktype tinyint(3) unsigned NOT NULL default '0',
+  uid int(11) NOT NULL AUTO_INCREMENT,
+  pid int(11) NOT NULL DEFAULT '0',
+  t3ver_oid int(11) NOT NULL DEFAULT '0',
+  t3ver_id int(11) NOT NULL DEFAULT '0',
+  t3ver_wsid int(11) NOT NULL DEFAULT '0',
+  t3ver_label varchar(255) DEFAULT NULL,
+  t3ver_state tinyint(4) NOT NULL DEFAULT '0',
+  t3ver_stage int(11) NOT NULL DEFAULT '0',
+  t3ver_count int(11) NOT NULL DEFAULT '0',
+  t3ver_tstamp int(11) NOT NULL DEFAULT '0',
+  t3ver_swapmode tinyint(4) NOT NULL DEFAULT '0',
+  t3ver_move_id int(11) NOT NULL DEFAULT '0',
+  t3_origuid int(11) NOT NULL DEFAULT '0',
+  tstamp int(11) unsigned NOT NULL DEFAULT '0',
+  sorting int(11) unsigned NOT NULL DEFAULT '0',
+  deleted tinyint(1) unsigned NOT NULL DEFAULT '0',
+  perms_userid int(11) unsigned NOT NULL DEFAULT '0',
+  perms_groupid int(11) unsigned NOT NULL DEFAULT '0',
+  perms_user tinyint(4) unsigned NOT NULL DEFAULT '0',
+  perms_group tinyint(4) unsigned NOT NULL DEFAULT '0',
+  perms_everybody tinyint(4) unsigned NOT NULL DEFAULT '0',
+  editlock tinyint(4) unsigned NOT NULL DEFAULT '0',
+  crdate int(11) unsigned NOT NULL DEFAULT '0',
+  cruser_id int(11) unsigned NOT NULL DEFAULT '0',
+  hidden tinyint(4) unsigned NOT NULL DEFAULT '0',
+  title varchar(255) DEFAULT NULL,
+  doktype tinyint(3) unsigned NOT NULL DEFAULT '0',
   TSconfig text,
-  storage_pid int(11) NOT NULL default '0',
-  is_siteroot tinyint(4) NOT NULL default '0',
-  php_tree_stop tinyint(4) NOT NULL default '0',
-  tx_impexp_origuid int(11) NOT NULL default '0',
-  url varchar(255) default NULL,
-  starttime int(11) unsigned NOT NULL default '0',
-  endtime int(11) unsigned NOT NULL default '0',
-  urltype tinyint(4) unsigned NOT NULL default '0',
-  shortcut int(10) unsigned NOT NULL default '0',
-  shortcut_mode int(10) unsigned NOT NULL default '0',
-  no_cache int(10) unsigned NOT NULL default '0',
-  fe_group varchar(100) NOT NULL default '0',
-  subtitle varchar(255) default NULL,
-  layout tinyint(3) unsigned NOT NULL default '0',
-  url_scheme tinyint(3) unsigned NOT NULL default '0',
-  target varchar(80) default NULL,
+  storage_pid int(11) NOT NULL DEFAULT '0',
+  is_siteroot tinyint(4) NOT NULL DEFAULT '0',
+  php_tree_stop tinyint(4) NOT NULL DEFAULT '0',
+  tx_impexp_origuid int(11) NOT NULL DEFAULT '0',
+  url varchar(255) DEFAULT NULL,
+  starttime int(11) unsigned NOT NULL DEFAULT '0',
+  endtime int(11) unsigned NOT NULL DEFAULT '0',
+  urltype tinyint(4) unsigned NOT NULL DEFAULT '0',
+  shortcut int(10) unsigned NOT NULL DEFAULT '0',
+  shortcut_mode int(10) unsigned NOT NULL DEFAULT '0',
+  no_cache int(10) unsigned NOT NULL DEFAULT '0',
+  fe_group varchar(100) NOT NULL DEFAULT '0',
+  subtitle varchar(255) DEFAULT NULL,
+  layout tinyint(3) unsigned NOT NULL DEFAULT '0',
+  url_scheme tinyint(3) unsigned NOT NULL DEFAULT '0',
+  target varchar(80) DEFAULT NULL,
   media text,
-  lastUpdated int(10) unsigned NOT NULL default '0',
+  lastUpdated int(10) unsigned NOT NULL DEFAULT '0',
   keywords text,
-  cache_timeout int(10) unsigned NOT NULL default '0',
-  newUntil int(10) unsigned NOT NULL default '0',
+  cache_timeout int(10) unsigned NOT NULL DEFAULT '0',
+  newUntil int(10) unsigned NOT NULL DEFAULT '0',
   description text,
-  no_search tinyint(3) unsigned NOT NULL default '0',
-  SYS_LASTCHANGED int(10) unsigned NOT NULL default '0',
+  no_search tinyint(3) unsigned NOT NULL DEFAULT '0',
+  SYS_LASTCHANGED int(10) unsigned NOT NULL DEFAULT '0',
   abstract text,
-  module varchar(10) default NULL,
-  extendToSubpages tinyint(3) unsigned NOT NULL default '0',
-  author varchar(255) default NULL,
-  author_email varchar(80) default NULL,
-  nav_title varchar(255) default NULL,
-  nav_hide tinyint(4) NOT NULL default '0',
-  content_from_pid int(10) unsigned NOT NULL default '0',
-  mount_pid int(10) unsigned NOT NULL default '0',
-  mount_pid_ol tinyint(4) NOT NULL default '0',
-  alias varchar(32) default NULL,
-  l18n_cfg tinyint(4) NOT NULL default '0',
-  fe_login_mode tinyint(4) NOT NULL default '0',
-  backend_layout int(10) NOT NULL default '0',
-  backend_layout_next_level int(10) NOT NULL default '0',
-  tx_realurl_pathsegment varchar(255) default NULL,
-  tx_realurl_exclude int(1) NOT NULL default '0',
-  tx_realurl_nocache int(1) NOT NULL default '0',
-  tx_realurl_pathoverride int(1) NOT NULL default '0',
-  PRIMARY KEY  (uid),
+  module varchar(10) DEFAULT NULL,
+  extendToSubpages tinyint(3) unsigned NOT NULL DEFAULT '0',
+  author varchar(255) DEFAULT NULL,
+  author_email varchar(80) DEFAULT NULL,
+  nav_title varchar(255) DEFAULT NULL,
+  nav_hide tinyint(4) NOT NULL DEFAULT '0',
+  content_from_pid int(10) unsigned NOT NULL DEFAULT '0',
+  mount_pid int(10) unsigned NOT NULL DEFAULT '0',
+  mount_pid_ol tinyint(4) NOT NULL DEFAULT '0',
+  alias varchar(32) DEFAULT NULL,
+  l18n_cfg tinyint(4) NOT NULL DEFAULT '0',
+  fe_login_mode tinyint(4) NOT NULL DEFAULT '0',
+  backend_layout int(10) NOT NULL DEFAULT '0',
+  backend_layout_next_level int(10) NOT NULL DEFAULT '0',
+  tx_realurl_pathsegment varchar(255) DEFAULT NULL,
+  tx_realurl_pathoverride int(1) NOT NULL DEFAULT '0',
+  tx_realurl_exclude int(1) NOT NULL DEFAULT '0',
+  tx_realurl_nocache int(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (uid),
   KEY t3ver_oid (t3ver_oid,t3ver_wsid),
   KEY parent (pid,sorting,deleted,hidden),
   KEY alias (alias)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `pages`
@@ -1058,47 +914,50 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS pages_language_overlay;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE pages_language_overlay (
-  uid int(11) NOT NULL auto_increment,
-  pid int(11) NOT NULL default '0',
-  doktype tinyint(3) unsigned NOT NULL default '0',
-  t3ver_oid int(11) NOT NULL default '0',
-  t3ver_id int(11) NOT NULL default '0',
-  t3ver_wsid int(11) NOT NULL default '0',
-  t3ver_label varchar(255) default NULL,
-  t3ver_state tinyint(4) NOT NULL default '0',
-  t3ver_stage int(11) NOT NULL default '0',
-  t3ver_count int(11) NOT NULL default '0',
-  t3ver_tstamp int(11) NOT NULL default '0',
-  t3_origuid int(11) NOT NULL default '0',
-  tstamp int(11) unsigned NOT NULL default '0',
-  crdate int(11) unsigned NOT NULL default '0',
-  cruser_id int(11) unsigned NOT NULL default '0',
-  sys_language_uid int(11) unsigned NOT NULL default '0',
-  title varchar(255) default NULL,
-  hidden tinyint(4) unsigned NOT NULL default '0',
-  starttime int(11) unsigned NOT NULL default '0',
-  endtime int(11) unsigned NOT NULL default '0',
-  deleted tinyint(3) unsigned NOT NULL default '0',
-  subtitle varchar(255) default NULL,
-  nav_title varchar(255) default NULL,
-  media tinytext,
+  uid int(11) NOT NULL AUTO_INCREMENT,
+  pid int(11) NOT NULL DEFAULT '0',
+  doktype tinyint(3) unsigned NOT NULL DEFAULT '0',
+  t3ver_oid int(11) NOT NULL DEFAULT '0',
+  t3ver_id int(11) NOT NULL DEFAULT '0',
+  t3ver_wsid int(11) NOT NULL DEFAULT '0',
+  t3ver_label varchar(255) DEFAULT NULL,
+  t3ver_state tinyint(4) NOT NULL DEFAULT '0',
+  t3ver_stage int(11) NOT NULL DEFAULT '0',
+  t3ver_count int(11) NOT NULL DEFAULT '0',
+  t3ver_tstamp int(11) NOT NULL DEFAULT '0',
+  t3_origuid int(11) NOT NULL DEFAULT '0',
+  tstamp int(11) unsigned NOT NULL DEFAULT '0',
+  crdate int(11) unsigned NOT NULL DEFAULT '0',
+  cruser_id int(11) unsigned NOT NULL DEFAULT '0',
+  sys_language_uid int(11) unsigned NOT NULL DEFAULT '0',
+  title varchar(255) DEFAULT NULL,
+  hidden tinyint(4) unsigned NOT NULL DEFAULT '0',
+  starttime int(11) unsigned NOT NULL DEFAULT '0',
+  endtime int(11) unsigned NOT NULL DEFAULT '0',
+  deleted tinyint(3) unsigned NOT NULL DEFAULT '0',
+  subtitle varchar(255) DEFAULT NULL,
+  nav_title varchar(255) DEFAULT NULL,
+  media text,
   keywords text,
   description text,
   abstract text,
-  author varchar(255) default NULL,
-  author_email varchar(80) default NULL,
-  tx_impexp_origuid int(11) NOT NULL default '0',
+  author varchar(255) DEFAULT NULL,
+  author_email varchar(80) DEFAULT NULL,
+  tx_impexp_origuid int(11) NOT NULL DEFAULT '0',
   l18n_diffsource mediumblob,
-  url varchar(255) default NULL,
-  urltype tinyint(4) unsigned NOT NULL default '0',
-  shortcut int(10) unsigned NOT NULL default '0',
-  shortcut_mode int(10) unsigned NOT NULL default '0',
-  tx_realurl_pathsegment varchar(255) default NULL,
-  PRIMARY KEY  (uid),
+  url varchar(255) DEFAULT NULL,
+  urltype tinyint(4) unsigned NOT NULL DEFAULT '0',
+  shortcut int(10) unsigned NOT NULL DEFAULT '0',
+  shortcut_mode int(10) unsigned NOT NULL DEFAULT '0',
+  tx_realurl_pathsegment varchar(255) DEFAULT NULL,
+  PRIMARY KEY (uid),
   KEY t3ver_oid (t3ver_oid,t3ver_wsid),
   KEY parent (pid,sys_language_uid)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `pages_language_overlay`
@@ -1115,17 +974,20 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS static_tsconfig_help;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE static_tsconfig_help (
-  uid int(11) NOT NULL auto_increment,
-  guide int(11) NOT NULL default '0',
-  md5hash varchar(32) default NULL,
+  uid int(11) NOT NULL AUTO_INCREMENT,
+  guide int(11) NOT NULL DEFAULT '0',
+  md5hash varchar(32) DEFAULT NULL,
   description text,
-  obj_string varchar(255) default NULL,
+  obj_string varchar(255) DEFAULT NULL,
   appdata blob,
-  title varchar(255) default NULL,
-  PRIMARY KEY  (uid),
+  title varchar(255) DEFAULT NULL,
+  PRIMARY KEY (uid),
   KEY guide (guide,md5hash)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `static_tsconfig_help`
@@ -1142,17 +1004,20 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS sys_be_shortcuts;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE sys_be_shortcuts (
-  uid int(11) unsigned NOT NULL auto_increment,
-  userid int(11) unsigned NOT NULL default '0',
-  module_name varchar(255) default NULL,
+  uid int(11) unsigned NOT NULL AUTO_INCREMENT,
+  userid int(11) unsigned NOT NULL DEFAULT '0',
+  module_name varchar(255) DEFAULT NULL,
   url text,
-  description varchar(255) default NULL,
-  sorting int(11) NOT NULL default '0',
-  sc_group tinyint(4) NOT NULL default '0',
-  PRIMARY KEY  (uid),
-  KEY event (userid)
+  description varchar(255) DEFAULT NULL,
+  sorting int(11) NOT NULL DEFAULT '0',
+  sc_group tinyint(4) NOT NULL DEFAULT '0',
+  PRIMARY KEY (uid),
+  KEY `event` (userid)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `sys_be_shortcuts`
@@ -1169,23 +1034,26 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS sys_domain;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE sys_domain (
-  uid int(11) unsigned NOT NULL auto_increment,
-  pid int(11) unsigned NOT NULL default '0',
-  tstamp int(11) unsigned NOT NULL default '0',
-  crdate int(11) unsigned NOT NULL default '0',
-  cruser_id int(11) unsigned NOT NULL default '0',
-  hidden tinyint(4) unsigned NOT NULL default '0',
-  domainName varchar(80) default NULL,
-  redirectTo varchar(120) default NULL,
-  redirectHttpStatusCode int(4) unsigned NOT NULL default '301',
-  sorting int(10) unsigned NOT NULL default '0',
-  prepend_params int(10) NOT NULL default '0',
-  forced tinyint(3) unsigned NOT NULL default '0',
-  PRIMARY KEY  (uid),
+  uid int(11) unsigned NOT NULL AUTO_INCREMENT,
+  pid int(11) unsigned NOT NULL DEFAULT '0',
+  tstamp int(11) unsigned NOT NULL DEFAULT '0',
+  crdate int(11) unsigned NOT NULL DEFAULT '0',
+  cruser_id int(11) unsigned NOT NULL DEFAULT '0',
+  hidden tinyint(4) unsigned NOT NULL DEFAULT '0',
+  domainName varchar(80) DEFAULT NULL,
+  redirectTo varchar(255) DEFAULT '',
+  redirectHttpStatusCode int(4) unsigned NOT NULL DEFAULT '301',
+  sorting int(10) unsigned NOT NULL DEFAULT '0',
+  prepend_params int(10) NOT NULL DEFAULT '0',
+  forced tinyint(3) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (uid),
   KEY parent (pid),
   KEY tx_realurl (domainName,hidden)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `sys_domain`
@@ -1201,19 +1069,22 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS sys_filemounts;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE sys_filemounts (
-  uid int(11) unsigned NOT NULL auto_increment,
-  pid int(11) unsigned NOT NULL default '0',
-  tstamp int(11) unsigned NOT NULL default '0',
-  title varchar(30) default NULL,
-  path varchar(120) default NULL,
-  base tinyint(4) unsigned NOT NULL default '0',
-  hidden tinyint(3) unsigned NOT NULL default '0',
-  deleted tinyint(1) unsigned NOT NULL default '0',
-  sorting int(11) unsigned NOT NULL default '0',
-  PRIMARY KEY  (uid),
+  uid int(11) unsigned NOT NULL AUTO_INCREMENT,
+  pid int(11) unsigned NOT NULL DEFAULT '0',
+  tstamp int(11) unsigned NOT NULL DEFAULT '0',
+  title varchar(30) DEFAULT NULL,
+  path varchar(120) DEFAULT NULL,
+  base tinyint(4) unsigned NOT NULL DEFAULT '0',
+  hidden tinyint(3) unsigned NOT NULL DEFAULT '0',
+  deleted tinyint(1) unsigned NOT NULL DEFAULT '0',
+  sorting int(11) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (uid),
   KEY parent (pid)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `sys_filemounts`
@@ -1230,20 +1101,24 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS sys_history;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE sys_history (
-  uid int(11) unsigned NOT NULL auto_increment,
-  sys_log_uid int(11) NOT NULL default '0',
+  uid int(11) unsigned NOT NULL AUTO_INCREMENT,
+  sys_log_uid int(11) NOT NULL DEFAULT '0',
   history_data mediumtext,
   fieldlist text,
-  recuid int(11) NOT NULL default '0',
-  tablename varchar(255) default NULL,
-  tstamp int(11) NOT NULL default '0',
+  recuid int(11) NOT NULL DEFAULT '0',
+  tablename varchar(255) DEFAULT NULL,
+  tstamp int(11) NOT NULL DEFAULT '0',
   history_files mediumtext,
-  `snapshot` tinyint(4) NOT NULL default '0',
-  PRIMARY KEY  (uid),
-  KEY recordident (tablename,recuid,tstamp),
+  `snapshot` tinyint(4) NOT NULL DEFAULT '0',
+  PRIMARY KEY (uid),
+  KEY recordident_1 (tablename,recuid),
+  KEY recordident_2 (tablename,tstamp),
   KEY sys_log_uid (sys_log_uid)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `sys_history`
@@ -1259,17 +1134,20 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS sys_language;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE sys_language (
-  uid int(11) unsigned NOT NULL auto_increment,
-  pid int(11) unsigned NOT NULL default '0',
-  tstamp int(11) unsigned NOT NULL default '0',
-  hidden tinyint(4) unsigned NOT NULL default '0',
-  title varchar(80) default NULL,
-  flag varchar(20) default NULL,
-  static_lang_isocode int(11) unsigned NOT NULL default '0',
-  PRIMARY KEY  (uid),
+  uid int(11) unsigned NOT NULL AUTO_INCREMENT,
+  pid int(11) unsigned NOT NULL DEFAULT '0',
+  tstamp int(11) unsigned NOT NULL DEFAULT '0',
+  hidden tinyint(4) unsigned NOT NULL DEFAULT '0',
+  title varchar(80) DEFAULT NULL,
+  flag varchar(20) DEFAULT NULL,
+  static_lang_isocode int(11) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (uid),
   KEY parent (pid)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `sys_language`
@@ -1286,18 +1164,21 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS sys_lockedrecords;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE sys_lockedrecords (
-  uid int(11) unsigned NOT NULL auto_increment,
-  userid int(11) unsigned NOT NULL default '0',
-  tstamp int(11) unsigned NOT NULL default '0',
-  record_table varchar(255) default NULL,
-  record_uid int(11) NOT NULL default '0',
-  record_pid int(11) NOT NULL default '0',
-  username varchar(50) default NULL,
-  feuserid int(11) unsigned NOT NULL default '0',
-  PRIMARY KEY  (uid),
-  KEY event (userid,tstamp)
+  uid int(11) unsigned NOT NULL AUTO_INCREMENT,
+  userid int(11) unsigned NOT NULL DEFAULT '0',
+  tstamp int(11) unsigned NOT NULL DEFAULT '0',
+  record_table varchar(255) DEFAULT NULL,
+  record_uid int(11) NOT NULL DEFAULT '0',
+  record_pid int(11) NOT NULL DEFAULT '0',
+  username varchar(50) DEFAULT NULL,
+  feuserid int(11) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (uid),
+  KEY `event` (userid,tstamp)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `sys_lockedrecords`
@@ -1313,27 +1194,30 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS sys_log;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE sys_log (
-  uid int(11) unsigned NOT NULL auto_increment,
-  userid int(11) unsigned NOT NULL default '0',
-  `action` tinyint(4) unsigned NOT NULL default '0',
-  recuid int(11) unsigned NOT NULL default '0',
-  tablename varchar(255) default NULL,
-  recpid int(11) NOT NULL default '0',
-  error tinyint(4) unsigned NOT NULL default '0',
+  uid int(11) unsigned NOT NULL AUTO_INCREMENT,
+  userid int(11) unsigned NOT NULL DEFAULT '0',
+  `action` tinyint(4) unsigned NOT NULL DEFAULT '0',
+  recuid int(11) unsigned NOT NULL DEFAULT '0',
+  tablename varchar(255) DEFAULT NULL,
+  recpid int(11) NOT NULL DEFAULT '0',
+  error tinyint(4) unsigned NOT NULL DEFAULT '0',
   details text NOT NULL,
-  tstamp int(11) unsigned NOT NULL default '0',
-  `type` tinyint(3) unsigned NOT NULL default '0',
-  details_nr tinyint(3) unsigned NOT NULL default '0',
-  IP varchar(39) default NULL,
-  log_data varchar(255) default NULL,
-  event_pid int(11) NOT NULL default '-1',
-  workspace int(11) NOT NULL default '0',
-  NEWid varchar(20) default NULL,
-  PRIMARY KEY  (uid),
-  KEY event (userid,event_pid),
+  tstamp int(11) unsigned NOT NULL DEFAULT '0',
+  `type` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  details_nr tinyint(3) unsigned NOT NULL DEFAULT '0',
+  IP varchar(39) DEFAULT NULL,
+  log_data varchar(255) DEFAULT NULL,
+  event_pid int(11) NOT NULL DEFAULT '-1',
+  workspace int(11) NOT NULL DEFAULT '0',
+  NEWid varchar(20) DEFAULT NULL,
+  PRIMARY KEY (uid),
+  KEY `event` (userid,event_pid),
   KEY recuidIdx (recuid,uid)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `sys_log`
@@ -1349,21 +1233,24 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS sys_news;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE sys_news (
-  uid int(11) unsigned NOT NULL auto_increment,
-  pid int(11) unsigned NOT NULL default '0',
-  tstamp int(11) unsigned NOT NULL default '0',
-  crdate int(11) unsigned NOT NULL default '0',
-  cruser_id int(11) unsigned NOT NULL default '0',
-  deleted tinyint(3) unsigned NOT NULL default '0',
-  hidden tinyint(4) unsigned NOT NULL default '0',
-  starttime int(11) unsigned NOT NULL default '0',
-  endtime int(11) unsigned NOT NULL default '0',
-  title varchar(255) default NULL,
+  uid int(11) unsigned NOT NULL AUTO_INCREMENT,
+  pid int(11) unsigned NOT NULL DEFAULT '0',
+  tstamp int(11) unsigned NOT NULL DEFAULT '0',
+  crdate int(11) unsigned NOT NULL DEFAULT '0',
+  cruser_id int(11) unsigned NOT NULL DEFAULT '0',
+  deleted tinyint(3) unsigned NOT NULL DEFAULT '0',
+  hidden tinyint(4) unsigned NOT NULL DEFAULT '0',
+  starttime int(11) unsigned NOT NULL DEFAULT '0',
+  endtime int(11) unsigned NOT NULL DEFAULT '0',
+  title varchar(255) DEFAULT NULL,
   content mediumtext,
-  PRIMARY KEY  (uid),
+  PRIMARY KEY (uid),
   KEY parent (pid)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `sys_news`
@@ -1380,22 +1267,25 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS sys_note;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE sys_note (
-  uid int(11) unsigned NOT NULL auto_increment,
-  pid int(11) unsigned NOT NULL default '0',
-  deleted tinyint(3) unsigned NOT NULL default '0',
-  tstamp int(11) unsigned NOT NULL default '0',
-  crdate int(11) unsigned NOT NULL default '0',
-  cruser int(11) unsigned NOT NULL default '0',
-  author varchar(80) default NULL,
-  email varchar(80) default NULL,
-  `subject` varchar(255) default NULL,
+  uid int(11) unsigned NOT NULL AUTO_INCREMENT,
+  pid int(11) unsigned NOT NULL DEFAULT '0',
+  deleted tinyint(3) unsigned NOT NULL DEFAULT '0',
+  tstamp int(11) unsigned NOT NULL DEFAULT '0',
+  crdate int(11) unsigned NOT NULL DEFAULT '0',
+  cruser int(11) unsigned NOT NULL DEFAULT '0',
+  author varchar(80) DEFAULT NULL,
+  email varchar(80) DEFAULT NULL,
+  `subject` varchar(255) DEFAULT NULL,
   message text,
-  personal tinyint(3) unsigned NOT NULL default '0',
-  category tinyint(3) unsigned NOT NULL default '0',
-  PRIMARY KEY  (uid),
+  personal tinyint(3) unsigned NOT NULL DEFAULT '0',
+  category tinyint(3) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (uid),
   KEY parent (pid)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `sys_note`
@@ -1411,13 +1301,16 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS sys_preview;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE sys_preview (
-  keyword varchar(32) NOT NULL,
-  tstamp int(11) NOT NULL default '0',
-  endtime int(11) NOT NULL default '0',
+  keyword varchar(32) NOT NULL DEFAULT '',
+  tstamp int(11) NOT NULL DEFAULT '0',
+  endtime int(11) NOT NULL DEFAULT '0',
   config text,
-  PRIMARY KEY  (keyword)
+  PRIMARY KEY (keyword)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `sys_preview`
@@ -1433,24 +1326,27 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS sys_refindex;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE sys_refindex (
-  `hash` varchar(32) NOT NULL default '',
-  tablename varchar(255) default NULL,
-  recuid int(11) NOT NULL default '0',
-  field varchar(40) default NULL,
-  flexpointer varchar(255) default NULL,
-  softref_key varchar(30) default NULL,
-  softref_id varchar(40) default NULL,
-  sorting int(11) NOT NULL default '0',
-  deleted tinyint(1) NOT NULL default '0',
-  ref_table varchar(255) default NULL,
-  ref_uid int(11) NOT NULL default '0',
-  ref_string varchar(200) default NULL,
-  PRIMARY KEY  (`hash`),
+  `hash` varchar(32) NOT NULL,
+  tablename varchar(255) DEFAULT NULL,
+  recuid int(11) NOT NULL DEFAULT '0',
+  field varchar(40) DEFAULT NULL,
+  flexpointer varchar(255) DEFAULT NULL,
+  softref_key varchar(30) DEFAULT NULL,
+  softref_id varchar(40) DEFAULT NULL,
+  sorting int(11) NOT NULL DEFAULT '0',
+  deleted tinyint(1) NOT NULL DEFAULT '0',
+  ref_table varchar(255) DEFAULT NULL,
+  ref_uid int(11) NOT NULL DEFAULT '0',
+  ref_string varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`hash`),
   KEY lookup_rec (tablename,recuid),
   KEY lookup_uid (ref_table,ref_uid),
   KEY lookup_string (ref_string)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `sys_refindex`
@@ -1463,79 +1359,21 @@ INSERT INTO sys_refindex VALUES ('87f8c2a479ed5d0dcb02b52757cf985e','be_users',2
 UNLOCK TABLES;
 
 --
--- Table structure for table `sys_refindex_rel`
---
-
-DROP TABLE IF EXISTS sys_refindex_rel;
-CREATE TABLE sys_refindex_rel (
-  rid int(11) NOT NULL default '0',
-  wid int(11) NOT NULL default '0',
-  PRIMARY KEY  (rid,wid)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `sys_refindex_rel`
---
-
-LOCK TABLES sys_refindex_rel WRITE;
-/*!40000 ALTER TABLE sys_refindex_rel DISABLE KEYS */;
-/*!40000 ALTER TABLE sys_refindex_rel ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `sys_refindex_res`
---
-
-DROP TABLE IF EXISTS sys_refindex_res;
-CREATE TABLE sys_refindex_res (
-  rid int(11) NOT NULL default '0',
-  tablename varchar(255) default NULL,
-  recuid int(11) NOT NULL default '0',
-  PRIMARY KEY  (rid)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `sys_refindex_res`
---
-
-LOCK TABLES sys_refindex_res WRITE;
-/*!40000 ALTER TABLE sys_refindex_res DISABLE KEYS */;
-/*!40000 ALTER TABLE sys_refindex_res ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `sys_refindex_words`
---
-
-DROP TABLE IF EXISTS sys_refindex_words;
-CREATE TABLE sys_refindex_words (
-  wid int(11) NOT NULL default '0',
-  baseword varchar(60) default NULL,
-  PRIMARY KEY  (wid)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `sys_refindex_words`
---
-
-LOCK TABLES sys_refindex_words WRITE;
-/*!40000 ALTER TABLE sys_refindex_words DISABLE KEYS */;
-/*!40000 ALTER TABLE sys_refindex_words ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `sys_registry`
 --
 
 DROP TABLE IF EXISTS sys_registry;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE sys_registry (
-  uid int(11) unsigned NOT NULL auto_increment,
-  entry_namespace varchar(128) default NULL,
-  entry_key varchar(128) default NULL,
+  uid int(11) unsigned NOT NULL AUTO_INCREMENT,
+  entry_namespace varchar(128) DEFAULT NULL,
+  entry_key varchar(128) DEFAULT NULL,
   entry_value blob,
-  PRIMARY KEY  (uid),
+  PRIMARY KEY (uid),
   UNIQUE KEY entry_identifier (entry_namespace,entry_key)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `sys_registry`
@@ -1551,46 +1389,49 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS sys_template;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE sys_template (
-  uid int(11) NOT NULL auto_increment,
-  pid int(11) NOT NULL default '0',
-  t3ver_oid int(11) NOT NULL default '0',
-  t3ver_id int(11) NOT NULL default '0',
-  t3ver_wsid int(11) NOT NULL default '0',
-  t3ver_label varchar(255) default NULL,
-  t3ver_state tinyint(4) NOT NULL default '0',
-  t3ver_stage int(11) NOT NULL default '0',
-  t3ver_count int(11) NOT NULL default '0',
-  t3ver_tstamp int(11) NOT NULL default '0',
-  t3_origuid int(11) NOT NULL default '0',
-  tstamp int(11) unsigned NOT NULL default '0',
-  sorting int(11) unsigned NOT NULL default '0',
-  crdate int(11) unsigned NOT NULL default '0',
-  cruser_id int(11) unsigned NOT NULL default '0',
-  title varchar(255) default NULL,
-  sitetitle varchar(255) default NULL,
-  hidden tinyint(4) unsigned NOT NULL default '0',
-  starttime int(11) unsigned NOT NULL default '0',
-  endtime int(11) unsigned NOT NULL default '0',
-  root tinyint(4) unsigned NOT NULL default '0',
-  clear tinyint(4) unsigned NOT NULL default '0',
+  uid int(11) NOT NULL AUTO_INCREMENT,
+  pid int(11) NOT NULL DEFAULT '0',
+  t3ver_oid int(11) NOT NULL DEFAULT '0',
+  t3ver_id int(11) NOT NULL DEFAULT '0',
+  t3ver_wsid int(11) NOT NULL DEFAULT '0',
+  t3ver_label varchar(255) DEFAULT NULL,
+  t3ver_state tinyint(4) NOT NULL DEFAULT '0',
+  t3ver_stage int(11) NOT NULL DEFAULT '0',
+  t3ver_count int(11) NOT NULL DEFAULT '0',
+  t3ver_tstamp int(11) NOT NULL DEFAULT '0',
+  t3_origuid int(11) NOT NULL DEFAULT '0',
+  tstamp int(11) unsigned NOT NULL DEFAULT '0',
+  sorting int(11) unsigned NOT NULL DEFAULT '0',
+  crdate int(11) unsigned NOT NULL DEFAULT '0',
+  cruser_id int(11) unsigned NOT NULL DEFAULT '0',
+  title varchar(255) DEFAULT NULL,
+  sitetitle varchar(255) DEFAULT NULL,
+  hidden tinyint(4) unsigned NOT NULL DEFAULT '0',
+  starttime int(11) unsigned NOT NULL DEFAULT '0',
+  endtime int(11) unsigned NOT NULL DEFAULT '0',
+  root tinyint(4) unsigned NOT NULL DEFAULT '0',
+  clear tinyint(4) unsigned NOT NULL DEFAULT '0',
   include_static_file text,
   constants text,
   config text,
   editorcfg text,
   resources text,
-  nextLevel varchar(5) default NULL,
+  nextLevel varchar(5) DEFAULT NULL,
   description text,
   basedOn tinytext,
-  deleted tinyint(3) unsigned NOT NULL default '0',
-  includeStaticAfterBasedOn tinyint(4) unsigned NOT NULL default '0',
-  static_file_mode tinyint(4) unsigned NOT NULL default '0',
-  tx_impexp_origuid int(11) NOT NULL default '0',
-  PRIMARY KEY  (uid),
+  deleted tinyint(3) unsigned NOT NULL DEFAULT '0',
+  includeStaticAfterBasedOn tinyint(4) unsigned NOT NULL DEFAULT '0',
+  static_file_mode tinyint(4) unsigned NOT NULL DEFAULT '0',
+  tx_impexp_origuid int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (uid),
   KEY t3ver_oid (t3ver_oid,t3ver_wsid),
   KEY parent (pid,sorting,deleted,hidden),
   KEY tx_realurl (root,hidden)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `sys_template`
@@ -1598,7 +1439,7 @@ CREATE TABLE sys_template (
 
 LOCK TABLES sys_template WRITE;
 /*!40000 ALTER TABLE sys_template DISABLE KEYS */;
-INSERT INTO sys_template VALUES (1,1,0,0,0,'',0,0,0,0,0,1290503626,256,1257766279,1,'Introduction Package','Introduction Package',0,0,0,1,3,'','','','','','','This is the Introduction Package template.\r\n\r\nFor each website you need a Typoscript template on the ROOT level. For better maintenance, all Typoscript has been put into the folder \'Typoscript Templates\'. The only thing this template does is calling the ROOT template.','50',0,0,0,1),(53,9,0,0,0,'',0,0,0,0,0,1276890936,512,1258319661,4,'plugin.automaketemplate','',0,0,0,0,0,'','','# Configuring the Auto-Parser for main template:\r\n\r\nplugin.tx_automaketemplate_pi1 {\r\n\r\n	# Read the template file\r\n	content = FILE\r\n	content.file = {$filepaths.templates}{$plugin.tx_automaketemplate_pi1.templatefile}\r\n\r\n	elements {\r\n		BODY.all = 1\r\n		BODY.all.subpartMarker = DOCUMENT_BODY\r\n		HEAD.all = 1\r\n		HEAD.all.subpartMarker = DOCUMENT_HEADER\r\n		\r\n		# Configure which HTML-tags should be made replacable by subparts\r\n		DIV.id.navigationFirstLevelMenu = 1\r\n		DIV.id.navigationSecondLevelMenu = 1\r\n		DIV.id.topMenu = 1\r\n		DIV.id.languageMenu = 1\r\n		DIV.id.breadcrumb = 1\r\n\r\n		DIV.id.siteTitle = 1\r\n		DIV.id.searchBox = 1\r\n		DIV.id.footerContent = 1\r\n\r\n		DIV.id.mainContent = 1\r\n		DIV.id.secondaryContent = 1\r\n		DIV.id.navigationContent = 1\r\n		\r\n		H1.all = 1\r\n		\r\n		# Remove some tags from HTML head section (because TYPO3 will add these dynamically)\r\n		HEAD.rmTagSections = title,meta,link\r\n	}\r\n\r\n	# Prefix all relative paths in the HTML template with this value\r\n	#relPathPrefix = {$filepaths.templates}\r\n}\r\n','','','','The AUTOMAKETEMPLATE template\r\n\r\nThe automaketemplate parser reads the HTML template files, extracts the markers for content, and replaces them with the content assigned to these markers.','',0,0,0,0),(59,11,0,0,0,'',0,0,0,0,0,1258568494,1536,1258458592,4,'lib.sitetitle','',0,0,0,0,0,'','','lib.sitetitle = TEXT\r\nlib.sitetitle {\r\n	\r\n	# Copy the value from the top level object sitetitle\r\n	# You can change the site title in the Sitetitle field of the ROOT typoscript template\r\n	value < sitetitle\r\n	\r\n	# Wrap a link to the home page around the sitetitle\r\n	typolink.parameter = {$contentpage.homeID}\r\n}		\r\n','','','','The SITE TITLE template\r\n\r\nBuilding block for the site title','',0,0,0,0),(60,11,0,0,0,'',0,0,0,0,0,1278361173,1024,1258460317,4,'lib.searchbox','',0,0,0,0,0,'','','# Create the searchbox in TypoScript, so we can easily include in on every page\r\nlib.searchbox = COA\r\n\r\n# Make the searchbox remember the search term on the search result page\r\n[globalVar = TSFE:id = 17]\r\nlib.searchbox = COA_INT\r\n[global]\r\n\r\nlib.searchbox {\r\n	stdWrap.prefixComment = 2 | lib.searchbox\r\n	10 = TEXT\r\n	10.typolink.parameter = {$plugin.tx_indexedsearch.searchpageID}\r\n	10.typolink.returnLast = url\r\n	10.wrap = <form action=\"|\" method=\"post\" id=\"indexedsearch\"><fieldset>\r\n	20 = COA\r\n	20 {\r\n		10 = TEXT\r\n		10.data = GP : tx_indexedsearch |sword\r\n		10.htmlSpecialChars = 1 \r\n		10.wrap = <input name=\"tx_indexedsearch[sword]\" value=\"|\" id=\"inputText\" type=\"text\" />\r\n		20 = COA\r\n		20 {\r\n			10 = TEXT\r\n			10.value = <input type=\"image\" src=\"{$filepaths.templates}images/bg_searchButton.gif\" id=\"inputButton\" alt=\"Search\" title=\"Search\" />\r\n			20 = TEXT\r\n			20.value = <input type=\"hidden\" name=\"tx_indexedsearch[sections]\" value=\"0\" />\r\n			30 = TEXT\r\n			30.value = <input name=\"tx_indexedsearch[submit_button]\" value=\"Search\" type=\"hidden\" />\r\n		}\r\n	}\r\n	\r\n	wrap = |</fieldset></form>\r\n}\r\n	','','','','The SEARCHBOX template\r\n\r\nA building block for a searchform','',0,0,0,0),(61,13,0,0,0,'',0,0,0,0,0,1280228398,38,1258463526,4,'menu.breadcrumb','',0,0,0,0,0,'','','# For the breadcrumb cObject we use a HMENU of the type \'rootline\'\r\nmenu.breadcrumb = COA\r\nmenu.breadcrumb {\r\n	10 = HMENU\r\n	10 {\r\n		# Select HMENU type \'special.rootline\'\r\n		special = rootline\r\n	\r\n		# Traverse the pagetree starting at the rootpage (0) and ending at the current page (-1)\r\n		special.range = 0|-1\r\n	\r\n		# Pages which are excluded from the regular menus should still be shown in the breadcrumb\r\n		includeNotInMenu = 1\r\n	\r\n		# This menu has only 1 level since this is a rootline-menu\r\n		1 = TMENU\r\n		1 {\r\n			# Remove the ancient onfocus=\"blurLink(this);\" from link tags\r\n			noBlur = 1\r\n		\r\n			# Append spaces and >> to normal linked breadcrumb items\r\n			NO.allWrap = |&#32;&raquo;&#32;\r\n			NO.stdWrap.htmlSpecialChars = 1\r\n		}\r\n	}\r\n}\r\n\r\n# This condition checks whether a news article will be shown in single view\r\n[globalVar = GP:tx_ttnews|tt_news > 0] && [globalVar = TSFE:id = {$plugin.tt_news.singlePid}]\r\n\r\nmenu.breadcrumb {\r\n	# Render the current page as the normal state (linked) because we\'ll append the title of the news article\r\n	10.1 {\r\n		CUR = 1\r\n		CUR < .NO\r\n	}\r\n	\r\n	# Append the title of the news item. Using this example, the breadcrumb can be exented with\r\n	# any other thinkable kind of data and logic\r\n	20 = RECORDS\r\n	20 {\r\n		dontCheckPid = 1\r\n		tables = tt_news\r\n		source.data = GP:tx_ttnews|tt_news\r\n		source.intval = 1\r\n		conf.tt_news = TEXT\r\n		conf.tt_news.field = title\r\n		wrap = <span>|</span>\r\n	}\r\n}\r\n# Else configure the breadcrumb for normal cases when no news article is shown\r\n[else]\r\n\r\nmenu.breadcrumb {\r\n	10.1 {\r\n		# Add alternative, unlinked configuration for current page, which is always the last item in\r\n		# the breadcrumb\r\n		CUR = 1\r\n		CUR.stdWrap.htmlSpecialChars = 1\r\n		CUR.allWrap = <span>|</span>\r\n	\r\n		# Do not wrap a link around this item\r\n		CUR.doNotLinkIt = 1\r\n	}\r\n}\r\n\r\n[global]\r\n','','','','The BREADCRUMB template\r\n\r\nTyposcript for producing a breadcrumb.','',0,0,0,0),(3,14,0,0,0,'',0,0,0,0,0,1276357485,128,1258294829,3,'page.includeCSS','',0,0,0,0,0,'','','page.includeCSS {\r\n	10 = {$filepaths.css}stylesheet.css\r\n	10 {\r\n		media = all\r\n	}\r\n	20 = {$filepaths.css}print.css\r\n	20 {\r\n		media = print\r\n	}\r\n}\r\n\r\n# Condition to add specific stylesheet for the frontpage only \r\n[globalVar = TSFE:id = 6] \r\npage.includeCSS {\r\n	30 = {$filepaths.css}frontpage.css\r\n	30 {\r\n		media = all\r\n	}\r\n}\r\n[end] \r\n\r\n# Condition to add extra CSS for Internet Explorer 6\r\n[browser = msie] && [version =< 7]\r\npage.includeCSS {\r\n	9999 = {$filepaths.css}msie6.css\r\n	9999 {\r\n		media = screen\r\n	}\r\n}\r\n[global]','','','','The CSS template.\r\n\r\nIncludes all necessarry Cascading Style Sheets by referring to the file on the server and configuring the media type.\r\n\r\nSpecial condition for including extra CSS file for Internet Explorer. ','',0,0,0,46),(4,14,0,0,0,'',0,0,0,0,0,1280239107,64,1258294829,3,'page.headerData','',0,0,0,0,0,'','','page.headerData {\r\n	10 = TEMPLATE\r\n	10 {\r\n		template =< plugin.tx_automaketemplate_pi1\r\n		workOnSubpart = DOCUMENT_HEADER\r\n	}\r\n	20 = TEXT\r\n	20.value = <meta name=\"robots\" content=\"noindex,follow\" />\r\n}','','','','The PAGE HEADERDATA template. \r\n\r\nAll config.headerData contents goes in here. This could be almost everything that belongs in the <head>, but does not have any configuration like page.config, page.includeCSS or page.includeJS or needs special configuration, like dynamic handling.','',0,0,0,52),(5,14,0,0,0,'',0,0,0,0,0,1280239382,32,1258294829,3,'page.meta','',0,0,0,0,0,'','','page.meta {\r\n	# Use the meta tag \'description\' from the constants as default value\r\n	# If the meta field description in the page properties is filled, then this will override the default.\r\n	description = {$plugin.meta.description}\r\n	description.override.field = description\r\n	\r\n	author = {$plugin.meta.author}\r\n	author.override.field = author\r\n	\r\n	keywords = {$plugin.meta.keywords}\r\n	keywords.override.field = keywords\r\n	\r\n	robots.value = {$plugin.meta.robots}\r\n	revisit = {$plugin.meta.revisit}\r\n	copyright = {$plugin.meta.copyright}\r\n}\r\n','','','','The META template. \r\n\r\nConfigures meta information for the website. It\'s possible this template remains empty because most of the information is handled by constants, which are not allowed here. Constant settings belong to the root.','',0,0,0,40),(6,14,0,0,0,'',0,0,0,0,0,1280255270,16,1258294829,3,'page.config','',0,0,0,0,0,'','','config {\r\n	// Administrator settings\r\n	admPanel		= {$config.adminPanel}\r\n	debug			= {$config.debug}\r\n	\r\n	doctype			= xhtml_trans\r\n\r\n	// Character sets\r\n	renderCharset 		= utf-8\r\n	metaCharset 		= utf-8\r\n\r\n	// Cache settings\r\n        cache_period		= 43200\r\n	sendCacheHeaders	= 1\r\n        \r\n	// URL Settings\r\n	tx_realurl_enable       = 1\r\n	simulateStaticDocuments = 0\r\n\r\n	// Language Settings\r\n	uniqueLinkVars          = 1\r\n	linkVars                = L(1)\r\n        sys_language_uid 	= 0\r\n	sys_language_overlay 	= 1\r\n	sys_language_mode 	= content_fallback\r\n	language         	= en\r\n	locale_all       	= en_US.UTF-8\r\n	htmlTag_langKey  	= en\r\n	\r\n	// Link settings\r\n	# # # # absRefPrefix            = /\r\n	prefixLocalAnchors      = all\r\n	\r\n	// Remove targets from links\r\n	intTarget =\r\n	extTarget =\r\n\r\n	// Indexed Search\r\n	index_enable		= 1\r\n	index_externals		= 1\r\n\r\n	// Code cleaning\r\n	disablePrefixComment	= 1\r\n	\r\n	// Move default CSS and JS to external file	\r\n	removeDefaultJS      	= external\r\n	inlineStyle2TempFile 	= 1\r\n\r\n	// Protect mail addresses from spamming\r\n	spamProtectEmailAddresses = -3\r\n	spamProtectEmailAddresses_atSubst = @<span style=\"display:none;\">remove-this.</span>\r\n\r\n	// Comment in the <head> tag\r\n	headerComment (\r\n	This TYPO3 introduction package has been started at T3UXW09\r\n        \r\n        ===\r\n	)\r\n}\r\n\r\n# Set baseURL setting for http or https\r\nconfig.baseURL = http://{$config.domain}/\r\n[globalString = IENV:TYPO3_SITE_URL=https://{$config.domain}/]\r\nconfig.baseURL = https://{$config.domain}/\r\n[global]\r\n\r\n// Condition to switch the doctype and xml prologue\r\n[browser = msie] && [version = <7]\r\nconfig {\r\n	doctypeSwitch = 1\r\n}\r\n[global]\r\n\r\n// Condition to set language according to L POST/GET variable\r\n[globalVar = GP:L = 1]\r\nconfig {\r\n	htmlTag_langKey = da\r\n	sys_language_uid = 1\r\n	language = da\r\n	locale_all = da_DK\r\n}\r\n[global]','','','','The PAGE CONFIG template. \r\n\r\nOnly page.config settings are done here, like character sets, url and language. ','',0,0,0,39),(7,14,0,0,0,'Auto-created for WS #-1',0,0,0,0,38,1276891086,8,1258294829,3,'page','',0,0,0,0,0,'','','# Make the PAGE object\r\npage = PAGE\r\npage {\r\n	# Regular pages always have typeNum = 0\r\n	typeNum = 0\r\n	\r\n	# Add the icon that will appear in front of the url in the browser\r\n	# This icon will also be used for the bookmark menu in browsers\r\n	shortcutIcon = {$filepaths.images}favicon.ico\r\n	\r\n	# Add class to bodytag to select which columns will be used in the HTML template\r\n	# Labels for the values used in this field are defined in the TSconfig field of the root page of the website\r\n	bodyTagCObject = CASE\r\n	bodyTagCObject {\r\n		# The value of the CASE object will depend on the value of the layout field in the page records\r\n		key.field = layout\r\n		\r\n		# Define the default value\r\n		default = TEXT\r\n		default.value = <body>\r\n		\r\n		# Copy the default value to 0\r\n		0 < .default\r\n		\r\n		# Add different values for cases 1, 2 and 3\r\n		1 = TEXT\r\n		1.wrap = <body class=\"|\">\r\n		1.value = hideRightColumn\r\n		\r\n		2 < .1\r\n		2.value = hideLeftColumn\r\n		\r\n		3 < .1\r\n		3.value = hideRightAndLeftColumn\r\n	}\r\n	\r\n	# Add a TEMPLATE object to the page\r\n	# We use the template autoparser extension to easily replace parts of the HTML template by dynamic TypoScript objects\r\n	10 = TEMPLATE\r\n	10 {\r\n		# Use the HTML template from the automake template plugin\r\n		template =< plugin.tx_automaketemplate_pi1\r\n		\r\n		# Use the <body> subpart\r\n		workOnSubpart = DOCUMENT_BODY\r\n		\r\n		# Link content and page blocks to id\'s that have been enabled in the\r\n		# automaketemplate template in the extension_configuration sysfolder\r\n		subparts {    \r\n			# Insert menu\'s from lib-objects into the appropriate subparts\r\n			navigationFirstLevelMenu < menu.firstlevel\r\n			navigationSecondLevelMenu < menu.secondlevel\r\n			topMenu < menu.top\r\n			languageMenu < menu.language\r\n			breadcrumb < menu.breadcrumb\r\n\r\n			# Insert various TypoScript lib objects into the appropriate subparts of the template\r\n			siteTitle < lib.sitetitle\r\n			searchBox < lib.searchbox\r\n			footerContent < lib.footer\r\n\r\n			# Insert content as already constructed in TypoScript objects into subparts\r\n			mainContent < lib.content\r\n			secondaryContent < lib.contentright\r\n			navigationContent < lib.contentleft\r\n		}\r\n	}\r\n}\r\n','','','','The PAGE OBJECT template. \r\n\r\nTells the PAGE object to use the parsed HTML template from the automaketemplate extension.\r\n','',0,0,0,38),(8,14,0,0,0,'',0,0,0,0,0,1280237741,4,1258294829,3,'root_page','',0,0,0,0,0,'','plugin.meta.includeGlobal = 0\r\nplugin.meta.language = ','','','','','The PAGE ROOT template. \r\n\r\nThis template will be called by the GLOBAL MASTER ROOT template. \r\nIt reads the templates for the page, like page setup, config and header data.\r\n\r\nIn this template record are only other template records included.','7,6,5,4,3',0,0,0,34),(10,13,0,0,0,'',0,0,0,0,0,1258566099,128,1258294829,3,'menu.firstlevel','',0,0,0,0,0,'','','# Start with copying our default menu configuration so we don\'t have to repeat our selves (except in the explanation, didn\'t I already mention this?) ;-)\r\nmenu.firstlevel < menu\r\nmenu.firstlevel {\r\n	# Since this is the top-level menu, we start this menu at the root level of the website\r\n	entryLevel = 0\r\n}\r\n','','','','The FIRST LEVEL MENU template.\r\n\r\nConfiguration for the menu of the first level of pages. It inherits the MAIN MENU template and has some small modifications on top of it, in this case the setting of the entryLevel.','',0,0,0,43),(14,13,0,0,0,'',0,0,0,0,0,1260552309,8,1258294829,3,'menu_defaults','',0,0,0,0,0,'','','menu = HMENU\r\nmenu {\r\n		\r\n	1 = TMENU\r\n	1 {\r\n		wrap = <ul>|</ul>\r\n		\r\n		# Always unfold all sub-levels of the menu\r\n		expAll = 1\r\n\r\n		# Remove the (old) default behaviour which adds onfocus=\"blurLink(this);\" to all links\r\n		noBlur = 1\r\n		\r\n		# Define the normal state (not active, not selected) of menu items\r\n		# Using NO=1 to activate normal state is not necessary, but useful when copying \r\n		NO = 1\r\n		NO {\r\n			# Use the page title field the title property on the A-tag, but only if the navigation title is set\r\n			ATagTitle {\r\n				field = title\r\n				fieldRequired = nav_title\r\n			}\r\n			\r\n			# Use the option-split feature to generate a different wrap for the last item on a level of the menu\r\n			# The last item on each level gets class=\"last\" added for CSS styling purposes.\r\n			#\r\n			# See the TSref documentation for details about option split and other features:\r\n			# http://typo3.org/documentation/document-library/references/doc_core_tsref/current/\r\n               		wrapItemAndSub = <li>|</li> |*| <li>|</li> |*| <li class=\"last\">|</li>\r\n               		\r\n               		# HTML-encode special characters according to the PHP-function htmlSpecialChars\r\n               		stdWrap.htmlSpecialChars = 1\r\n		}\r\n	\r\n		# Copy properties of normal to active state, and then add a CSS class for styling\r\n		ACT < .NO\r\n		ACT {\r\n			ATagParams = class=\"active\"\r\n		}\r\n\r\n		# Copy properties of normal to current state, and then add a CSS class for styling\r\n		CUR < .NO\r\n		CUR {\r\n			ATagParams = class=\"selected\"\r\n		}\r\n	}\r\n}','','','','The MENU template.\r\n\r\nConfiguration for default menu, which can be used with small modifications for other menu\'s, without writing the whole menu configuration all over again for all kinds of menu\'s.','',0,0,0,41),(55,13,0,0,0,'',0,0,0,0,10,1258565791,68,1258385418,4,'menu.top','',0,0,0,0,0,'','','# Copy basic menu object from TS template \'menu\' so we don\'t have to repeat all that\r\nmenu.top < menu\r\nmenu.top {\r\n	# Also show pages which have not-in-menu flag set in page properties\r\n	includeNotInMenu = 1\r\n	\r\n	# Create a menu out of the pages specifically listed under special.value\r\n	special = list\r\n	special.value = {$menu.top.pages}\r\n}','','','','The MAIN MENU template.\r\n\r\nConfiguration for the top right menu.','',0,0,0,43),(15,13,0,0,0,'',0,0,0,0,0,1260552214,1,1258294829,3,'root_menu','',0,0,0,0,0,'','','','','','','The MENU ROOT template. \r\n\r\nThis template will be called by the MASTER ROOT template. \r\nIt reads the templates for the menu parts, like the default menu \r\nsetup, language menu, header- and footermenu\'s.\r\n\r\nIn this template record are only other template records included.','14,10,56,55,57,61',0,0,0,35),(16,12,0,0,0,'',0,0,0,0,0,1277208616,256,1258294829,3,'tt_content','',0,0,0,0,0,'','// Remove targets\r\nstyles.content.links.extTarget =','tt_content {	\r\n	# Make some modifications to the rendering of the standard MAIL form records\r\n	mailform.20 {\r\n		accessibility = 1\r\n	}\r\n	\r\n	# Remove the ancient onfocus=\"blurLink(this);\" from sitemap links\r\n	# Unfortunately this hasn\'t been fully implemented in css_styled_content yet\r\n	# See also bug 11367\r\n	menu.20 {\r\n		default.1.noBlur = 1\r\n		1.1.noBlur = 1\r\n		4.1.noBlur = 1\r\n		5.1.noBlur = 1\r\n		6.1.noBlur = 1\r\n		7.1.noBlur = 1\r\n		7.2.noBlur = 1\r\n	}\r\n\r\n	# Define different wrappers for content elements depending on the page column\r\n	stdWrap.outerWrap.cObject = CASE\r\n	stdWrap.outerWrap.cObject {\r\n		# Define wrappers for each column position (colPos 0,1,2,3)\r\n		key.field = colPos\r\n		\r\n		# Default is no wrapper\r\n		default = TEXT\r\n		default.value = |\r\n		\r\n		# Add wrapper for content in right column (colPos=2)\r\n		# we use this to style the box around content in this column\r\n		2 = CASE\r\n		2 {\r\n			# Add wrapping to all content elements\r\n			default = TEXT\r\n			default.value = <div class=\"secondaryContentSection\">|</div>\r\n			\r\n			# But - exclude inserted records from being wrapped\r\n			key.field = CType\r\n			shortcut = TEXT\r\n			shortcut.value = |\r\n			image = TEXT\r\n			image.value = |\r\n			html = TEXT\r\n			html.value = |\r\n		}\r\n\r\n	}\r\n	\r\n	# Define max image width for each content column separately\r\n	image.20.maxW.cObject = CASE\r\n	image.20.maxW.cObject {\r\n		key.field = colPos\r\n		default = TEXT\r\n		default.value = 417\r\n		# normal\r\n		0 = TEXT\r\n		0.value = 417\r\n		# left\r\n		1 = TEXT\r\n		1.value = 150\r\n		# right\r\n		2 = TEXT\r\n		2.value = 155\r\n	}\r\n	\r\n	image.20.maxWInText.cObject = CASE\r\n	image.20.maxWInText.cObject {\r\n		key.field = colPos\r\n		default = TEXT\r\n		default.value = 260\r\n		# normal\r\n		0 = TEXT\r\n		0.value = 260\r\n		# left\r\n		1 = TEXT\r\n		1.value = 70\r\n		# right\r\n		2 = TEXT\r\n		2.value = 70\r\n	}\r\n\r\n}','','','','The TT_CONTENT template\r\n\r\ntt_content is responsible for the styling of the content objects, together with css_styled_content. In this template we made some changes to influence the styling.','',0,0,0,59),(18,12,0,0,0,'',0,0,0,0,0,1258562349,64,1258294829,3,'lib.parseFunc_RTE','',0,0,0,0,0,'','','# remove class=\"bodytext\" from paragraphs\r\nlib.parseFunc_RTE {\r\n	nonTypoTagStdWrap.encapsLines {\r\n		addAttributes.P.class >\r\n		addAttributes.P.class.setOnly >\r\n	}\r\n}','','','','The LIB.PARSEFUNC_RTE template\r\n\r\nContent which is added by using the RTE is parsed before the output to the screen. In this template you will find some settings to influence this parsing process.','',0,0,0,60),(19,12,0,0,0,'',0,0,0,0,0,1277023019,32,1258294829,3,'css_styled_content','',0,0,0,0,0,'EXT:css_styled_content/static/','','tt_content.mailform.20.RADIO.layout = <div class=\"csc-mailform-field\">###LABEL### ###FIELD###</div>\r\ntt_content.mailform.20.radioWrap.accessibilityWrap = <fieldset###RADIO_FIELD_ID### class=\"csc-mailform-radio\"><legend>###RADIO_GROUP_LABEL###</legend>|</fieldset>','','','','The CSS STYLED CONTENT template\r\n\r\nThis template includes the static template for css_styled_content, which is responsible for most of the default styling.','',0,0,0,53),(20,12,0,0,0,'',0,0,0,0,0,1260552007,16,1258294829,3,'root_systemConfiguration','',0,0,0,0,0,'','','','','','','The CONFIGURATION ROOT template. \r\n\r\nThis template will be called by the MASTER ROOT template. \r\nIt reads the templates for changes in tt_content, lib.stdHeader etc.\r\n\r\nIn this template record are only other template records included.','19,18,16',0,0,0,36),(27,11,0,0,0,'',0,0,0,0,0,1276372619,576,1258294829,3,'lib.content','',0,0,0,0,0,'','','# Insert the news plugin in single-view mode instead of normal page content if a news article is requested\r\n[globalVar = GP:tx_ttnews|tt_news > 0] && [globalVar = TSFE:id = {$plugin.tt_news.singlePid}]\r\n\r\nlib.content < plugin.tt_news\r\nlib.content {\r\n	# First empty the code field and then set it to single-view\r\n	code >\r\n	code = SINGLE\r\n}\r\n[else]\r\n\r\n# In all other cases, get the content of the middle column and add it to the \'content\' part\r\nlib.content < styles.content.get\r\n\r\n[global]\r\n\r\nlib.content {\r\n	# Wrap it in the markers for the search engine, so it knows that this part has to be indexed\r\n	stdWrap.wrap = <!--TYPO3SEARCH_begin--> | <!--TYPO3SEARCH_end-->\r\n}\r\n','','','','The CONTENT template\r\n\r\nThis template will fill the part \'content\' in the HTML template. Normally we just get the content with styles.content.get, but we need the wrapper around it for indexed search, so it knows what to index.','',0,0,0,71),(36,11,0,0,0,'',0,0,0,0,0,1260552154,512,1258294829,3,'root_blocks','',0,0,0,0,0,'','','','','','','The PAGE BLOCKS ROOT template\r\n\r\nLib (Blocks) templates contain TypoScript to generate \r\nthe building blocks for your website, except menu\'s.\r\n\r\nIn this template record are only other template records included.','27,63,64,60,59,62',0,0,0,61),(49,9,0,0,0,'',0,0,0,0,0,1287577026,128,1258294829,3,'root_extensionConfiguration','',0,0,0,0,0,'','','','','','','The EXTENSION CONFIGURATION ROOT template. \r\n\r\nThis template will be called by the MASTER ROOT template. \r\nIt reads the templates for the extensions.\r\n\r\nIn this template record are only other template records included.','53,52,58,54,65,66',0,0,0,37),(50,8,0,0,0,'',0,0,0,0,0,1280483480,256,1258294829,3,'ROOT','TYPO3 Introduction Package',0,0,0,1,3,'','config {\r\n	# cat=config; type=boolean; label=Admin Panel: Turn on admin panel (mainly for testing purposes only)\r\n	adminPanel = 0\r\n\r\n	# cat=config; type=boolean; label=Debugging: Turn on debugging (testing purposes only)\r\n	debug = 0\r\n	\r\n	# cat=config; type=string; label=Domain name for Base URL: (excluding slashes and protocol like http://)\r\n	domain = ###HOSTNAME_AND_PATH###\r\n}\r\n\r\nfilepaths {\r\n	# cat=filepaths; type=string; label=HTML Templates: Location of the (X)HTML templates relative to site\r\n	templates = fileadmin/default/templates/\r\n	\r\n	# cat=filepaths; type=string; label=CSS: Location of the Cascading Style Sheets relative to site\r\n	css = fileadmin/default/templates/css/\r\n	\r\n	# cat=filepaths; type=string; label=Images: Location of the images relative to site\r\n	images = fileadmin/default/templates/images/\r\n\r\n	# cat=filepaths; type=string; label=Scripts: Location of the Javascript files relative to site\r\n	scripts = fileadmin/default/templates/scripts/\r\n\r\n	# cat=filepaths; type=string; label=HTML Templates for extensions: Location of the (X)HTML templates for extensions\r\n	extensiontemplates = fileadmin/default/templates/extensions/\r\n}\r\n\r\nmenu {\r\n	# cat=navigation menus; type=string; label= Top-menu pages: Comma separated list of page id\'s to be included in top-right menu.\r\n	top.pages = 28\r\n}\r\n\r\nplugin.tx_automaketemplate_pi1 {\r\n	# cat=plugin.automaketemplate; type:string; label= HTML template file: Name of the HTML page template file (without path, see contant for filepath.templates)\r\n	templatefile = typo3-intro-template.html\r\n}\r\n\r\nplugin.tt_news {\r\n	# cat=plugin.tt_news; type=string; label= pid_list: Comma separated list of folder id\'s containing which contain news records.\r\n	pid_list = 18\r\n	\r\n	# cat=plugin.tt_news; type=int+; label= singlePid: Default ID of the page containing the tt_news SINGLE-view plugin\r\n	singlePid = 23\r\n	\r\n	# cat=plugin.tt_news; type=int+; label= limit: Default maximum number of items to be shown in LIST-view\r\n	limit = 100\r\n	\r\n	# Date and time formats according to active locales\r\n	dateformat = %x\r\n	dateandtimeformat = %c\r\n	\r\n	# Short notation date format according to international ISO standard\r\n	shortdateformat = %Y-%m-%d\r\n	timeformat = %H:%M\r\n}\r\n\r\nplugin.tx_indexedsearch {\r\n	# cat=plugin.indexed_search; type=int+; label= Search Page ID: UID of the page which contains the indexed search plugin.\r\n	searchpageID = 17\r\n}\r\n\r\nplugin.meta {\r\n	# cat=plugin.meta; type=string; label= Description: Write a short abstract for your website.\r\n	description = This TYPO3 Introduction Package helps you to get started with TYPO3. It provides a basic website setup with examples for the most used features. On top of that, this package contains many helpful comments and notes on how the system works\r\n	\r\n	# cat=plugin.meta; type=string; label= Keywords: Enter a comma separated list of keywords.\r\n	keywords = TYPO3, introduction package, install, demo site, example setup, content management, enterprise\r\n\r\n	# cat=plugin.meta; type=string; label= Robots: Use for instance these codes: Index all pages: \"all\".  Index no pages: \"none\". Only this page: \"index,nofollow\".  Only subpages: \"noindex,follow\"\r\n	robots = all\r\n\r\n	# cat=plugin.meta; type=string; label= Copyright info: Enter copyright information, eg. \"Me Myself and I, 2001. All rights reserved.\"\r\n	copyright = typo3.org GPL\r\n\r\n	# cat=plugin.meta; type=string; label= Reply-to email\r\n	email = \r\n\r\n	# cat=plugin.meta; type=string; label= Author: Enter name of author.\r\n	author = T3UXW09 / typo3.org\r\n	\r\n	# cat=plugin.meta; type=int+; label= Revisit after: Number of days between search engine visits.\r\n	revisit = 7\r\n\r\n\r\n	# The meta tags below are not used on this website, if you want to use these, you can configure that in TypoScript template page.meta\r\n	\r\n	# cat=plugin.meta; type=boolean; label=Always include global.\r\n	includeGlobal = \r\n\r\n	# cat=plugin.meta; type=options[,Arabic=ar,Chinese=zh,Danish=dk,Dutch=nl,English=en,Finnish=fi,French=fr,German=de,Greek=el,Hebrew=he,Icelandic=is,Italian=it,Japanese=ja,Norwegian=no,Polish=pl,Portuguese=pt,Russian=ru,Spanish=es,Swedish=sv,Turkish=tr,Multi language=mul]; label= Language: Select language of the content.\r\n	language = en\r\n	\r\n	# cat=plugin.meta; type=string; label= Distribution\r\n	distribution = GLOBAL\r\n	\r\n	# cat=plugin.meta; type=options[,General,Mature,14 years,Restricted]; label= Rating\r\n	rating = General	\r\n}\r\n\r\nstyles.content {\r\n	# This defines the maximum width of images inserted in content records of type Images or Text-with-images.\r\n	# There are seperate settings for images floated next to text (..InText)\r\n	imgtext {\r\n		maxW = 651\r\n		maxWInText = 651\r\n		borderThick = 1\r\n		linkWrap.newWindow = 1\r\n	}\r\n	uploads {\r\n		jumpurl_secure = 1\r\n		jumpurl_secure_mimeTypes = pdf=application/pdf, doc=application/msword\r\n		jumpurl = 1\r\n	}\r\n}\r\n\r\ncontentpage {\r\n	# cat=contentpage; type=int+; label= Footer source PID: Parent ID of the footer record used on content pages.\r\n	footerPID = 20\r\n	\r\n	# cat=contentpage; type=int+; label= ID of the home page: ID of the home (root) page of the site.\r\n	homeID = 1\r\n\r\n	# cat=contentpage; type=int+; label= loginboxPID: ID of the folder containing the login box record (to be shown on multiple pages)\r\n	loginboxPID = 21\r\n\r\n	# cat=contentpage; type=int+; label= loginboxUID: UID of the login box record (to be shown on multiple pages)\r\n	loginboxUID = 31\r\n\r\n	# cat=contentpage; type=int+; label= loginpageID: UID of the customer login page.\r\n	loginpageID = 28\r\n	\r\n	# cat=contentpage; type=int+; label= examplelanguagesID: UID of the page which has the language menu enabled\r\n	examplelanguagesID = 25\r\n	\r\n	# cat=contentpage; type=string; label= language1: name of the default language of this site\r\n	language1 = English\r\n\r\n	# cat=contentpage; type=string; label= language2: name of the second language of this site\r\n	language2 = Dansk\r\n}\r\n\r\n# Set the language of meta tag with DC.language to Danish, when in Danish\r\n[globalVar = GP:L = 1]\r\nplugin.meta.language = da\r\n[global]\r\n','','','','','The ROOT template. \r\n\r\nThis template will be called by the \"Introduction Package\" template recored in the root page. It reads the root templates for every part, like page, menu, systemConfiguration and extensionConfiguration.\r\n','20,49,15,36,8',0,0,1,49),(58,9,0,0,0,'',0,0,0,0,0,1280484130,1024,1258456536,4,'plugin.indexed_search','',0,0,0,0,0,'','','# Configuration for indexedsearch plugin\r\n\r\nplugin.tx_indexedsearch {\r\n\r\n	templateFile = {$filepaths.extensiontemplates}indexed_search/tx_indexedsearch_pi1_template.html\r\n	forwardSearchWordsInResultLink = 0\r\n        show {        \r\n        	rules = 0\r\n        	advancedSearchLink = 0\r\n        }\r\n	search {\r\n		rootPidList =\r\n		exactCount = 1\r\n	}\r\n\r\n	_CSS_DEFAULT_STYLE >\r\n	_DEFAULT_PI_VARS {\r\n		results = 10\r\n	}\r\n}\r\n\r\n# Adjust search results when visitor has chosen another language\r\n[globalVar = GP:L = 1]\r\nplugin.tx_indexedsearch._DEFAULT_PI_VARS.lang = 1\r\n[global]\r\n','','','','The INDEXED_SEARCH template\r\nIndexed Search an extension for searching content in the frontend. \r\n\r\nFor a full description of the configuration options, check the manual of this extension. Extension manuals are normally included in the extensions as Open Office documents, and can be accessed directly from the module Ext Manager in the TYPO3 backend (select the option \'loaded extensions or install extension\'.\r\n\r\nFor the extension indexed search, the documentation is delivered in a separated extension with the extension key \'doc_indexed_search\', which is also provided with this Demo Package.','',0,0,0,0),(52,9,0,0,0,'',0,0,0,0,0,1258563143,768,1258299414,4,'plugin.felogin','',0,0,0,0,0,'','','plugin.tx_felogin_pi1 {\r\n	# Use our own HTML template from the fileadmin directory\r\n	# so we can freely modify it without changing the extension\r\n	templateFile = {$filepaths.extensiontemplates}felogin/tx_felogin_pi1_template.html\r\n	\r\n	# Clear default CSS additions - we take care of that in our own CSS files\r\n	_CSS_DEFAULT_STYLE =\r\n}\r\n','','','','The FELOGIN template\r\n\r\nThe felogin extension handles the login for access restricted frontend pages. It displays a form when the user is not logged in, a status when logged in and handles the login process.\r\n\r\nFor a full description of the configuration options, check the manual of this extension. Extension manuals are normally included in the extensions as Open Office documents, and can be accessed directly from the module Ext Manager in the TYPO3 backend (select the option \'loaded extensions or install extension\'.','',0,0,0,0),(54,9,0,0,0,'',0,0,0,0,0,1277199998,1280,1258382313,4,'plugin.tt_news','',0,0,0,0,0,'EXT:tt_news/pi/static/ts_new/','','plugin.tt_news {\r\n	templateFile = {$filepaths.extensiontemplates}tt_news/tx_ttnews_pi1_template.html\r\n	dontUseBackPid = 1\r\n	excludeAlreadyDisplayedNews = 0\r\n	noNewsToListMsg_stdWrap.wrap = <p>|</p>\r\n	\r\n	displaySingle {\r\n		subheader_stdWrap.wrap = <div class=\"news-single-subheader\">|</div>\r\n		image {\r\n			file.maxW = 250\r\n			file.maxH = 300\r\n			#imageLinkWrap = 0\r\n		}\r\n	}\r\n\r\n	# define rendering of LATEST mode\r\n	displayLatest {\r\n		subheader_stdWrap.cObject >\r\n		\r\n		subheader_stdWrap {\r\n			stripHtml = 1\r\n			crop = 70 | ... | 1\r\n			ifEmpty.field = bodytext\r\n			required = 1\r\n		}\r\n		/*\r\n		image {\r\n			file.maxW = 60\r\n			file.maxH = 60\r\n			imageLinkWrap = 0\r\n		}\r\n		*/\r\n	}\r\n\r\n	# rendering of LIST mode\r\n	displayList {\r\n		\r\n		subheader_stdWrap {\r\n			crop = 250 | ... | 1\r\n			required = 1\r\n			wrap >\r\n		}\r\n		content_stdWrap {\r\n			wrap = <div class=\"news-list-content\">|</div>\r\n			required = 1\r\n		}\r\n		image {\r\n			file.maxW = 175\r\n			file.maxH = 175\r\n			imageLinkWrap = 0\r\n		}\r\n\r\n	}\r\n\r\n	# Override some of the text labels for tt_news with our own text.\r\n	# See EXT:tt_news/pi/locallang.xml for all language labels\r\n	_LOCAL_LANG.default {\r\n		# Remove the header that tt_news adds by default above the LATEST listing\r\n		latestHeader =\r\n		\r\n		# replace the word \'more\' after article text in news list or latest with \'>>\'\r\n		more = >>\r\n	}\r\n\r\n	# Date & time formats for news display. The easiest way to change them is by changing the values\r\n	# of the constants in TypoScript template ROOT in the root folder of the TypoScript Templates.\r\n	# There are configuration options for various types of news display. If you want, you can modify\r\n	# each separately according to your own preferences.\r\n	\r\n	archiveTitleCObject {\r\n		10.strftime = %Y-%B\r\n	}\r\n	getRelatedCObject.10 {\r\n		default.20.strftime = {$plugin.tt_news.dateformat} {$plugin.tt_news.timeformat}\r\n		1.20.strftime = {$plugin.tt_news.dateformat} {$plugin.tt_news.timeformat}\r\n		2.20.strftime = {$plugin.tt_news.dateformat} {$plugin.tt_news.timeformat}\r\n	}\r\n	displaySingle {\r\n		date_stdWrap.strftime = {$plugin.tt_news.dateformat}\r\n		time_stdWrap.strftime = {$plugin.tt_news.timeformat}\r\n	}\r\n	displayLatest {\r\n		date_stdWrap.strftime = {$plugin.tt_news.dateformat}\r\n		time_stdWrap.strftime = {$plugin.tt_news.timeformat}\r\n	}\r\n	displayList {\r\n		date_stdWrap.strftime = {$plugin.tt_news.dateformat}\r\n		time_stdWrap.strftime = {$plugin.tt_news.timeformat}\r\n	}\r\n}','','','','The TT_NEWS template\r\n\r\nThe name says it all, this is a news plugin.\r\n\r\nFor a full description of the configuration options, check the manual of this extension. Extension manuals are normally included in the extensions as Open Office documents, and can be accessed directly from the module Ext Manager in the TYPO3 backend (select the option \'loaded extensions or install extension\'.','',0,0,0,0),(56,13,0,0,0,'',0,0,0,0,10,1258641618,640,1258385424,4,'menu.secondlevel','',0,0,0,0,0,'','','# This menu is slightly more complicated than the others because we copy our default menu again, but then we\'ll start overriding some settings from the default menu.\r\n# To get a full overview of the configuration of this menu you should look at both our default \'menu\' and the \'menu.secondlevel\' as shown below.\r\n# You can use the TypoScript Object Browser to view the end result of this.\r\n# (go to the Template module and select \'Typoscript Object Browser\' in the selectbox in the right frame.)\r\n\r\nmenu.secondlevel < menu\r\nmenu.secondlevel {\r\n	entryLevel = 1\r\n	\r\n	1 {\r\n		NO {\r\n			wrapItemAndSub = <li>|</li>\r\n		}\r\n		\r\n		# First clear the ATagParams setting of the ACT state because we are working with a copy of the object \'menu\'\r\n		# After that we add our modified configuration for menu.secondlevel\r\n		ACT {\r\n			ATagParams >\r\n			wrapItemAndSub = <li class=\"active\">|</li>\r\n		}\r\n\r\n		CUR {\r\n			ATagParams >\r\n			wrapItemAndSub = <li class=\"selected\">|</li>\r\n		}\r\n\r\n	}\r\n	\r\n	# Copy the configuration of the first level of this menu to level 2 and 3\r\n	2 < .1\r\n	3 < .1\r\n}','','','','The SECOND LEVEL MENU template.\r\n\r\nConfiguration for the menu of the sublevels of pages. It inherits the MAIN MENU template and has some small modifications on top of it, in this case the settings of the entryLevel. ','',0,0,0,43),(57,13,0,0,0,'',0,0,0,0,0,1258653358,896,1258409599,4,'menu.language','',0,0,0,0,0,'','','menu.language = HMENU\r\n\r\n# We use a condition to show the language menu only on the page with the id from constant contentpage.examplelanguagesID\r\n[globalVar = TSFE:id = {$contentpage.examplelanguagesID}]\r\n\r\nmenu.language {\r\n	special = language\r\n	special.value = 0,1\r\n	1 = TMENU\r\n	1 {\r\n		wrap = <ul>|</ul>\r\n		\r\n		# Remove the (old) default behaviour which adds onfocus=\"blurLink(this);\" to all links\r\n		noBlur = 1\r\n		\r\n		NO = 1\r\n		NO {\r\n			# Override the standard menu item value (which is the page title) with our own cObject\r\n			stdWrap.cObject = TEXT\r\n			\r\n			# Use the TypoScript option split function to display different values for the first and second item\r\n			stdWrap.cObject.value = {$contentpage.language1} || {$contentpage.language2}\r\n			allWrap = <li>|</li>\r\n		}\r\n		\r\n		ACT < .NO\r\n		ACT {\r\n			ATagParams = class=\"active\"\r\n		}\r\n	}\r\n}\r\n\r\n[global]\r\n','','','','The LANGUAGE menu\r\n\r\nGenerates a list of available languages on a page. If the page has no language overlay, there is no link available to switch to the language.','',0,0,0,0),(62,11,0,0,0,'',0,0,0,0,0,1277208666,768,1258476895,4,'lib.footer','',0,0,0,0,0,'','','# The method used here to fetch a record from a page or folder is slightly different from the one used \r\n# to fetch the loginbox in lib.contentleft\r\n# The method here doesn\'t refer to a specific record but takes the first record from the folder. This\r\n# has the advantage that an editor can delete the record and just create a new one, and it still works.\r\n/*\r\nlib.footer = CONTENT\r\nlib.footer {\r\n	table = tt_content\r\n	select {\r\n		orderBy = sorting\r\n		max = 1\r\n		pidInList = {$contentpage.footerPID}\r\n	}\r\n}\r\n*/\r\n\r\nlib.footer = COA\r\n\r\nlib.footer.10 < styles.content.getLeft\r\nlib.footer.10.select.pidInList = {$contentpage.footerPID}\r\nlib.footer.10.stdWrap.wrap = <div class=\"footerFrame\">|</div>\r\n\r\nlib.footer.20 < styles.content.get\r\nlib.footer.20.select.pidInList = {$contentpage.footerPID}\r\nlib.footer.20.stdWrap.wrap = <div class=\"footerFrame\">|</div>\r\n\r\nlib.footer.30 < styles.content.getRight\r\nlib.footer.30.select.pidInList = {$contentpage.footerPID}\r\nlib.footer.30.stdWrap.wrap = <div class=\"footerFrame-last\">|</div>\r\n','','','','lib.footer fetches the content record in \'Generated content > Footer content\' and displays that on all pages.','',0,0,0,0),(63,11,0,0,0,'',0,0,0,0,0,1258645191,640,1258484363,4,'lib.contentleft','',0,0,0,0,0,'','','lib.contentleft = COA\r\n\r\n# Insert the content from the left column into lib.contentleft\r\nlib.contentleft {\r\n	20 < styles.content.getLeft\r\n}','','','','TypoScript template which compiles the contents for the left column on the pages','',0,0,0,0),(64,11,0,0,0,'',0,0,0,0,63,1258655161,704,1258645083,4,'lib.contentright','',0,0,0,0,0,'','','lib.contentright = COA\r\n\r\n# The configuration below this condition will only be included on the page loginpageID, or on its subpages\r\n[PIDinRootline = {$contentpage.loginpageID}]\r\n\r\n# Insert a loginbox above the content (but below the menu) in the left column.\r\n# We fetch the loginbox record from the SysFolder \'Login Box\' under \'Generated content\'\r\n# There are different ways to do this, in lib.footer you will see a slightly different approach.\r\nlib.contentright {\r\n	10 = CONTENT\r\n	10 {\r\n		table = tt_content\r\n		select.pidInList = {$contentpage.loginboxPID}\r\n		select.uidInList = {$contentpage.loginboxUID}\r\n	}\r\n}\r\n\r\n# End of the conditional part\r\n[global]\r\n\r\n# In all other cases, get the content of the middle column and add it to the \'content\' part\r\nlib.contentright.20 < styles.content.getRight\r\n','','','','TypoScript template which compiles the contents for the right column on the pages','',0,0,0,0),(65,9,0,0,0,'',0,0,0,0,54,1280242394,1536,1280242156,12,'plugin.wt_spamshield','',0,0,0,0,0,'EXT:wt_spamshield/static/','','plugin.wt_spamshield {\r\n	enable.standardMailform = 1\r\n}','','','','The wt_spamshield template\r\n\r\nThis template enables the wt_spamshield extension for the standard mailform\r\n\r\nFor a full description of the configuration options, check the manual of this extension. Extension manuals are normally included in the extensions as Open Office documents, and can be accessed directly from the module Ext Manager in the TYPO3 backend (select the option \'loaded extensions or install extension\'.','',0,0,0,0),(66,9,0,0,0,NULL,0,0,0,0,0,1287577004,1792,1287577004,1,'jquerycolorbox','',0,0,0,0,0,'EXT:jquerycolorbox/static/','','','','','','Includes static template from the jquerycolorbox extension','',0,0,0,0);
+INSERT INTO sys_template VALUES (1,1,0,0,0,'',0,0,0,0,0,1290503626,256,1257766279,1,'Introduction Package','Introduction Package',0,0,0,1,3,'','','','','','','This is the Introduction Package template.\r\n\r\nFor each website you need a Typoscript template on the ROOT level. For better maintenance, all Typoscript has been put into the folder \'Typoscript Templates\'. The only thing this template does is calling the ROOT template.','50',0,0,0,1),(53,9,0,0,0,'',0,0,0,0,0,1276890936,512,1258319661,4,'plugin.automaketemplate','',0,0,0,0,0,'','','# Configuring the Auto-Parser for main template:\r\n\r\nplugin.tx_automaketemplate_pi1 {\r\n\r\n	# Read the template file\r\n	content = FILE\r\n	content.file = {$filepaths.templates}{$plugin.tx_automaketemplate_pi1.templatefile}\r\n\r\n	elements {\r\n		BODY.all = 1\r\n		BODY.all.subpartMarker = DOCUMENT_BODY\r\n		HEAD.all = 1\r\n		HEAD.all.subpartMarker = DOCUMENT_HEADER\r\n		\r\n		# Configure which HTML-tags should be made replacable by subparts\r\n		DIV.id.navigationFirstLevelMenu = 1\r\n		DIV.id.navigationSecondLevelMenu = 1\r\n		DIV.id.topMenu = 1\r\n		DIV.id.languageMenu = 1\r\n		DIV.id.breadcrumb = 1\r\n\r\n		DIV.id.siteTitle = 1\r\n		DIV.id.searchBox = 1\r\n		DIV.id.footerContent = 1\r\n\r\n		DIV.id.mainContent = 1\r\n		DIV.id.secondaryContent = 1\r\n		DIV.id.navigationContent = 1\r\n		\r\n		H1.all = 1\r\n		\r\n		# Remove some tags from HTML head section (because TYPO3 will add these dynamically)\r\n		HEAD.rmTagSections = title,meta,link\r\n	}\r\n\r\n	# Prefix all relative paths in the HTML template with this value\r\n	#relPathPrefix = {$filepaths.templates}\r\n}\r\n','','','','The AUTOMAKETEMPLATE template\r\n\r\nThe automaketemplate parser reads the HTML template files, extracts the markers for content, and replaces them with the content assigned to these markers.','',0,0,0,0),(59,11,0,0,0,'',0,0,0,0,0,1258568494,1536,1258458592,4,'lib.sitetitle','',0,0,0,0,0,'','','lib.sitetitle = TEXT\r\nlib.sitetitle {\r\n	\r\n	# Copy the value from the top level object sitetitle\r\n	# You can change the site title in the Sitetitle field of the ROOT typoscript template\r\n	value < sitetitle\r\n	\r\n	# Wrap a link to the home page around the sitetitle\r\n	typolink.parameter = {$contentpage.homeID}\r\n}		\r\n','','','','The SITE TITLE template\r\n\r\nBuilding block for the site title','',0,0,0,0),(60,11,0,0,0,'',0,0,0,0,0,1278361173,1024,1258460317,4,'lib.searchbox','',0,0,0,0,0,'','','# Create the searchbox in TypoScript, so we can easily include in on every page\r\nlib.searchbox = COA\r\n\r\n# Make the searchbox remember the search term on the search result page\r\n[globalVar = TSFE:id = 17]\r\nlib.searchbox = COA_INT\r\n[global]\r\n\r\nlib.searchbox {\r\n	stdWrap.prefixComment = 2 | lib.searchbox\r\n	10 = TEXT\r\n	10.typolink.parameter = {$plugin.tx_indexedsearch.searchpageID}\r\n	10.typolink.returnLast = url\r\n	10.wrap = <form action=\"|\" method=\"post\" id=\"indexedsearch\"><fieldset>\r\n	20 = COA\r\n	20 {\r\n		10 = TEXT\r\n		10.data = GP : tx_indexedsearch |sword\r\n		10.htmlSpecialChars = 1 \r\n		10.wrap = <input name=\"tx_indexedsearch[sword]\" value=\"|\" id=\"inputText\" type=\"text\" />\r\n		20 = COA\r\n		20 {\r\n			10 = TEXT\r\n			10.value = <input type=\"image\" src=\"{$filepaths.templates}images/bg_searchButton.gif\" id=\"inputButton\" alt=\"Search\" title=\"Search\" />\r\n			20 = TEXT\r\n			20.value = <input type=\"hidden\" name=\"tx_indexedsearch[sections]\" value=\"0\" />\r\n			30 = TEXT\r\n			30.value = <input name=\"tx_indexedsearch[submit_button]\" value=\"Search\" type=\"hidden\" />\r\n		}\r\n	}\r\n	\r\n	wrap = |</fieldset></form>\r\n}\r\n	','','','','The SEARCHBOX template\r\n\r\nA building block for a searchform','',0,0,0,0),(61,13,0,0,0,'',0,0,0,0,0,1280228398,38,1258463526,4,'menu.breadcrumb','',0,0,0,0,0,'','','# For the breadcrumb cObject we use a HMENU of the type \'rootline\'\r\nmenu.breadcrumb = COA\r\nmenu.breadcrumb {\r\n	10 = HMENU\r\n	10 {\r\n		# Select HMENU type \'special.rootline\'\r\n		special = rootline\r\n	\r\n		# Traverse the pagetree starting at the rootpage (0) and ending at the current page (-1)\r\n		special.range = 0|-1\r\n	\r\n		# Pages which are excluded from the regular menus should still be shown in the breadcrumb\r\n		includeNotInMenu = 1\r\n	\r\n		# This menu has only 1 level since this is a rootline-menu\r\n		1 = TMENU\r\n		1 {\r\n			# Remove the ancient onfocus=\"blurLink(this);\" from link tags\r\n			noBlur = 1\r\n		\r\n			# Append spaces and >> to normal linked breadcrumb items\r\n			NO.allWrap = |&#32;&raquo;&#32;\r\n			NO.stdWrap.htmlSpecialChars = 1\r\n		}\r\n	}\r\n}\r\n\r\n# This condition checks whether a news article will be shown in single view\r\n[globalVar = GP:tx_ttnews|tt_news > 0] && [globalVar = TSFE:id = {$plugin.tt_news.singlePid}]\r\n\r\nmenu.breadcrumb {\r\n	# Render the current page as the normal state (linked) because we\'ll append the title of the news article\r\n	10.1 {\r\n		CUR = 1\r\n		CUR < .NO\r\n	}\r\n	\r\n	# Append the title of the news item. Using this example, the breadcrumb can be exented with\r\n	# any other thinkable kind of data and logic\r\n	20 = RECORDS\r\n	20 {\r\n		dontCheckPid = 1\r\n		tables = tt_news\r\n		source.data = GP:tx_ttnews|tt_news\r\n		source.intval = 1\r\n		conf.tt_news = TEXT\r\n		conf.tt_news.field = title\r\n		wrap = <span>|</span>\r\n	}\r\n}\r\n# Else configure the breadcrumb for normal cases when no news article is shown\r\n[else]\r\n\r\nmenu.breadcrumb {\r\n	10.1 {\r\n		# Add alternative, unlinked configuration for current page, which is always the last item in\r\n		# the breadcrumb\r\n		CUR = 1\r\n		CUR.stdWrap.htmlSpecialChars = 1\r\n		CUR.allWrap = <span>|</span>\r\n	\r\n		# Do not wrap a link around this item\r\n		CUR.doNotLinkIt = 1\r\n	}\r\n}\r\n\r\n[global]\r\n','','','','The BREADCRUMB template\r\n\r\nTyposcript for producing a breadcrumb.','',0,0,0,0),(3,14,0,0,0,'',0,0,0,0,0,1276357485,128,1258294829,3,'page.includeCSS','',0,0,0,0,0,'','','page.includeCSS {\r\n	10 = {$filepaths.css}stylesheet.css\r\n	10 {\r\n		media = all\r\n	}\r\n	20 = {$filepaths.css}print.css\r\n	20 {\r\n		media = print\r\n	}\r\n}\r\n\r\n# Condition to add specific stylesheet for the frontpage only \r\n[globalVar = TSFE:id = 6] \r\npage.includeCSS {\r\n	30 = {$filepaths.css}frontpage.css\r\n	30 {\r\n		media = all\r\n	}\r\n}\r\n[end] \r\n\r\n# Condition to add extra CSS for Internet Explorer 6\r\n[browser = msie] && [version =< 7]\r\npage.includeCSS {\r\n	9999 = {$filepaths.css}msie6.css\r\n	9999 {\r\n		media = screen\r\n	}\r\n}\r\n[global]','','','','The CSS template.\r\n\r\nIncludes all necessarry Cascading Style Sheets by referring to the file on the server and configuring the media type.\r\n\r\nSpecial condition for including extra CSS file for Internet Explorer. ','',0,0,0,46),(4,14,0,0,0,'',0,0,0,0,0,1280239107,64,1258294829,3,'page.headerData','',0,0,0,0,0,'','','page.headerData {\r\n	10 = TEMPLATE\r\n	10 {\r\n		template =< plugin.tx_automaketemplate_pi1\r\n		workOnSubpart = DOCUMENT_HEADER\r\n	}\r\n	20 = TEXT\r\n	20.value = <meta name=\"robots\" content=\"noindex,follow\" />\r\n}','','','','The PAGE HEADERDATA template. \r\n\r\nAll config.headerData contents goes in here. This could be almost everything that belongs in the <head>, but does not have any configuration like page.config, page.includeCSS or page.includeJS or needs special configuration, like dynamic handling.','',0,0,0,52),(5,14,0,0,0,'',0,0,0,0,0,1280239382,32,1258294829,3,'page.meta','',0,0,0,0,0,'','','page.meta {\r\n	# Use the meta tag \'description\' from the constants as default value\r\n	# If the meta field description in the page properties is filled, then this will override the default.\r\n	description = {$plugin.meta.description}\r\n	description.override.field = description\r\n	\r\n	author = {$plugin.meta.author}\r\n	author.override.field = author\r\n	\r\n	keywords = {$plugin.meta.keywords}\r\n	keywords.override.field = keywords\r\n	\r\n	robots.value = {$plugin.meta.robots}\r\n	revisit = {$plugin.meta.revisit}\r\n	copyright = {$plugin.meta.copyright}\r\n}\r\n','','','','The META template. \r\n\r\nConfigures meta information for the website. It\'s possible this template remains empty because most of the information is handled by constants, which are not allowed here. Constant settings belong to the root.','',0,0,0,40),(6,14,0,0,0,'',0,0,0,0,0,1280255270,16,1258294829,3,'page.config','',0,0,0,0,0,'','','config {\r\n	// Administrator settings\r\n	admPanel		= {$config.adminPanel}\r\n	debug			= {$config.debug}\r\n	\r\n	doctype			= xhtml_trans\r\n\r\n	// Character sets\r\n	renderCharset 		= utf-8\r\n	metaCharset 		= utf-8\r\n\r\n	// Cache settings\r\n        cache_period		= 43200\r\n	sendCacheHeaders	= 1\r\n        \r\n	// URL Settings\r\n	tx_realurl_enable       = 1\r\n	simulateStaticDocuments = 0\r\n\r\n	// Language Settings\r\n	uniqueLinkVars          = 1\r\n	linkVars                = L(1)\r\n        sys_language_uid 	= 0\r\n	sys_language_overlay 	= 1\r\n	sys_language_mode 	= content_fallback\r\n	language         	= en\r\n	locale_all       	= en_US.UTF-8\r\n	htmlTag_langKey  	= en\r\n	\r\n	// Link settings\r\n	# # # # # absRefPrefix            = /\r\n	prefixLocalAnchors      = all\r\n	\r\n	// Remove targets from links\r\n	intTarget =\r\n	extTarget =\r\n\r\n	// Indexed Search\r\n	index_enable		= 1\r\n	index_externals		= 1\r\n\r\n	// Code cleaning\r\n	disablePrefixComment	= 1\r\n	\r\n	// Move default CSS and JS to external file	\r\n	removeDefaultJS      	= external\r\n	inlineStyle2TempFile 	= 1\r\n\r\n	// Protect mail addresses from spamming\r\n	spamProtectEmailAddresses = -3\r\n	spamProtectEmailAddresses_atSubst = @<span style=\"display:none;\">remove-this.</span>\r\n\r\n	// Comment in the <head> tag\r\n	headerComment (\r\n	This TYPO3 introduction package has been started at T3UXW09\r\n        \r\n        ===\r\n	)\r\n}\r\n\r\n# Set baseURL setting for http or https\r\nconfig.baseURL = http://{$config.domain}/\r\n[globalString = IENV:TYPO3_SITE_URL=https://{$config.domain}/]\r\nconfig.baseURL = https://{$config.domain}/\r\n[global]\r\n\r\n// Condition to switch the doctype and xml prologue\r\n[browser = msie] && [version = <7]\r\nconfig {\r\n	doctypeSwitch = 1\r\n}\r\n[global]\r\n\r\n// Condition to set language according to L POST/GET variable\r\n[globalVar = GP:L = 1]\r\nconfig {\r\n	htmlTag_langKey = da\r\n	sys_language_uid = 1\r\n	language = da\r\n	locale_all = da_DK\r\n}\r\n[global]','','','','The PAGE CONFIG template. \r\n\r\nOnly page.config settings are done here, like character sets, url and language. ','',0,0,0,39),(7,14,0,0,0,'Auto-created for WS #-1',0,0,0,0,38,1276891086,8,1258294829,3,'page','',0,0,0,0,0,'','','# Make the PAGE object\r\npage = PAGE\r\npage {\r\n	# Regular pages always have typeNum = 0\r\n	typeNum = 0\r\n	\r\n	# Add the icon that will appear in front of the url in the browser\r\n	# This icon will also be used for the bookmark menu in browsers\r\n	shortcutIcon = {$filepaths.images}favicon.ico\r\n	\r\n	# Add class to bodytag to select which columns will be used in the HTML template\r\n	# Labels for the values used in this field are defined in the TSconfig field of the root page of the website\r\n	bodyTagCObject = CASE\r\n	bodyTagCObject {\r\n		# The value of the CASE object will depend on the value of the layout field in the page records\r\n		key.field = layout\r\n		\r\n		# Define the default value\r\n		default = TEXT\r\n		default.value = <body>\r\n		\r\n		# Copy the default value to 0\r\n		0 < .default\r\n		\r\n		# Add different values for cases 1, 2 and 3\r\n		1 = TEXT\r\n		1.wrap = <body class=\"|\">\r\n		1.value = hideRightColumn\r\n		\r\n		2 < .1\r\n		2.value = hideLeftColumn\r\n		\r\n		3 < .1\r\n		3.value = hideRightAndLeftColumn\r\n	}\r\n	\r\n	# Add a TEMPLATE object to the page\r\n	# We use the template autoparser extension to easily replace parts of the HTML template by dynamic TypoScript objects\r\n	10 = TEMPLATE\r\n	10 {\r\n		# Use the HTML template from the automake template plugin\r\n		template =< plugin.tx_automaketemplate_pi1\r\n		\r\n		# Use the <body> subpart\r\n		workOnSubpart = DOCUMENT_BODY\r\n		\r\n		# Link content and page blocks to id\'s that have been enabled in the\r\n		# automaketemplate template in the extension_configuration sysfolder\r\n		subparts {    \r\n			# Insert menu\'s from lib-objects into the appropriate subparts\r\n			navigationFirstLevelMenu < menu.firstlevel\r\n			navigationSecondLevelMenu < menu.secondlevel\r\n			topMenu < menu.top\r\n			languageMenu < menu.language\r\n			breadcrumb < menu.breadcrumb\r\n\r\n			# Insert various TypoScript lib objects into the appropriate subparts of the template\r\n			siteTitle < lib.sitetitle\r\n			searchBox < lib.searchbox\r\n			footerContent < lib.footer\r\n\r\n			# Insert content as already constructed in TypoScript objects into subparts\r\n			mainContent < lib.content\r\n			secondaryContent < lib.contentright\r\n			navigationContent < lib.contentleft\r\n		}\r\n	}\r\n}\r\n','','','','The PAGE OBJECT template. \r\n\r\nTells the PAGE object to use the parsed HTML template from the automaketemplate extension.\r\n','',0,0,0,38),(8,14,0,0,0,'',0,0,0,0,0,1280237741,4,1258294829,3,'root_page','',0,0,0,0,0,'','plugin.meta.includeGlobal = 0\r\nplugin.meta.language = ','','','','','The PAGE ROOT template. \r\n\r\nThis template will be called by the GLOBAL MASTER ROOT template. \r\nIt reads the templates for the page, like page setup, config and header data.\r\n\r\nIn this template record are only other template records included.','7,6,5,4,3',0,0,0,34),(10,13,0,0,0,'',0,0,0,0,0,1258566099,128,1258294829,3,'menu.firstlevel','',0,0,0,0,0,'','','# Start with copying our default menu configuration so we don\'t have to repeat our selves (except in the explanation, didn\'t I already mention this?) ;-)\r\nmenu.firstlevel < menu\r\nmenu.firstlevel {\r\n	# Since this is the top-level menu, we start this menu at the root level of the website\r\n	entryLevel = 0\r\n}\r\n','','','','The FIRST LEVEL MENU template.\r\n\r\nConfiguration for the menu of the first level of pages. It inherits the MAIN MENU template and has some small modifications on top of it, in this case the setting of the entryLevel.','',0,0,0,43),(14,13,0,0,0,'',0,0,0,0,0,1260552309,8,1258294829,3,'menu_defaults','',0,0,0,0,0,'','','menu = HMENU\r\nmenu {\r\n		\r\n	1 = TMENU\r\n	1 {\r\n		wrap = <ul>|</ul>\r\n		\r\n		# Always unfold all sub-levels of the menu\r\n		expAll = 1\r\n\r\n		# Remove the (old) default behaviour which adds onfocus=\"blurLink(this);\" to all links\r\n		noBlur = 1\r\n		\r\n		# Define the normal state (not active, not selected) of menu items\r\n		# Using NO=1 to activate normal state is not necessary, but useful when copying \r\n		NO = 1\r\n		NO {\r\n			# Use the page title field the title property on the A-tag, but only if the navigation title is set\r\n			ATagTitle {\r\n				field = title\r\n				fieldRequired = nav_title\r\n			}\r\n			\r\n			# Use the option-split feature to generate a different wrap for the last item on a level of the menu\r\n			# The last item on each level gets class=\"last\" added for CSS styling purposes.\r\n			#\r\n			# See the TSref documentation for details about option split and other features:\r\n			# http://typo3.org/documentation/document-library/references/doc_core_tsref/current/\r\n               		wrapItemAndSub = <li>|</li> |*| <li>|</li> |*| <li class=\"last\">|</li>\r\n               		\r\n               		# HTML-encode special characters according to the PHP-function htmlSpecialChars\r\n               		stdWrap.htmlSpecialChars = 1\r\n		}\r\n	\r\n		# Copy properties of normal to active state, and then add a CSS class for styling\r\n		ACT < .NO\r\n		ACT {\r\n			ATagParams = class=\"active\"\r\n		}\r\n\r\n		# Copy properties of normal to current state, and then add a CSS class for styling\r\n		CUR < .NO\r\n		CUR {\r\n			ATagParams = class=\"selected\"\r\n		}\r\n	}\r\n}','','','','The MENU template.\r\n\r\nConfiguration for default menu, which can be used with small modifications for other menu\'s, without writing the whole menu configuration all over again for all kinds of menu\'s.','',0,0,0,41),(55,13,0,0,0,'',0,0,0,0,10,1258565791,68,1258385418,4,'menu.top','',0,0,0,0,0,'','','# Copy basic menu object from TS template \'menu\' so we don\'t have to repeat all that\r\nmenu.top < menu\r\nmenu.top {\r\n	# Also show pages which have not-in-menu flag set in page properties\r\n	includeNotInMenu = 1\r\n	\r\n	# Create a menu out of the pages specifically listed under special.value\r\n	special = list\r\n	special.value = {$menu.top.pages}\r\n}','','','','The MAIN MENU template.\r\n\r\nConfiguration for the top right menu.','',0,0,0,43),(15,13,0,0,0,'',0,0,0,0,0,1260552214,1,1258294829,3,'root_menu','',0,0,0,0,0,'','','','','','','The MENU ROOT template. \r\n\r\nThis template will be called by the MASTER ROOT template. \r\nIt reads the templates for the menu parts, like the default menu \r\nsetup, language menu, header- and footermenu\'s.\r\n\r\nIn this template record are only other template records included.','14,10,56,55,57,61',0,0,0,35),(16,12,0,0,0,'',0,0,0,0,0,1277208616,256,1258294829,3,'tt_content','',0,0,0,0,0,'','// Remove targets\r\nstyles.content.links.extTarget =','tt_content {	\r\n	# Make some modifications to the rendering of the standard MAIL form records\r\n	mailform.20 {\r\n		accessibility = 1\r\n	}\r\n	\r\n	# Remove the ancient onfocus=\"blurLink(this);\" from sitemap links\r\n	# Unfortunately this hasn\'t been fully implemented in css_styled_content yet\r\n	# See also bug 11367\r\n	menu.20 {\r\n		default.1.noBlur = 1\r\n		1.1.noBlur = 1\r\n		4.1.noBlur = 1\r\n		5.1.noBlur = 1\r\n		6.1.noBlur = 1\r\n		7.1.noBlur = 1\r\n		7.2.noBlur = 1\r\n	}\r\n\r\n	# Define different wrappers for content elements depending on the page column\r\n	stdWrap.outerWrap.cObject = CASE\r\n	stdWrap.outerWrap.cObject {\r\n		# Define wrappers for each column position (colPos 0,1,2,3)\r\n		key.field = colPos\r\n		\r\n		# Default is no wrapper\r\n		default = TEXT\r\n		default.value = |\r\n		\r\n		# Add wrapper for content in right column (colPos=2)\r\n		# we use this to style the box around content in this column\r\n		2 = CASE\r\n		2 {\r\n			# Add wrapping to all content elements\r\n			default = TEXT\r\n			default.value = <div class=\"secondaryContentSection\">|</div>\r\n			\r\n			# But - exclude inserted records from being wrapped\r\n			key.field = CType\r\n			shortcut = TEXT\r\n			shortcut.value = |\r\n			image = TEXT\r\n			image.value = |\r\n			html = TEXT\r\n			html.value = |\r\n		}\r\n\r\n	}\r\n	\r\n	# Define max image width for each content column separately\r\n	image.20.maxW.cObject = CASE\r\n	image.20.maxW.cObject {\r\n		key.field = colPos\r\n		default = TEXT\r\n		default.value = 417\r\n		# normal\r\n		0 = TEXT\r\n		0.value = 417\r\n		# left\r\n		1 = TEXT\r\n		1.value = 150\r\n		# right\r\n		2 = TEXT\r\n		2.value = 155\r\n	}\r\n	\r\n	image.20.maxWInText.cObject = CASE\r\n	image.20.maxWInText.cObject {\r\n		key.field = colPos\r\n		default = TEXT\r\n		default.value = 260\r\n		# normal\r\n		0 = TEXT\r\n		0.value = 260\r\n		# left\r\n		1 = TEXT\r\n		1.value = 70\r\n		# right\r\n		2 = TEXT\r\n		2.value = 70\r\n	}\r\n\r\n}','','','','The TT_CONTENT template\r\n\r\ntt_content is responsible for the styling of the content objects, together with css_styled_content. In this template we made some changes to influence the styling.','',0,0,0,59),(18,12,0,0,0,'',0,0,0,0,0,1258562349,64,1258294829,3,'lib.parseFunc_RTE','',0,0,0,0,0,'','','# remove class=\"bodytext\" from paragraphs\r\nlib.parseFunc_RTE {\r\n	nonTypoTagStdWrap.encapsLines {\r\n		addAttributes.P.class >\r\n		addAttributes.P.class.setOnly >\r\n	}\r\n}','','','','The LIB.PARSEFUNC_RTE template\r\n\r\nContent which is added by using the RTE is parsed before the output to the screen. In this template you will find some settings to influence this parsing process.','',0,0,0,60),(19,12,0,0,0,'',0,0,0,0,0,1277023019,32,1258294829,3,'css_styled_content','',0,0,0,0,0,'EXT:css_styled_content/static/','','tt_content.mailform.20.RADIO.layout = <div class=\"csc-mailform-field\">###LABEL### ###FIELD###</div>\r\ntt_content.mailform.20.radioWrap.accessibilityWrap = <fieldset###RADIO_FIELD_ID### class=\"csc-mailform-radio\"><legend>###RADIO_GROUP_LABEL###</legend>|</fieldset>','','','','The CSS STYLED CONTENT template\r\n\r\nThis template includes the static template for css_styled_content, which is responsible for most of the default styling.','',0,0,0,53),(20,12,0,0,0,'',0,0,0,0,0,1260552007,16,1258294829,3,'root_systemConfiguration','',0,0,0,0,0,'','','','','','','The CONFIGURATION ROOT template. \r\n\r\nThis template will be called by the MASTER ROOT template. \r\nIt reads the templates for changes in tt_content, lib.stdHeader etc.\r\n\r\nIn this template record are only other template records included.','19,18,16',0,0,0,36),(27,11,0,0,0,'',0,0,0,0,0,1276372619,576,1258294829,3,'lib.content','',0,0,0,0,0,'','','# Insert the news plugin in single-view mode instead of normal page content if a news article is requested\r\n[globalVar = GP:tx_ttnews|tt_news > 0] && [globalVar = TSFE:id = {$plugin.tt_news.singlePid}]\r\n\r\nlib.content < plugin.tt_news\r\nlib.content {\r\n	# First empty the code field and then set it to single-view\r\n	code >\r\n	code = SINGLE\r\n}\r\n[else]\r\n\r\n# In all other cases, get the content of the middle column and add it to the \'content\' part\r\nlib.content < styles.content.get\r\n\r\n[global]\r\n\r\nlib.content {\r\n	# Wrap it in the markers for the search engine, so it knows that this part has to be indexed\r\n	stdWrap.wrap = <!--TYPO3SEARCH_begin--> | <!--TYPO3SEARCH_end-->\r\n}\r\n','','','','The CONTENT template\r\n\r\nThis template will fill the part \'content\' in the HTML template. Normally we just get the content with styles.content.get, but we need the wrapper around it for indexed search, so it knows what to index.','',0,0,0,71),(36,11,0,0,0,'',0,0,0,0,0,1260552154,512,1258294829,3,'root_blocks','',0,0,0,0,0,'','','','','','','The PAGE BLOCKS ROOT template\r\n\r\nLib (Blocks) templates contain TypoScript to generate \r\nthe building blocks for your website, except menu\'s.\r\n\r\nIn this template record are only other template records included.','27,63,64,60,59,62',0,0,0,61),(49,9,0,0,0,'',0,0,0,0,0,1287577026,128,1258294829,3,'root_extensionConfiguration','',0,0,0,0,0,'','','','','','','The EXTENSION CONFIGURATION ROOT template. \r\n\r\nThis template will be called by the MASTER ROOT template. \r\nIt reads the templates for the extensions.\r\n\r\nIn this template record are only other template records included.','53,52,58,54,65,66',0,0,0,37),(50,8,0,0,0,'',0,0,0,0,0,1280483480,256,1258294829,3,'ROOT','TYPO3 Introduction Package',0,0,0,1,3,'','config {\r\n	# cat=config; type=boolean; label=Admin Panel: Turn on admin panel (mainly for testing purposes only)\r\n	adminPanel = 0\r\n\r\n	# cat=config; type=boolean; label=Debugging: Turn on debugging (testing purposes only)\r\n	debug = 0\r\n	\r\n	# cat=config; type=string; label=Domain name for Base URL: (excluding slashes and protocol like http://)\r\n	domain = ###HOSTNAME_AND_PATH###\r\n}\r\n\r\nfilepaths {\r\n	# cat=filepaths; type=string; label=HTML Templates: Location of the (X)HTML templates relative to site\r\n	templates = fileadmin/default/templates/\r\n	\r\n	# cat=filepaths; type=string; label=CSS: Location of the Cascading Style Sheets relative to site\r\n	css = fileadmin/default/templates/css/\r\n	\r\n	# cat=filepaths; type=string; label=Images: Location of the images relative to site\r\n	images = fileadmin/default/templates/images/\r\n\r\n	# cat=filepaths; type=string; label=Scripts: Location of the Javascript files relative to site\r\n	scripts = fileadmin/default/templates/scripts/\r\n\r\n	# cat=filepaths; type=string; label=HTML Templates for extensions: Location of the (X)HTML templates for extensions\r\n	extensiontemplates = fileadmin/default/templates/extensions/\r\n}\r\n\r\nmenu {\r\n	# cat=navigation menus; type=string; label= Top-menu pages: Comma separated list of page id\'s to be included in top-right menu.\r\n	top.pages = 28\r\n}\r\n\r\nplugin.tx_automaketemplate_pi1 {\r\n	# cat=plugin.automaketemplate; type:string; label= HTML template file: Name of the HTML page template file (without path, see contant for filepath.templates)\r\n	templatefile = typo3-intro-template.html\r\n}\r\n\r\nplugin.tt_news {\r\n	# cat=plugin.tt_news; type=string; label= pid_list: Comma separated list of folder id\'s containing which contain news records.\r\n	pid_list = 18\r\n	\r\n	# cat=plugin.tt_news; type=int+; label= singlePid: Default ID of the page containing the tt_news SINGLE-view plugin\r\n	singlePid = 23\r\n	\r\n	# cat=plugin.tt_news; type=int+; label= limit: Default maximum number of items to be shown in LIST-view\r\n	limit = 100\r\n	\r\n	# Date and time formats according to active locales\r\n	dateformat = %x\r\n	dateandtimeformat = %c\r\n	\r\n	# Short notation date format according to international ISO standard\r\n	shortdateformat = %Y-%m-%d\r\n	timeformat = %H:%M\r\n}\r\n\r\nplugin.tx_indexedsearch {\r\n	# cat=plugin.indexed_search; type=int+; label= Search Page ID: UID of the page which contains the indexed search plugin.\r\n	searchpageID = 17\r\n}\r\n\r\nplugin.meta {\r\n	# cat=plugin.meta; type=string; label= Description: Write a short abstract for your website.\r\n	description = This TYPO3 Introduction Package helps you to get started with TYPO3. It provides a basic website setup with examples for the most used features. On top of that, this package contains many helpful comments and notes on how the system works\r\n	\r\n	# cat=plugin.meta; type=string; label= Keywords: Enter a comma separated list of keywords.\r\n	keywords = TYPO3, introduction package, install, demo site, example setup, content management, enterprise\r\n\r\n	# cat=plugin.meta; type=string; label= Robots: Use for instance these codes: Index all pages: \"all\".  Index no pages: \"none\". Only this page: \"index,nofollow\".  Only subpages: \"noindex,follow\"\r\n	robots = all\r\n\r\n	# cat=plugin.meta; type=string; label= Copyright info: Enter copyright information, eg. \"Me Myself and I, 2001. All rights reserved.\"\r\n	copyright = typo3.org GPL\r\n\r\n	# cat=plugin.meta; type=string; label= Reply-to email\r\n	email = \r\n\r\n	# cat=plugin.meta; type=string; label= Author: Enter name of author.\r\n	author = T3UXW09 / typo3.org\r\n	\r\n	# cat=plugin.meta; type=int+; label= Revisit after: Number of days between search engine visits.\r\n	revisit = 7\r\n\r\n\r\n	# The meta tags below are not used on this website, if you want to use these, you can configure that in TypoScript template page.meta\r\n	\r\n	# cat=plugin.meta; type=boolean; label=Always include global.\r\n	includeGlobal = \r\n\r\n	# cat=plugin.meta; type=options[,Arabic=ar,Chinese=zh,Danish=dk,Dutch=nl,English=en,Finnish=fi,French=fr,German=de,Greek=el,Hebrew=he,Icelandic=is,Italian=it,Japanese=ja,Norwegian=no,Polish=pl,Portuguese=pt,Russian=ru,Spanish=es,Swedish=sv,Turkish=tr,Multi language=mul]; label= Language: Select language of the content.\r\n	language = en\r\n	\r\n	# cat=plugin.meta; type=string; label= Distribution\r\n	distribution = GLOBAL\r\n	\r\n	# cat=plugin.meta; type=options[,General,Mature,14 years,Restricted]; label= Rating\r\n	rating = General	\r\n}\r\n\r\nstyles.content {\r\n	# This defines the maximum width of images inserted in content records of type Images or Text-with-images.\r\n	# There are seperate settings for images floated next to text (..InText)\r\n	imgtext {\r\n		maxW = 651\r\n		maxWInText = 651\r\n		borderThick = 1\r\n		linkWrap.newWindow = 1\r\n	}\r\n	uploads {\r\n		jumpurl_secure = 1\r\n		jumpurl_secure_mimeTypes = pdf=application/pdf, doc=application/msword\r\n		jumpurl = 1\r\n	}\r\n}\r\n\r\ncontentpage {\r\n	# cat=contentpage; type=int+; label= Footer source PID: Parent ID of the footer record used on content pages.\r\n	footerPID = 20\r\n	\r\n	# cat=contentpage; type=int+; label= ID of the home page: ID of the home (root) page of the site.\r\n	homeID = 1\r\n\r\n	# cat=contentpage; type=int+; label= loginboxPID: ID of the folder containing the login box record (to be shown on multiple pages)\r\n	loginboxPID = 21\r\n\r\n	# cat=contentpage; type=int+; label= loginboxUID: UID of the login box record (to be shown on multiple pages)\r\n	loginboxUID = 31\r\n\r\n	# cat=contentpage; type=int+; label= loginpageID: UID of the customer login page.\r\n	loginpageID = 28\r\n	\r\n	# cat=contentpage; type=int+; label= examplelanguagesID: UID of the page which has the language menu enabled\r\n	examplelanguagesID = 25\r\n	\r\n	# cat=contentpage; type=string; label= language1: name of the default language of this site\r\n	language1 = English\r\n\r\n	# cat=contentpage; type=string; label= language2: name of the second language of this site\r\n	language2 = Dansk\r\n}\r\n\r\n# Set the language of meta tag with DC.language to Danish, when in Danish\r\n[globalVar = GP:L = 1]\r\nplugin.meta.language = da\r\n[global]\r\n','','','','','The ROOT template. \r\n\r\nThis template will be called by the \"Introduction Package\" template recored in the root page. It reads the root templates for every part, like page, menu, systemConfiguration and extensionConfiguration.\r\n','20,49,15,36,8',0,0,1,49),(58,9,0,0,0,'',0,0,0,0,0,1280484130,1024,1258456536,4,'plugin.indexed_search','',0,0,0,0,0,'','','# Configuration for indexedsearch plugin\r\n\r\nplugin.tx_indexedsearch {\r\n\r\n	templateFile = {$filepaths.extensiontemplates}indexed_search/tx_indexedsearch_pi1_template.html\r\n	forwardSearchWordsInResultLink = 0\r\n        show {        \r\n        	rules = 0\r\n        	advancedSearchLink = 0\r\n        }\r\n	search {\r\n		rootPidList =\r\n		exactCount = 1\r\n	}\r\n\r\n	_CSS_DEFAULT_STYLE >\r\n	_DEFAULT_PI_VARS {\r\n		results = 10\r\n	}\r\n}\r\n\r\n# Adjust search results when visitor has chosen another language\r\n[globalVar = GP:L = 1]\r\nplugin.tx_indexedsearch._DEFAULT_PI_VARS.lang = 1\r\n[global]\r\n','','','','The INDEXED_SEARCH template\r\nIndexed Search an extension for searching content in the frontend. \r\n\r\nFor a full description of the configuration options, check the manual of this extension. Extension manuals are normally included in the extensions as Open Office documents, and can be accessed directly from the module Ext Manager in the TYPO3 backend (select the option \'loaded extensions or install extension\'.\r\n\r\nFor the extension indexed search, the documentation is delivered in a separated extension with the extension key \'doc_indexed_search\', which is also provided with this Demo Package.','',0,0,0,0),(52,9,0,0,0,'',0,0,0,0,0,1258563143,768,1258299414,4,'plugin.felogin','',0,0,0,0,0,'','','plugin.tx_felogin_pi1 {\r\n	# Use our own HTML template from the fileadmin directory\r\n	# so we can freely modify it without changing the extension\r\n	templateFile = {$filepaths.extensiontemplates}felogin/tx_felogin_pi1_template.html\r\n	\r\n	# Clear default CSS additions - we take care of that in our own CSS files\r\n	_CSS_DEFAULT_STYLE =\r\n}\r\n','','','','The FELOGIN template\r\n\r\nThe felogin extension handles the login for access restricted frontend pages. It displays a form when the user is not logged in, a status when logged in and handles the login process.\r\n\r\nFor a full description of the configuration options, check the manual of this extension. Extension manuals are normally included in the extensions as Open Office documents, and can be accessed directly from the module Ext Manager in the TYPO3 backend (select the option \'loaded extensions or install extension\'.','',0,0,0,0),(54,9,0,0,0,'',0,0,0,0,0,1277199998,1280,1258382313,4,'plugin.tt_news','',0,0,0,0,0,'EXT:tt_news/pi/static/ts_new/','','plugin.tt_news {\r\n	templateFile = {$filepaths.extensiontemplates}tt_news/tx_ttnews_pi1_template.html\r\n	dontUseBackPid = 1\r\n	excludeAlreadyDisplayedNews = 0\r\n	noNewsToListMsg_stdWrap.wrap = <p>|</p>\r\n	\r\n	displaySingle {\r\n		subheader_stdWrap.wrap = <div class=\"news-single-subheader\">|</div>\r\n		image {\r\n			file.maxW = 250\r\n			file.maxH = 300\r\n			#imageLinkWrap = 0\r\n		}\r\n	}\r\n\r\n	# define rendering of LATEST mode\r\n	displayLatest {\r\n		subheader_stdWrap.cObject >\r\n		\r\n		subheader_stdWrap {\r\n			stripHtml = 1\r\n			crop = 70 | ... | 1\r\n			ifEmpty.field = bodytext\r\n			required = 1\r\n		}\r\n		/*\r\n		image {\r\n			file.maxW = 60\r\n			file.maxH = 60\r\n			imageLinkWrap = 0\r\n		}\r\n		*/\r\n	}\r\n\r\n	# rendering of LIST mode\r\n	displayList {\r\n		\r\n		subheader_stdWrap {\r\n			crop = 250 | ... | 1\r\n			required = 1\r\n			wrap >\r\n		}\r\n		content_stdWrap {\r\n			wrap = <div class=\"news-list-content\">|</div>\r\n			required = 1\r\n		}\r\n		image {\r\n			file.maxW = 175\r\n			file.maxH = 175\r\n			imageLinkWrap = 0\r\n		}\r\n\r\n	}\r\n\r\n	# Override some of the text labels for tt_news with our own text.\r\n	# See EXT:tt_news/pi/locallang.xml for all language labels\r\n	_LOCAL_LANG.default {\r\n		# Remove the header that tt_news adds by default above the LATEST listing\r\n		latestHeader =\r\n		\r\n		# replace the word \'more\' after article text in news list or latest with \'>>\'\r\n		more = >>\r\n	}\r\n\r\n	# Date & time formats for news display. The easiest way to change them is by changing the values\r\n	# of the constants in TypoScript template ROOT in the root folder of the TypoScript Templates.\r\n	# There are configuration options for various types of news display. If you want, you can modify\r\n	# each separately according to your own preferences.\r\n	\r\n	archiveTitleCObject {\r\n		10.strftime = %Y-%B\r\n	}\r\n	getRelatedCObject.10 {\r\n		default.20.strftime = {$plugin.tt_news.dateformat} {$plugin.tt_news.timeformat}\r\n		1.20.strftime = {$plugin.tt_news.dateformat} {$plugin.tt_news.timeformat}\r\n		2.20.strftime = {$plugin.tt_news.dateformat} {$plugin.tt_news.timeformat}\r\n	}\r\n	displaySingle {\r\n		date_stdWrap.strftime = {$plugin.tt_news.dateformat}\r\n		time_stdWrap.strftime = {$plugin.tt_news.timeformat}\r\n	}\r\n	displayLatest {\r\n		date_stdWrap.strftime = {$plugin.tt_news.dateformat}\r\n		time_stdWrap.strftime = {$plugin.tt_news.timeformat}\r\n	}\r\n	displayList {\r\n		date_stdWrap.strftime = {$plugin.tt_news.dateformat}\r\n		time_stdWrap.strftime = {$plugin.tt_news.timeformat}\r\n	}\r\n}','','','','The TT_NEWS template\r\n\r\nThe name says it all, this is a news plugin.\r\n\r\nFor a full description of the configuration options, check the manual of this extension. Extension manuals are normally included in the extensions as Open Office documents, and can be accessed directly from the module Ext Manager in the TYPO3 backend (select the option \'loaded extensions or install extension\'.','',0,0,0,0),(56,13,0,0,0,'',0,0,0,0,10,1258641618,640,1258385424,4,'menu.secondlevel','',0,0,0,0,0,'','','# This menu is slightly more complicated than the others because we copy our default menu again, but then we\'ll start overriding some settings from the default menu.\r\n# To get a full overview of the configuration of this menu you should look at both our default \'menu\' and the \'menu.secondlevel\' as shown below.\r\n# You can use the TypoScript Object Browser to view the end result of this.\r\n# (go to the Template module and select \'Typoscript Object Browser\' in the selectbox in the right frame.)\r\n\r\nmenu.secondlevel < menu\r\nmenu.secondlevel {\r\n	entryLevel = 1\r\n	\r\n	1 {\r\n		NO {\r\n			wrapItemAndSub = <li>|</li>\r\n		}\r\n		\r\n		# First clear the ATagParams setting of the ACT state because we are working with a copy of the object \'menu\'\r\n		# After that we add our modified configuration for menu.secondlevel\r\n		ACT {\r\n			ATagParams >\r\n			wrapItemAndSub = <li class=\"active\">|</li>\r\n		}\r\n\r\n		CUR {\r\n			ATagParams >\r\n			wrapItemAndSub = <li class=\"selected\">|</li>\r\n		}\r\n\r\n	}\r\n	\r\n	# Copy the configuration of the first level of this menu to level 2 and 3\r\n	2 < .1\r\n	3 < .1\r\n}','','','','The SECOND LEVEL MENU template.\r\n\r\nConfiguration for the menu of the sublevels of pages. It inherits the MAIN MENU template and has some small modifications on top of it, in this case the settings of the entryLevel. ','',0,0,0,43),(57,13,0,0,0,'',0,0,0,0,0,1258653358,896,1258409599,4,'menu.language','',0,0,0,0,0,'','','menu.language = HMENU\r\n\r\n# We use a condition to show the language menu only on the page with the id from constant contentpage.examplelanguagesID\r\n[globalVar = TSFE:id = {$contentpage.examplelanguagesID}]\r\n\r\nmenu.language {\r\n	special = language\r\n	special.value = 0,1\r\n	1 = TMENU\r\n	1 {\r\n		wrap = <ul>|</ul>\r\n		\r\n		# Remove the (old) default behaviour which adds onfocus=\"blurLink(this);\" to all links\r\n		noBlur = 1\r\n		\r\n		NO = 1\r\n		NO {\r\n			# Override the standard menu item value (which is the page title) with our own cObject\r\n			stdWrap.cObject = TEXT\r\n			\r\n			# Use the TypoScript option split function to display different values for the first and second item\r\n			stdWrap.cObject.value = {$contentpage.language1} || {$contentpage.language2}\r\n			allWrap = <li>|</li>\r\n		}\r\n		\r\n		ACT < .NO\r\n		ACT {\r\n			ATagParams = class=\"active\"\r\n		}\r\n	}\r\n}\r\n\r\n[global]\r\n','','','','The LANGUAGE menu\r\n\r\nGenerates a list of available languages on a page. If the page has no language overlay, there is no link available to switch to the language.','',0,0,0,0),(62,11,0,0,0,'',0,0,0,0,0,1277208666,768,1258476895,4,'lib.footer','',0,0,0,0,0,'','','# The method used here to fetch a record from a page or folder is slightly different from the one used \r\n# to fetch the loginbox in lib.contentleft\r\n# The method here doesn\'t refer to a specific record but takes the first record from the folder. This\r\n# has the advantage that an editor can delete the record and just create a new one, and it still works.\r\n/*\r\nlib.footer = CONTENT\r\nlib.footer {\r\n	table = tt_content\r\n	select {\r\n		orderBy = sorting\r\n		max = 1\r\n		pidInList = {$contentpage.footerPID}\r\n	}\r\n}\r\n*/\r\n\r\nlib.footer = COA\r\n\r\nlib.footer.10 < styles.content.getLeft\r\nlib.footer.10.select.pidInList = {$contentpage.footerPID}\r\nlib.footer.10.stdWrap.wrap = <div class=\"footerFrame\">|</div>\r\n\r\nlib.footer.20 < styles.content.get\r\nlib.footer.20.select.pidInList = {$contentpage.footerPID}\r\nlib.footer.20.stdWrap.wrap = <div class=\"footerFrame\">|</div>\r\n\r\nlib.footer.30 < styles.content.getRight\r\nlib.footer.30.select.pidInList = {$contentpage.footerPID}\r\nlib.footer.30.stdWrap.wrap = <div class=\"footerFrame-last\">|</div>\r\n','','','','lib.footer fetches the content record in \'Generated content > Footer content\' and displays that on all pages.','',0,0,0,0),(63,11,0,0,0,'',0,0,0,0,0,1258645191,640,1258484363,4,'lib.contentleft','',0,0,0,0,0,'','','lib.contentleft = COA\r\n\r\n# Insert the content from the left column into lib.contentleft\r\nlib.contentleft {\r\n	20 < styles.content.getLeft\r\n}','','','','TypoScript template which compiles the contents for the left column on the pages','',0,0,0,0),(64,11,0,0,0,'',0,0,0,0,63,1258655161,704,1258645083,4,'lib.contentright','',0,0,0,0,0,'','','lib.contentright = COA\r\n\r\n# The configuration below this condition will only be included on the page loginpageID, or on its subpages\r\n[PIDinRootline = {$contentpage.loginpageID}]\r\n\r\n# Insert a loginbox above the content (but below the menu) in the left column.\r\n# We fetch the loginbox record from the SysFolder \'Login Box\' under \'Generated content\'\r\n# There are different ways to do this, in lib.footer you will see a slightly different approach.\r\nlib.contentright {\r\n	10 = CONTENT\r\n	10 {\r\n		table = tt_content\r\n		select.pidInList = {$contentpage.loginboxPID}\r\n		select.uidInList = {$contentpage.loginboxUID}\r\n	}\r\n}\r\n\r\n# End of the conditional part\r\n[global]\r\n\r\n# In all other cases, get the content of the middle column and add it to the \'content\' part\r\nlib.contentright.20 < styles.content.getRight\r\n','','','','TypoScript template which compiles the contents for the right column on the pages','',0,0,0,0),(65,9,0,0,0,'',0,0,0,0,54,1280242394,1536,1280242156,12,'plugin.wt_spamshield','',0,0,0,0,0,'EXT:wt_spamshield/static/','','plugin.wt_spamshield {\r\n	enable.standardMailform = 1\r\n}','','','','The wt_spamshield template\r\n\r\nThis template enables the wt_spamshield extension for the standard mailform\r\n\r\nFor a full description of the configuration options, check the manual of this extension. Extension manuals are normally included in the extensions as Open Office documents, and can be accessed directly from the module Ext Manager in the TYPO3 backend (select the option \'loaded extensions or install extension\'.','',0,0,0,0),(66,9,0,0,0,NULL,0,0,0,0,0,1287577004,1792,1287577004,1,'jquerycolorbox','',0,0,0,0,0,'EXT:jquerycolorbox/static/','','','','','','Includes static template from the jquerycolorbox extension','',0,0,0,0);
 /*!40000 ALTER TABLE sys_template ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1607,16 +1448,19 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS sys_ter;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE sys_ter (
-  uid int(11) unsigned NOT NULL auto_increment,
-  title varchar(150) default NULL,
+  uid int(11) unsigned NOT NULL AUTO_INCREMENT,
+  title varchar(150) DEFAULT NULL,
   description mediumtext,
-  wsdl_url varchar(100) default NULL,
-  mirror_url varchar(100) default NULL,
-  lastUpdated int(11) unsigned NOT NULL default '0',
-  extCount int(11) NOT NULL default '0',
-  PRIMARY KEY  (uid)
+  wsdl_url varchar(100) DEFAULT NULL,
+  mirror_url varchar(100) DEFAULT NULL,
+  lastUpdated int(11) unsigned NOT NULL DEFAULT '0',
+  extCount int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (uid)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `sys_ter`
@@ -1633,32 +1477,40 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS sys_workspace;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE sys_workspace (
-  uid int(11) NOT NULL auto_increment,
-  pid int(11) NOT NULL default '0',
-  tstamp int(11) NOT NULL default '0',
-  deleted tinyint(1) NOT NULL default '0',
-  title varchar(30) default NULL,
-  description varchar(255) default NULL,
-  adminusers text,
-  members text,
-  reviewers text,
-  db_mountpoints varchar(255) default NULL,
-  file_mountpoints varchar(255) default NULL,
-  publish_time int(11) NOT NULL default '0',
-  unpublish_time int(11) NOT NULL default '0',
-  freeze tinyint(3) NOT NULL default '0',
-  live_edit tinyint(3) NOT NULL default '0',
-  review_stage_edit tinyint(3) NOT NULL default '0',
-  vtypes tinyint(3) NOT NULL default '0',
-  disable_autocreate tinyint(1) NOT NULL default '0',
-  swap_modes tinyint(3) NOT NULL default '0',
-  publish_access tinyint(3) NOT NULL default '0',
-  stagechg_notification tinyint(3) NOT NULL default '0',
-  custom_stages int(11) NOT NULL default '0',
-  PRIMARY KEY  (uid),
+  uid int(11) NOT NULL AUTO_INCREMENT,
+  pid int(11) NOT NULL DEFAULT '0',
+  tstamp int(11) NOT NULL DEFAULT '0',
+  deleted tinyint(1) NOT NULL DEFAULT '0',
+  title varchar(30) DEFAULT NULL,
+  description varchar(255) DEFAULT NULL,
+  adminusers varchar(4000) DEFAULT '',
+  members varchar(4000) DEFAULT '',
+  reviewers varchar(4000) DEFAULT '',
+  db_mountpoints varchar(255) DEFAULT NULL,
+  file_mountpoints varchar(255) DEFAULT NULL,
+  publish_time int(11) NOT NULL DEFAULT '0',
+  unpublish_time int(11) NOT NULL DEFAULT '0',
+  freeze tinyint(3) NOT NULL DEFAULT '0',
+  live_edit tinyint(3) NOT NULL DEFAULT '0',
+  vtypes tinyint(3) NOT NULL DEFAULT '0',
+  disable_autocreate tinyint(1) NOT NULL DEFAULT '0',
+  swap_modes tinyint(3) NOT NULL DEFAULT '0',
+  publish_access tinyint(3) NOT NULL DEFAULT '0',
+  custom_stages int(11) NOT NULL DEFAULT '0',
+  stagechg_notification tinyint(3) NOT NULL DEFAULT '0',
+  edit_notification_mode tinyint(3) NOT NULL DEFAULT '0',
+  edit_notification_defaults varchar(255) NOT NULL DEFAULT '',
+  edit_allow_notificaton_settings tinyint(3) NOT NULL DEFAULT '0',
+  publish_notification_mode tinyint(3) NOT NULL DEFAULT '0',
+  publish_notification_defaults varchar(255) NOT NULL DEFAULT '',
+  publish_allow_notificaton_settings tinyint(3) NOT NULL DEFAULT '0',
+  PRIMARY KEY (uid),
   KEY parent (pid)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `sys_workspace`
@@ -1666,7 +1518,7 @@ CREATE TABLE sys_workspace (
 
 LOCK TABLES sys_workspace WRITE;
 /*!40000 ALTER TABLE sys_workspace DISABLE KEYS */;
-INSERT INTO sys_workspace VALUES (1,0,1290048921,0,'Demo Workspace','','be_groups_2','be_groups_2',NULL,'1','',0,0,0,0,0,0,0,0,0,0,1);
+INSERT INTO sys_workspace VALUES (1,0,1290048921,0,'Demo Workspace','','be_groups_2','be_groups_2',NULL,'1','',0,0,0,0,0,0,0,0,0,0,0,'',0,0,'',0);
 /*!40000 ALTER TABLE sys_workspace ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1675,20 +1527,26 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS sys_workspace_stage;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE sys_workspace_stage (
-  uid int(11) NOT NULL auto_increment,
-  pid int(11) NOT NULL default '0',
-  tstamp int(11) NOT NULL default '0',
-  deleted tinyint(1) NOT NULL default '0',
-  sorting int(11) unsigned NOT NULL default '0',
-  title varchar(30) NOT NULL,
-  responsible_persons varchar(255) NOT NULL,
+  uid int(11) NOT NULL AUTO_INCREMENT,
+  pid int(11) NOT NULL DEFAULT '0',
+  tstamp int(11) NOT NULL DEFAULT '0',
+  deleted tinyint(1) NOT NULL DEFAULT '0',
+  sorting int(11) unsigned NOT NULL DEFAULT '0',
+  title varchar(30) DEFAULT NULL,
+  responsible_persons varchar(255) DEFAULT NULL,
   default_mailcomment text,
-  parentid int(11) NOT NULL default '0',
+  parentid int(11) NOT NULL DEFAULT '0',
   parenttable tinytext NOT NULL,
-  PRIMARY KEY  (uid),
+  notification_mode tinyint(3) NOT NULL DEFAULT '0',
+  notification_defaults varchar(255) NOT NULL DEFAULT '',
+  allow_notificaton_settings tinyint(3) NOT NULL DEFAULT '0',
+  PRIMARY KEY (uid),
   KEY parent (pid)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `sys_workspace_stage`
@@ -1696,7 +1554,7 @@ CREATE TABLE sys_workspace_stage (
 
 LOCK TABLES sys_workspace_stage WRITE;
 /*!40000 ALTER TABLE sys_workspace_stage DISABLE KEYS */;
-INSERT INTO sys_workspace_stage VALUES (1,0,1290048921,0,1,'Stage 1','be_users_3','',1,'sys_workspace');
+INSERT INTO sys_workspace_stage VALUES (1,0,1290048921,0,1,'Stage 1','be_users_3','',1,'sys_workspace',0,'',0);
 /*!40000 ALTER TABLE sys_workspace_stage ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1705,91 +1563,94 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS tt_content;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE tt_content (
-  uid int(11) NOT NULL auto_increment,
-  pid int(11) NOT NULL default '0',
-  t3ver_oid int(11) NOT NULL default '0',
-  t3ver_id int(11) NOT NULL default '0',
-  t3ver_wsid int(11) NOT NULL default '0',
-  t3ver_label varchar(255) default NULL,
-  t3ver_state tinyint(4) NOT NULL default '0',
-  t3ver_stage int(11) NOT NULL default '0',
-  t3ver_count int(11) NOT NULL default '0',
-  t3ver_tstamp int(11) NOT NULL default '0',
-  t3ver_move_id int(11) NOT NULL default '0',
-  t3_origuid int(11) NOT NULL default '0',
-  tstamp int(11) unsigned NOT NULL default '0',
-  crdate int(11) unsigned NOT NULL default '0',
-  cruser_id int(11) unsigned NOT NULL default '0',
-  hidden tinyint(4) unsigned NOT NULL default '0',
-  sorting int(11) unsigned NOT NULL default '0',
-  CType varchar(30) default NULL,
-  header varchar(255) default NULL,
-  header_position varchar(6) default NULL,
+  uid int(11) NOT NULL AUTO_INCREMENT,
+  pid int(11) NOT NULL DEFAULT '0',
+  t3ver_oid int(11) NOT NULL DEFAULT '0',
+  t3ver_id int(11) NOT NULL DEFAULT '0',
+  t3ver_wsid int(11) NOT NULL DEFAULT '0',
+  t3ver_label varchar(255) DEFAULT NULL,
+  t3ver_state tinyint(4) NOT NULL DEFAULT '0',
+  t3ver_stage int(11) NOT NULL DEFAULT '0',
+  t3ver_count int(11) NOT NULL DEFAULT '0',
+  t3ver_tstamp int(11) NOT NULL DEFAULT '0',
+  t3ver_move_id int(11) NOT NULL DEFAULT '0',
+  t3_origuid int(11) NOT NULL DEFAULT '0',
+  tstamp int(11) unsigned NOT NULL DEFAULT '0',
+  crdate int(11) unsigned NOT NULL DEFAULT '0',
+  cruser_id int(11) unsigned NOT NULL DEFAULT '0',
+  hidden tinyint(4) unsigned NOT NULL DEFAULT '0',
+  sorting int(11) unsigned NOT NULL DEFAULT '0',
+  CType varchar(30) DEFAULT NULL,
+  header varchar(255) DEFAULT NULL,
+  header_position varchar(6) DEFAULT NULL,
   bodytext mediumtext,
   image text,
-  imagewidth mediumint(11) unsigned NOT NULL default '0',
-  imageorient tinyint(4) unsigned NOT NULL default '0',
+  imagewidth mediumint(11) unsigned NOT NULL DEFAULT '0',
+  imageorient tinyint(4) unsigned NOT NULL DEFAULT '0',
   imagecaption text,
-  imagecols tinyint(4) unsigned NOT NULL default '0',
-  imageborder tinyint(4) unsigned NOT NULL default '0',
+  imagecols tinyint(4) unsigned NOT NULL DEFAULT '0',
+  imageborder tinyint(4) unsigned NOT NULL DEFAULT '0',
   media text,
-  layout tinyint(3) unsigned NOT NULL default '0',
-  deleted tinyint(4) unsigned NOT NULL default '0',
-  cols tinyint(3) unsigned NOT NULL default '0',
+  layout tinyint(3) unsigned NOT NULL DEFAULT '0',
+  deleted tinyint(4) unsigned NOT NULL DEFAULT '0',
+  cols tinyint(3) unsigned NOT NULL DEFAULT '0',
   records text,
   pages tinytext,
-  starttime int(11) unsigned NOT NULL default '0',
-  endtime int(11) unsigned NOT NULL default '0',
-  colPos tinyint(3) unsigned NOT NULL default '0',
-  subheader varchar(255) default NULL,
-  spaceBefore smallint(5) unsigned NOT NULL default '0',
-  spaceAfter smallint(5) unsigned NOT NULL default '0',
-  fe_group varchar(100) NOT NULL default '0',
-  header_link varchar(255) default NULL,
-  imagecaption_position varchar(6) default NULL,
+  starttime int(11) unsigned NOT NULL DEFAULT '0',
+  endtime int(11) unsigned NOT NULL DEFAULT '0',
+  colPos tinyint(3) unsigned NOT NULL DEFAULT '0',
+  subheader varchar(255) DEFAULT NULL,
+  spaceBefore smallint(5) unsigned NOT NULL DEFAULT '0',
+  spaceAfter smallint(5) unsigned NOT NULL DEFAULT '0',
+  fe_group varchar(100) NOT NULL DEFAULT '0',
+  header_link varchar(255) DEFAULT NULL,
+  imagecaption_position varchar(6) DEFAULT NULL,
   image_link text,
-  image_zoom tinyint(3) unsigned NOT NULL default '0',
-  image_noRows tinyint(3) unsigned NOT NULL default '0',
-  image_effects tinyint(3) unsigned NOT NULL default '0',
-  image_compression tinyint(3) unsigned NOT NULL default '0',
+  image_zoom tinyint(3) unsigned NOT NULL DEFAULT '0',
+  image_noRows tinyint(3) unsigned NOT NULL DEFAULT '0',
+  image_effects tinyint(3) unsigned NOT NULL DEFAULT '0',
+  image_compression tinyint(3) unsigned NOT NULL DEFAULT '0',
   altText text,
   titleText text,
   longdescURL text,
-  header_layout varchar(30) NOT NULL default '0',
-  text_align varchar(6) default NULL,
-  text_face tinyint(3) unsigned NOT NULL default '0',
-  text_size tinyint(3) unsigned NOT NULL default '0',
-  text_color tinyint(3) unsigned NOT NULL default '0',
-  text_properties tinyint(3) unsigned NOT NULL default '0',
-  menu_type varchar(30) NOT NULL default '0',
-  list_type varchar(36) NOT NULL default '0',
-  table_border tinyint(3) unsigned NOT NULL default '0',
-  table_cellspacing tinyint(3) unsigned NOT NULL default '0',
-  table_cellpadding tinyint(3) unsigned NOT NULL default '0',
-  table_bgColor tinyint(3) unsigned NOT NULL default '0',
-  select_key varchar(80) default NULL,
-  sectionIndex tinyint(3) unsigned NOT NULL default '0',
-  linkToTop tinyint(3) unsigned NOT NULL default '0',
-  filelink_size tinyint(3) unsigned NOT NULL default '0',
-  section_frame tinyint(3) unsigned NOT NULL default '0',
-  `date` int(10) unsigned NOT NULL default '0',
-  splash_layout varchar(30) NOT NULL default '0',
+  header_layout varchar(30) NOT NULL DEFAULT '0',
+  text_align varchar(6) DEFAULT NULL,
+  text_face tinyint(3) unsigned NOT NULL DEFAULT '0',
+  text_size tinyint(3) unsigned NOT NULL DEFAULT '0',
+  text_color tinyint(3) unsigned NOT NULL DEFAULT '0',
+  text_properties tinyint(3) unsigned NOT NULL DEFAULT '0',
+  menu_type varchar(30) NOT NULL DEFAULT '0',
+  list_type varchar(36) NOT NULL DEFAULT '0',
+  table_border tinyint(3) unsigned NOT NULL DEFAULT '0',
+  table_cellspacing tinyint(3) unsigned NOT NULL DEFAULT '0',
+  table_cellpadding tinyint(3) unsigned NOT NULL DEFAULT '0',
+  table_bgColor tinyint(3) unsigned NOT NULL DEFAULT '0',
+  select_key varchar(80) DEFAULT NULL,
+  sectionIndex tinyint(3) unsigned NOT NULL DEFAULT '0',
+  linkToTop tinyint(3) unsigned NOT NULL DEFAULT '0',
+  filelink_size tinyint(3) unsigned NOT NULL DEFAULT '0',
+  section_frame tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `date` int(10) unsigned NOT NULL DEFAULT '0',
+  splash_layout varchar(30) NOT NULL DEFAULT '0',
   multimedia tinytext,
-  image_frames tinyint(3) unsigned NOT NULL default '0',
-  recursive tinyint(3) unsigned NOT NULL default '0',
-  imageheight mediumint(8) unsigned NOT NULL default '0',
-  rte_enabled tinyint(4) NOT NULL default '0',
-  sys_language_uid int(11) NOT NULL default '0',
-  tx_impexp_origuid int(11) NOT NULL default '0',
+  image_frames tinyint(3) unsigned NOT NULL DEFAULT '0',
+  recursive tinyint(3) unsigned NOT NULL DEFAULT '0',
+  imageheight mediumint(8) unsigned NOT NULL DEFAULT '0',
+  rte_enabled tinyint(4) NOT NULL DEFAULT '0',
+  sys_language_uid int(11) NOT NULL DEFAULT '0',
+  tx_impexp_origuid int(11) NOT NULL DEFAULT '0',
   pi_flexform mediumtext,
-  l18n_parent int(11) NOT NULL default '0',
+  l18n_parent int(11) NOT NULL DEFAULT '0',
   l18n_diffsource mediumblob,
-  PRIMARY KEY  (uid),
+  PRIMARY KEY (uid),
   KEY t3ver_oid (t3ver_oid,t3ver_wsid),
   KEY parent (pid,sorting),
   KEY `language` (l18n_parent,sys_language_uid)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `tt_content`
@@ -1806,55 +1667,58 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS tt_news;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE tt_news (
-  uid int(11) NOT NULL auto_increment,
-  pid int(11) NOT NULL default '0',
-  tstamp int(11) unsigned NOT NULL default '0',
-  crdate int(11) unsigned NOT NULL default '0',
-  cruser_id int(11) unsigned NOT NULL default '0',
-  editlock tinyint(4) unsigned NOT NULL default '0',
-  deleted tinyint(3) unsigned NOT NULL default '0',
-  hidden tinyint(4) unsigned NOT NULL default '0',
-  starttime int(11) unsigned NOT NULL default '0',
-  endtime int(11) unsigned NOT NULL default '0',
-  fe_group varchar(100) NOT NULL default '0',
+  uid int(11) NOT NULL AUTO_INCREMENT,
+  pid int(11) NOT NULL DEFAULT '0',
+  tstamp int(11) unsigned NOT NULL DEFAULT '0',
+  crdate int(11) unsigned NOT NULL DEFAULT '0',
+  cruser_id int(11) unsigned NOT NULL DEFAULT '0',
+  editlock tinyint(4) unsigned NOT NULL DEFAULT '0',
+  deleted tinyint(3) unsigned NOT NULL DEFAULT '0',
+  hidden tinyint(4) unsigned NOT NULL DEFAULT '0',
+  starttime int(11) unsigned NOT NULL DEFAULT '0',
+  endtime int(11) unsigned NOT NULL DEFAULT '0',
+  fe_group varchar(100) NOT NULL DEFAULT '0',
   title text,
-  `datetime` int(11) unsigned NOT NULL default '0',
+  `datetime` int(11) unsigned NOT NULL DEFAULT '0',
   image text,
   imagecaption text,
   imagealttext text,
   imagetitletext text,
-  related int(11) NOT NULL default '0',
+  related int(11) NOT NULL DEFAULT '0',
   short text,
   bodytext mediumtext,
-  author varchar(255) NOT NULL,
-  author_email varchar(255) NOT NULL,
-  category int(11) NOT NULL default '0',
+  author varchar(255) DEFAULT NULL,
+  author_email varchar(255) DEFAULT NULL,
+  category int(11) NOT NULL DEFAULT '0',
   news_files text,
   links text,
-  `type` tinyint(4) NOT NULL default '0',
-  page int(11) NOT NULL default '0',
+  `type` tinyint(4) NOT NULL DEFAULT '0',
+  `page` int(11) NOT NULL DEFAULT '0',
   keywords text,
-  archivedate int(11) NOT NULL default '0',
-  ext_url varchar(255) NOT NULL,
-  sys_language_uid int(11) NOT NULL default '0',
-  l18n_parent int(11) NOT NULL default '0',
+  archivedate int(11) NOT NULL DEFAULT '0',
+  ext_url varchar(255) DEFAULT NULL,
+  sys_language_uid int(11) NOT NULL DEFAULT '0',
+  l18n_parent int(11) NOT NULL DEFAULT '0',
   l18n_diffsource mediumblob NOT NULL,
-  no_auto_pb tinyint(4) unsigned NOT NULL default '0',
-  t3ver_oid int(11) NOT NULL default '0',
-  t3ver_id int(11) NOT NULL default '0',
-  t3ver_wsid int(11) NOT NULL default '0',
-  t3ver_label varchar(30) default NULL,
-  t3ver_state tinyint(4) NOT NULL default '0',
-  t3ver_stage tinyint(4) NOT NULL default '0',
-  t3ver_count int(11) NOT NULL default '0',
-  t3ver_tstamp int(11) NOT NULL default '0',
-  t3_origuid int(11) NOT NULL default '0',
-  PRIMARY KEY  (uid),
+  no_auto_pb tinyint(4) unsigned NOT NULL DEFAULT '0',
+  t3ver_oid int(11) NOT NULL DEFAULT '0',
+  t3ver_id int(11) NOT NULL DEFAULT '0',
+  t3ver_wsid int(11) NOT NULL DEFAULT '0',
+  t3ver_label varchar(30) DEFAULT NULL,
+  t3ver_state tinyint(4) NOT NULL DEFAULT '0',
+  t3ver_stage tinyint(4) NOT NULL DEFAULT '0',
+  t3ver_count int(11) NOT NULL DEFAULT '0',
+  t3ver_tstamp int(11) NOT NULL DEFAULT '0',
+  t3_origuid int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (uid),
   KEY parent (pid),
   KEY t3ver_oid (t3ver_oid,t3ver_wsid),
   KEY `datetime` (`datetime`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `tt_news`
@@ -1871,15 +1735,18 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS tt_news_cache;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE tt_news_cache (
-  id int(11) unsigned NOT NULL auto_increment,
-  identifier varchar(32) NOT NULL default '',
+  id int(11) unsigned NOT NULL AUTO_INCREMENT,
+  identifier varchar(32) NOT NULL,
   content text NOT NULL,
-  crdate int(11) NOT NULL default '0',
-  lifetime int(11) NOT NULL default '0',
-  PRIMARY KEY  (id),
+  crdate int(11) NOT NULL DEFAULT '0',
+  lifetime int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (id),
   KEY cache_id (identifier)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `tt_news_cache`
@@ -1895,14 +1762,17 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS tt_news_cache_tags;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE tt_news_cache_tags (
-  id int(11) unsigned NOT NULL auto_increment,
-  identifier varchar(128) NOT NULL default '',
-  tag varchar(128) NOT NULL default '',
-  PRIMARY KEY  (id),
+  id int(11) unsigned NOT NULL AUTO_INCREMENT,
+  identifier varchar(128) NOT NULL,
+  tag varchar(128) NOT NULL,
+  PRIMARY KEY (id),
   KEY cache_id (identifier),
   KEY cache_tag (tag)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `tt_news_cache_tags`
@@ -1918,29 +1788,32 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS tt_news_cat;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE tt_news_cat (
-  uid int(11) NOT NULL auto_increment,
-  pid int(11) NOT NULL default '0',
-  tstamp int(11) unsigned NOT NULL default '0',
-  crdate int(11) unsigned NOT NULL default '0',
-  hidden tinyint(4) unsigned NOT NULL default '0',
-  starttime int(11) unsigned NOT NULL default '0',
-  endtime int(11) unsigned NOT NULL default '0',
-  sorting int(11) unsigned NOT NULL default '0',
-  fe_group varchar(100) NOT NULL default '0',
-  title varchar(255) NOT NULL,
-  title_lang_ol varchar(255) NOT NULL,
-  image varchar(255) NOT NULL,
-  shortcut int(11) unsigned NOT NULL default '0',
-  shortcut_target varchar(255) NOT NULL,
-  deleted tinyint(3) unsigned NOT NULL default '0',
-  single_pid int(11) unsigned NOT NULL default '0',
-  parent_category int(11) unsigned NOT NULL default '0',
+  uid int(11) NOT NULL AUTO_INCREMENT,
+  pid int(11) NOT NULL DEFAULT '0',
+  tstamp int(11) unsigned NOT NULL DEFAULT '0',
+  crdate int(11) unsigned NOT NULL DEFAULT '0',
+  hidden tinyint(4) unsigned NOT NULL DEFAULT '0',
+  starttime int(11) unsigned NOT NULL DEFAULT '0',
+  endtime int(11) unsigned NOT NULL DEFAULT '0',
+  sorting int(11) unsigned NOT NULL DEFAULT '0',
+  fe_group varchar(100) NOT NULL DEFAULT '0',
+  title varchar(255) DEFAULT NULL,
+  title_lang_ol varchar(255) DEFAULT NULL,
+  image varchar(255) DEFAULT NULL,
+  shortcut int(11) unsigned NOT NULL DEFAULT '0',
+  shortcut_target varchar(255) DEFAULT NULL,
+  deleted tinyint(3) unsigned NOT NULL DEFAULT '0',
+  single_pid int(11) unsigned NOT NULL DEFAULT '0',
+  parent_category int(11) unsigned NOT NULL DEFAULT '0',
   description text,
-  PRIMARY KEY  (uid),
+  PRIMARY KEY (uid),
   KEY parent (pid),
   KEY parent_category (parent_category)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `tt_news_cat`
@@ -1957,14 +1830,17 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS tt_news_cat_mm;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE tt_news_cat_mm (
-  uid_local int(11) NOT NULL default '0',
-  uid_foreign int(11) NOT NULL default '0',
-  tablenames varchar(30) default NULL,
-  sorting int(11) NOT NULL default '0',
+  uid_local int(11) NOT NULL DEFAULT '0',
+  uid_foreign int(11) NOT NULL DEFAULT '0',
+  tablenames varchar(30) DEFAULT NULL,
+  sorting int(11) NOT NULL DEFAULT '0',
   KEY uid_local (uid_local),
   KEY uid_foreign (uid_foreign)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `tt_news_cat_mm`
@@ -1981,14 +1857,17 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS tt_news_related_mm;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE tt_news_related_mm (
-  uid_local int(11) NOT NULL default '0',
-  uid_foreign int(11) NOT NULL default '0',
-  sorting int(11) NOT NULL default '0',
-  tablenames varchar(255) NOT NULL default '',
+  uid_local int(11) NOT NULL DEFAULT '0',
+  uid_foreign int(11) NOT NULL DEFAULT '0',
+  sorting int(11) NOT NULL DEFAULT '0',
+  tablenames varchar(255) NOT NULL,
   KEY uid_local (uid_local),
   KEY uid_foreign (uid_foreign)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `tt_news_related_mm`
@@ -2000,116 +1879,23 @@ LOCK TABLES tt_news_related_mm WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `tx_extbase_cache_object`
---
-
-DROP TABLE IF EXISTS tx_extbase_cache_object;
-CREATE TABLE tx_extbase_cache_object (
-  id int(11) unsigned NOT NULL auto_increment,
-  identifier varchar(250) default NULL,
-  crdate int(11) unsigned NOT NULL default '0',
-  content mediumtext,
-  tags mediumtext,
-  lifetime int(11) unsigned NOT NULL default '0',
-  PRIMARY KEY  (id),
-  KEY cache_id (identifier)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `tx_extbase_cache_object`
---
-
-LOCK TABLES tx_extbase_cache_object WRITE;
-/*!40000 ALTER TABLE tx_extbase_cache_object DISABLE KEYS */;
-/*!40000 ALTER TABLE tx_extbase_cache_object ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `tx_extbase_cache_object_tags`
---
-
-DROP TABLE IF EXISTS tx_extbase_cache_object_tags;
-CREATE TABLE tx_extbase_cache_object_tags (
-  id int(11) unsigned NOT NULL auto_increment,
-  identifier varchar(128) default NULL,
-  tag varchar(128) default NULL,
-  PRIMARY KEY  (id),
-  KEY cache_id (identifier),
-  KEY cache_tag (tag)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `tx_extbase_cache_object_tags`
---
-
-LOCK TABLES tx_extbase_cache_object_tags WRITE;
-/*!40000 ALTER TABLE tx_extbase_cache_object_tags DISABLE KEYS */;
-/*!40000 ALTER TABLE tx_extbase_cache_object_tags ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `tx_extbase_cache_reflection`
---
-
-DROP TABLE IF EXISTS tx_extbase_cache_reflection;
-CREATE TABLE tx_extbase_cache_reflection (
-  id int(11) unsigned NOT NULL auto_increment,
-  identifier varchar(250) default NULL,
-  crdate int(11) unsigned NOT NULL default '0',
-  content mediumtext,
-  tags mediumtext,
-  lifetime int(11) unsigned NOT NULL default '0',
-  PRIMARY KEY  (id),
-  KEY cache_id (identifier)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `tx_extbase_cache_reflection`
---
-
-LOCK TABLES tx_extbase_cache_reflection WRITE;
-/*!40000 ALTER TABLE tx_extbase_cache_reflection DISABLE KEYS */;
-/*!40000 ALTER TABLE tx_extbase_cache_reflection ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `tx_extbase_cache_reflection_tags`
---
-
-DROP TABLE IF EXISTS tx_extbase_cache_reflection_tags;
-CREATE TABLE tx_extbase_cache_reflection_tags (
-  id int(11) unsigned NOT NULL auto_increment,
-  identifier varchar(128) default NULL,
-  tag varchar(128) default NULL,
-  PRIMARY KEY  (id),
-  KEY cache_id (identifier),
-  KEY cache_tag (tag)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `tx_extbase_cache_reflection_tags`
---
-
-LOCK TABLES tx_extbase_cache_reflection_tags WRITE;
-/*!40000 ALTER TABLE tx_extbase_cache_reflection_tags DISABLE KEYS */;
-/*!40000 ALTER TABLE tx_extbase_cache_reflection_tags ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `tx_impexp_presets`
 --
 
 DROP TABLE IF EXISTS tx_impexp_presets;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE tx_impexp_presets (
-  uid int(11) NOT NULL auto_increment,
-  user_uid int(11) NOT NULL default '0',
-  title varchar(255) default NULL,
-  public tinyint(3) NOT NULL default '0',
-  item_uid int(11) NOT NULL default '0',
+  uid int(11) NOT NULL AUTO_INCREMENT,
+  user_uid int(11) NOT NULL DEFAULT '0',
+  title varchar(255) DEFAULT NULL,
+  public tinyint(3) NOT NULL DEFAULT '0',
+  item_uid int(11) NOT NULL DEFAULT '0',
   preset_data blob,
-  PRIMARY KEY  (uid),
+  PRIMARY KEY (uid),
   KEY lookup (item_uid)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `tx_impexp_presets`
@@ -2121,32 +1907,35 @@ LOCK TABLES tx_impexp_presets WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `tx_linkvalidator_links`
+-- Table structure for table `tx_linkvalidator_link`
 --
 
-DROP TABLE IF EXISTS tx_linkvalidator_links;
-CREATE TABLE tx_linkvalidator_links (
-  uid int(11) NOT NULL auto_increment,
-  recuid int(11) NOT NULL default '0',
-  recpid int(11) NOT NULL default '0',
-  headline varchar(255) default NULL,
-  field varchar(255) default NULL,
-  tablename varchar(255) default NULL,
-  linktitle text,
+DROP TABLE IF EXISTS tx_linkvalidator_link;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE tx_linkvalidator_link (
+  uid int(11) NOT NULL AUTO_INCREMENT,
+  record_uid int(11) NOT NULL DEFAULT '0',
+  record_pid int(11) NOT NULL DEFAULT '0',
+  headline varchar(255) NOT NULL,
+  field varchar(255) NOT NULL,
+  table_name varchar(255) NOT NULL,
+  link_title text,
   url text,
-  urlresponse text,
-  lastcheck int(11) NOT NULL default '0',
-  typelinks varchar(50) default NULL,
-  PRIMARY KEY  (uid)
+  url_response text,
+  last_check int(11) NOT NULL DEFAULT '0',
+  link_type varchar(50) NOT NULL,
+  PRIMARY KEY (uid)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tx_linkvalidator_links`
+-- Dumping data for table `tx_linkvalidator_link`
 --
 
-LOCK TABLES tx_linkvalidator_links WRITE;
-/*!40000 ALTER TABLE tx_linkvalidator_links DISABLE KEYS */;
-/*!40000 ALTER TABLE tx_linkvalidator_links ENABLE KEYS */;
+LOCK TABLES tx_linkvalidator_link WRITE;
+/*!40000 ALTER TABLE tx_linkvalidator_link DISABLE KEYS */;
+/*!40000 ALTER TABLE tx_linkvalidator_link ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -2154,13 +1943,16 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS tx_realurl_chashcache;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE tx_realurl_chashcache (
-  spurl_hash char(32) NOT NULL default '',
-  chash_string varchar(32) NOT NULL default '',
+  spurl_hash char(32) NOT NULL,
+  chash_string varchar(32) NOT NULL,
   spurl_string text,
-  PRIMARY KEY  (spurl_hash),
+  PRIMARY KEY (spurl_hash),
   KEY chash_string (chash_string)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `tx_realurl_chashcache`
@@ -2176,18 +1968,21 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS tx_realurl_errorlog;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE tx_realurl_errorlog (
-  url_hash int(11) NOT NULL default '0',
+  url_hash int(11) NOT NULL DEFAULT '0',
   url text NOT NULL,
   error text NOT NULL,
   last_referer text NOT NULL,
-  counter int(11) NOT NULL default '0',
-  cr_date int(11) NOT NULL default '0',
-  tstamp int(11) NOT NULL default '0',
-  rootpage_id int(11) NOT NULL default '0',
-  PRIMARY KEY  (url_hash,rootpage_id),
+  counter int(11) NOT NULL DEFAULT '0',
+  cr_date int(11) NOT NULL DEFAULT '0',
+  tstamp int(11) NOT NULL DEFAULT '0',
+  rootpage_id int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (url_hash,rootpage_id),
   KEY counter (counter,tstamp)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `tx_realurl_errorlog`
@@ -2203,19 +1998,22 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS tx_realurl_pathcache;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE tx_realurl_pathcache (
-  cache_id int(11) NOT NULL auto_increment,
-  page_id int(11) NOT NULL default '0',
-  language_id int(11) NOT NULL default '0',
-  rootpage_id int(11) NOT NULL default '0',
+  cache_id int(11) NOT NULL AUTO_INCREMENT,
+  page_id int(11) NOT NULL DEFAULT '0',
+  language_id int(11) NOT NULL DEFAULT '0',
+  rootpage_id int(11) NOT NULL DEFAULT '0',
   mpvar tinytext NOT NULL,
   pagepath text NOT NULL,
-  expire int(11) NOT NULL default '0',
-  PRIMARY KEY  (cache_id),
+  expire int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (cache_id),
   KEY pathq1 (rootpage_id,pagepath(32),expire),
   KEY pathq2 (page_id,language_id,rootpage_id,expire),
   KEY expire (expire)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `tx_realurl_pathcache`
@@ -2231,16 +2029,19 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS tx_realurl_redirects;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE tx_realurl_redirects (
-  url_hash int(11) NOT NULL default '0',
+  url_hash int(11) NOT NULL DEFAULT '0',
   url text NOT NULL,
   destination text NOT NULL,
   last_referer text NOT NULL,
-  counter int(11) NOT NULL default '0',
-  tstamp int(11) NOT NULL default '0',
-  has_moved int(11) NOT NULL default '0',
-  PRIMARY KEY  (url_hash)
+  counter int(11) NOT NULL DEFAULT '0',
+  tstamp int(11) NOT NULL DEFAULT '0',
+  has_moved int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (url_hash)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `tx_realurl_redirects`
@@ -2256,21 +2057,24 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS tx_realurl_uniqalias;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE tx_realurl_uniqalias (
-  uid int(11) NOT NULL auto_increment,
-  tstamp int(11) NOT NULL default '0',
-  tablename varchar(255) default NULL,
-  field_alias varchar(255) default NULL,
-  field_id varchar(60) default NULL,
-  value_alias varchar(255) default NULL,
-  value_id int(11) NOT NULL default '0',
-  lang int(11) NOT NULL default '0',
-  expire int(11) NOT NULL default '0',
-  PRIMARY KEY  (uid),
+  uid int(11) NOT NULL AUTO_INCREMENT,
+  tstamp int(11) NOT NULL DEFAULT '0',
+  tablename varchar(255) DEFAULT NULL,
+  field_alias varchar(255) DEFAULT NULL,
+  field_id varchar(60) DEFAULT NULL,
+  value_alias varchar(255) DEFAULT NULL,
+  value_id int(11) NOT NULL DEFAULT '0',
+  lang int(11) NOT NULL DEFAULT '0',
+  expire int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (uid),
   KEY tablename (tablename),
   KEY bk_realurl01 (field_alias(20),field_id,value_id,lang,expire),
   KEY bk_realurl02 (tablename(32),field_alias(20),field_id,value_alias(20),expire)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `tx_realurl_uniqalias`
@@ -2287,16 +2091,19 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS tx_realurl_urldecodecache;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE tx_realurl_urldecodecache (
-  url_hash char(32) NOT NULL,
+  url_hash char(32) NOT NULL DEFAULT '',
   spurl tinytext NOT NULL,
   content blob NOT NULL,
-  page_id int(11) NOT NULL default '0',
-  rootpage_id int(11) NOT NULL default '0',
-  tstamp int(11) NOT NULL default '0',
-  PRIMARY KEY  (url_hash),
+  page_id int(11) NOT NULL DEFAULT '0',
+  rootpage_id int(11) NOT NULL DEFAULT '0',
+  tstamp int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (url_hash),
   KEY page_id (page_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `tx_realurl_urldecodecache`
@@ -2312,16 +2119,19 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS tx_realurl_urlencodecache;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE tx_realurl_urlencodecache (
-  url_hash char(32) NOT NULL default '',
+  url_hash char(32) NOT NULL,
   origparams tinytext NOT NULL,
   internalExtras tinytext NOT NULL,
   content text NOT NULL,
-  page_id int(11) NOT NULL default '0',
-  tstamp int(11) NOT NULL default '0',
-  PRIMARY KEY  (url_hash),
+  page_id int(11) NOT NULL DEFAULT '0',
+  tstamp int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (url_hash),
   KEY page_id (page_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `tx_realurl_urlencodecache`
@@ -2337,22 +2147,25 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS tx_rtehtmlarea_acronym;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE tx_rtehtmlarea_acronym (
-  uid int(11) unsigned NOT NULL auto_increment,
-  pid int(11) unsigned NOT NULL default '0',
-  deleted tinyint(4) unsigned NOT NULL default '0',
-  hidden tinyint(4) unsigned NOT NULL default '0',
-  starttime int(11) unsigned NOT NULL default '0',
-  endtime int(11) unsigned NOT NULL default '0',
-  sorting int(11) unsigned NOT NULL default '0',
-  sys_language_uid int(11) NOT NULL default '0',
-  `type` tinyint(3) unsigned NOT NULL default '1',
-  term varchar(255) default NULL,
-  acronym varchar(255) default NULL,
-  static_lang_isocode int(11) unsigned NOT NULL default '0',
-  PRIMARY KEY  (uid),
+  uid int(11) unsigned NOT NULL AUTO_INCREMENT,
+  pid int(11) unsigned NOT NULL DEFAULT '0',
+  deleted tinyint(4) unsigned NOT NULL DEFAULT '0',
+  hidden tinyint(4) unsigned NOT NULL DEFAULT '0',
+  starttime int(11) unsigned NOT NULL DEFAULT '0',
+  endtime int(11) unsigned NOT NULL DEFAULT '0',
+  sorting int(11) unsigned NOT NULL DEFAULT '0',
+  sys_language_uid int(11) NOT NULL DEFAULT '0',
+  `type` tinyint(3) unsigned NOT NULL DEFAULT '1',
+  term varchar(255) DEFAULT NULL,
+  acronym varchar(255) DEFAULT NULL,
+  static_lang_isocode int(11) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (uid),
   KEY parent (pid)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `tx_rtehtmlarea_acronym`
@@ -2368,20 +2181,23 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS tx_scheduler_task;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE tx_scheduler_task (
-  uid int(11) unsigned NOT NULL auto_increment,
-  crdate int(11) unsigned NOT NULL default '0',
-  `disable` tinyint(4) unsigned NOT NULL default '0',
-  classname varchar(255) default NULL,
-  nextexecution int(11) unsigned NOT NULL default '0',
-  lastexecution_time int(11) unsigned NOT NULL default '0',
+  uid int(11) unsigned NOT NULL AUTO_INCREMENT,
+  crdate int(11) unsigned NOT NULL DEFAULT '0',
+  `disable` tinyint(4) unsigned NOT NULL DEFAULT '0',
+  classname varchar(255) DEFAULT NULL,
+  nextexecution int(11) unsigned NOT NULL DEFAULT '0',
+  lastexecution_time int(11) unsigned NOT NULL DEFAULT '0',
   lastexecution_failure text NOT NULL,
-  lastexecution_context char(3) default NULL,
+  lastexecution_context char(3) DEFAULT NULL,
   serialized_task_object blob,
   serialized_executions blob,
-  PRIMARY KEY  (uid),
+  PRIMARY KEY (uid),
   KEY index_nextexecution (nextexecution)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `tx_scheduler_task`
@@ -2397,22 +2213,25 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS tx_wtspamshield_log;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE tx_wtspamshield_log (
-  uid int(11) NOT NULL auto_increment,
-  pid int(11) NOT NULL default '0',
-  tstamp int(11) NOT NULL default '0',
-  crdate int(11) NOT NULL default '0',
-  cruser_id int(11) NOT NULL default '0',
-  deleted tinyint(4) NOT NULL default '0',
+  uid int(11) NOT NULL AUTO_INCREMENT,
+  pid int(11) NOT NULL DEFAULT '0',
+  tstamp int(11) NOT NULL DEFAULT '0',
+  crdate int(11) NOT NULL DEFAULT '0',
+  cruser_id int(11) NOT NULL DEFAULT '0',
+  deleted tinyint(4) NOT NULL DEFAULT '0',
   form tinytext NOT NULL,
   errormsg text NOT NULL,
-  pageid tinyint(5) NOT NULL default '0',
+  pageid tinyint(5) NOT NULL DEFAULT '0',
   formvalues text NOT NULL,
   ip tinytext NOT NULL,
   useragent tinytext NOT NULL,
-  PRIMARY KEY  (uid),
+  PRIMARY KEY (uid),
   KEY parent (pid)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `tx_wtspamshield_log`
@@ -2428,11 +2247,14 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS tx_wtspamshield_veguestbooktemp;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE tx_wtspamshield_veguestbooktemp (
-  uid int(11) NOT NULL auto_increment,
-  tstamp int(11) NOT NULL default '0',
-  PRIMARY KEY  (uid)
+  uid int(11) NOT NULL AUTO_INCREMENT,
+  tstamp int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (uid)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `tx_wtspamshield_veguestbooktemp`
@@ -2452,4 +2274,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2010-12-01 21:03:00
+-- Dump completed on 2011-07-31 19:22:52
