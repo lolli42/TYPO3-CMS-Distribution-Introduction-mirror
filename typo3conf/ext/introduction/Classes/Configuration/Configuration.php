@@ -199,9 +199,9 @@ class tx_introduction_configuration {
 	 * @return int The DPI to use.
 	 */
 	private function determineDPI() {
-		if ($TYPO3_CONF_VARS['GFX']['TTFdpi']) {
+		if ($GLOBALS['TYPO3_CONF_VARS']['GFX']['TTFdpi']) {
 			// If already set, no need to check it again
-			return $TYPO3_CONF_VARS['GFX']['TTFdpi'];
+			return $GLOBALS['TYPO3_CONF_VARS']['GFX']['TTFdpi'];
 		}
 		if (function_exists('imagettftext')) {
 			$imageResource = @imagecreate (300, 50);
