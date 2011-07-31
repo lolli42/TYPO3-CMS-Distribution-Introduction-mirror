@@ -27,11 +27,9 @@
 class tx_introduction_import_database {
 
 	/**
-	 * The Installer object
-	 *
-	 * @var tx_install
+	 * @var t3lib_install_Sql Instance of SQL handler
 	 */
-	private $installer;
+	protected $sqlHandler;
 
 	/**
 	 * Location of the sql file
@@ -41,13 +39,10 @@ class tx_introduction_import_database {
 	private $sqlLocation = 'Resources/Private/Database/introduction.sql';
 
 	/**
-	 * Sets the InstallerObject.
-	 *
-	 * @param tx_install $InstallerObject
-	 * @return void
+	 * Initializes this object.
 	 */
-	public function setInstallerObject($installer) {
-		$this->installer = $installer;
+	public function __construct() {
+		$this->sqlHandler = t3lib_div::makeInstance('t3lib_install_Sql');
 	}
 
 	/**
@@ -110,25 +105,24 @@ class tx_introduction_import_database {
 		}
 		$fileContents = t3lib_div::getUrl(t3lib_extMgm::extPath('introduction', $this->sqlLocation));
 
-		$statements = $this->installer->getStatementArray($fileContents,1);
+		$statements = $this->sqlHandler->getStatementArray($fileContents, TRUE);
 
-		list($dummy, $insertCount) = $this->installer->getCreateTables($statements,1);
+		list($_, $insertCount) = $this->sqlHandler->getCreateTables($statements, TRUE);
 
-		$fieldDefinitionsFile = $this->installer->getFieldDefinitions_fileContent($fileContents);
-		$fieldDefinitionsDatabase = $this->installer->getFieldDefinitions_database();
-		$difference = $this->installer->getDatabaseExtra($fieldDefinitionsFile, $fieldDefinitionsDatabase);
-		$updateStatements = $this->installer->getUpdateSuggestions($difference);
+		$fieldDefinitionsFile = $this->sqlHandler->getFieldDefinitions_fileContent($fileContents);
+		$fieldDefinitionsDatabase = $this->sqlHandler->getFieldDefinitions_database();
+		$difference = $this->sqlHandler->getDatabaseExtra($fieldDefinitionsFile, $fieldDefinitionsDatabase);
+		$updateStatements = $this->sqlHandler->getUpdateSuggestions($difference);
 
-		$this->installer->performUpdateQueries($updateStatements['add'] , $updateStatements['add']);
-		$this->installer->performUpdateQueries($updateStatements['change'] , $updateStatements['change']);
-		$this->installer->performUpdateQueries($updateStatements['create_table'] , $updateStatements['create_table']);
+		$this->sqlHandler->performUpdateQueries($updateStatements['add'] , $updateStatements['add']);
+		$this->sqlHandler->performUpdateQueries($updateStatements['change'] , $updateStatements['change']);
+		$this->sqlHandler->performUpdateQueries($updateStatements['create_table'] , $updateStatements['create_table']);
 
 		foreach($insertCount as $table => $count) {
-			$insertStatements = $this->installer->getTableInsertStatements($statements, $table);
+			$insertStatements = $this->sqlHandler->getTableInsertStatements($statements, $table);
 			foreach($insertStatements as $insertQuery) {
 				$insertQuery = rtrim($insertQuery, ';');
 				$GLOBALS['TYPO3_DB']->admin_query($insertQuery);
-
 			}
 		}
 	}

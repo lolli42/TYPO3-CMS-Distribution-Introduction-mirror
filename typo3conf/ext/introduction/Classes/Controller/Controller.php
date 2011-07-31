@@ -86,7 +86,6 @@ class tx_introduction_controller {
 		$this->filestructureImporter = t3lib_div::makeInstance('tx_introduction_import_filestructure');
 		$this->installer = $callerObject;
 		$this->configuration->setInstallerObject($callerObject);
-		$this->databaseImporter->setInstallerObject($this->installer);
 		$message = '';
 
 		switch($step) {
