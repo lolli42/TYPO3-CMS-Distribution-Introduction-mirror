@@ -146,6 +146,12 @@ class tx_introduction_import_database {
 		}
 	}
 
+	/**
+	 * Updates the hostname and path.
+	 *
+	 * @param string $hostname
+	 * @return void
+	 */
 	public function updateBaseHref($hostname) {
 		$replacePattern = '###HOSTNAME_AND_PATH###';
 		$templateRecords = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('uid, constants, config', 'sys_template', 'constants LIKE \'%'.$replacePattern.'%\' OR config LIKE \'%'.$replacePattern.'%\'');

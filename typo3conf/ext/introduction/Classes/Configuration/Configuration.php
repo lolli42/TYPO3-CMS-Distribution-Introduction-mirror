@@ -155,6 +155,7 @@ class tx_introduction_configuration {
 	 * @return void
 	 */
 	public function modifyNegateMask() {
+		/** @var $imageProcessor t3lib_stdGraphic */
 		$imageProcessor = t3lib_div::makeInstance('t3lib_stdGraphic');
 		$imageProcessor->init();
 		$imageProcessor->tempPath = $this->InstallerObject->typo3temp_path;

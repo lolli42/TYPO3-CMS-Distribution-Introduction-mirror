@@ -52,6 +52,16 @@ class tx_introduction_controller {
 	private $configuration;
 
 	/**
+	 * @var tx_introduction_import_database
+	 */
+	private $databaseImporter;
+
+	/**
+	 * @var tx_introduction_import_filestructure
+	 */
+	private $filestructureImporter;
+
+	/**
 	 * The page to request in order to test if realURL is working correctly and thus can be enabled
 	 *
 	 * @var string
@@ -177,6 +187,7 @@ class tx_introduction_controller {
 		$availableSubpackages = $this->getAvailableSubpackages();
 
 		foreach($availableSubpackages as $subpackage) {
+			/** @var $subpackageView tx_introduction_view_subpackage */
 			$subpackageView = t3lib_div::makeInstance('tx_introduction_view_subpackage');
 			$subpackageView->setSubpackage($subpackage);
 			$subpackagesOutput .= $subpackageView->render();
@@ -303,6 +314,7 @@ class tx_introduction_controller {
 	 * @return void
 	 */
 	private function importNeededExtensions($subpackageToInstall) {
+		/** @var $extensionImporter tx_introduction_import_extension */
 		$extensionImporter = t3lib_div::makeInstance('tx_introduction_import_extension');
 		$extensionImporter->setSubpackage($subpackageToInstall);
 
@@ -356,10 +368,13 @@ class tx_introduction_controller {
 		if (is_null($GLOBALS['TYPO3_LOADED_EXT']['_CACHEFILE'])) {
 			$GLOBALS['TYPO3_LOADED_EXT']['_CACHEFILE'] = t3lib_extMgm::getCacheFilePrefix();
 		}
+
+		/** @var $simulatedBackendUser t3lib_beUserAuth */
 		$simulatedBackendUser = t3lib_div::makeInstance('t3lib_beUserAuth');
 		$simulatedBackendUser->start();
 		$simulatedBackendUser->setBeUserByName('admin');
 
+		/** @var $tce t3lib_TCEmain */
 		$tce = t3lib_div::makeInstance('t3lib_TCEmain');
 		$tce->start('', '', $simulatedBackendUser);
 		$tce->clear_cacheCmd('all');
