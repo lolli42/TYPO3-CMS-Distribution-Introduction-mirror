@@ -38,6 +38,7 @@ $GLOBALS['subpackageConfiguration'] = array(
 		'version',
 		'workspaces',
 		'scheduler',
+		'form',
 		'linkvalidator',
 		'automaketemplate',
 		'realurl',
