@@ -119,7 +119,7 @@ table.csc-uploads tr td.csc-uploads-fileSize { white-space: nowrap; text-align: 
 /* Email, Login and Search forms generally: */
 fieldset { border: 0; }
 
-/* Email form, specifically */
+/* Email form (default TYPO3), specifically */
 form .csc-mailform-field { margin: 0 0 0.5em; 0; clear:both; }
 form .csc-mailform-field label { float: left; text-align: right; margin-right: 5%; width:30%; }
 form .csc-mailform-field input, .csc-mailform-field textarea, .csc-mailform-field select, .csc-mailform-radio fieldset { width:50%; }
@@ -131,6 +131,19 @@ form .csc-mailform-radio fieldset label { text-align: left; float: none; width: 
 form .csc-mailform-field input.mf-check, form .csc-mailform-field input.csc-mailform-radio { width: auto; }
 form .csc-mailform-field input.csc-mailform-radio { margin-right: 0.5em; }
 form .csc-mailform-field .csc-mailform-radio label { float: none; margin-right: 0; } 
+
+/* Email form (using system extension form), specifically */
+div.csc-mailform form > ol > li { margin: 0; padding: 0; }
+div.csc-mailform fieldset { border: 1px solid #CFCECF; background: #F2F2F2; }
+div.csc-mailform fieldset legend { font-size: 130%; color: #353535; }
+div.csc-mailform fieldset li { margin: 0 0 0.5em; 0; clear:both; }
+div.csc-mailform fieldset label { float: left; text-align: right; margin-right: 5% !important; width:30% !important; }
+div.csc-mailform fieldset label > * { float: right; }
+div.csc-mailform fieldset input, div.csc-mailform form fieldset textarea, div.csc-mailform form fieldset select { width: 50%; }
+div.csc-mailform fieldset input[type="submit"] { width: auto; margin-left: 35% !important;/* see label width + margin*/ }
+
+div.csc-mailform form.csc-form-confirmation fieldset { border: none; background: none; }
+div.csc-mailform form.csc-form-confirmation fieldset input[type="submit"] { width: auto; }
 
 /* fe login*/
 
