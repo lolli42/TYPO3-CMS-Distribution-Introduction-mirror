@@ -103,7 +103,15 @@ class tx_introduction_import_database {
 		if (!file_exists(t3lib_extMgm::extPath('introduction', $this->sqlLocation))) {
 			return;
 		}
-		$fileContents = t3lib_div::getUrl(t3lib_extMgm::extPath('introduction', $this->sqlLocation));
+
+		$definitions = array(
+			t3lib_div::getUrl(t3lib_extMgm::extPath('introduction', $this->sqlLocation)),
+			t3lib_cache::getDatabaseTableDefinitions(),
+		);
+		$fileContents = implode(
+			str_repeat(chr(10), 4),
+			$definitions
+		);
 
 		$statements = $this->sqlHandler->getStatementArray($fileContents, TRUE);
 
