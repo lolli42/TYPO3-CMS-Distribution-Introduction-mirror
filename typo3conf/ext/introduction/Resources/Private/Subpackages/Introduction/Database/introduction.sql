@@ -1194,8 +1194,7 @@ CREATE TABLE sys_history (
   PRIMARY KEY (uid),
   KEY recordident_1 (tablename,recuid),
   KEY recordident_2 (tablename,tstamp),
-  KEY sys_log_uid (sys_log_uid),
-  KEY recordident (tablename,recuid,tstamp)
+  KEY sys_log_uid (sys_log_uid)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1438,76 +1437,6 @@ INSERT INTO sys_refindex VALUES ('87f8c2a479ed5d0dcb02b52757cf985e','be_users',2
 UNLOCK TABLES;
 
 --
--- Table structure for table `sys_refindex_rel`
---
-
-DROP TABLE IF EXISTS sys_refindex_rel;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE sys_refindex_rel (
-  rid int(11) NOT NULL DEFAULT '0',
-  wid int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (rid,wid)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `sys_refindex_rel`
---
-
-LOCK TABLES sys_refindex_rel WRITE;
-/*!40000 ALTER TABLE sys_refindex_rel DISABLE KEYS */;
-/*!40000 ALTER TABLE sys_refindex_rel ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `sys_refindex_res`
---
-
-DROP TABLE IF EXISTS sys_refindex_res;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE sys_refindex_res (
-  rid int(11) NOT NULL DEFAULT '0',
-  tablename varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  recuid int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (rid)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `sys_refindex_res`
---
-
-LOCK TABLES sys_refindex_res WRITE;
-/*!40000 ALTER TABLE sys_refindex_res DISABLE KEYS */;
-/*!40000 ALTER TABLE sys_refindex_res ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `sys_refindex_words`
---
-
-DROP TABLE IF EXISTS sys_refindex_words;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE sys_refindex_words (
-  wid int(11) NOT NULL DEFAULT '0',
-  baseword varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (wid)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `sys_refindex_words`
---
-
-LOCK TABLES sys_refindex_words WRITE;
-/*!40000 ALTER TABLE sys_refindex_words DISABLE KEYS */;
-/*!40000 ALTER TABLE sys_refindex_words ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `sys_registry`
 --
 
@@ -1649,7 +1578,6 @@ CREATE TABLE sys_workspace (
   publish_access tinyint(3) NOT NULL DEFAULT '0',
   custom_stages int(11) NOT NULL DEFAULT '0',
   stagechg_notification tinyint(3) NOT NULL DEFAULT '0',
-  review_stage_edit tinyint(3) NOT NULL DEFAULT '0',
   PRIMARY KEY (uid),
   KEY parent (pid)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -1661,7 +1589,7 @@ CREATE TABLE sys_workspace (
 
 LOCK TABLES sys_workspace WRITE;
 /*!40000 ALTER TABLE sys_workspace DISABLE KEYS */;
-INSERT INTO sys_workspace VALUES (1,0,1290048921,0,'Demo Workspace','','be_groups_2','be_groups_2',NULL,'1','',0,0,0,0,0,0,0,0,0,0,1);
+INSERT INTO sys_workspace VALUES (1,0,1290048921,0,'Demo Workspace','','be_groups_2','be_groups_2',NULL,'1','',0,0,0,0,0,0,0,0,0,0);
 /*!40000 ALTER TABLE sys_workspace ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2576,4 +2504,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2011-10-24 17:22:53
+-- Dump completed on 2011-10-24 19:56:56
