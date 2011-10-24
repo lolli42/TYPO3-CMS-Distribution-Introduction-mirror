@@ -1,4 +1,9 @@
+This extension is part of the Introduction Package and handles the
+automatic install process by hooking into the 1-2-3 installer.
 
-Feel free to add some documentation or simply add a link to the online manual.
+Find the latest TYPO3 packages here
+	http://typo3.org/download/packages/
 
-http://forge.typo3.org/repositories/changes/extension-demo/trunk/introduction/doc/manual.sxw
+This package is maintained at these resources
+	http://git.typo3.org/TYPO3v4/Distributions/Introduction.git
+	http://forge.typo3.org/projects/extension-introduction
