@@ -1,4 +1,8 @@
 <?php
+if (!defined ('TYPO3_MODE')) {
+	die ('Access denied.');
+}
+
 $TYPO3_CONF_VARS['SYS']['sitename'] = 'New TYPO3 site';
 
 	// Default password is "joh316" :
