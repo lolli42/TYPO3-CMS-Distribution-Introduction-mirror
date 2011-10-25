@@ -242,6 +242,16 @@ class tx_introduction_controller {
 			$this->view->assign('PASSWORD', t3lib_div::_GP('password'));
 		}
 
+		if ($this->canModifyInputTypes()) {
+			$this->view->assign('PASSWORD_TYPE' , 'password');
+			$this->view->assign('PASSWORD_SWITCH_BEGIN', '');
+			$this->view->assign('PASSWORD_SWITCH_END', '');
+		} else {
+			$this->view->assign('PASSWORD_TYPE' , 'text');
+			$this->view->assign('PASSWORD_SWITCH_BEGIN', '<!--');
+			$this->view->assign('PASSWORD_SWITCH_END', '-->');
+		}
+
 		$this->view->assign('CHECK_REAL_URL_COMPLIANCE_URL' , '');
 		if ($this->configuration->isModRewriteEnabled()) {
 			// Try to copy _.htaccess to .htaccess
@@ -379,6 +389,14 @@ class tx_introduction_controller {
 		$tce = t3lib_div::makeInstance('t3lib_TCEmain');
 		$tce->start('', '', $simulatedBackendUser);
 		$tce->clear_cacheCmd('all');
+	}
+
+	/**
+	 * @return boolean
+	 */
+	protected function canModifyInputTypes() {
+		$clientInfo = t3lib_div::clientInfo();
+		return ($clientInfo['BROWSER'] !== 'msie' || $clientInfo['VERSION'] >= 9);
 	}
 }
 ?>
