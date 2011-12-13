@@ -95,6 +95,23 @@ class tx_introduction_import_filestructure {
 	}
 
 	/**
+	 * Updates the hostname and path.
+	 *
+	 * @param string $destinationDirectory The directory in which the files have been copied
+	 * @param string $hostname
+	 * @return void
+	 */
+	public function updateBaseHref($destinationDirectory, $hostname) {
+		foreach (glob($destinationDirectory . '/typo3conf/settings/*') as $filename) {
+			$content = file_get_contents($filename);
+			if (strpos($content, '###HOSTNAME_AND_PATH###')) {
+				$content = str_replace('###HOSTNAME_AND_PATH###', $hostname, $content);
+				file_put_contents($filename, $content);
+			}
+		}
+	}
+
+	/**
 	 * Fixes permissions of the copied files
 	 *
 	 * @param string $sourceDirectory The directory from which the directorystructure can be fetched
