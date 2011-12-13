@@ -171,6 +171,7 @@ class tx_introduction_controller {
 
 		$this->filestructureImporter->setSubpackage($subpackageToInstall);
 		$this->filestructureImporter->importFiles();
+		$this->filestructureImporter->updateBaseHref(PATH_site, $baseHref);
 	}
 
 	/**
