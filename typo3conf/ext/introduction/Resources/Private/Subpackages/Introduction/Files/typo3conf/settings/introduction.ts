@@ -7,4 +7,7 @@ config {
   
   # cat=config; type=string; label=Domain name for Base URL: (excluding slashes and protocol like http://)
   domain = ###HOSTNAME_AND_PATH###
+
+  # cat=config; type=string; label=Absolute URI prefix: (use "/" if running on top level; use empty value to use relative URI)
+  absRefPrefix =
 }
