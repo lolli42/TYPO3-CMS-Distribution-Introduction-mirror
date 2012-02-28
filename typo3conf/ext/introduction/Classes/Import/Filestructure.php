@@ -98,14 +98,23 @@ class tx_introduction_import_filestructure {
 	 * Updates the hostname and path.
 	 *
 	 * @param string $destinationDirectory The directory in which the files have been copied
-	 * @param string $hostname
+	 * @param string $hostname The (current) hostname to be set
+	 * @param string $path The (current) path to be used as prefix
 	 * @return void
 	 */
-	public function updateBaseHref($destinationDirectory, $hostname) {
+	public function updateBaseHref($destinationDirectory, $hostname, $path) {
 		foreach (glob($destinationDirectory . '/typo3conf/settings/*') as $filename) {
-			$content = file_get_contents($filename);
-			if (strpos($content, '###HOSTNAME_AND_PATH###')) {
-				$content = str_replace('###HOSTNAME_AND_PATH###', $hostname, $content);
+			$originalContent = $content = file_get_contents($filename);
+
+			if (strpos($content, '###HOSTNAME###')) {
+				$content = str_replace('###HOSTNAME###', $hostname, $content);
+			}
+
+			if (strpos($content, '###PATH###')) {
+				$content = str_replace('###PATH###', $path, $content);
+			}
+
+			if ($originalContent !== $content) {
 				file_put_contents($filename, $content);
 			}
 		}

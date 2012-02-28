@@ -163,14 +163,21 @@ class tx_introduction_controller {
 		$this->databaseImporter->setSubpackage($subpackageToInstall);
 		$this->databaseImporter->changeCharacterSet();
 		$this->databaseImporter->importDatabase();
-		$baseHref = t3lib_div::getIndpEnv('HTTP_HOST').t3lib_div::getIndpEnv('TYPO3_SITE_PATH');
+
+		$baseHref = t3lib_div::getIndpEnv('HTTP_HOST') . t3lib_div::getIndpEnv('TYPO3_SITE_PATH');
+		$absrefPrefix = t3lib_div::getIndpEnv('TYPO3_SITE_PATH');
+
 		// Remove last slash
-		$baseHref = substr($baseHref, 0, -1);
-		$this->databaseImporter->updateBaseHref($baseHref);
+		$baseHref = rtrim($baseHref, '/');
+
+		// Ensure last slash
+		$absrefPrefix = rtrim($absrefPrefix, '/') . '/';
 
 		$this->filestructureImporter->setSubpackage($subpackageToInstall);
 		$this->filestructureImporter->importFiles();
-		$this->filestructureImporter->updateBaseHref(PATH_site, $baseHref);
+
+		// We just set the absrefPrefix value and drop the baseUrl setting:
+		$this->filestructureImporter->updateBaseHref(PATH_site, '', $absrefPrefix);
 	}
 
 	/**

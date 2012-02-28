@@ -159,6 +159,7 @@ class tx_introduction_import_database {
 	 *
 	 * @param string $hostname
 	 * @return void
+	 * @deprecated since 4.7 (see file typo3conf/settings/introduction.ts instead)
 	 */
 	public function updateBaseHref($hostname) {
 		$replacePattern = '###HOSTNAME_AND_PATH###';
