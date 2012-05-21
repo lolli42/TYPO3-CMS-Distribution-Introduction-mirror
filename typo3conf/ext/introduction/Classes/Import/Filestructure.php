@@ -164,9 +164,11 @@ RewriteRule .* index.php [L]
 	 * @return boolean whether or not successfully copied
 	 */
 	public function copyHtAccessFile() {
-		$success = false;
-		if (!file_exists(PATH_site.'.htaccess')) {
-			$success = @copy(PATH_site.'_.htaccess', PATH_site.'.htaccess');
+		$success = FALSE;
+		if (!file_exists(PATH_site . '.htaccess')) {
+			$success = @copy(PATH_site . '_.htaccess', PATH_site . '.htaccess');
+		} else {
+			$success = (filesize(PATH_site.'.htaccess') > 0);
 		}
 		return $success;
 	}
