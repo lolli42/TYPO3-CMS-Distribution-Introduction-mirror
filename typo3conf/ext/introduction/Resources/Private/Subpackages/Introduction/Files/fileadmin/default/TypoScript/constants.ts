@@ -1,8 +1,3 @@
-config {
-	# cat=config/enable; type=boolean; label=Enable RealURL (speaking URL path segments)
-	tx_realurl_enable = 0
-}
-
 filepaths {
 	# cat=filepaths; type=string; label=HTML Templates: Location of the (X)HTML templates relative to site
 	templates = fileadmin/default/templates/
