@@ -303,7 +303,7 @@ class tx_introduction_controller {
 		$this->clearCache();
 
 		// Enable or disable realURL
-		$this->databaseImporter->updateRealURLConfiguration(t3lib_div::_GP('useRealURL'));
+		$this->filestructureImporter->updateRealURLConfiguration(PATH_site, t3lib_div::_GP('useRealURL'));
 
 		$newPassword = t3lib_div::_GP('password');
 		if (strlen(trim($newPassword)) < 6) {

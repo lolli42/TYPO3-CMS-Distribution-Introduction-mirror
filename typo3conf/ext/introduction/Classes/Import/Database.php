@@ -140,6 +140,7 @@ class tx_introduction_import_database {
 	 *
 	 * @param boolean $enable Whether realURL should be enabled
 	 * @return void
+	 * @deprecated Settings is stored in file system, see tx_introduction_import_filestructure instead
 	 */
 	public function updateRealURLConfiguration($enable) {
 		$replacePattern = '###ENABLE_REALURL###';

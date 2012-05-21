@@ -121,6 +121,27 @@ class tx_introduction_import_filestructure {
 	}
 
 	/**
+	 * Enables or disables the realURL extension for the introduction site
+	 *
+	 * @param string $destinationDirectory The directory in which the files have been copied
+	 * @param boolean $enable Whether realURL should be enabled
+	 * @return void
+	 */
+	public function updateRealURLConfiguration($destinationDirectory, $enable) {
+		foreach (glob($destinationDirectory . '/typo3conf/settings/*') as $filename) {
+			$originalContent = $content = file_get_contents($filename);
+
+			if (strpos($content, '###ENABLE_REALURL###')) {
+				$content = str_replace('###ENABLE_REALURL###', ($enable ? 1 : 0), $content);
+			}
+
+			if ($originalContent !== $content) {
+				file_put_contents($filename, $content);
+			}
+		}
+	}
+
+	/**
 	 * Fixes permissions of the copied files
 	 *
 	 * @param string $sourceDirectory The directory from which the directorystructure can be fetched
