@@ -49,13 +49,6 @@ class tx_introduction_configuration {
 	private $packageConfigurationPath = 'Configuration/PackageConfiguration.php';
 
 	/**
-	 * String to search for in the configuration file.
-	 *
-	 * @var string
-	 */
-	private $packageConfigurationStartingPoint = '## INSTALL SCRIPT POINT - all lines after this point will be included by the install script. Do not remove!';
-
-	/**
 	 * The step to perform after basic configuration is done
 	 *
 	 * @var string
@@ -110,18 +103,16 @@ class tx_introduction_configuration {
 						break;
 					default:
 				}
-				$this->InstallerObject->INSTALL['localconf.php'][$key] = $this->calculatedConfiguration[$key][0];
+				$this->InstallerObject->INSTALL['LocalConfiguration'][$key] = $this->calculatedConfiguration[$key][0];
 			}
 		}
 
 		if ($this->InstallerObject->isGD()) {
-			$this->InstallerObject->INSTALL['localconf.php']['TTFdpi'] = $this->determineDPI();
+			$this->InstallerObject->INSTALL['LocalConfiguration']['TTFdpi'] = $this->determineDPI();
 			$gdInfo = gd_info();
 			if (intval($gdInfo['GD Version']) >= 2) {
-				// 2.0 or higher
-				$localConfigurationLines = $this->InstallerObject->writeToLocalconf_control();
-				$this->InstallerObject->setValueInLocalconfFile($localConfigurationLines, '$TYPO3_CONF_VARS[\'GFX\'][\'gdlib_2\']', 1);
-				$this->InstallerObject->writeToLocalconf_control($localConfigurationLines, false);
+					// 2.0 or higher
+				t3lib_Configuration::setLocalConfigurationValueByPath('GFX/gdlib_2', 1);
 			}
 		}
 
@@ -138,12 +129,10 @@ class tx_introduction_configuration {
 	 * @return void
 	 */
 	public function modifyPasswords($newPassword) {
-		// Change password of the installtool
-		$localConfigurationLines = $this->InstallerObject->writeToLocalconf_control();
-		$this->InstallerObject->setValueInLocalconfFile($localConfigurationLines, '$TYPO3_CONF_VARS[\'BE\'][\'installToolPassword\']', md5($newPassword));
-		$this->InstallerObject->writeToLocalconf_control($localConfigurationLines, false);
+			// Change password of the installtool
+		t3lib_Configuration::setLocalConfigurationValueByPath('BE/installToolPassword', md5($newPassword));
 
-		// Change password of the be_users
+			// Change password of the be_users
 		$GLOBALS['TYPO3_DB']->exec_updateQuery('be_users', '', array('password' => md5($newPassword)));
 	}
 
@@ -180,15 +169,13 @@ class tx_introduction_configuration {
 
 		// if $color1 equals $color2 the mask is applied to the top. We should change the negate mask
 		if ($color1 == $color2) {
-			$localConfigurationLines = $this->InstallerObject->writeToLocalconf_control();
 			if ($GLOBALS['TYPO3_CONF_VARS']['GFX']['im_imvMaskState'] == 1) {
-				$this->InstallerObject->setValueInLocalconfFile($localConfigurationLines, '$TYPO3_CONF_VARS[\'GFX\'][\'im_imvMaskState\']', 0);
-				$this->InstallerObject->setValueInLocalconfFile($localConfigurationLines, '$TYPO3_CONF_VARS[\'GFX\'][\'im_negate_mask\']', 1);
+				t3lib_Configuration::setLocalConfigurationValueByPath('GFX/im_imvMaskState', 0);
+				t3lib_Configuration::setLocalConfigurationValueByPath('GFX/im_negate_mask', 1);
 			} else {
-				$this->InstallerObject->setValueInLocalconfFile($localConfigurationLines, '$TYPO3_CONF_VARS[\'GFX\'][\'im_imvMaskState\']', 1);
-				$this->InstallerObject->setValueInLocalconfFile($localConfigurationLines, '$TYPO3_CONF_VARS[\'GFX\'][\'im_negate_mask\']', 0);
+				t3lib_Configuration::setLocalConfigurationValueByPath('GFX/im_imvMaskState', 1);
+				t3lib_Configuration::setLocalConfigurationValueByPath('GFX/im_negate_mask', 0);
 			}
-			$this->InstallerObject->writeToLocalconf_control($localConfigurationLines, false);
 		}
 	}
 
@@ -251,28 +238,7 @@ class tx_introduction_configuration {
 	 * @return void
 	 */
 	private function applyConfigurationFromFile($file) {
-		$localConfigurationLines = $this->InstallerObject->writeToLocalconf_control();
-
-		$packageConfiguration = explode(chr(10),str_replace(chr(13),'',trim(t3lib_div::getUrl($file))));
-		// Remove the PHP ending tag
-		array_pop($packageConfiguration);
-		// Strip off everything till our starting point
-		reset($packageConfiguration);
-		while (true) {
-			$currentLine = array_shift($packageConfiguration);
-			if (trim($currentLine) == $this->packageConfigurationStartingPoint) {
-				break;
-			}
-			if (count($packageConfiguration) == 0) {
-				return;
-			}
-		}
-
-		foreach($packageConfiguration as $configurationLine) {
-			array_push($localConfigurationLines, $configurationLine);
-		}
-		$this->InstallerObject->setLocalconf = true;
-		$this->InstallerObject->writeToLocalconf_control($localConfigurationLines, false);
+		t3lib_Configuration::setLocalConfigurationValuesByPathValuePairs(require($file));
 	}
 
 	/**
