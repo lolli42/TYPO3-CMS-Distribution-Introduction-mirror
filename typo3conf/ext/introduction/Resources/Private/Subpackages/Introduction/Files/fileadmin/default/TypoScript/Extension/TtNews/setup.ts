@@ -1,3 +1,11 @@
+/*
+The TT_NEWS template
+
+The name says it all, this is a news plugin.
+
+For a full description of the configuration options, check the manual of this extension. Extension manuals are normally included in the extensions as Open Office documents, and can be accessed directly from the module Ext Manager in the TYPO3 backend (select the option 'loaded extensions or install extension'.
+*/
+
 plugin.tt_news {
 	templateFile = {$filepaths.extensiontemplates}tt_news/tx_ttnews_pi1_template.html
 	dontUseBackPid = 1

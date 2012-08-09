@@ -1,3 +1,7 @@
+/*
+TypoScript template which compiles the contents for the right column on the pages
+*/
+
 lib.contentright = COA
 
 # The configuration below this condition will only be included on the page loginpageID, or on its subpages

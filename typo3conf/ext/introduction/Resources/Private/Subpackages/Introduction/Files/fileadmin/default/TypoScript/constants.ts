@@ -131,4 +131,6 @@ contentpage {
 # Set the language of meta tag with DC.language to Danish, when in Danish
 [globalVar = GP:L = 1]
 plugin.meta.language = da
-[global]
+[end]
+
+<INCLUDE_TYPOSCRIPT: source="FILE:fileadmin/default/TypoScript/System/CssStyledContent/constants.ts">
