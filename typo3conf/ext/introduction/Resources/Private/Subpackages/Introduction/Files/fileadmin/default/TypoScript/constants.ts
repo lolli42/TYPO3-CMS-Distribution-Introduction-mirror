@@ -1,3 +1,12 @@
+# Add the following uncommented line, to the root sys_template Constants to include this file
+# <INCLUDE_TYPOSCRIPT: source="FILE:fileadmin/default/TypoScript/constants.ts">
+
+
+<INCLUDE_TYPOSCRIPT: source="FILE:fileadmin/default/TypoScript/System/CssStyledContent/constants.ts">
+<INCLUDE_TYPOSCRIPT: source="FILE:fileadmin/default/TypoScript/Extension/TtNews/constants.ts">
+<INCLUDE_TYPOSCRIPT: source="FILE:fileadmin/default/TypoScript/Extension/JqueryColorbox/constants.ts">
+<INCLUDE_TYPOSCRIPT: source="FILE:fileadmin/default/TypoScript/Extension/WtSpamshield/constants.ts">
+
 filepaths {
 	# cat=filepaths; type=string; label=HTML Templates: Location of the (X)HTML templates relative to site
 	templates = fileadmin/default/templates/
@@ -131,4 +140,6 @@ contentpage {
 # Set the language of meta tag with DC.language to Danish, when in Danish
 [globalVar = GP:L = 1]
 plugin.meta.language = da
-[global]
+[end]
+
+<INCLUDE_TYPOSCRIPT: source="FILE:typo3conf/settings/introduction.ts">

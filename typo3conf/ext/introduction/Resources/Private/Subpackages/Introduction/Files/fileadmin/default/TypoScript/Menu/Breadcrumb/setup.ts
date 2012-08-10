@@ -1,3 +1,9 @@
+/*
+The BREADCRUMB template
+
+Typoscript for producing a breadcrumb.
+*/
+
 # For the breadcrumb cObject we use a HMENU of the type 'rootline'
 menu.breadcrumb = COA
 menu.breadcrumb {
