@@ -1,3 +1,9 @@
+/*
+The SITE TITLE template
+
+Building block for the site title
+*/
+
 lib.sitetitle = TEXT
 lib.sitetitle {
 	# Copy the value from the top level object sitetitle
