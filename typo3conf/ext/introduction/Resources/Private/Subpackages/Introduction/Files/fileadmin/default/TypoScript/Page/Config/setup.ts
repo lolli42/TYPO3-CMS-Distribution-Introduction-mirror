@@ -1,3 +1,9 @@
+/*
+The PAGE CONFIG template.
+
+Only page.config settings are done here, like character sets, url and language.
+*/
+
 config {
 	// Administrator settings
 	admPanel = {$config.adminPanel}

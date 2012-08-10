@@ -1,3 +1,9 @@
+/*
+The AUTOMAKETEMPLATE template
+
+The automaketemplate parser reads the HTML template files, extracts the markers for content, and replaces them with the content assigned to these markers.
+*/
+
 # Configuring the Auto-Parser for main template:
 
 plugin.tx_automaketemplate_pi1 {
