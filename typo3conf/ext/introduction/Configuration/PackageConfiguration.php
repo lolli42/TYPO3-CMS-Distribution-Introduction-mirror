@@ -35,5 +35,6 @@ return array(
 	'BE/fileCreateMask' => '0666',
 	'BE/folderCreateMask' => '2777',
 	'GFX/jpg_quality' => '80',
+	'BE/explicitADmode' => 'explicitAllow',
 );
 ?>
