@@ -1,3 +1,9 @@
+/*
+The CONTENT template
+
+This template will fill the part 'content' in the HTML template. Normally we just get the content with styles.content.get, but we need the wrapper around it for indexed search, so it knows what to index.
+*/
+
 # Insert the news plugin in single-view mode instead of normal page content if a news article is requested
 [globalVar = GP:tx_ttnews|tt_news > 0] && [globalVar = TSFE:id = {$plugin.tt_news.singlePid}]
 lib.content < plugin.tt_news

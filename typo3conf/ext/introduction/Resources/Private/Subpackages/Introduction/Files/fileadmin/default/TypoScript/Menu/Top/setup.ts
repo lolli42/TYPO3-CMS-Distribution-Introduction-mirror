@@ -1,3 +1,9 @@
+/*
+The MAIN MENU template.
+
+Configuration for the top right menu.
+*/
+
 # Copy basic menu object from TS template 'menu' so we don't have to repeat all that
 menu.top < menu
 menu.top {

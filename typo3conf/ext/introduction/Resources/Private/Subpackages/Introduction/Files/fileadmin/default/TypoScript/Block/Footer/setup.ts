@@ -1,3 +1,7 @@
+/*
+lib.footer fetches the content record in 'Generated content > Footer content' and displays that on all pages.
+*/
+
 # The method used here to fetch a record from a page or folder is slightly different from the one used
 # to fetch the loginbox in lib.contentleft
 # The method here doesn't refer to a specific record but takes the first record from the folder. This

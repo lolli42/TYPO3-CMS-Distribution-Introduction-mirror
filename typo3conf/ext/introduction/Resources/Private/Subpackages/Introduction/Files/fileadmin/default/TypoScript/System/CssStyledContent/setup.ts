@@ -1,3 +1,6 @@
+# <INCLUDE_TYPOSCRIPT: source="FILE:EXT:css_styled_content/static/setup.txt">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:form/Configuration/TypoScript/setup.txt">
+
 # remove class="bodytext" from paragraphs
 lib.parseFunc_RTE {
 	nonTypoTagStdWrap.encapsLines {

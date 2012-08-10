@@ -1,3 +1,9 @@
+/*
+The FIRST LEVEL MENU template.
+
+Configuration for the menu of the first level of pages. It inherits the MAIN MENU template and has some small modifications on top of it, in this case the setting of the entryLevel.
+*/
+
 # Start with copying our default menu configuration so we don't have to repeat our selves (except in the explanation, didn't I already mention this?) ;-)
 menu.firstlevel < menu
 menu.firstlevel {
