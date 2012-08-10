@@ -1,3 +1,11 @@
+/*
+The MENU template.
+
+Configuration for default menu, which can be used with small modifications for
+other menu's, without writing the whole menu configuration all over again for
+all kinds of menu's.
+*/
+
 menu = HMENU
 menu {
 	1 = TMENU
