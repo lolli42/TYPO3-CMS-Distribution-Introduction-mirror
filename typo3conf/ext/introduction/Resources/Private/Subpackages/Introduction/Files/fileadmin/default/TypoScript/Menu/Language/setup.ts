@@ -1,3 +1,10 @@
+/*
+The LANGUAGE menu
+
+Generates a list of available languages on a page. If the page has no language
+overlay, there is no link available to switch to the language.
+*/
+
 menu.language = HMENU
 
 # We use a condition to show the language menu only on the page with the id from constant contentpage.examplelanguagesID

@@ -1,3 +1,9 @@
+/*
+The SEARCHBOX template
+
+A building block for a searchform
+*/
+
 # Create the searchbox in TypoScript, so we can easily include in on every page
 lib.searchbox = COA
 

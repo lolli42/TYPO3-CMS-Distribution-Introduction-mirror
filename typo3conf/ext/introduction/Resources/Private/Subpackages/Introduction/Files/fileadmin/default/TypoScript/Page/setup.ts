@@ -1,3 +1,9 @@
+/*
+The PAGE OBJECT template. 
+
+Tells the PAGE object to use the parsed HTML template from the automaketemplate extension.
+*/
+
 # Make the PAGE object
 page = PAGE
 page {

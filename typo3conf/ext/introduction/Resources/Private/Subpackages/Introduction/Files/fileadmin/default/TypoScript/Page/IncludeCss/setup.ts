@@ -1,3 +1,12 @@
+/*
+The CSS template.
+
+Includes all necessarry Cascading Style Sheets by referring to the file on the
+server and configuring the media type.
+
+Special condition for including extra CSS file for Internet Explorer.
+*/
+
 page.includeCSS {
 	10 = {$filepaths.css}stylesheet.css
 	10 {
