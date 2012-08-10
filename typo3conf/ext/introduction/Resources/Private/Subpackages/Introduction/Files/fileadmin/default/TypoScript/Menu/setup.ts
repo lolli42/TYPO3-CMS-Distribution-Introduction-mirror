@@ -7,9 +7,6 @@ menu {
 		# Always unfold all sub-levels of the menu
 		expAll = 1
 
-		# Remove the (old) default behaviour which adds onfocus="blurLink(this);" to all links
-		noBlur = 1
-
 		# Define the normal state (not active, not selected) of menu items
 		# Using NO=1 to activate normal state is not necessary, but useful when copying
 		NO = 1

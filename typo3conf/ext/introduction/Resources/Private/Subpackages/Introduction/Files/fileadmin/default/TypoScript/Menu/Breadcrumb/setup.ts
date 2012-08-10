@@ -15,9 +15,6 @@ menu.breadcrumb {
 		# This menu has only 1 level since this is a rootline-menu
 		1 = TMENU
 		1 {
-			# Remove the ancient onfocus="blurLink(this);" from link tags
-			noBlur = 1
-
 			# Append spaces and >> to normal linked breadcrumb items
 			NO.allWrap = |&#32;&raquo;&#32;
 			NO.stdWrap.htmlSpecialChars = 1

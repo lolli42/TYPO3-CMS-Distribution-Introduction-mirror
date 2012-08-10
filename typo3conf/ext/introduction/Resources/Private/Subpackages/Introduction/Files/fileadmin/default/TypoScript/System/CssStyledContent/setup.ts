@@ -15,19 +15,6 @@ tt_content {
 		radioWrap.accessibilityWrap = <fieldset###RADIO_FIELD_ID### class="csc-mailform-radio"><legend>###RADIO_GROUP_LABEL###</legend>|</fieldset>
 	}
 
-	# Remove the ancient onfocus="blurLink(this);" from sitemap links
-	# Unfortunately this hasn't been fully implemented in css_styled_content yet
-	# See also bug 11367
-	menu.20 {
-		default.1.noBlur = 1
-		1.1.noBlur = 1
-		4.1.noBlur = 1
-		5.1.noBlur = 1
-		6.1.noBlur = 1
-		7.1.noBlur = 1
-		7.2.noBlur = 1
-	}
-
 	# Define different wrappers for content elements depending on the page column
 	stdWrap.outerWrap.cObject = CASE
 	stdWrap.outerWrap.cObject {
