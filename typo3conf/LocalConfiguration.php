@@ -2,6 +2,7 @@
 return array(
 	'BE' => array(
 		'installToolPassword' => 'bacb98acf97e0b6112b1d1b650b84971',
+		'explicitADmode' => 'explicitAllow',
 	),
 	'DB' => array(
 		'extTablesDefinitionScript' => 'extTables.php',
