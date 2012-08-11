@@ -68,17 +68,11 @@ plugin.meta {
 	# cat=plugin.meta; type=string; label= Robots: Use for instance these codes: Index all pages: "all".  Index no pages: "none". Only this page: "index,nofollow".  Only subpages: "noindex,follow"
 	robots = all
 
-	# cat=plugin.meta; type=string; label= Copyright info: Enter copyright information, eg. "Me Myself and I, 2001. All rights reserved."
-	copyright = typo3.org GPL
-
 	# cat=plugin.meta; type=string; label= Reply-to email
 	email =
 
 	# cat=plugin.meta; type=string; label= Author: Enter name of author.
 	author = T3UXW09 / typo3.org
-
-	# cat=plugin.meta; type=int+; label= Revisit after: Number of days between search engine visits.
-	revisit = 7
 
 	# The meta tags below are not used on this website, if you want to use these, you can configure that in TypoScript template page.meta
 

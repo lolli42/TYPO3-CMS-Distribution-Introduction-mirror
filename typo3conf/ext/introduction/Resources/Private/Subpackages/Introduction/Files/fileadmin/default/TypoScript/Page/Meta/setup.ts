@@ -19,6 +19,4 @@ page.meta {
 	keywords.override.field = keywords
 
 	robots = {$plugin.meta.robots}
-	revisit = {$plugin.meta.revisit}
-	copyright = {$plugin.meta.copyright}
 }
