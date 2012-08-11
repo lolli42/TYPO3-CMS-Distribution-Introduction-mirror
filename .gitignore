@@ -4,19 +4,23 @@
 ########################
 # for local exclude patterns please edit .git/info/exclude
 #
-*~
 *.bak
 *.idea
 *.project
 *.swp
+*~
 .buildpath
 .cache
+.DS_Store
 .project
 .session
 .settings
 .TemporaryItems
 .webprj
+index.php
 nbproject
-.DS_Store
+t3lib
 Targets/
+typo3
+typo3_src
 Work/
