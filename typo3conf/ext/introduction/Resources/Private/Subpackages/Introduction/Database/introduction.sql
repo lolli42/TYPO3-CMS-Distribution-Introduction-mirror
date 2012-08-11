@@ -491,7 +491,7 @@ CREATE TABLE fe_users (
 
 LOCK TABLES fe_users WRITE;
 /*!40000 ALTER TABLE fe_users DISABLE KEYS */;
-INSERT INTO fe_users (uid, pid, tstamp, username, password, usergroup, disable, starttime, endtime, name, first_name, middle_name, last_name, address, telephone, fax, email, crdate, cruser_id, lockToDomain, deleted, uc, title, zip, city, country, www, company, image, TSconfig, fe_cruser_id, lastlogin, is_online, felogin_redirectPid, felogin_forgotHash, tx_extbase_type) VALUES (1,29,1277033438,'customer1','$1$ajEH0yhA$4nj6JoNKZJdAbyOwRXPWF1','1',0,0,0,'','','','','','1258479637','4','',0,0,'',0,'','','','','','','0','1277209978','1277209978',0,1330445393,1330445393,'','',''),(2,29,1277033450,'someone','someone','2',0,0,0,'','','','','','1258479661','4','',0,0,'',0,'','','','','','','0','1277209987','1277209987',0,1290503042,1290503042,'','','');
+INSERT INTO fe_users (uid, pid, tstamp, username, password, usergroup, disable, starttime, endtime, name, first_name, middle_name, last_name, address, telephone, fax, email, crdate, cruser_id, lockToDomain, deleted, uc, title, zip, city, country, www, company, image, TSconfig, fe_cruser_id, lastlogin, is_online, felogin_redirectPid, felogin_forgotHash, tx_extbase_type) VALUES (1,29,1277033438,'customer1','$1$ajEH0yhA$4nj6JoNKZJdAbyOwRXPWF1','1',0,0,0,'','','','','','1258479637','4','',0,0,'',0,'','','','','','','0','','',0,1330445393,1330445393,'','',''),(2,29,1277033450,'someone','someone','2',0,0,0,'','','','','','1258479661','4','',0,0,'',0,'','','','','','','0','','',0,1290503042,1290503042,'','','');
 /*!40000 ALTER TABLE fe_users ENABLE KEYS */;
 UNLOCK TABLES;
 
