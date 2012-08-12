@@ -7,25 +7,20 @@ for indexed search, so it knows what to index.
 */
 
 # Insert the news plugin in single-view mode instead of normal page content if a news article is requested
-[globalVar = GP:tx_ttnews|tt_news > 0] && [globalVar = TSFE:id = {$plugin.tt_news.singlePid}]
-lib.content < plugin.tt_news
-lib.content {
-	# First empty the code field and then set it to single-view
-	code >
-	code = SINGLE
-}
+[globalVar = GP:tx_news_pi1|news > 0]
+	lib.content < lib.news_display
 [else]
-# In all other cases, get the content of the middle column and add it to the 'content' part
-lib.content < styles.content.get
-lib.content.stdWrap.replacement {
-	1 {
-		search = ###BACKEND_URL###
-		replace.typolink {
-			parameter = typo3/
-			returnLast = url
+	# In all other cases, get the content of the middle column and add it to the 'content' part
+	lib.content < styles.content.get
+	lib.content.stdWrap.replacement {
+		1 {
+			search = ###BACKEND_URL###
+			replace.typolink {
+				parameter = typo3/
+				returnLast = url
+			}
 		}
 	}
-}
 [global]
 
 lib.content {
