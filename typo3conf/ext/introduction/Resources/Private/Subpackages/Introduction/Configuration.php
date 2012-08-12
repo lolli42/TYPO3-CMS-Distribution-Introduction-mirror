@@ -28,7 +28,7 @@ $GLOBALS['subpackageConfiguration'] = array(
 	'extensionsToImport' => array(
 		'automaketemplate',
 		'realurl',
-		'tt_news',
+		'news',
 		'wt_spamshield',
 		'jquerycolorbox',
 	),
@@ -42,7 +42,7 @@ $GLOBALS['subpackageConfiguration'] = array(
 		'linkvalidator',
 		'automaketemplate',
 		'realurl',
-		'tt_news',
+		'news',
 		'felogin',
 		'indexed_search',
 		'wt_spamshield',

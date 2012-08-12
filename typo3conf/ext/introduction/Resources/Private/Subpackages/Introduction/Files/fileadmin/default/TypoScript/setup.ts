@@ -9,7 +9,8 @@
 <INCLUDE_TYPOSCRIPT: source="FILE:fileadmin/default/TypoScript/Extension/AutomakeTemplate/setup.ts">
 <INCLUDE_TYPOSCRIPT: source="FILE:fileadmin/default/TypoScript/Extension/FeLogin/setup.ts">
 <INCLUDE_TYPOSCRIPT: source="FILE:fileadmin/default/TypoScript/Extension/IndexedSearch/setup.ts">
-<INCLUDE_TYPOSCRIPT: source="FILE:fileadmin/default/TypoScript/Extension/TtNews/setup.ts">
+#<INCLUDE_TYPOSCRIPT: source="FILE:fileadmin/default/TypoScript/Extension/TtNews/setup.ts">
+<INCLUDE_TYPOSCRIPT: source="FILE:fileadmin/default/TypoScript/Extension/TxNews/setup.ts">
 <INCLUDE_TYPOSCRIPT: source="FILE:fileadmin/default/TypoScript/Extension/JqueryColorbox/setup.ts">
 <INCLUDE_TYPOSCRIPT: source="FILE:fileadmin/default/TypoScript/Extension/WtSpamshield/setup.ts">
 
