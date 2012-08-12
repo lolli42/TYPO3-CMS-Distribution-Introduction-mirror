@@ -430,8 +430,21 @@ input#tx-indexedsearch-searchbox-sword {
 
 
 /***************************/
-/* TT_NEWS - BASIC STYLING */
+/* TX_NEWS - BASIC STYLING */
 /***************************/
+.news-list-container .hidden,
+.news-single .hidden {
+	display: none;
+}
+.news-single .news-img-wrap {
+	float: left;
+	margin: 10px 10px 10px 0;
+}
+.news-single .news-img-wrap p {
+	display: inline-block;
+	max-width: 250px;
+	margin: 0;
+}
 .news-latest-item h3, .news-latest-item p {
 	margin-bottom: 0;
 	}
@@ -450,9 +463,9 @@ input#tx-indexedsearch-searchbox-sword {
 	float:left;
 	margin: 0 10px 10px 0;
 	}
-.news-list-category {
+.news-list-categories {
 	font-size: 90%;
-	}
+}
 
 
 /************************/
