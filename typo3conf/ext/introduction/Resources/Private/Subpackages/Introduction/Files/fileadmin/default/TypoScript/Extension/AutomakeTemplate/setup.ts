@@ -36,7 +36,8 @@ plugin.tx_automaketemplate_pi1 {
 		H1.all = 1
 
 		# Remove some tags from HTML head section (because TYPO3 will add these dynamically)
-		HEAD.rmTagSections = title,meta,link
+		HEAD.rmTagSections = title
+		HEAD.rmSingleTags = meta,link
 	}
 
 	# Prefix all relative paths in the HTML template with this value
