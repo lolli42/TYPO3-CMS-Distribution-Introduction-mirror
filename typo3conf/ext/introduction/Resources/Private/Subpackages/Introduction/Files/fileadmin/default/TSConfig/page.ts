@@ -51,19 +51,28 @@ TCEMAIN {
 	everybody =
 }
 
+# Use different views for the news plugin, those entries show up in the news content element configuration
+tx_news.templateLayouts {
+	normal = Normal
+	latest = Latest
+	# You can even translate those if you create a custom ll-xml file.
+	#custom = fileadmin/Language/news-templates.xml:keyForCustom
+}
+
 # Condition for news storage folder
 [PIDinRootline = 18]
 	mod.web_list {
-		# limit the creation of new records in this sysFolder to these types
-		allowedNewTables = tt_news,tt_news_cat,sys_note
+		# Limit the creation of new records in this sysFolder to these types
+		allowedNewTables = tx_news_domain_model_news,tx_news_domain_model_category,sys_note
 	}
 
 	# This will open the news singleView page (id 23) when clicking 'preview' for a news record
-	tx_ttnews.singlePid = 23
+	tx_news.singlePid = 23
+
 
 	TCEMAIN {
 		# Clear cache of the News page after content of the News folder has changed
-		clearCacheCmd = 23
+		clearCacheCmd = 23,30
 		clearCache_pageSiblingChildren = 1
 	}
 [END]
