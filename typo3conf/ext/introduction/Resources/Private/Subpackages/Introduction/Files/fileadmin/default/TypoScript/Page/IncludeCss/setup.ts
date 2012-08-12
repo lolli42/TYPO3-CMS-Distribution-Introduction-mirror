@@ -19,7 +19,7 @@ page.includeCSS {
 }
 
 # Condition to add specific stylesheet for the frontpage only
-[globalVar = TSFE:id = 6]
+[globalVar = TSFE:id = 1]
 page.includeCSS {
 	30 = {$filepaths.css}frontpage.css
 	30 {

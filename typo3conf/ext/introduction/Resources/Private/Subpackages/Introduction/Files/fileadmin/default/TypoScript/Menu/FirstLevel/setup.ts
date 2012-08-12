@@ -12,3 +12,10 @@ menu.firstlevel {
 	# Since this is the top-level menu, we start this menu at the root level of the website
 	entryLevel = 0
 }
+
+[globalVar = TSFE:id = 1]
+menu.firstlevel {
+	# PID 6 is a shortcut to home, show it as active
+	alwaysActivePIDlist = 6
+}
+[end]
