@@ -3,7 +3,6 @@
 
 
 <INCLUDE_TYPOSCRIPT: source="FILE:fileadmin/default/TypoScript/System/CssStyledContent/constants.ts">
-<INCLUDE_TYPOSCRIPT: source="FILE:fileadmin/default/TypoScript/Extension/TtNews/constants.ts">
 <INCLUDE_TYPOSCRIPT: source="FILE:fileadmin/default/TypoScript/Extension/JqueryColorbox/constants.ts">
 <INCLUDE_TYPOSCRIPT: source="FILE:fileadmin/default/TypoScript/Extension/WtSpamshield/constants.ts">
 
@@ -32,25 +31,6 @@ menu {
 plugin.tx_automaketemplate_pi1 {
 	# cat=plugin.automaketemplate; type:string; label= HTML template file: Name of the HTML page template file (without path, see contant for filepath.templates)
 	templatefile = typo3-intro-template.html
-}
-
-plugin.tt_news {
-	# cat=plugin.tt_news; type=string; label= pid_list: Comma separated list of folder id's containing which contain news records.
-	pid_list = 18
-
-	# cat=plugin.tt_news; type=int+; label= singlePid: Default ID of the page containing the tt_news SINGLE-view plugin
-	singlePid = 23
-
-	# cat=plugin.tt_news; type=int+; label= limit: Default maximum number of items to be shown in LIST-view
-	limit = 100
-
-	# Date and time formats according to active locales
-	dateformat = %x
-	dateandtimeformat = %c
-
-	# Short notation date format according to international ISO standard
-	shortdateformat = %Y-%m-%d
-	timeformat = %H:%M
 }
 
 plugin.tx_indexedsearch {

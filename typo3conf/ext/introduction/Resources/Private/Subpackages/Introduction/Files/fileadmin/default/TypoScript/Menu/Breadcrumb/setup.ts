@@ -29,7 +29,7 @@ menu.breadcrumb {
 }
 
 # This condition checks whether a news article will be shown in single view
-[globalVar = GP:tx_ttnews|tt_news > 0] && [globalVar = TSFE:id = {$plugin.tt_news.singlePid}]
+[globalVar = GP:tx_news_pi1|news > 0]
 menu.breadcrumb {
 	# Render the current page as the normal state (linked) because we'll append the title of the news article
 	10.1 {
@@ -37,17 +37,25 @@ menu.breadcrumb {
 		CUR < .NO
 	}
 
-	# Append the title of the news item. Using this example, the breadcrumb can be exented with
+	# Append the title of the news item. Using this example, the breadcrumb can be extended with
 	# any other thinkable kind of data and logic
 	20 = RECORDS
 	20 {
+		if.isTrue.data = GP:tx_news_pi1|news
 		dontCheckPid = 1
-		tables = tt_news
-		source.data = GP:tx_ttnews|tt_news
+		tables = tx_news_domain_model_news
+		source.data = GP:tx_news_pi1|news
 		source.intval = 1
-		conf.tt_news = TEXT
-		conf.tt_news.field = title
-		wrap = <span>|</span>
+		conf.tx_news_domain_model_news = TEXT
+		conf.tx_news_domain_model_news {
+			field = title
+			htmlSpecialChars = 1
+			typolink {
+				parameter.data = page:uid
+				addQueryString = 1
+			}
+		}
+		wrap =  <span>|</span>
 	}
 }
 # Else configure the breadcrumb for normal cases when no news article is shown
