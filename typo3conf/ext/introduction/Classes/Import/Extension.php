@@ -25,10 +25,8 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
-define('TYPO3_EM_PATH', PATH_site . TYPO3_mainDir . 'sysext/em/');
 define('PATH_typo3conf', PATH_site . 'typo3conf/');
 require_once(PATH_site . TYPO3_mainDir . 'template.php');
-require_once(TYPO3_EM_PATH . 'classes/connection/class.tx_em_connection_extdirectserver.php');
 
 class tx_introduction_import_extension {
 
@@ -40,21 +38,12 @@ class tx_introduction_import_extension {
 	private $sourceDirectory = 'Resources/Private/Extensions';
 
 	/**
-	 * @var tx_em_Connection_ExtDirectServer
-	 */
-	private $em = NULL;
-
-	/**
 	 * Initializes the extension manager
 	 */
 	public function __construct() {
 		// Create an instance of language. Needed in order to make the em_index work
 		$GLOBALS['LANG'] = t3lib_div::makeInstance('language');
 		$GLOBALS['LANG']->csConvObj = t3lib_div::makeInstance('t3lib_cs');
-
-		$this->em = t3lib_div::makeInstance('tx_em_Connection_ExtDirectServer');
-		$this->em->extensionList = t3lib_div::makeInstance('tx_em_Extensions_List');
-		$this->em->extensionDetails = t3lib_div::makeInstance('tx_em_Extensions_Details');
 	}
 
 	/**
@@ -74,18 +63,20 @@ class tx_introduction_import_extension {
 	 * @return void
 	 */
 	public function importExtension($extensionKey) {
-		$_POST['depsolver']['ignore']['typo3'] = 1; 
 		if (t3lib_extMgm::isLoaded($extensionKey)) {
 			return;
 		}
-		$extensionDirectory = PATH_typo3conf . 'ext/' . $extensionKey . '/';
-		$extensionFile = t3lib_extMgm::extPath('introduction', $this->sourceDirectory . '/' . $extensionKey . '.t3x');
-		$uploadOptions = array(
-			'loc' => 'L',  // local
-			'extfile' => $extensionFile,
-			'uploadOverwrite' => TRUE,
+		$fileContent = \TYPO3\CMS\Core\Utility\GeneralUtility::getUrl(
+			t3lib_extMgm::extPath('introduction', $this->sourceDirectory . '/' . $extensionKey . '.t3x')
 		);
-		$this->em->uploadExtension($uploadOptions);
+		/** @var $objectManager \TYPO3\CMS\Extbase\Object\ObjectManager */
+		$objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
+		/** @var $terUtility \TYPO3\CMS\Extensionmanager\Utility\Connection\TerUtility */
+		$terUtility = $objectManager->get('TYPO3\\CMS\\Extensionmanager\\Utility\\Connection\\TerUtility');
+		$extensionData = $terUtility->decodeExchangeData($fileContent);
+		/** @var $fileHandlingUtility \TYPO3\CMS\Extensionmanager\Utility\FileHandlingUtility */
+		$fileHandlingUtility = $objectManager->get('TYPO3\\CMS\\Extensionmanager\\Utility\\FileHandlingUtility');
+		$fileHandlingUtility->unpackExtensionFromExtensionDataArray($extensionData);
 	}
 
 	/**
@@ -98,7 +89,11 @@ class tx_introduction_import_extension {
 		if (t3lib_extMgm::isLoaded($extensionKey)) {
 			return;
 		}
-		$this->em->enableExtension($extensionKey);
+		/** @var $objectManager \TYPO3\CMS\Extbase\Object\ObjectManager */
+		$objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
+		/** @var $installUtility \TYPO3\CMS\Extensionmanager\Utility\InstallUtility */
+		$installUtility = $objectManager->get('TYPO3\\CMS\\Extensionmanager\\Utility\\InstallUtility');
+		$installUtility->install($extensionKey);
 	}
 }
 ?>
