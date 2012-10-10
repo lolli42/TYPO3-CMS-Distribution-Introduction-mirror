@@ -112,7 +112,7 @@ class tx_introduction_configuration {
 			$gdInfo = gd_info();
 			if (intval($gdInfo['GD Version']) >= 2) {
 					// 2.0 or higher
-				\TYPO3\CMS\Core\Configuration\ConfigurationManager::setLocalConfigurationValueByPath('GFX/gdlib_2', 1);
+				\TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Configuration\\ConfigurationManager')->setLocalConfigurationValueByPath('GFX/gdlib_2', 1);
 			}
 		}
 
@@ -130,7 +130,7 @@ class tx_introduction_configuration {
 	 */
 	public function modifyPasswords($newPassword) {
 			// Change password of the installtool
-		\TYPO3\CMS\Core\Configuration\ConfigurationManager::setLocalConfigurationValueByPath('BE/installToolPassword', md5($newPassword));
+		\TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Configuration\\ConfigurationManager')->setLocalConfigurationValueByPath('BE/installToolPassword', md5($newPassword));
 
 			// Change password of the be_users
 		$GLOBALS['TYPO3_DB']->exec_updateQuery('be_users', '', array('password' => md5($newPassword)));
@@ -170,11 +170,11 @@ class tx_introduction_configuration {
 		// if $color1 equals $color2 the mask is applied to the top. We should change the negate mask
 		if ($color1 == $color2) {
 			if ($GLOBALS['TYPO3_CONF_VARS']['GFX']['im_imvMaskState'] == 1) {
-				\TYPO3\CMS\Core\Configuration\ConfigurationManager::setLocalConfigurationValueByPath('GFX/im_imvMaskState', 0);
-				\TYPO3\CMS\Core\Configuration\ConfigurationManager::setLocalConfigurationValueByPath('GFX/im_negate_mask', 1);
+				\TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Configuration\\ConfigurationManager')->setLocalConfigurationValueByPath('GFX/im_imvMaskState', 0);
+				\TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Configuration\\ConfigurationManager')->setLocalConfigurationValueByPath('GFX/im_negate_mask', 1);
 			} else {
-				\TYPO3\CMS\Core\Configuration\ConfigurationManager::setLocalConfigurationValueByPath('GFX/im_imvMaskState', 1);
-				\TYPO3\CMS\Core\Configuration\ConfigurationManager::setLocalConfigurationValueByPath('GFX/im_negate_mask', 0);
+				\TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Configuration\\ConfigurationManager')->setLocalConfigurationValueByPath('GFX/im_imvMaskState', 1);
+				\TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Configuration\\ConfigurationManager')->setLocalConfigurationValueByPath('GFX/im_negate_mask', 0);
 			}
 		}
 	}
@@ -238,7 +238,7 @@ class tx_introduction_configuration {
 	 * @return void
 	 */
 	private function applyConfigurationFromFile($file) {
-		\TYPO3\CMS\Core\Configuration\ConfigurationManager::setLocalConfigurationValuesByPathValuePairs(require($file));
+		\TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Core\\Configuration\\ConfigurationManager')->setLocalConfigurationValuesByPathValuePairs(require($file));
 	}
 
 	/**
