@@ -23,25 +23,25 @@ DROP TABLE IF EXISTS backend_layout;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE backend_layout (
-  uid int(11) NOT NULL AUTO_INCREMENT,
-  pid int(11) NOT NULL DEFAULT '0',
-  t3ver_oid int(11) NOT NULL DEFAULT '0',
-  t3ver_id int(11) NOT NULL DEFAULT '0',
-  t3ver_wsid int(11) NOT NULL DEFAULT '0',
-  t3ver_label varchar(255) DEFAULT NULL,
-  t3ver_state tinyint(4) NOT NULL DEFAULT '0',
-  t3ver_stage int(11) NOT NULL DEFAULT '0',
-  t3ver_count int(11) NOT NULL DEFAULT '0',
-  t3ver_tstamp int(11) NOT NULL DEFAULT '0',
-  t3ver_move_id int(11) NOT NULL DEFAULT '0',
-  t3_origuid int(11) NOT NULL DEFAULT '0',
-  tstamp int(11) unsigned NOT NULL DEFAULT '0',
-  crdate int(11) unsigned NOT NULL DEFAULT '0',
-  cruser_id int(11) unsigned NOT NULL DEFAULT '0',
-  hidden tinyint(4) unsigned NOT NULL DEFAULT '0',
-  deleted tinyint(4) NOT NULL DEFAULT '0',
-  sorting int(11) unsigned NOT NULL DEFAULT '0',
-  title varchar(255) DEFAULT NULL,
+  uid int(11) NOT NULL auto_increment,
+  pid int(11) DEFAULT '0' NOT NULL,
+  t3ver_oid int(11) DEFAULT '0' NOT NULL,
+  t3ver_id int(11) DEFAULT '0' NOT NULL,
+  t3ver_wsid int(11) DEFAULT '0' NOT NULL,
+  t3ver_label varchar(255) DEFAULT '' NOT NULL,
+  t3ver_state tinyint(4) DEFAULT '0' NOT NULL,
+  t3ver_stage int(11) DEFAULT '0' NOT NULL,
+  t3ver_count int(11) DEFAULT '0' NOT NULL,
+  t3ver_tstamp int(11) DEFAULT '0' NOT NULL,
+  t3ver_move_id int(11) DEFAULT '0' NOT NULL,
+  t3_origuid int(11) DEFAULT '0' NOT NULL,
+  tstamp int(11) unsigned DEFAULT '0' NOT NULL,
+  crdate int(11) unsigned DEFAULT '0' NOT NULL,
+  cruser_id int(11) unsigned DEFAULT '0' NOT NULL,
+  hidden tinyint(4) unsigned DEFAULT '0' NOT NULL,
+  deleted tinyint(4) DEFAULT '0' NOT NULL,
+  sorting int(11) unsigned DEFAULT '0' NOT NULL,
+  title varchar(255) DEFAULT '' NOT NULL,
   description text NOT NULL,
   config text NOT NULL,
   icon text NOT NULL,
@@ -68,33 +68,32 @@ DROP TABLE IF EXISTS be_groups;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE be_groups (
-  uid int(11) unsigned NOT NULL AUTO_INCREMENT,
-  pid int(11) unsigned NOT NULL DEFAULT '0',
-  tstamp int(11) unsigned NOT NULL DEFAULT '0',
-  title varchar(50) DEFAULT NULL,
+  uid int(11) unsigned NOT NULL auto_increment,
+  pid int(11) unsigned DEFAULT '0' NOT NULL,
+  tstamp int(11) unsigned DEFAULT '0' NOT NULL,
+  title varchar(50) DEFAULT '' NOT NULL,
   non_exclude_fields text,
   explicit_allowdeny text,
-  allowed_languages varchar(255) DEFAULT NULL,
+  allowed_languages varchar(255) DEFAULT '' NOT NULL,
   custom_options text,
-  db_mountpoints varchar(255) DEFAULT NULL,
-  pagetypes_select varchar(255) DEFAULT NULL,
+  db_mountpoints varchar(255) DEFAULT '' NOT NULL,
+  pagetypes_select varchar(255) DEFAULT '' NOT NULL,
   tables_select text,
   tables_modify text,
-  crdate int(11) unsigned NOT NULL DEFAULT '0',
-  cruser_id int(11) unsigned NOT NULL DEFAULT '0',
+  crdate int(11) unsigned DEFAULT '0' NOT NULL,
+  cruser_id int(11) unsigned DEFAULT '0' NOT NULL,
   groupMods text,
-  file_mountpoints varchar(255) DEFAULT NULL,
-  fileoper_perms tinyint(4) NOT NULL DEFAULT '0',
-  hidden tinyint(1) unsigned NOT NULL DEFAULT '0',
-  inc_access_lists tinyint(3) unsigned NOT NULL DEFAULT '0',
+  file_mountpoints varchar(255) DEFAULT '' NOT NULL,
+  fileoper_perms tinyint(4) DEFAULT '0' NOT NULL,
+  hidden tinyint(1) unsigned DEFAULT '0' NOT NULL,
+  inc_access_lists tinyint(3) unsigned DEFAULT '0' NOT NULL,
   description text,
-  lockToDomain varchar(50) DEFAULT NULL,
-  deleted tinyint(1) unsigned NOT NULL DEFAULT '0',
+  lockToDomain varchar(50) DEFAULT '' NOT NULL,
+  deleted tinyint(1) unsigned DEFAULT '0' NOT NULL,
   TSconfig text,
-  subgroup varchar(255) DEFAULT NULL,
-  hide_in_lists tinyint(4) NOT NULL DEFAULT '0',
-  workspace_perms tinyint(3) NOT NULL DEFAULT '1',
-  tt_news_categorymounts varchar(255) DEFAULT NULL,
+  subgroup varchar(255) DEFAULT '' NOT NULL,
+  hide_in_lists tinyint(4) DEFAULT '0' NOT NULL,
+  workspace_perms tinyint(3) DEFAULT '1' NOT NULL,
   PRIMARY KEY (uid),
   KEY parent (pid)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -118,14 +117,14 @@ DROP TABLE IF EXISTS be_sessions;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE be_sessions (
-  ses_id varchar(32) NOT NULL DEFAULT '',
-  ses_name varchar(32) NOT NULL DEFAULT '',
-  ses_iplock varchar(39) DEFAULT NULL,
-  ses_hashlock int(11) NOT NULL DEFAULT '0',
-  ses_userid int(11) unsigned NOT NULL DEFAULT '0',
-  ses_tstamp int(11) unsigned NOT NULL DEFAULT '0',
+  ses_id varchar(32) DEFAULT '' NOT NULL,
+  ses_name varchar(32) DEFAULT '' NOT NULL,
+  ses_iplock varchar(39) DEFAULT '' NOT NULL,
+  ses_hashlock int(11) DEFAULT '0' NOT NULL,
+  ses_userid int(11) unsigned DEFAULT '0' NOT NULL,
+  ses_tstamp int(11) unsigned DEFAULT '0' NOT NULL,
   ses_data longtext,
-  ses_backuserid int(11) NOT NULL DEFAULT '0',
+  ses_backuserid int(11) NOT NULL default '0',
   PRIMARY KEY (ses_id,ses_name)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -147,39 +146,38 @@ DROP TABLE IF EXISTS be_users;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE be_users (
-  uid int(11) unsigned NOT NULL AUTO_INCREMENT,
-  pid int(11) unsigned NOT NULL DEFAULT '0',
-  tstamp int(11) unsigned NOT NULL DEFAULT '0',
-  username varchar(50) DEFAULT NULL,
-  `password` varchar(40) DEFAULT NULL,
-  admin tinyint(4) unsigned NOT NULL DEFAULT '0',
-  usergroup varchar(255) DEFAULT NULL,
-  `disable` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  starttime int(11) unsigned NOT NULL DEFAULT '0',
-  endtime int(11) unsigned NOT NULL DEFAULT '0',
-  lang char(2) DEFAULT NULL,
-  email varchar(80) DEFAULT NULL,
-  db_mountpoints varchar(255) DEFAULT NULL,
-  `options` tinyint(4) unsigned NOT NULL DEFAULT '0',
-  crdate int(11) unsigned NOT NULL DEFAULT '0',
-  cruser_id int(11) unsigned NOT NULL DEFAULT '0',
-  realName varchar(80) DEFAULT NULL,
-  userMods varchar(255) DEFAULT NULL,
-  allowed_languages varchar(255) DEFAULT NULL,
-  uc text,
-  file_mountpoints varchar(255) DEFAULT NULL,
-  fileoper_perms tinyint(4) NOT NULL DEFAULT '0',
-  workspace_perms tinyint(3) NOT NULL DEFAULT '1',
-  lockToDomain varchar(50) DEFAULT NULL,
-  disableIPlock tinyint(1) unsigned NOT NULL DEFAULT '0',
-  deleted tinyint(1) unsigned NOT NULL DEFAULT '0',
+  uid int(11) unsigned NOT NULL auto_increment,
+  pid int(11) unsigned DEFAULT '0' NOT NULL,
+  tstamp int(11) unsigned DEFAULT '0' NOT NULL,
+  username varchar(50) DEFAULT '' NOT NULL,
+  password varchar(40) DEFAULT '' NOT NULL,
+  admin tinyint(4) unsigned DEFAULT '0' NOT NULL,
+  usergroup varchar(255) DEFAULT '' NOT NULL,
+  disable tinyint(1) unsigned DEFAULT '0' NOT NULL,
+  starttime int(11) unsigned DEFAULT '0' NOT NULL,
+  endtime int(11) unsigned DEFAULT '0' NOT NULL,
+  lang char(2) DEFAULT '' NOT NULL,
+  email varchar(80) DEFAULT '' NOT NULL,
+  db_mountpoints varchar(255) DEFAULT '' NOT NULL,
+  options tinyint(4) unsigned DEFAULT '0' NOT NULL,
+  crdate int(11) unsigned DEFAULT '0' NOT NULL,
+  cruser_id int(11) unsigned DEFAULT '0' NOT NULL,
+  realName varchar(80) DEFAULT '' NOT NULL,
+  userMods varchar(255) DEFAULT '' NOT NULL,
+  allowed_languages varchar(255) DEFAULT '' NOT NULL,
+  uc mediumtext,
+  file_mountpoints varchar(255) DEFAULT '' NOT NULL,
+  fileoper_perms tinyint(4) DEFAULT '0' NOT NULL,
+  workspace_perms tinyint(3) DEFAULT '1' NOT NULL,
+  lockToDomain varchar(50) DEFAULT '' NOT NULL,
+  disableIPlock tinyint(1) unsigned DEFAULT '0' NOT NULL,
+  deleted tinyint(1) unsigned DEFAULT '0' NOT NULL,
   TSconfig text,
-  lastlogin int(10) unsigned NOT NULL DEFAULT '0',
-  createdByAction int(11) NOT NULL DEFAULT '0',
-  usergroup_cached_list varchar(255) DEFAULT NULL,
-  workspace_id int(11) NOT NULL DEFAULT '0',
-  workspace_preview tinyint(3) NOT NULL DEFAULT '1',
-  tt_news_categorymounts varchar(255) DEFAULT NULL,
+  lastlogin int(10) unsigned DEFAULT '0' NOT NULL,
+  createdByAction int(11) DEFAULT '0' NOT NULL,
+  usergroup_cached_list varchar(255) DEFAULT '' NOT NULL,
+  workspace_id int(11) DEFAULT '0' NOT NULL,
+  workspace_preview tinyint(3) DEFAULT '1' NOT NULL,
   PRIMARY KEY (uid),
   KEY parent (pid),
   KEY username (username)
@@ -204,27 +202,27 @@ DROP TABLE IF EXISTS cache_extensions;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE cache_extensions (
-  extkey varchar(60) NOT NULL DEFAULT '',
-  repository int(11) unsigned NOT NULL DEFAULT '1',
-  version varchar(10) NOT NULL DEFAULT '',
-  alldownloadcounter int(11) unsigned NOT NULL DEFAULT '0',
-  downloadcounter int(11) unsigned NOT NULL DEFAULT '0',
-  title varchar(150) DEFAULT NULL,
+  extkey varchar(60) NOT NULL default '',
+  repository int(11) unsigned NOT NULL default '1',
+  version varchar(10) NOT NULL default '',
+  alldownloadcounter int(11) unsigned NOT NULL default '0',
+  downloadcounter int(11) unsigned NOT NULL default '0',
+  title varchar(150) NOT NULL default '',
   description mediumtext,
-  state int(4) NOT NULL DEFAULT '0',
-  reviewstate int(4) NOT NULL DEFAULT '0',
-  category int(4) NOT NULL DEFAULT '0',
-  lastuploaddate int(11) unsigned NOT NULL DEFAULT '0',
+  state int(4) NOT NULL default '0',
+  reviewstate int(4) NOT NULL default '0',
+  category int(4) NOT NULL default '0',
+  lastuploaddate int(11) unsigned NOT NULL default '0',
   dependencies mediumtext,
-  authorname varchar(100) DEFAULT NULL,
-  authoremail varchar(100) DEFAULT NULL,
-  ownerusername varchar(50) DEFAULT NULL,
-  t3xfilemd5 varchar(35) DEFAULT NULL,
+  authorname varchar(100) NOT NULL default '',
+  authoremail varchar(100) NOT NULL default '',
+  ownerusername varchar(50) NOT NULL default '',
+  t3xfilemd5 varchar(35) NOT NULL default '',
   uploadcomment mediumtext,
-  authorcompany varchar(100) DEFAULT NULL,
-  intversion int(11) NOT NULL DEFAULT '0',
-  lastversion int(3) NOT NULL DEFAULT '0',
-  lastreviewedversion int(3) NOT NULL DEFAULT '0',
+  authorcompany varchar(100) NOT NULL default '',
+  intversion int(11) NOT NULL default '0',
+  lastversion int(3) NOT NULL default '0',
+  lastreviewedversion int(3) NOT NULL default '0',
   PRIMARY KEY (extkey,version,repository)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -246,13 +244,13 @@ DROP TABLE IF EXISTS cache_hash;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE cache_hash (
-  id int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `hash` varchar(32) DEFAULT NULL,
+  id int(11) unsigned NOT NULL auto_increment,
+  hash varchar(32) DEFAULT '' NOT NULL,
   content mediumblob,
-  tstamp int(11) unsigned NOT NULL DEFAULT '0',
-  ident varchar(32) DEFAULT NULL,
+  tstamp int(11) unsigned DEFAULT '0' NOT NULL,
+  ident varchar(32) DEFAULT '' NOT NULL,
   PRIMARY KEY (id),
-  KEY `hash` (`hash`)
+  KEY hash (hash)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -273,12 +271,12 @@ DROP TABLE IF EXISTS cache_imagesizes;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE cache_imagesizes (
-  md5hash varchar(32) DEFAULT NULL,
-  md5filename varchar(32) NOT NULL DEFAULT '',
-  tstamp int(11) NOT NULL DEFAULT '0',
-  filename varchar(255) DEFAULT NULL,
-  imagewidth mediumint(11) unsigned NOT NULL DEFAULT '0',
-  imageheight mediumint(11) unsigned NOT NULL DEFAULT '0',
+  md5hash varchar(32) DEFAULT '' NOT NULL,
+  md5filename varchar(32) DEFAULT '' NOT NULL,
+  tstamp int(11) DEFAULT '0' NOT NULL,
+  filename varchar(255) DEFAULT '' NOT NULL,
+  imagewidth mediumint(11) unsigned DEFAULT '0' NOT NULL,
+  imageheight mediumint(11) unsigned DEFAULT '0' NOT NULL,
   PRIMARY KEY (md5filename)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -300,9 +298,9 @@ DROP TABLE IF EXISTS cache_md5params;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE cache_md5params (
-  md5hash varchar(20) NOT NULL DEFAULT '',
-  tstamp int(11) NOT NULL DEFAULT '0',
-  `type` tinyint(3) NOT NULL DEFAULT '0',
+  md5hash varchar(20) DEFAULT '' NOT NULL,
+  tstamp int(11) DEFAULT '0' NOT NULL,
+  type tinyint(3) DEFAULT '0' NOT NULL,
   params text,
   PRIMARY KEY (md5hash)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -325,18 +323,18 @@ DROP TABLE IF EXISTS cache_pages;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE cache_pages (
-  id int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `hash` varchar(32) DEFAULT NULL,
-  page_id int(11) unsigned NOT NULL DEFAULT '0',
-  reg1 int(11) unsigned NOT NULL DEFAULT '0',
+  id int(11) unsigned NOT NULL auto_increment,
+  hash varchar(32) DEFAULT '' NOT NULL,
+  page_id int(11) unsigned DEFAULT '0' NOT NULL,
+  reg1 int(11) unsigned DEFAULT '0' NOT NULL,
   HTML mediumblob,
-  temp_content int(1) NOT NULL DEFAULT '0',
-  tstamp int(11) unsigned NOT NULL DEFAULT '0',
-  expires int(10) unsigned NOT NULL DEFAULT '0',
+  temp_content int(1) DEFAULT '0' NOT NULL,
+  tstamp int(11) unsigned DEFAULT '0' NOT NULL,
+  expires int(10) unsigned DEFAULT '0' NOT NULL,
   cache_data mediumblob,
-  PRIMARY KEY (id),
   KEY page_id (page_id),
-  KEY sel (`hash`,page_id)
+  KEY sel (hash,page_id),
+  PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -357,10 +355,10 @@ DROP TABLE IF EXISTS cache_pagesection;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE cache_pagesection (
-  page_id int(11) unsigned NOT NULL DEFAULT '0',
-  mpvar_hash int(11) unsigned NOT NULL DEFAULT '0',
+  page_id int(11) unsigned DEFAULT '0' NOT NULL,
+  mpvar_hash int(11) unsigned DEFAULT '0' NOT NULL,
   content blob,
-  tstamp int(11) unsigned NOT NULL DEFAULT '0',
+  tstamp int(11) unsigned DEFAULT '0' NOT NULL,
   PRIMARY KEY (page_id,mpvar_hash)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -382,11 +380,11 @@ DROP TABLE IF EXISTS cache_treelist;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE cache_treelist (
-  md5hash char(32) NOT NULL DEFAULT '',
-  pid int(11) NOT NULL DEFAULT '0',
+  md5hash char(32) DEFAULT '' NOT NULL,
+  pid int(11) DEFAULT '0' NOT NULL,
   treelist text,
-  tstamp int(11) NOT NULL DEFAULT '0',
-  expires int(11) unsigned NOT NULL DEFAULT '0',
+  tstamp int(11) DEFAULT '0' NOT NULL,
+  expires int(11) unsigned  DEFAULT '0' NOT NULL,
   PRIMARY KEY (md5hash)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -408,10 +406,10 @@ DROP TABLE IF EXISTS cache_typo3temp_log;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE cache_typo3temp_log (
-  md5hash varchar(32) NOT NULL DEFAULT '',
-  tstamp int(11) NOT NULL DEFAULT '0',
-  filename varchar(255) DEFAULT NULL,
-  orig_filename varchar(255) DEFAULT NULL,
+  md5hash varchar(32) DEFAULT '' NOT NULL,
+  tstamp int(11) DEFAULT '0' NOT NULL,
+  filename varchar(255) DEFAULT '' NOT NULL,
+  orig_filename varchar(255) DEFAULT '' NOT NULL,
   PRIMARY KEY (md5hash)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -433,20 +431,18 @@ DROP TABLE IF EXISTS fe_groups;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE fe_groups (
-  uid int(11) unsigned NOT NULL AUTO_INCREMENT,
-  pid int(11) unsigned NOT NULL DEFAULT '0',
-  tstamp int(11) unsigned NOT NULL DEFAULT '0',
-  crdate int(11) unsigned NOT NULL DEFAULT '0',
-  cruser_id int(11) unsigned NOT NULL DEFAULT '0',
-  title varchar(50) DEFAULT NULL,
-  hidden tinyint(3) unsigned NOT NULL DEFAULT '0',
-  lockToDomain varchar(50) DEFAULT NULL,
-  deleted tinyint(3) unsigned NOT NULL DEFAULT '0',
+  uid int(11) unsigned NOT NULL auto_increment,
+  pid int(11) unsigned DEFAULT '0' NOT NULL,
+  tstamp int(11) unsigned DEFAULT '0' NOT NULL,
+  crdate int(11) unsigned DEFAULT '0' NOT NULL,
+  cruser_id int(11) unsigned DEFAULT '0' NOT NULL,
+  title varchar(50) DEFAULT '' NOT NULL,
+  hidden tinyint(3) unsigned DEFAULT '0' NOT NULL,
+  lockToDomain varchar(50) DEFAULT '' NOT NULL,
+  deleted tinyint(3) unsigned DEFAULT '0' NOT NULL,
   description text,
   subgroup tinytext,
   TSconfig text,
-  felogin_redirectPid tinytext,
-  tx_extbase_type varchar(255) DEFAULT NULL,
   PRIMARY KEY (uid),
   KEY parent (pid)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -470,10 +466,10 @@ DROP TABLE IF EXISTS fe_session_data;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE fe_session_data (
-  `hash` varchar(32) NOT NULL DEFAULT '',
+  hash varchar(32) DEFAULT '' NOT NULL,
   content mediumblob,
-  tstamp int(11) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`hash`),
+  tstamp int(11) unsigned DEFAULT '0' NOT NULL,
+  PRIMARY KEY (hash),
   KEY tstamp (tstamp)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -495,14 +491,14 @@ DROP TABLE IF EXISTS fe_sessions;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE fe_sessions (
-  ses_id varchar(32) NOT NULL DEFAULT '',
-  ses_name varchar(32) NOT NULL DEFAULT '',
-  ses_iplock varchar(39) DEFAULT NULL,
-  ses_hashlock int(11) NOT NULL DEFAULT '0',
-  ses_userid int(11) unsigned NOT NULL DEFAULT '0',
-  ses_tstamp int(11) unsigned NOT NULL DEFAULT '0',
+  ses_id varchar(32) DEFAULT '' NOT NULL,
+  ses_name varchar(32) DEFAULT '' NOT NULL,
+  ses_iplock varchar(39) DEFAULT '' NOT NULL,
+  ses_hashlock int(11) DEFAULT '0' NOT NULL,
+  ses_userid int(11) unsigned DEFAULT '0' NOT NULL,
+  ses_tstamp int(11) unsigned DEFAULT '0' NOT NULL,
   ses_data blob,
-  ses_permanent tinyint(1) unsigned NOT NULL DEFAULT '0',
+  ses_permanent tinyint(1) unsigned DEFAULT '0' NOT NULL,
   PRIMARY KEY (ses_id,ses_name)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -524,42 +520,39 @@ DROP TABLE IF EXISTS fe_users;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE fe_users (
-  uid int(11) unsigned NOT NULL AUTO_INCREMENT,
-  pid int(11) unsigned NOT NULL DEFAULT '0',
-  tstamp int(11) unsigned NOT NULL DEFAULT '0',
-  username varchar(50) DEFAULT NULL,
-  `password` varchar(40) DEFAULT NULL,
+  uid int(11) unsigned NOT NULL auto_increment,
+  pid int(11) unsigned DEFAULT '0' NOT NULL,
+  tstamp int(11) unsigned DEFAULT '0' NOT NULL,
+  username varchar(50) DEFAULT '' NOT NULL,
+  password varchar(40) DEFAULT '' NOT NULL,
   usergroup tinytext,
-  `disable` tinyint(4) unsigned NOT NULL DEFAULT '0',
-  starttime int(11) unsigned NOT NULL DEFAULT '0',
-  endtime int(11) unsigned NOT NULL DEFAULT '0',
-  `name` varchar(80) DEFAULT NULL,
-  first_name varchar(50) DEFAULT NULL,
-  middle_name varchar(50) DEFAULT NULL,
-  last_name varchar(50) DEFAULT NULL,
-  address varchar(255) DEFAULT NULL,
-  telephone varchar(20) DEFAULT NULL,
-  fax varchar(20) DEFAULT NULL,
-  email varchar(80) DEFAULT NULL,
-  crdate int(11) unsigned NOT NULL DEFAULT '0',
-  cruser_id int(11) unsigned NOT NULL DEFAULT '0',
-  lockToDomain varchar(50) DEFAULT NULL,
-  deleted tinyint(3) unsigned NOT NULL DEFAULT '0',
+  disable tinyint(4) unsigned DEFAULT '0' NOT NULL,
+  starttime int(11) unsigned DEFAULT '0' NOT NULL,
+  endtime int(11) unsigned DEFAULT '0' NOT NULL,
+  name varchar(80) DEFAULT '' NOT NULL,
+  first_name varchar(50) DEFAULT '' NOT NULL,
+  middle_name varchar(50) DEFAULT '' NOT NULL,
+  last_name varchar(50) DEFAULT '' NOT NULL,
+  address varchar(255) DEFAULT '' NOT NULL,
+  telephone varchar(20) DEFAULT '' NOT NULL,
+  fax varchar(20) DEFAULT '' NOT NULL,
+  email varchar(80) DEFAULT '' NOT NULL,
+  crdate int(11) unsigned DEFAULT '0' NOT NULL,
+  cruser_id int(11) unsigned DEFAULT '0' NOT NULL,
+  lockToDomain varchar(50) DEFAULT '' NOT NULL,
+  deleted tinyint(3) unsigned DEFAULT '0' NOT NULL,
   uc blob,
-  title varchar(40) DEFAULT NULL,
-  zip varchar(10) DEFAULT NULL,
-  city varchar(50) DEFAULT NULL,
-  country varchar(40) DEFAULT NULL,
-  www varchar(80) DEFAULT NULL,
-  company varchar(80) DEFAULT NULL,
+  title varchar(40) DEFAULT '' NOT NULL,
+  zip varchar(10) DEFAULT '' NOT NULL,
+  city varchar(50) DEFAULT '' NOT NULL,
+  country varchar(40) DEFAULT '' NOT NULL,
+  www varchar(80) DEFAULT '' NOT NULL,
+  company varchar(80) DEFAULT '' NOT NULL,
   image tinytext,
   TSconfig text,
-  fe_cruser_id int(10) unsigned NOT NULL DEFAULT '0',
-  lastlogin int(10) unsigned NOT NULL DEFAULT '0',
-  is_online int(10) unsigned NOT NULL DEFAULT '0',
-  felogin_redirectPid tinytext,
-  felogin_forgotHash varchar(80) DEFAULT NULL,
-  tx_extbase_type varchar(255) DEFAULT NULL,
+  fe_cruser_id int(10) unsigned DEFAULT '0' NOT NULL,
+  lastlogin int(10) unsigned DEFAULT '0' NOT NULL,
+  is_online int(10) unsigned DEFAULT '0' NOT NULL,
   PRIMARY KEY (uid),
   KEY parent (pid,username),
   KEY username (username),
@@ -585,34 +578,34 @@ DROP TABLE IF EXISTS index_config;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE index_config (
-  uid int(11) NOT NULL AUTO_INCREMENT,
-  pid int(11) NOT NULL DEFAULT '0',
-  tstamp int(11) NOT NULL DEFAULT '0',
-  crdate int(11) NOT NULL DEFAULT '0',
-  cruser_id int(11) NOT NULL DEFAULT '0',
-  hidden tinyint(4) NOT NULL DEFAULT '0',
-  starttime int(11) NOT NULL DEFAULT '0',
-  set_id int(11) NOT NULL DEFAULT '0',
+  uid int(11) NOT NULL auto_increment,
+  pid int(11) DEFAULT '0' NOT NULL,
+  tstamp int(11) DEFAULT '0' NOT NULL,
+  crdate int(11) DEFAULT '0' NOT NULL,
+  cruser_id int(11) DEFAULT '0' NOT NULL,
+  hidden tinyint(4) DEFAULT '0' NOT NULL,
+  starttime int(11) DEFAULT '0' NOT NULL,
+  set_id int(11) DEFAULT '0' NOT NULL,
   session_data mediumtext,
-  title varchar(255) DEFAULT NULL,
+  title varchar(255) DEFAULT '' NOT NULL,
   description text,
-  `type` varchar(30) DEFAULT NULL,
-  depth int(11) unsigned NOT NULL DEFAULT '0',
-  table2index varchar(255) DEFAULT NULL,
-  alternative_source_pid int(11) unsigned NOT NULL DEFAULT '0',
-  get_params varchar(255) DEFAULT NULL,
-  fieldlist varchar(255) DEFAULT NULL,
-  externalUrl varchar(255) DEFAULT NULL,
+  type varchar(30) DEFAULT '' NOT NULL,
+  depth int(11) unsigned DEFAULT '0' NOT NULL,
+  table2index varchar(255) DEFAULT '' NOT NULL,
+  alternative_source_pid int(11) unsigned DEFAULT '0' NOT NULL,
+  get_params varchar(255) DEFAULT '' NOT NULL,
+  fieldlist varchar(255) DEFAULT '' NOT NULL,
+  externalUrl varchar(255) DEFAULT '' NOT NULL,
   indexcfgs text,
-  chashcalc tinyint(3) unsigned NOT NULL DEFAULT '0',
-  filepath varchar(255) DEFAULT NULL,
-  extensions varchar(255) DEFAULT NULL,
-  timer_next_indexing int(11) NOT NULL DEFAULT '0',
-  timer_frequency int(11) NOT NULL DEFAULT '0',
-  timer_offset int(11) NOT NULL DEFAULT '0',
+  chashcalc tinyint(3) unsigned DEFAULT '0' NOT NULL,
+  filepath varchar(255) DEFAULT '' NOT NULL,
+  extensions varchar(255) DEFAULT '' NOT NULL,
+  timer_next_indexing int(11) DEFAULT '0' NOT NULL,
+  timer_frequency int(11) DEFAULT '0' NOT NULL,
+  timer_offset int(11) DEFAULT '0' NOT NULL,
   url_deny text,
-  recordsbatch int(11) NOT NULL DEFAULT '0',
-  records_indexonchange tinyint(4) NOT NULL DEFAULT '0',
+  recordsbatch int(11) DEFAULT '0' NOT NULL,
+  records_indexonchange tinyint(4) DEFAULT '0' NOT NULL,
   PRIMARY KEY (uid),
   KEY parent (pid)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -635,7 +628,7 @@ DROP TABLE IF EXISTS index_debug;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE index_debug (
-  phash int(11) NOT NULL DEFAULT '0',
+  phash int(11) DEFAULT '0' NOT NULL,
   debuginfo mediumtext,
   PRIMARY KEY (phash)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -658,7 +651,7 @@ DROP TABLE IF EXISTS index_fulltext;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE index_fulltext (
-  phash int(11) NOT NULL DEFAULT '0',
+  phash int(11) DEFAULT '0' NOT NULL,
   fulltextdata mediumtext,
   PRIMARY KEY (phash)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -681,11 +674,11 @@ DROP TABLE IF EXISTS index_grlist;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE index_grlist (
-  phash int(11) NOT NULL DEFAULT '0',
-  phash_x int(11) NOT NULL DEFAULT '0',
-  hash_gr_list int(11) NOT NULL DEFAULT '0',
-  gr_list varchar(255) DEFAULT NULL,
-  uniqid int(11) NOT NULL AUTO_INCREMENT,
+  phash int(11) DEFAULT '0' NOT NULL,
+  phash_x int(11) DEFAULT '0' NOT NULL,
+  hash_gr_list int(11) DEFAULT '0' NOT NULL,
+  gr_list varchar(255) DEFAULT '' NOT NULL,
+  uniqid int(11) NOT NULL auto_increment,
   PRIMARY KEY (uniqid),
   KEY joinkey (phash,hash_gr_list),
   KEY phash_grouping (phash_x,hash_gr_list)
@@ -709,30 +702,30 @@ DROP TABLE IF EXISTS index_phash;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE index_phash (
-  phash int(11) NOT NULL DEFAULT '0',
-  phash_grouping int(11) NOT NULL DEFAULT '0',
+  phash int(11) DEFAULT '0' NOT NULL,
+  phash_grouping int(11) DEFAULT '0' NOT NULL,
   cHashParams blob,
-  data_filename varchar(255) DEFAULT NULL,
-  data_page_id int(11) unsigned NOT NULL DEFAULT '0',
-  data_page_reg1 int(11) unsigned NOT NULL DEFAULT '0',
-  data_page_type int(11) unsigned NOT NULL DEFAULT '0',
-  data_page_mp varchar(255) DEFAULT NULL,
-  gr_list varchar(255) DEFAULT NULL,
-  item_type varchar(5) DEFAULT NULL,
-  item_title varchar(255) DEFAULT NULL,
-  item_description varchar(255) DEFAULT NULL,
-  item_mtime int(11) NOT NULL DEFAULT '0',
-  tstamp int(11) unsigned NOT NULL DEFAULT '0',
-  item_size int(11) NOT NULL DEFAULT '0',
-  contentHash int(11) NOT NULL DEFAULT '0',
-  crdate int(11) NOT NULL DEFAULT '0',
-  parsetime int(11) NOT NULL DEFAULT '0',
-  sys_language_uid int(11) NOT NULL DEFAULT '0',
-  item_crdate int(11) NOT NULL DEFAULT '0',
-  externalUrl tinyint(3) NOT NULL DEFAULT '0',
-  recordUid int(11) NOT NULL DEFAULT '0',
-  freeIndexUid int(11) NOT NULL DEFAULT '0',
-  freeIndexSetId int(11) NOT NULL DEFAULT '0',
+  data_filename varchar(255) DEFAULT '' NOT NULL,
+  data_page_id int(11) unsigned DEFAULT '0' NOT NULL,
+  data_page_reg1 int(11) unsigned DEFAULT '0' NOT NULL,
+  data_page_type int(11) unsigned DEFAULT '0' NOT NULL,
+  data_page_mp varchar(255) DEFAULT '' NOT NULL,
+  gr_list varchar(255) DEFAULT '' NOT NULL,
+  item_type varchar(5) DEFAULT '' NOT NULL,
+  item_title varchar(255) DEFAULT '' NOT NULL,
+  item_description varchar(255) DEFAULT '' NOT NULL,
+  item_mtime int(11) DEFAULT '0' NOT NULL,
+  tstamp int(11) unsigned DEFAULT '0' NOT NULL,
+  item_size int(11) DEFAULT '0' NOT NULL,
+  contentHash int(11) DEFAULT '0' NOT NULL,
+  crdate int(11) DEFAULT '0' NOT NULL,
+  parsetime int(11) DEFAULT '0' NOT NULL,
+  sys_language_uid int(11) DEFAULT '0' NOT NULL,
+  item_crdate int(11) DEFAULT '0' NOT NULL,
+  externalUrl tinyint(3) DEFAULT '0' NOT NULL,
+  recordUid int(11) DEFAULT '0' NOT NULL,
+  freeIndexUid int(11) DEFAULT '0' NOT NULL,
+  freeIndexSetId int(11) DEFAULT '0' NOT NULL,
   PRIMARY KEY (phash),
   KEY phash_grouping (phash_grouping),
   KEY freeIndexUid (freeIndexUid)
@@ -756,12 +749,12 @@ DROP TABLE IF EXISTS index_rel;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE index_rel (
-  phash int(11) NOT NULL DEFAULT '0',
-  wid int(11) NOT NULL DEFAULT '0',
-  count tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `first` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  freq smallint(5) unsigned NOT NULL DEFAULT '0',
-  flags tinyint(3) unsigned NOT NULL DEFAULT '0',
+  phash int(11) DEFAULT '0' NOT NULL,
+  wid int(11) DEFAULT '0' NOT NULL,
+  count tinyint(3) unsigned DEFAULT '0' NOT NULL,
+  first tinyint(3) unsigned DEFAULT '0' NOT NULL,
+  freq smallint(5) unsigned DEFAULT '0' NOT NULL,
+  flags tinyint(3) unsigned DEFAULT '0' NOT NULL,
   PRIMARY KEY (phash,wid),
   KEY wid (wid,phash)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -784,13 +777,13 @@ DROP TABLE IF EXISTS index_section;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE index_section (
-  phash int(11) NOT NULL DEFAULT '0',
-  phash_t3 int(11) NOT NULL DEFAULT '0',
-  rl0 int(11) unsigned NOT NULL DEFAULT '0',
-  rl1 int(11) unsigned NOT NULL DEFAULT '0',
-  rl2 int(11) unsigned NOT NULL DEFAULT '0',
-  page_id int(11) NOT NULL DEFAULT '0',
-  uniqid int(11) NOT NULL AUTO_INCREMENT,
+  phash int(11) DEFAULT '0' NOT NULL,
+  phash_t3 int(11) DEFAULT '0' NOT NULL,
+  rl0 int(11) unsigned DEFAULT '0' NOT NULL,
+  rl1 int(11) unsigned DEFAULT '0' NOT NULL,
+  rl2 int(11) unsigned DEFAULT '0' NOT NULL,
+  page_id int(11) DEFAULT '0' NOT NULL,
+  uniqid int(11) NOT NULL auto_increment,
   PRIMARY KEY (uniqid),
   KEY joinkey (phash,rl0),
   KEY page_id (page_id),
@@ -816,14 +809,14 @@ DROP TABLE IF EXISTS index_stat_search;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE index_stat_search (
-  uid int(11) NOT NULL AUTO_INCREMENT,
-  searchstring varchar(255) DEFAULT NULL,
+  uid int(11) NOT NULL auto_increment,
+  searchstring varchar(255) DEFAULT '' NOT NULL,
   searchoptions blob,
-  tstamp int(11) NOT NULL DEFAULT '0',
-  feuser_id int(11) unsigned NOT NULL DEFAULT '0',
-  cookie varchar(10) DEFAULT NULL,
-  IP varchar(255) DEFAULT NULL,
-  hits int(11) NOT NULL DEFAULT '0',
+  tstamp int(11) DEFAULT '0' NOT NULL,
+  feuser_id int(11) unsigned DEFAULT '0' NOT NULL,
+  cookie varchar(10) DEFAULT '' NOT NULL,
+  IP varchar(255) DEFAULT '' NOT NULL,
+  hits int(11) DEFAULT '0' NOT NULL,
   PRIMARY KEY (uid)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -845,11 +838,11 @@ DROP TABLE IF EXISTS index_stat_word;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE index_stat_word (
-  uid int(11) NOT NULL AUTO_INCREMENT,
-  word varchar(30) DEFAULT NULL,
-  index_stat_search_id int(11) NOT NULL DEFAULT '0',
-  tstamp int(11) NOT NULL DEFAULT '0',
-  pageid int(11) NOT NULL DEFAULT '0',
+  uid int(11) NOT NULL auto_increment,
+  word varchar(30) DEFAULT '' NOT NULL,
+  index_stat_search_id int(11) DEFAULT '0' NOT NULL,
+  tstamp int(11) DEFAULT '0' NOT NULL,
+  pageid int(11) DEFAULT '0' NOT NULL,
   PRIMARY KEY (uid),
   KEY tstamp (tstamp,word)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -872,10 +865,10 @@ DROP TABLE IF EXISTS index_words;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE index_words (
-  wid int(11) NOT NULL DEFAULT '0',
-  baseword varchar(60) DEFAULT NULL,
-  metaphone int(11) NOT NULL DEFAULT '0',
-  is_stopword tinyint(3) NOT NULL DEFAULT '0',
+  wid int(11) DEFAULT '0' NOT NULL,
+  baseword varchar(60) DEFAULT '' NOT NULL,
+  metaphone int(11) DEFAULT '0' NOT NULL,
+  is_stopword tinyint(3) DEFAULT '0' NOT NULL,
   PRIMARY KEY (wid),
   KEY baseword (baseword,wid),
   KEY metaphone (metaphone,wid)
@@ -899,77 +892,73 @@ DROP TABLE IF EXISTS pages;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE pages (
-  uid int(11) NOT NULL AUTO_INCREMENT,
-  pid int(11) NOT NULL DEFAULT '0',
-  t3ver_oid int(11) NOT NULL DEFAULT '0',
-  t3ver_id int(11) NOT NULL DEFAULT '0',
-  t3ver_wsid int(11) NOT NULL DEFAULT '0',
-  t3ver_label varchar(255) DEFAULT NULL,
-  t3ver_state tinyint(4) NOT NULL DEFAULT '0',
-  t3ver_stage int(11) NOT NULL DEFAULT '0',
-  t3ver_count int(11) NOT NULL DEFAULT '0',
-  t3ver_tstamp int(11) NOT NULL DEFAULT '0',
-  t3ver_swapmode tinyint(4) NOT NULL DEFAULT '0',
-  t3ver_move_id int(11) NOT NULL DEFAULT '0',
-  t3_origuid int(11) NOT NULL DEFAULT '0',
-  tstamp int(11) unsigned NOT NULL DEFAULT '0',
-  sorting int(11) unsigned NOT NULL DEFAULT '0',
-  deleted tinyint(1) unsigned NOT NULL DEFAULT '0',
-  perms_userid int(11) unsigned NOT NULL DEFAULT '0',
-  perms_groupid int(11) unsigned NOT NULL DEFAULT '0',
-  perms_user tinyint(4) unsigned NOT NULL DEFAULT '0',
-  perms_group tinyint(4) unsigned NOT NULL DEFAULT '0',
-  perms_everybody tinyint(4) unsigned NOT NULL DEFAULT '0',
-  editlock tinyint(4) unsigned NOT NULL DEFAULT '0',
-  crdate int(11) unsigned NOT NULL DEFAULT '0',
-  cruser_id int(11) unsigned NOT NULL DEFAULT '0',
-  hidden tinyint(4) unsigned NOT NULL DEFAULT '0',
-  title varchar(255) DEFAULT NULL,
-  doktype tinyint(3) unsigned NOT NULL DEFAULT '0',
+  uid int(11) NOT NULL auto_increment,
+  pid int(11) DEFAULT '0' NOT NULL,
+  t3ver_oid int(11) DEFAULT '0' NOT NULL,
+  t3ver_id int(11) DEFAULT '0' NOT NULL,
+  t3ver_wsid int(11) DEFAULT '0' NOT NULL,
+  t3ver_label varchar(255) DEFAULT '' NOT NULL,
+  t3ver_state tinyint(4) DEFAULT '0' NOT NULL,
+  t3ver_stage int(11) DEFAULT '0' NOT NULL,
+  t3ver_count int(11) DEFAULT '0' NOT NULL,
+  t3ver_tstamp int(11) DEFAULT '0' NOT NULL,
+  t3ver_swapmode tinyint(4) DEFAULT '0' NOT NULL,
+  t3ver_move_id int(11) DEFAULT '0' NOT NULL,
+  t3_origuid int(11) DEFAULT '0' NOT NULL,
+  tstamp int(11) unsigned DEFAULT '0' NOT NULL,
+  sorting int(11) unsigned DEFAULT '0' NOT NULL,
+  deleted tinyint(1) unsigned DEFAULT '0' NOT NULL,
+  perms_userid int(11) unsigned DEFAULT '0' NOT NULL,
+  perms_groupid int(11) unsigned DEFAULT '0' NOT NULL,
+  perms_user tinyint(4) unsigned DEFAULT '0' NOT NULL,
+  perms_group tinyint(4) unsigned DEFAULT '0' NOT NULL,
+  perms_everybody tinyint(4) unsigned DEFAULT '0' NOT NULL,
+  editlock tinyint(4) unsigned DEFAULT '0' NOT NULL,
+  crdate int(11) unsigned DEFAULT '0' NOT NULL,
+  cruser_id int(11) unsigned DEFAULT '0' NOT NULL,
+  hidden tinyint(4) unsigned DEFAULT '0' NOT NULL,
+  title varchar(255) DEFAULT '' NOT NULL,
+  doktype tinyint(3) unsigned DEFAULT '0' NOT NULL,
   TSconfig text,
-  storage_pid int(11) NOT NULL DEFAULT '0',
-  is_siteroot tinyint(4) NOT NULL DEFAULT '0',
-  php_tree_stop tinyint(4) NOT NULL DEFAULT '0',
-  tx_impexp_origuid int(11) NOT NULL DEFAULT '0',
-  url varchar(255) DEFAULT NULL,
-  starttime int(11) unsigned NOT NULL DEFAULT '0',
-  endtime int(11) unsigned NOT NULL DEFAULT '0',
-  urltype tinyint(4) unsigned NOT NULL DEFAULT '0',
-  shortcut int(10) unsigned NOT NULL DEFAULT '0',
-  shortcut_mode int(10) unsigned NOT NULL DEFAULT '0',
-  no_cache int(10) unsigned NOT NULL DEFAULT '0',
-  fe_group varchar(100) NOT NULL DEFAULT '0',
-  subtitle varchar(255) DEFAULT NULL,
-  layout tinyint(3) unsigned NOT NULL DEFAULT '0',
-  url_scheme tinyint(3) unsigned NOT NULL DEFAULT '0',
-  target varchar(80) DEFAULT NULL,
+  storage_pid int(11) DEFAULT '0' NOT NULL,
+  is_siteroot tinyint(4) DEFAULT '0' NOT NULL,
+  php_tree_stop tinyint(4) DEFAULT '0' NOT NULL,
+  tx_impexp_origuid int(11) DEFAULT '0' NOT NULL,
+  url varchar(255) DEFAULT '' NOT NULL,
+  starttime int(11) unsigned DEFAULT '0' NOT NULL,
+  endtime int(11) unsigned DEFAULT '0' NOT NULL,
+  urltype tinyint(4) unsigned DEFAULT '0' NOT NULL,
+  shortcut int(10) unsigned DEFAULT '0' NOT NULL,
+  shortcut_mode int(10) unsigned DEFAULT '0' NOT NULL,
+  no_cache int(10) unsigned DEFAULT '0' NOT NULL,
+  fe_group varchar(100) DEFAULT '0' NOT NULL,
+  subtitle varchar(255) DEFAULT '' NOT NULL,
+  layout tinyint(3) unsigned DEFAULT '0' NOT NULL,
+  url_scheme tinyint(3) unsigned DEFAULT '0' NOT NULL,
+  target varchar(80) DEFAULT '' NOT NULL,
   media text,
-  lastUpdated int(10) unsigned NOT NULL DEFAULT '0',
+  lastUpdated int(10) unsigned DEFAULT '0' NOT NULL,
   keywords text,
-  cache_timeout int(10) unsigned NOT NULL DEFAULT '0',
-  newUntil int(10) unsigned NOT NULL DEFAULT '0',
+  cache_timeout int(10) unsigned DEFAULT '0' NOT NULL,
+  newUntil int(10) unsigned DEFAULT '0' NOT NULL,
   description text,
-  no_search tinyint(3) unsigned NOT NULL DEFAULT '0',
-  SYS_LASTCHANGED int(10) unsigned NOT NULL DEFAULT '0',
+  no_search tinyint(3) unsigned DEFAULT '0' NOT NULL,
+  SYS_LASTCHANGED int(10) unsigned DEFAULT '0' NOT NULL,
   abstract text,
-  module varchar(10) DEFAULT NULL,
-  extendToSubpages tinyint(3) unsigned NOT NULL DEFAULT '0',
-  author varchar(255) DEFAULT NULL,
-  author_email varchar(80) DEFAULT NULL,
-  nav_title varchar(255) DEFAULT NULL,
-  nav_hide tinyint(4) NOT NULL DEFAULT '0',
-  content_from_pid int(10) unsigned NOT NULL DEFAULT '0',
-  mount_pid int(10) unsigned NOT NULL DEFAULT '0',
-  mount_pid_ol tinyint(4) NOT NULL DEFAULT '0',
-  alias varchar(32) DEFAULT NULL,
-  l18n_cfg tinyint(4) NOT NULL DEFAULT '0',
-  fe_login_mode tinyint(4) NOT NULL DEFAULT '0',
-  backend_layout int(10) NOT NULL DEFAULT '0',
-  backend_layout_next_level int(10) NOT NULL DEFAULT '0',
-  tx_realurl_pathsegment varchar(255) DEFAULT NULL,
-  tx_realurl_pathoverride int(1) NOT NULL DEFAULT '0',
-  tx_realurl_exclude int(1) NOT NULL DEFAULT '0',
-  tx_realurl_nocache int(1) NOT NULL DEFAULT '0',
+  module varchar(10) DEFAULT '' NOT NULL,
+  extendToSubpages tinyint(3) unsigned DEFAULT '0' NOT NULL,
+  author varchar(255) DEFAULT '' NOT NULL,
+  author_email varchar(80) DEFAULT '' NOT NULL,
+  nav_title varchar(255) DEFAULT '' NOT NULL,
+  nav_hide tinyint(4) DEFAULT '0' NOT NULL,
+  content_from_pid int(10) unsigned DEFAULT '0' NOT NULL,
+  mount_pid int(10) unsigned DEFAULT '0' NOT NULL,
+  mount_pid_ol tinyint(4) DEFAULT '0' NOT NULL,
+  alias varchar(32) DEFAULT '' NOT NULL,
+  l18n_cfg tinyint(4) DEFAULT '0' NOT NULL,
+  fe_login_mode tinyint(4) DEFAULT '0' NOT NULL,
+  backend_layout int(10) DEFAULT '0' NOT NULL,
+  backend_layout_next_level int(10) DEFAULT '0' NOT NULL,
   PRIMARY KEY (uid),
   KEY t3ver_oid (t3ver_oid,t3ver_wsid),
   KEY parent (pid,sorting,deleted,hidden),
@@ -995,42 +984,41 @@ DROP TABLE IF EXISTS pages_language_overlay;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE pages_language_overlay (
-  uid int(11) NOT NULL AUTO_INCREMENT,
-  pid int(11) NOT NULL DEFAULT '0',
-  doktype tinyint(3) unsigned NOT NULL DEFAULT '0',
-  t3ver_oid int(11) NOT NULL DEFAULT '0',
-  t3ver_id int(11) NOT NULL DEFAULT '0',
-  t3ver_wsid int(11) NOT NULL DEFAULT '0',
-  t3ver_label varchar(255) DEFAULT NULL,
-  t3ver_state tinyint(4) NOT NULL DEFAULT '0',
-  t3ver_stage int(11) NOT NULL DEFAULT '0',
-  t3ver_count int(11) NOT NULL DEFAULT '0',
-  t3ver_tstamp int(11) NOT NULL DEFAULT '0',
-  t3_origuid int(11) NOT NULL DEFAULT '0',
-  tstamp int(11) unsigned NOT NULL DEFAULT '0',
-  crdate int(11) unsigned NOT NULL DEFAULT '0',
-  cruser_id int(11) unsigned NOT NULL DEFAULT '0',
-  sys_language_uid int(11) unsigned NOT NULL DEFAULT '0',
-  title varchar(255) DEFAULT NULL,
-  hidden tinyint(4) unsigned NOT NULL DEFAULT '0',
-  starttime int(11) unsigned NOT NULL DEFAULT '0',
-  endtime int(11) unsigned NOT NULL DEFAULT '0',
-  deleted tinyint(3) unsigned NOT NULL DEFAULT '0',
-  subtitle varchar(255) DEFAULT NULL,
-  nav_title varchar(255) DEFAULT NULL,
+  uid int(11) NOT NULL auto_increment,
+  pid int(11) DEFAULT '0' NOT NULL,
+  doktype tinyint(3) unsigned DEFAULT '0' NOT NULL,
+  t3ver_oid int(11) DEFAULT '0' NOT NULL,
+  t3ver_id int(11) DEFAULT '0' NOT NULL,
+  t3ver_wsid int(11) DEFAULT '0' NOT NULL,
+  t3ver_label varchar(255) DEFAULT '' NOT NULL,
+  t3ver_state tinyint(4) DEFAULT '0' NOT NULL,
+  t3ver_stage int(11) DEFAULT '0' NOT NULL,
+  t3ver_count int(11) DEFAULT '0' NOT NULL,
+  t3ver_tstamp int(11) DEFAULT '0' NOT NULL,
+  t3_origuid int(11) DEFAULT '0' NOT NULL,
+  tstamp int(11) unsigned DEFAULT '0' NOT NULL,
+  crdate int(11) unsigned DEFAULT '0' NOT NULL,
+  cruser_id int(11) unsigned DEFAULT '0' NOT NULL,
+  sys_language_uid int(11) unsigned DEFAULT '0' NOT NULL,
+  title varchar(255) DEFAULT '' NOT NULL,
+  hidden tinyint(4) unsigned DEFAULT '0' NOT NULL,
+  starttime int(11) unsigned DEFAULT '0' NOT NULL,
+  endtime int(11) unsigned DEFAULT '0' NOT NULL,
+  deleted tinyint(3) unsigned DEFAULT '0' NOT NULL,
+  subtitle varchar(255) DEFAULT '' NOT NULL,
+  nav_title varchar(255) DEFAULT '' NOT NULL,
   media tinytext,
   keywords text,
   description text,
   abstract text,
-  author varchar(255) DEFAULT NULL,
-  author_email varchar(80) DEFAULT NULL,
-  tx_impexp_origuid int(11) NOT NULL DEFAULT '0',
+  author varchar(255) DEFAULT '' NOT NULL,
+  author_email varchar(80) DEFAULT '' NOT NULL,
+  tx_impexp_origuid int(11) DEFAULT '0' NOT NULL,
   l18n_diffsource mediumblob,
-  url varchar(255) DEFAULT NULL,
-  urltype tinyint(4) unsigned NOT NULL DEFAULT '0',
-  shortcut int(10) unsigned NOT NULL DEFAULT '0',
-  shortcut_mode int(10) unsigned NOT NULL DEFAULT '0',
-  tx_realurl_pathsegment varchar(255) DEFAULT NULL,
+  url varchar(255) DEFAULT '' NOT NULL,
+  urltype tinyint(4) unsigned DEFAULT '0' NOT NULL,
+  shortcut int(10) unsigned DEFAULT '0' NOT NULL,
+  shortcut_mode int(10) unsigned DEFAULT '0' NOT NULL,
   PRIMARY KEY (uid),
   KEY t3ver_oid (t3ver_oid,t3ver_wsid),
   KEY parent (pid,sys_language_uid)
@@ -1055,13 +1043,13 @@ DROP TABLE IF EXISTS static_tsconfig_help;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE static_tsconfig_help (
-  uid int(11) NOT NULL AUTO_INCREMENT,
-  guide int(11) NOT NULL DEFAULT '0',
-  md5hash varchar(32) DEFAULT NULL,
+  uid int(11) NOT NULL auto_increment,
+  guide int(11) DEFAULT '0' NOT NULL,
+  md5hash varchar(32) DEFAULT '' NOT NULL,
   description text,
-  obj_string varchar(255) DEFAULT NULL,
+  obj_string varchar(255) DEFAULT '' NOT NULL,
   appdata blob,
-  title varchar(255) DEFAULT NULL,
+  title varchar(255) DEFAULT '' NOT NULL,
   PRIMARY KEY (uid),
   KEY guide (guide,md5hash)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -1085,15 +1073,15 @@ DROP TABLE IF EXISTS sys_be_shortcuts;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE sys_be_shortcuts (
-  uid int(11) unsigned NOT NULL AUTO_INCREMENT,
-  userid int(11) unsigned NOT NULL DEFAULT '0',
-  module_name varchar(255) DEFAULT NULL,
+  uid int(11) unsigned NOT NULL auto_increment,
+  userid int(11) unsigned DEFAULT '0' NOT NULL,
+  module_name varchar(255) DEFAULT '' NOT NULL,
   url text,
-  description varchar(255) DEFAULT NULL,
-  sorting int(11) NOT NULL DEFAULT '0',
-  sc_group tinyint(4) NOT NULL DEFAULT '0',
+  description varchar(255) DEFAULT '' NOT NULL,
+  sorting int(11) DEFAULT '0' NOT NULL,
+  sc_group tinyint(4) DEFAULT '0' NOT NULL,
   PRIMARY KEY (uid),
-  KEY `event` (userid)
+  KEY event (userid)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1115,21 +1103,20 @@ DROP TABLE IF EXISTS sys_domain;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE sys_domain (
-  uid int(11) unsigned NOT NULL AUTO_INCREMENT,
-  pid int(11) unsigned NOT NULL DEFAULT '0',
-  tstamp int(11) unsigned NOT NULL DEFAULT '0',
-  crdate int(11) unsigned NOT NULL DEFAULT '0',
-  cruser_id int(11) unsigned NOT NULL DEFAULT '0',
-  hidden tinyint(4) unsigned NOT NULL DEFAULT '0',
-  domainName varchar(80) DEFAULT NULL,
-  redirectTo varchar(120) DEFAULT NULL,
-  redirectHttpStatusCode int(4) unsigned NOT NULL DEFAULT '301',
-  sorting int(10) unsigned NOT NULL DEFAULT '0',
-  prepend_params int(10) NOT NULL DEFAULT '0',
-  forced tinyint(3) unsigned NOT NULL DEFAULT '0',
+  uid int(11) unsigned NOT NULL auto_increment,
+  pid int(11) unsigned DEFAULT '0' NOT NULL,
+  tstamp int(11) unsigned DEFAULT '0' NOT NULL,
+  crdate int(11) unsigned DEFAULT '0' NOT NULL,
+  cruser_id int(11) unsigned DEFAULT '0' NOT NULL,
+  hidden tinyint(4) unsigned DEFAULT '0' NOT NULL,
+  domainName varchar(80) DEFAULT '' NOT NULL,
+  redirectTo varchar(120) DEFAULT '' NOT NULL,
+  redirectHttpStatusCode int(4) unsigned DEFAULT '301' NOT NULL,
+  sorting int(10) unsigned DEFAULT '0' NOT NULL,
+  prepend_params int(10) DEFAULT '0' NOT NULL,
+  forced tinyint(3) unsigned DEFAULT '0' NOT NULL,
   PRIMARY KEY (uid),
-  KEY parent (pid),
-  KEY tx_realurl (domainName,hidden)
+  KEY parent (pid)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1150,15 +1137,15 @@ DROP TABLE IF EXISTS sys_filemounts;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE sys_filemounts (
-  uid int(11) unsigned NOT NULL AUTO_INCREMENT,
-  pid int(11) unsigned NOT NULL DEFAULT '0',
-  tstamp int(11) unsigned NOT NULL DEFAULT '0',
-  title varchar(30) DEFAULT NULL,
-  path varchar(120) DEFAULT NULL,
-  base tinyint(4) unsigned NOT NULL DEFAULT '0',
-  hidden tinyint(3) unsigned NOT NULL DEFAULT '0',
-  deleted tinyint(1) unsigned NOT NULL DEFAULT '0',
-  sorting int(11) unsigned NOT NULL DEFAULT '0',
+  uid int(11) unsigned NOT NULL auto_increment,
+  pid int(11) unsigned DEFAULT '0' NOT NULL,
+  tstamp int(11) unsigned DEFAULT '0' NOT NULL,
+  title varchar(30) DEFAULT '' NOT NULL,
+  path varchar(120) DEFAULT '' NOT NULL,
+  base tinyint(4) unsigned DEFAULT '0' NOT NULL,
+  hidden tinyint(3) unsigned DEFAULT '0' NOT NULL,
+  deleted tinyint(1) unsigned DEFAULT '0' NOT NULL,
+  sorting int(11) unsigned DEFAULT '0' NOT NULL,
   PRIMARY KEY (uid),
   KEY parent (pid)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -1182,15 +1169,15 @@ DROP TABLE IF EXISTS sys_history;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE sys_history (
-  uid int(11) unsigned NOT NULL AUTO_INCREMENT,
-  sys_log_uid int(11) NOT NULL DEFAULT '0',
+  uid int(11) unsigned NOT NULL auto_increment,
+  sys_log_uid int(11) DEFAULT '0' NOT NULL,
   history_data mediumtext,
   fieldlist text,
-  recuid int(11) NOT NULL DEFAULT '0',
-  tablename varchar(255) DEFAULT NULL,
-  tstamp int(11) NOT NULL DEFAULT '0',
+  recuid int(11) DEFAULT '0' NOT NULL,
+  tablename varchar(255) DEFAULT '' NOT NULL,
+  tstamp int(11) DEFAULT '0' NOT NULL,
   history_files mediumtext,
-  `snapshot` tinyint(4) NOT NULL DEFAULT '0',
+  snapshot tinyint(4) DEFAULT '0' NOT NULL,
   PRIMARY KEY (uid),
   KEY recordident_1 (tablename,recuid),
   KEY recordident_2 (tablename,tstamp),
@@ -1215,13 +1202,13 @@ DROP TABLE IF EXISTS sys_language;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE sys_language (
-  uid int(11) unsigned NOT NULL AUTO_INCREMENT,
-  pid int(11) unsigned NOT NULL DEFAULT '0',
-  tstamp int(11) unsigned NOT NULL DEFAULT '0',
-  hidden tinyint(4) unsigned NOT NULL DEFAULT '0',
-  title varchar(80) DEFAULT NULL,
-  flag varchar(20) DEFAULT NULL,
-  static_lang_isocode int(11) unsigned NOT NULL DEFAULT '0',
+  uid int(11) unsigned NOT NULL auto_increment,
+  pid int(11) unsigned DEFAULT '0' NOT NULL,
+  tstamp int(11) unsigned DEFAULT '0' NOT NULL,
+  hidden tinyint(4) unsigned DEFAULT '0' NOT NULL,
+  title varchar(80) DEFAULT '' NOT NULL,
+  flag varchar(20) DEFAULT '' NOT NULL,
+  static_lang_isocode int(11) unsigned DEFAULT '0' NOT NULL,
   PRIMARY KEY (uid),
   KEY parent (pid)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -1245,16 +1232,16 @@ DROP TABLE IF EXISTS sys_lockedrecords;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE sys_lockedrecords (
-  uid int(11) unsigned NOT NULL AUTO_INCREMENT,
-  userid int(11) unsigned NOT NULL DEFAULT '0',
-  tstamp int(11) unsigned NOT NULL DEFAULT '0',
-  record_table varchar(255) DEFAULT NULL,
-  record_uid int(11) NOT NULL DEFAULT '0',
-  record_pid int(11) NOT NULL DEFAULT '0',
-  username varchar(50) DEFAULT NULL,
-  feuserid int(11) unsigned NOT NULL DEFAULT '0',
+  uid int(11) unsigned NOT NULL auto_increment,
+  userid int(11) unsigned DEFAULT '0' NOT NULL,
+  tstamp int(11) unsigned DEFAULT '0' NOT NULL,
+  record_table varchar(255) DEFAULT '' NOT NULL,
+  record_uid int(11) DEFAULT '0' NOT NULL,
+  record_pid int(11) DEFAULT '0' NOT NULL,
+  username varchar(50) DEFAULT '' NOT NULL,
+  feuserid int(11) unsigned DEFAULT '0' NOT NULL,
   PRIMARY KEY (uid),
-  KEY `event` (userid,tstamp)
+  KEY event (userid,tstamp)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1275,24 +1262,24 @@ DROP TABLE IF EXISTS sys_log;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE sys_log (
-  uid int(11) unsigned NOT NULL AUTO_INCREMENT,
-  userid int(11) unsigned NOT NULL DEFAULT '0',
-  `action` tinyint(4) unsigned NOT NULL DEFAULT '0',
-  recuid int(11) unsigned NOT NULL DEFAULT '0',
-  tablename varchar(255) DEFAULT NULL,
-  recpid int(11) NOT NULL DEFAULT '0',
-  error tinyint(4) unsigned NOT NULL DEFAULT '0',
+  uid int(11) unsigned NOT NULL auto_increment,
+  userid int(11) unsigned DEFAULT '0' NOT NULL,
+  action tinyint(4) unsigned DEFAULT '0' NOT NULL,
+  recuid int(11) unsigned DEFAULT '0' NOT NULL,
+  tablename varchar(255) DEFAULT '' NOT NULL,
+  recpid int(11) DEFAULT '0' NOT NULL,
+  error tinyint(4) unsigned DEFAULT '0' NOT NULL,
   details text NOT NULL,
-  tstamp int(11) unsigned NOT NULL DEFAULT '0',
-  `type` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  details_nr tinyint(3) unsigned NOT NULL DEFAULT '0',
-  IP varchar(39) DEFAULT NULL,
-  log_data varchar(255) DEFAULT NULL,
-  event_pid int(11) NOT NULL DEFAULT '-1',
-  workspace int(11) NOT NULL DEFAULT '0',
-  NEWid varchar(20) DEFAULT NULL,
+  tstamp int(11) unsigned DEFAULT '0' NOT NULL,
+  type tinyint(3) unsigned DEFAULT '0' NOT NULL,
+  details_nr tinyint(3) unsigned DEFAULT '0' NOT NULL,
+  IP varchar(39) DEFAULT '' NOT NULL,
+  log_data varchar(255) DEFAULT '' NOT NULL,
+  event_pid int(11) DEFAULT '-1' NOT NULL,
+  workspace int(11) DEFAULT '0' NOT NULL,
+  NEWid varchar(20) DEFAULT '' NOT NULL,
   PRIMARY KEY (uid),
-  KEY `event` (userid,event_pid),
+  KEY event (userid,event_pid),
   KEY recuidIdx (recuid,uid)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1314,16 +1301,16 @@ DROP TABLE IF EXISTS sys_news;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE sys_news (
-  uid int(11) unsigned NOT NULL AUTO_INCREMENT,
-  pid int(11) unsigned NOT NULL DEFAULT '0',
-  tstamp int(11) unsigned NOT NULL DEFAULT '0',
-  crdate int(11) unsigned NOT NULL DEFAULT '0',
-  cruser_id int(11) unsigned NOT NULL DEFAULT '0',
-  deleted tinyint(3) unsigned NOT NULL DEFAULT '0',
-  hidden tinyint(4) unsigned NOT NULL DEFAULT '0',
-  starttime int(11) unsigned NOT NULL DEFAULT '0',
-  endtime int(11) unsigned NOT NULL DEFAULT '0',
-  title varchar(255) DEFAULT NULL,
+  uid int(11) unsigned NOT NULL auto_increment,
+  pid int(11) unsigned DEFAULT '0' NOT NULL,
+  tstamp int(11) unsigned DEFAULT '0' NOT NULL,
+  crdate int(11) unsigned DEFAULT '0' NOT NULL,
+  cruser_id int(11) unsigned DEFAULT '0' NOT NULL,
+  deleted tinyint(3) unsigned DEFAULT '0' NOT NULL,
+  hidden tinyint(4) unsigned DEFAULT '0' NOT NULL,
+  starttime int(11) unsigned DEFAULT '0' NOT NULL,
+  endtime int(11) unsigned DEFAULT '0' NOT NULL,
+  title varchar(255) DEFAULT '' NOT NULL,
   content mediumtext,
   PRIMARY KEY (uid),
   KEY parent (pid)
@@ -1348,18 +1335,18 @@ DROP TABLE IF EXISTS sys_note;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE sys_note (
-  uid int(11) unsigned NOT NULL AUTO_INCREMENT,
-  pid int(11) unsigned NOT NULL DEFAULT '0',
-  deleted tinyint(3) unsigned NOT NULL DEFAULT '0',
-  tstamp int(11) unsigned NOT NULL DEFAULT '0',
-  crdate int(11) unsigned NOT NULL DEFAULT '0',
-  cruser int(11) unsigned NOT NULL DEFAULT '0',
-  author varchar(80) DEFAULT NULL,
-  email varchar(80) DEFAULT NULL,
-  `subject` varchar(255) DEFAULT NULL,
+  uid int(11) unsigned NOT NULL auto_increment,
+  pid int(11) unsigned DEFAULT '0' NOT NULL,
+  deleted tinyint(3) unsigned DEFAULT '0' NOT NULL,
+  tstamp int(11) unsigned DEFAULT '0' NOT NULL,
+  crdate int(11) unsigned DEFAULT '0' NOT NULL,
+  cruser int(11) unsigned DEFAULT '0' NOT NULL,
+  author varchar(80) DEFAULT '' NOT NULL,
+  email varchar(80) DEFAULT '' NOT NULL,
+  subject varchar(255) DEFAULT '' NOT NULL,
   message text,
-  personal tinyint(3) unsigned NOT NULL DEFAULT '0',
-  category tinyint(3) unsigned NOT NULL DEFAULT '0',
+  personal tinyint(3) unsigned DEFAULT '0' NOT NULL,
+  category tinyint(3) unsigned DEFAULT '0' NOT NULL,
   PRIMARY KEY (uid),
   KEY parent (pid)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -1382,9 +1369,9 @@ DROP TABLE IF EXISTS sys_preview;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE sys_preview (
-  keyword varchar(32) NOT NULL DEFAULT '',
-  tstamp int(11) NOT NULL DEFAULT '0',
-  endtime int(11) NOT NULL DEFAULT '0',
+  keyword varchar(32) DEFAULT '' NOT NULL,
+  tstamp int(11) DEFAULT '0' NOT NULL,
+  endtime int(11) DEFAULT '0' NOT NULL,
   config text,
   PRIMARY KEY (keyword)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -1407,19 +1394,19 @@ DROP TABLE IF EXISTS sys_refindex;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE sys_refindex (
-  `hash` varchar(32) NOT NULL,
-  tablename varchar(255) DEFAULT NULL,
-  recuid int(11) NOT NULL DEFAULT '0',
-  field varchar(40) DEFAULT NULL,
-  flexpointer varchar(255) DEFAULT NULL,
-  softref_key varchar(30) DEFAULT NULL,
-  softref_id varchar(40) DEFAULT NULL,
-  sorting int(11) NOT NULL DEFAULT '0',
-  deleted tinyint(1) NOT NULL DEFAULT '0',
-  ref_table varchar(255) DEFAULT NULL,
-  ref_uid int(11) NOT NULL DEFAULT '0',
-  ref_string varchar(200) DEFAULT NULL,
-  PRIMARY KEY (`hash`),
+  hash varchar(32) DEFAULT '' NOT NULL,
+  tablename varchar(255) DEFAULT '' NOT NULL,
+  recuid int(11) DEFAULT '0' NOT NULL,
+  field varchar(40) DEFAULT '' NOT NULL,
+  flexpointer varchar(255) DEFAULT '' NOT NULL,
+  softref_key varchar(30) DEFAULT '' NOT NULL,
+  softref_id varchar(40) DEFAULT '' NOT NULL,
+  sorting int(11) DEFAULT '0' NOT NULL,
+  deleted tinyint(1) DEFAULT '0' NOT NULL,
+  ref_table varchar(255) DEFAULT '' NOT NULL,
+  ref_uid int(11) DEFAULT '0' NOT NULL,
+  ref_string varchar(200) DEFAULT '' NOT NULL,
+  PRIMARY KEY (hash),
   KEY lookup_rec (tablename,recuid),
   KEY lookup_uid (ref_table,ref_uid),
   KEY lookup_string (ref_string)
@@ -1443,9 +1430,9 @@ DROP TABLE IF EXISTS sys_registry;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE sys_registry (
-  uid int(11) unsigned NOT NULL AUTO_INCREMENT,
-  entry_namespace varchar(128) DEFAULT NULL,
-  entry_key varchar(128) DEFAULT NULL,
+  uid int(11) unsigned NOT NULL auto_increment,
+  entry_namespace varchar(128) DEFAULT '' NOT NULL,
+  entry_key varchar(128) DEFAULT '' NOT NULL,
   entry_value blob,
   PRIMARY KEY (uid),
   UNIQUE KEY entry_identifier (entry_namespace,entry_key)
@@ -1469,44 +1456,43 @@ DROP TABLE IF EXISTS sys_template;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE sys_template (
-  uid int(11) NOT NULL AUTO_INCREMENT,
-  pid int(11) NOT NULL DEFAULT '0',
-  t3ver_oid int(11) NOT NULL DEFAULT '0',
-  t3ver_id int(11) NOT NULL DEFAULT '0',
-  t3ver_wsid int(11) NOT NULL DEFAULT '0',
-  t3ver_label varchar(255) DEFAULT NULL,
-  t3ver_state tinyint(4) NOT NULL DEFAULT '0',
-  t3ver_stage int(11) NOT NULL DEFAULT '0',
-  t3ver_count int(11) NOT NULL DEFAULT '0',
-  t3ver_tstamp int(11) NOT NULL DEFAULT '0',
-  t3_origuid int(11) NOT NULL DEFAULT '0',
-  tstamp int(11) unsigned NOT NULL DEFAULT '0',
-  sorting int(11) unsigned NOT NULL DEFAULT '0',
-  crdate int(11) unsigned NOT NULL DEFAULT '0',
-  cruser_id int(11) unsigned NOT NULL DEFAULT '0',
-  title varchar(255) DEFAULT NULL,
-  sitetitle varchar(255) DEFAULT NULL,
-  hidden tinyint(4) unsigned NOT NULL DEFAULT '0',
-  starttime int(11) unsigned NOT NULL DEFAULT '0',
-  endtime int(11) unsigned NOT NULL DEFAULT '0',
-  root tinyint(4) unsigned NOT NULL DEFAULT '0',
-  clear tinyint(4) unsigned NOT NULL DEFAULT '0',
+  uid int(11) NOT NULL auto_increment,
+  pid int(11) DEFAULT '0' NOT NULL,
+  t3ver_oid int(11) DEFAULT '0' NOT NULL,
+  t3ver_id int(11) DEFAULT '0' NOT NULL,
+  t3ver_wsid int(11) DEFAULT '0' NOT NULL,
+  t3ver_label varchar(255) DEFAULT '' NOT NULL,
+  t3ver_state tinyint(4) DEFAULT '0' NOT NULL,
+  t3ver_stage int(11) DEFAULT '0' NOT NULL,
+  t3ver_count int(11) DEFAULT '0' NOT NULL,
+  t3ver_tstamp int(11) DEFAULT '0' NOT NULL,
+  t3_origuid int(11) DEFAULT '0' NOT NULL,
+  tstamp int(11) unsigned DEFAULT '0' NOT NULL,
+  sorting int(11) unsigned DEFAULT '0' NOT NULL,
+  crdate int(11) unsigned DEFAULT '0' NOT NULL,
+  cruser_id int(11) unsigned DEFAULT '0' NOT NULL,
+  title varchar(255) DEFAULT '' NOT NULL,
+  sitetitle varchar(255) DEFAULT '' NOT NULL,
+  hidden tinyint(4) unsigned DEFAULT '0' NOT NULL,
+  starttime int(11) unsigned DEFAULT '0' NOT NULL,
+  endtime int(11) unsigned DEFAULT '0' NOT NULL,
+  root tinyint(4) unsigned DEFAULT '0' NOT NULL,
+  clear tinyint(4) unsigned DEFAULT '0' NOT NULL,
   include_static_file text,
   constants text,
   config text,
   editorcfg text,
   resources text,
-  nextLevel varchar(5) DEFAULT NULL,
+  nextLevel varchar(5) DEFAULT '' NOT NULL,
   description text,
   basedOn tinytext,
-  deleted tinyint(3) unsigned NOT NULL DEFAULT '0',
-  includeStaticAfterBasedOn tinyint(4) unsigned NOT NULL DEFAULT '0',
-  static_file_mode tinyint(4) unsigned NOT NULL DEFAULT '0',
-  tx_impexp_origuid int(11) NOT NULL DEFAULT '0',
+  deleted tinyint(3) unsigned DEFAULT '0' NOT NULL,
+  includeStaticAfterBasedOn tinyint(4) unsigned DEFAULT '0' NOT NULL,
+  static_file_mode tinyint(4) unsigned DEFAULT '0' NOT NULL,
+  tx_impexp_origuid int(11) DEFAULT '0' NOT NULL,
   PRIMARY KEY (uid),
   KEY t3ver_oid (t3ver_oid,t3ver_wsid),
-  KEY parent (pid,sorting,deleted,hidden),
-  KEY tx_realurl (root,hidden)
+  KEY parent (pid,sorting,deleted,hidden)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1528,13 +1514,13 @@ DROP TABLE IF EXISTS sys_ter;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE sys_ter (
-  uid int(11) unsigned NOT NULL AUTO_INCREMENT,
-  title varchar(150) DEFAULT NULL,
+  uid int(11) unsigned NOT NULL auto_increment,
+  title varchar(150) NOT NULL default '',
   description mediumtext,
-  wsdl_url varchar(100) DEFAULT NULL,
-  mirror_url varchar(100) DEFAULT NULL,
-  lastUpdated int(11) unsigned NOT NULL DEFAULT '0',
-  extCount int(11) NOT NULL DEFAULT '0',
+  wsdl_url varchar(100) NOT NULL default '',
+  mirror_url varchar(100) NOT NULL default '',
+  lastUpdated int(11) unsigned DEFAULT '0' NOT NULL,
+  extCount int(11) DEFAULT '0' NOT NULL,
   PRIMARY KEY (uid)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1556,27 +1542,27 @@ DROP TABLE IF EXISTS sys_workspace;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE sys_workspace (
-  uid int(11) NOT NULL AUTO_INCREMENT,
-  pid int(11) NOT NULL DEFAULT '0',
-  tstamp int(11) NOT NULL DEFAULT '0',
-  deleted tinyint(1) NOT NULL DEFAULT '0',
-  title varchar(30) DEFAULT NULL,
-  description varchar(255) DEFAULT NULL,
+  uid int(11) NOT NULL auto_increment,
+  pid int(11) DEFAULT '0' NOT NULL,
+  tstamp int(11) DEFAULT '0' NOT NULL,
+  deleted tinyint(1) DEFAULT '0' NOT NULL,
+  title varchar(30) DEFAULT '' NOT NULL,
+  description varchar(255) DEFAULT '' NOT NULL,
   adminusers text,
   members text,
   reviewers text,
-  db_mountpoints varchar(255) DEFAULT NULL,
-  file_mountpoints varchar(255) DEFAULT NULL,
-  publish_time int(11) NOT NULL DEFAULT '0',
-  unpublish_time int(11) NOT NULL DEFAULT '0',
-  freeze tinyint(3) NOT NULL DEFAULT '0',
-  live_edit tinyint(3) NOT NULL DEFAULT '0',
-  vtypes tinyint(3) NOT NULL DEFAULT '0',
-  disable_autocreate tinyint(1) NOT NULL DEFAULT '0',
-  swap_modes tinyint(3) NOT NULL DEFAULT '0',
-  publish_access tinyint(3) NOT NULL DEFAULT '0',
-  custom_stages int(11) NOT NULL DEFAULT '0',
-  stagechg_notification tinyint(3) NOT NULL DEFAULT '0',
+  db_mountpoints varchar(255) DEFAULT '' NOT NULL,
+  file_mountpoints varchar(255) DEFAULT '' NOT NULL,
+  publish_time int(11) DEFAULT '0' NOT NULL,
+  unpublish_time int(11) DEFAULT '0' NOT NULL,
+  freeze tinyint(3) DEFAULT '0' NOT NULL,
+  live_edit tinyint(3) DEFAULT '0' NOT NULL,
+  vtypes tinyint(3) DEFAULT '0' NOT NULL,
+  disable_autocreate tinyint(1) DEFAULT '0' NOT NULL,
+  swap_modes tinyint(3) DEFAULT '0' NOT NULL,
+  publish_access tinyint(3) DEFAULT '0' NOT NULL,
+  custom_stages int(11) DEFAULT '0' NOT NULL,
+  stagechg_notification tinyint(3) DEFAULT '0' NOT NULL,
   PRIMARY KEY (uid),
   KEY parent (pid)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -1600,11 +1586,11 @@ DROP TABLE IF EXISTS sys_workspace_cache;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE sys_workspace_cache (
-  id int(11) unsigned NOT NULL AUTO_INCREMENT,
-  identifier varchar(32) DEFAULT NULL,
+  id int(11) unsigned NOT NULL auto_increment,
+  identifier varchar(32) DEFAULT '' NOT NULL,
   content mediumblob NOT NULL,
-  crdate int(11) NOT NULL DEFAULT '0',
-  lifetime int(11) NOT NULL DEFAULT '0',
+  crdate int(11) DEFAULT '0' NOT NULL,
+  lifetime int(11) DEFAULT '0' NOT NULL,
   PRIMARY KEY (id),
   KEY cache_id (identifier)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1627,9 +1613,9 @@ DROP TABLE IF EXISTS sys_workspace_cache_tags;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE sys_workspace_cache_tags (
-  id int(11) unsigned NOT NULL AUTO_INCREMENT,
-  identifier varchar(128) DEFAULT NULL,
-  tag varchar(128) DEFAULT NULL,
+  id int(11) unsigned NOT NULL auto_increment,
+  identifier varchar(128) DEFAULT '' NOT NULL,
+  tag varchar(128) DEFAULT '' NOT NULL,
   PRIMARY KEY (id),
   KEY cache_id (identifier),
   KEY cache_tag (tag)
@@ -1653,15 +1639,15 @@ DROP TABLE IF EXISTS sys_workspace_stage;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE sys_workspace_stage (
-  uid int(11) NOT NULL AUTO_INCREMENT,
-  pid int(11) NOT NULL DEFAULT '0',
-  tstamp int(11) NOT NULL DEFAULT '0',
-  deleted tinyint(1) NOT NULL DEFAULT '0',
-  sorting int(11) unsigned NOT NULL DEFAULT '0',
-  title varchar(30) DEFAULT NULL,
-  responsible_persons varchar(255) DEFAULT NULL,
+  uid int(11) NOT NULL auto_increment,
+  pid int(11) DEFAULT '0' NOT NULL,
+  tstamp int(11) DEFAULT '0' NOT NULL,
+  deleted tinyint(1) DEFAULT '0' NOT NULL,
+  sorting int(11) unsigned DEFAULT '0' NOT NULL,
+  title varchar(30) DEFAULT '' NOT NULL,
+  responsible_persons varchar(255) DEFAULT '' NOT NULL,
   default_mailcomment text,
-  parentid int(11) NOT NULL DEFAULT '0',
+  parentid int(11) DEFAULT '0' NOT NULL,
   parenttable tinytext NOT NULL,
   PRIMARY KEY (uid),
   KEY parent (pid)
@@ -1686,89 +1672,89 @@ DROP TABLE IF EXISTS tt_content;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE tt_content (
-  uid int(11) NOT NULL AUTO_INCREMENT,
-  pid int(11) NOT NULL DEFAULT '0',
-  t3ver_oid int(11) NOT NULL DEFAULT '0',
-  t3ver_id int(11) NOT NULL DEFAULT '0',
-  t3ver_wsid int(11) NOT NULL DEFAULT '0',
-  t3ver_label varchar(255) DEFAULT NULL,
-  t3ver_state tinyint(4) NOT NULL DEFAULT '0',
-  t3ver_stage int(11) NOT NULL DEFAULT '0',
-  t3ver_count int(11) NOT NULL DEFAULT '0',
-  t3ver_tstamp int(11) NOT NULL DEFAULT '0',
-  t3ver_move_id int(11) NOT NULL DEFAULT '0',
-  t3_origuid int(11) NOT NULL DEFAULT '0',
-  tstamp int(11) unsigned NOT NULL DEFAULT '0',
-  crdate int(11) unsigned NOT NULL DEFAULT '0',
-  cruser_id int(11) unsigned NOT NULL DEFAULT '0',
-  hidden tinyint(4) unsigned NOT NULL DEFAULT '0',
-  sorting int(11) unsigned NOT NULL DEFAULT '0',
-  CType varchar(30) DEFAULT NULL,
-  header varchar(255) DEFAULT NULL,
-  header_position varchar(6) DEFAULT NULL,
+  uid int(11) NOT NULL auto_increment,
+  pid int(11) DEFAULT '0' NOT NULL,
+  t3ver_oid int(11) DEFAULT '0' NOT NULL,
+  t3ver_id int(11) DEFAULT '0' NOT NULL,
+  t3ver_wsid int(11) DEFAULT '0' NOT NULL,
+  t3ver_label varchar(255) DEFAULT '' NOT NULL,
+  t3ver_state tinyint(4) DEFAULT '0' NOT NULL,
+  t3ver_stage int(11) DEFAULT '0' NOT NULL,
+  t3ver_count int(11) DEFAULT '0' NOT NULL,
+  t3ver_tstamp int(11) DEFAULT '0' NOT NULL,
+  t3ver_move_id int(11) DEFAULT '0' NOT NULL,
+  t3_origuid int(11) DEFAULT '0' NOT NULL,
+  tstamp int(11) unsigned DEFAULT '0' NOT NULL,
+  crdate int(11) unsigned DEFAULT '0' NOT NULL,
+  cruser_id int(11) unsigned DEFAULT '0' NOT NULL,
+  hidden tinyint(4) unsigned DEFAULT '0' NOT NULL,
+  sorting int(11) unsigned DEFAULT '0' NOT NULL,
+  CType varchar(30) DEFAULT '' NOT NULL,
+  header varchar(255) DEFAULT '' NOT NULL,
+  header_position varchar(6) DEFAULT '' NOT NULL,
   bodytext mediumtext,
   image text,
-  imagewidth mediumint(11) unsigned NOT NULL DEFAULT '0',
-  imageorient tinyint(4) unsigned NOT NULL DEFAULT '0',
+  imagewidth mediumint(11) unsigned DEFAULT '0' NOT NULL,
+  imageorient tinyint(4) unsigned DEFAULT '0' NOT NULL,
   imagecaption text,
-  imagecols tinyint(4) unsigned NOT NULL DEFAULT '0',
-  imageborder tinyint(4) unsigned NOT NULL DEFAULT '0',
+  imagecols tinyint(4) unsigned DEFAULT '0' NOT NULL,
+  imageborder tinyint(4) unsigned DEFAULT '0' NOT NULL,
   media text,
-  layout tinyint(3) unsigned NOT NULL DEFAULT '0',
-  deleted tinyint(4) unsigned NOT NULL DEFAULT '0',
-  cols tinyint(3) unsigned NOT NULL DEFAULT '0',
+  layout tinyint(3) unsigned DEFAULT '0' NOT NULL,
+  deleted tinyint(4) unsigned DEFAULT '0' NOT NULL,
+  cols tinyint(3) unsigned DEFAULT '0' NOT NULL,
   records text,
   pages tinytext,
-  starttime int(11) unsigned NOT NULL DEFAULT '0',
-  endtime int(11) unsigned NOT NULL DEFAULT '0',
-  colPos tinyint(3) unsigned NOT NULL DEFAULT '0',
-  subheader varchar(255) DEFAULT NULL,
-  spaceBefore smallint(5) unsigned NOT NULL DEFAULT '0',
-  spaceAfter smallint(5) unsigned NOT NULL DEFAULT '0',
-  fe_group varchar(100) NOT NULL DEFAULT '0',
-  header_link varchar(255) DEFAULT NULL,
-  imagecaption_position varchar(6) DEFAULT NULL,
+  starttime int(11) unsigned DEFAULT '0' NOT NULL,
+  endtime int(11) unsigned DEFAULT '0' NOT NULL,
+  colPos tinyint(3) unsigned DEFAULT '0' NOT NULL,
+  subheader varchar(255) DEFAULT '' NOT NULL,
+  spaceBefore smallint(5) unsigned DEFAULT '0' NOT NULL,
+  spaceAfter smallint(5) unsigned DEFAULT '0' NOT NULL,
+  fe_group varchar(100) DEFAULT '0' NOT NULL,
+  header_link varchar(255) DEFAULT '' NOT NULL,
+  imagecaption_position varchar(6) DEFAULT '' NOT NULL,
   image_link text,
-  image_zoom tinyint(3) unsigned NOT NULL DEFAULT '0',
-  image_noRows tinyint(3) unsigned NOT NULL DEFAULT '0',
-  image_effects tinyint(3) unsigned NOT NULL DEFAULT '0',
-  image_compression tinyint(3) unsigned NOT NULL DEFAULT '0',
+  image_zoom tinyint(3) unsigned DEFAULT '0' NOT NULL,
+  image_noRows tinyint(3) unsigned DEFAULT '0' NOT NULL,
+  image_effects tinyint(3) unsigned DEFAULT '0' NOT NULL,
+  image_compression tinyint(3) unsigned DEFAULT '0' NOT NULL,
   altText text,
   titleText text,
   longdescURL text,
-  header_layout varchar(30) NOT NULL DEFAULT '0',
-  text_align varchar(6) DEFAULT NULL,
-  text_face tinyint(3) unsigned NOT NULL DEFAULT '0',
-  text_size tinyint(3) unsigned NOT NULL DEFAULT '0',
-  text_color tinyint(3) unsigned NOT NULL DEFAULT '0',
-  text_properties tinyint(3) unsigned NOT NULL DEFAULT '0',
-  menu_type varchar(30) NOT NULL DEFAULT '0',
-  list_type varchar(36) NOT NULL DEFAULT '0',
-  table_border tinyint(3) unsigned NOT NULL DEFAULT '0',
-  table_cellspacing tinyint(3) unsigned NOT NULL DEFAULT '0',
-  table_cellpadding tinyint(3) unsigned NOT NULL DEFAULT '0',
-  table_bgColor tinyint(3) unsigned NOT NULL DEFAULT '0',
-  select_key varchar(80) DEFAULT NULL,
-  sectionIndex tinyint(3) unsigned NOT NULL DEFAULT '0',
-  linkToTop tinyint(3) unsigned NOT NULL DEFAULT '0',
-  filelink_size tinyint(3) unsigned NOT NULL DEFAULT '0',
-  section_frame tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `date` int(10) unsigned NOT NULL DEFAULT '0',
-  splash_layout varchar(30) NOT NULL DEFAULT '0',
+  header_layout varchar(30) DEFAULT '0' NOT NULL,
+  text_align varchar(6) DEFAULT '' NOT NULL,
+  text_face tinyint(3) unsigned DEFAULT '0' NOT NULL,
+  text_size tinyint(3) unsigned DEFAULT '0' NOT NULL,
+  text_color tinyint(3) unsigned DEFAULT '0' NOT NULL,
+  text_properties tinyint(3) unsigned DEFAULT '0' NOT NULL,
+  menu_type varchar(30) DEFAULT '0' NOT NULL,
+  list_type varchar(36) DEFAULT '0' NOT NULL,
+  table_border tinyint(3) unsigned DEFAULT '0' NOT NULL,
+  table_cellspacing tinyint(3) unsigned DEFAULT '0' NOT NULL,
+  table_cellpadding tinyint(3) unsigned DEFAULT '0' NOT NULL,
+  table_bgColor tinyint(3) unsigned DEFAULT '0' NOT NULL,
+  select_key varchar(80) DEFAULT '' NOT NULL,
+  sectionIndex tinyint(3) unsigned DEFAULT '0' NOT NULL,
+  linkToTop tinyint(3) unsigned DEFAULT '0' NOT NULL,
+  filelink_size tinyint(3) unsigned DEFAULT '0' NOT NULL,
+  section_frame tinyint(3) unsigned DEFAULT '0' NOT NULL,
+  date int(10) unsigned DEFAULT '0' NOT NULL,
+  splash_layout varchar(30) DEFAULT '0' NOT NULL,
   multimedia tinytext,
-  image_frames tinyint(3) unsigned NOT NULL DEFAULT '0',
-  recursive tinyint(3) unsigned NOT NULL DEFAULT '0',
-  imageheight mediumint(8) unsigned NOT NULL DEFAULT '0',
-  rte_enabled tinyint(4) NOT NULL DEFAULT '0',
-  sys_language_uid int(11) NOT NULL DEFAULT '0',
-  tx_impexp_origuid int(11) NOT NULL DEFAULT '0',
+  image_frames tinyint(3) unsigned DEFAULT '0' NOT NULL,
+  recursive tinyint(3) unsigned DEFAULT '0' NOT NULL,
+  imageheight mediumint(8) unsigned DEFAULT '0' NOT NULL,
+  rte_enabled tinyint(4) DEFAULT '0' NOT NULL,
+  sys_language_uid int(11) DEFAULT '0' NOT NULL,
+  tx_impexp_origuid int(11) DEFAULT '0' NOT NULL,
   pi_flexform mediumtext,
-  l18n_parent int(11) NOT NULL DEFAULT '0',
+  l18n_parent int(11) DEFAULT '0' NOT NULL,
   l18n_diffsource mediumblob,
   PRIMARY KEY (uid),
   KEY t3ver_oid (t3ver_oid,t3ver_wsid),
   KEY parent (pid,sorting),
-  KEY `language` (l18n_parent,sys_language_uid)
+  KEY language (l18n_parent,sys_language_uid)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1790,53 +1776,53 @@ DROP TABLE IF EXISTS tt_news;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE tt_news (
-  uid int(11) NOT NULL AUTO_INCREMENT,
-  pid int(11) NOT NULL DEFAULT '0',
-  tstamp int(11) unsigned NOT NULL DEFAULT '0',
-  crdate int(11) unsigned NOT NULL DEFAULT '0',
-  cruser_id int(11) unsigned NOT NULL DEFAULT '0',
-  editlock tinyint(4) unsigned NOT NULL DEFAULT '0',
-  deleted tinyint(3) unsigned NOT NULL DEFAULT '0',
-  hidden tinyint(4) unsigned NOT NULL DEFAULT '0',
-  starttime int(11) unsigned NOT NULL DEFAULT '0',
-  endtime int(11) unsigned NOT NULL DEFAULT '0',
-  fe_group varchar(100) NOT NULL DEFAULT '0',
+  uid int(11) NOT NULL auto_increment,
+  pid int(11) DEFAULT '0' NOT NULL,
+  tstamp int(11) unsigned DEFAULT '0' NOT NULL,
+  crdate int(11) unsigned DEFAULT '0' NOT NULL,
+  cruser_id int(11) unsigned DEFAULT '0' NOT NULL,
+  editlock tinyint(4) unsigned DEFAULT '0' NOT NULL,
+  deleted tinyint(3) unsigned DEFAULT '0' NOT NULL,
+  hidden tinyint(4) unsigned DEFAULT '0' NOT NULL,
+  starttime int(11) unsigned DEFAULT '0' NOT NULL,
+  endtime int(11) unsigned DEFAULT '0' NOT NULL,
+  fe_group varchar(100) DEFAULT '0' NOT NULL,
   title text,
-  `datetime` int(11) unsigned NOT NULL DEFAULT '0',
+  datetime int(11) unsigned DEFAULT '0' NOT NULL,
   image text,
   imagecaption text,
   imagealttext text,
   imagetitletext text,
-  related int(11) NOT NULL DEFAULT '0',
+  related int(11) DEFAULT '0' NOT NULL,
   short text,
   bodytext mediumtext,
-  author varchar(255) DEFAULT NULL,
-  author_email varchar(255) DEFAULT NULL,
-  category int(11) NOT NULL DEFAULT '0',
+  author varchar(255) DEFAULT '' NOT NULL,
+  author_email varchar(255) DEFAULT '' NOT NULL,
+  category int(11) DEFAULT '0' NOT NULL,
   news_files text,
   links text,
-  `type` tinyint(4) NOT NULL DEFAULT '0',
-  `page` int(11) NOT NULL DEFAULT '0',
+  type tinyint(4) DEFAULT '0' NOT NULL,
+  page int(11) DEFAULT '0' NOT NULL,
   keywords text,
-  archivedate int(11) NOT NULL DEFAULT '0',
-  ext_url varchar(255) DEFAULT NULL,
-  sys_language_uid int(11) NOT NULL DEFAULT '0',
-  l18n_parent int(11) NOT NULL DEFAULT '0',
+  archivedate int(11) DEFAULT '0' NOT NULL,
+  ext_url varchar(255) DEFAULT '' NOT NULL,
+  sys_language_uid int(11) DEFAULT '0' NOT NULL,
+  l18n_parent int(11) DEFAULT '0' NOT NULL,
   l18n_diffsource mediumblob NOT NULL,
-  no_auto_pb tinyint(4) unsigned NOT NULL DEFAULT '0',
-  t3ver_oid int(11) NOT NULL DEFAULT '0',
-  t3ver_id int(11) NOT NULL DEFAULT '0',
-  t3ver_wsid int(11) NOT NULL DEFAULT '0',
-  t3ver_label varchar(30) DEFAULT NULL,
-  t3ver_state tinyint(4) NOT NULL DEFAULT '0',
-  t3ver_stage tinyint(4) NOT NULL DEFAULT '0',
-  t3ver_count int(11) NOT NULL DEFAULT '0',
-  t3ver_tstamp int(11) NOT NULL DEFAULT '0',
-  t3_origuid int(11) NOT NULL DEFAULT '0',
+  no_auto_pb tinyint(4) unsigned DEFAULT '0' NOT NULL,
+  t3ver_oid int(11) DEFAULT '0' NOT NULL,
+  t3ver_id int(11) DEFAULT '0' NOT NULL,
+  t3ver_wsid int(11) DEFAULT '0' NOT NULL,
+  t3ver_label varchar(30) DEFAULT '' NOT NULL,
+  t3ver_state tinyint(4) DEFAULT '0' NOT NULL,
+  t3ver_stage tinyint(4) DEFAULT '0' NOT NULL,
+  t3ver_count int(11) DEFAULT '0' NOT NULL,
+  t3ver_tstamp int(11) DEFAULT '0' NOT NULL,
+  t3_origuid int(11) DEFAULT '0' NOT NULL,
   PRIMARY KEY (uid),
   KEY parent (pid),
   KEY t3ver_oid (t3ver_oid,t3ver_wsid),
-  KEY `datetime` (`datetime`)
+  KEY datetime (datetime)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1858,11 +1844,11 @@ DROP TABLE IF EXISTS tt_news_cache;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE tt_news_cache (
-  id int(11) unsigned NOT NULL AUTO_INCREMENT,
-  identifier varchar(32) DEFAULT NULL,
+  id int(11) unsigned NOT NULL auto_increment,
+  identifier varchar(32) DEFAULT '' NOT NULL,
   content text NOT NULL,
-  crdate int(11) NOT NULL DEFAULT '0',
-  lifetime int(11) NOT NULL DEFAULT '0',
+  crdate int(11) DEFAULT '0' NOT NULL,
+  lifetime int(11) DEFAULT '0' NOT NULL,
   PRIMARY KEY (id),
   KEY cache_id (identifier)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1885,9 +1871,9 @@ DROP TABLE IF EXISTS tt_news_cache_tags;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE tt_news_cache_tags (
-  id int(11) unsigned NOT NULL AUTO_INCREMENT,
-  identifier varchar(128) DEFAULT NULL,
-  tag varchar(128) DEFAULT NULL,
+  id int(11) unsigned NOT NULL auto_increment,
+  identifier varchar(128) DEFAULT '' NOT NULL,
+  tag varchar(128) DEFAULT '' NOT NULL,
   PRIMARY KEY (id),
   KEY cache_id (identifier),
   KEY cache_tag (tag)
@@ -1911,23 +1897,23 @@ DROP TABLE IF EXISTS tt_news_cat;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE tt_news_cat (
-  uid int(11) NOT NULL AUTO_INCREMENT,
-  pid int(11) NOT NULL DEFAULT '0',
-  tstamp int(11) unsigned NOT NULL DEFAULT '0',
-  crdate int(11) unsigned NOT NULL DEFAULT '0',
-  hidden tinyint(4) unsigned NOT NULL DEFAULT '0',
-  starttime int(11) unsigned NOT NULL DEFAULT '0',
-  endtime int(11) unsigned NOT NULL DEFAULT '0',
-  sorting int(11) unsigned NOT NULL DEFAULT '0',
-  fe_group varchar(100) NOT NULL DEFAULT '0',
-  title varchar(255) DEFAULT NULL,
-  title_lang_ol varchar(255) DEFAULT NULL,
-  image varchar(255) DEFAULT NULL,
-  shortcut int(11) unsigned NOT NULL DEFAULT '0',
-  shortcut_target varchar(255) DEFAULT NULL,
-  deleted tinyint(3) unsigned NOT NULL DEFAULT '0',
-  single_pid int(11) unsigned NOT NULL DEFAULT '0',
-  parent_category int(11) unsigned NOT NULL DEFAULT '0',
+  uid int(11) NOT NULL auto_increment,
+  pid int(11) DEFAULT '0' NOT NULL,
+  tstamp int(11) unsigned DEFAULT '0' NOT NULL,
+  crdate int(11) unsigned DEFAULT '0' NOT NULL,
+  hidden tinyint(4) unsigned DEFAULT '0' NOT NULL,
+  starttime int(11) unsigned DEFAULT '0' NOT NULL,
+  endtime int(11) unsigned DEFAULT '0' NOT NULL,
+  sorting int(11) unsigned DEFAULT '0' NOT NULL,
+  fe_group varchar(100) DEFAULT '0' NOT NULL,
+  title varchar(255) DEFAULT '' NOT NULL,
+  title_lang_ol varchar(255) DEFAULT '' NOT NULL,
+  image varchar(255) DEFAULT '' NOT NULL,
+  shortcut int(11) unsigned DEFAULT '0' NOT NULL,
+  shortcut_target varchar(255) DEFAULT '' NOT NULL,
+  deleted tinyint(3) unsigned DEFAULT '0' NOT NULL,
+  single_pid int(11) unsigned DEFAULT '0' NOT NULL,
+  parent_category int(11) unsigned DEFAULT '0' NOT NULL,
   description text,
   PRIMARY KEY (uid),
   KEY parent (pid),
@@ -1953,10 +1939,10 @@ DROP TABLE IF EXISTS tt_news_cat_mm;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE tt_news_cat_mm (
-  uid_local int(11) NOT NULL DEFAULT '0',
-  uid_foreign int(11) NOT NULL DEFAULT '0',
-  tablenames varchar(30) DEFAULT NULL,
-  sorting int(11) NOT NULL DEFAULT '0',
+  uid_local int(11) DEFAULT '0' NOT NULL,
+  uid_foreign int(11) DEFAULT '0' NOT NULL,
+  tablenames varchar(30) DEFAULT '' NOT NULL,
+  sorting int(11) DEFAULT '0' NOT NULL,
   KEY uid_local (uid_local),
   KEY uid_foreign (uid_foreign)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -1980,10 +1966,10 @@ DROP TABLE IF EXISTS tt_news_related_mm;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE tt_news_related_mm (
-  uid_local int(11) NOT NULL DEFAULT '0',
-  uid_foreign int(11) NOT NULL DEFAULT '0',
-  sorting int(11) NOT NULL DEFAULT '0',
-  tablenames varchar(255) DEFAULT NULL,
+  uid_local int(11) DEFAULT '0' NOT NULL,
+  uid_foreign int(11) DEFAULT '0' NOT NULL,
+  sorting int(11) DEFAULT '0' NOT NULL,
+  tablenames varchar(255) DEFAULT '' NOT NULL,
   KEY uid_local (uid_local),
   KEY uid_foreign (uid_foreign)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -2006,12 +1992,12 @@ DROP TABLE IF EXISTS tx_extbase_cache_object;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE tx_extbase_cache_object (
-  id int(11) unsigned NOT NULL AUTO_INCREMENT,
-  identifier varchar(250) DEFAULT NULL,
-  crdate int(11) unsigned NOT NULL DEFAULT '0',
+  id int(11) unsigned NOT NULL auto_increment,
+  identifier varchar(250) DEFAULT '' NOT NULL,
+  crdate int(11) unsigned DEFAULT '0' NOT NULL,
   content mediumtext,
   tags mediumtext,
-  lifetime int(11) unsigned NOT NULL DEFAULT '0',
+  lifetime int(11) unsigned DEFAULT '0' NOT NULL,
   PRIMARY KEY (id),
   KEY cache_id (identifier)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -2034,9 +2020,9 @@ DROP TABLE IF EXISTS tx_extbase_cache_object_tags;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE tx_extbase_cache_object_tags (
-  id int(11) unsigned NOT NULL AUTO_INCREMENT,
-  identifier varchar(128) DEFAULT NULL,
-  tag varchar(128) DEFAULT NULL,
+  id int(11) unsigned NOT NULL auto_increment,
+  identifier varchar(128) DEFAULT '' NOT NULL,
+  tag varchar(128) DEFAULT '' NOT NULL,
   PRIMARY KEY (id),
   KEY cache_id (identifier),
   KEY cache_tag (tag)
@@ -2060,12 +2046,12 @@ DROP TABLE IF EXISTS tx_extbase_cache_reflection;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE tx_extbase_cache_reflection (
-  id int(11) unsigned NOT NULL AUTO_INCREMENT,
-  identifier varchar(250) DEFAULT NULL,
-  crdate int(11) unsigned NOT NULL DEFAULT '0',
+  id int(11) unsigned NOT NULL auto_increment,
+  identifier varchar(250) DEFAULT '' NOT NULL,
+  crdate int(11) unsigned DEFAULT '0' NOT NULL,
   content mediumtext,
   tags mediumtext,
-  lifetime int(11) unsigned NOT NULL DEFAULT '0',
+  lifetime int(11) unsigned DEFAULT '0' NOT NULL,
   PRIMARY KEY (id),
   KEY cache_id (identifier)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -2088,9 +2074,9 @@ DROP TABLE IF EXISTS tx_extbase_cache_reflection_tags;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE tx_extbase_cache_reflection_tags (
-  id int(11) unsigned NOT NULL AUTO_INCREMENT,
-  identifier varchar(128) DEFAULT NULL,
-  tag varchar(128) DEFAULT NULL,
+  id int(11) unsigned NOT NULL auto_increment,
+  identifier varchar(128) DEFAULT '' NOT NULL,
+  tag varchar(128) DEFAULT '' NOT NULL,
   PRIMARY KEY (id),
   KEY cache_id (identifier),
   KEY cache_tag (tag)
@@ -2114,11 +2100,11 @@ DROP TABLE IF EXISTS tx_impexp_presets;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE tx_impexp_presets (
-  uid int(11) NOT NULL AUTO_INCREMENT,
-  user_uid int(11) NOT NULL DEFAULT '0',
-  title varchar(255) DEFAULT NULL,
-  public tinyint(3) NOT NULL DEFAULT '0',
-  item_uid int(11) NOT NULL DEFAULT '0',
+  uid int(11) NOT NULL auto_increment,
+  user_uid int(11) DEFAULT '0' NOT NULL,
+  title varchar(255) DEFAULT '' NOT NULL,
+  public tinyint(3) DEFAULT '0' NOT NULL,
+  item_uid int(11) DEFAULT '0' NOT NULL,
   preset_data blob,
   PRIMARY KEY (uid),
   KEY lookup (item_uid)
@@ -2142,17 +2128,17 @@ DROP TABLE IF EXISTS tx_linkvalidator_link;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE tx_linkvalidator_link (
-  uid int(11) NOT NULL AUTO_INCREMENT,
-  record_uid int(11) NOT NULL DEFAULT '0',
-  record_pid int(11) NOT NULL DEFAULT '0',
-  headline varchar(255) DEFAULT NULL,
-  field varchar(255) DEFAULT NULL,
-  table_name varchar(255) DEFAULT NULL,
+  uid int(11) NOT NULL auto_increment,
+  record_uid int(11) DEFAULT '0' NOT NULL,
+  record_pid int(11) DEFAULT '0' NOT NULL,
+  headline varchar(255) DEFAULT '' NOT NULL,
+  field varchar(255) DEFAULT '' NOT NULL,
+  table_name varchar(255) DEFAULT '' NOT NULL,
   link_title text,
   url text,
   url_response text,
-  last_check int(11) NOT NULL DEFAULT '0',
-  link_type varchar(50) DEFAULT NULL,
+  last_check int(11) DEFAULT '0' NOT NULL,
+  link_type varchar(50) DEFAULT '' NOT NULL,
   PRIMARY KEY (uid)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -2174,8 +2160,8 @@ DROP TABLE IF EXISTS tx_realurl_chashcache;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE tx_realurl_chashcache (
-  spurl_hash char(32) NOT NULL,
-  chash_string varchar(32) DEFAULT NULL,
+  spurl_hash char(32) DEFAULT '' NOT NULL,
+  chash_string varchar(32) DEFAULT '' NOT NULL,
   spurl_string text,
   PRIMARY KEY (spurl_hash),
   KEY chash_string (chash_string)
@@ -2199,14 +2185,14 @@ DROP TABLE IF EXISTS tx_realurl_errorlog;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE tx_realurl_errorlog (
-  url_hash int(11) NOT NULL DEFAULT '0',
+  url_hash int(11) DEFAULT '0' NOT NULL,
   url text NOT NULL,
   error text NOT NULL,
   last_referer text NOT NULL,
-  counter int(11) NOT NULL DEFAULT '0',
-  cr_date int(11) NOT NULL DEFAULT '0',
-  tstamp int(11) NOT NULL DEFAULT '0',
-  rootpage_id int(11) NOT NULL DEFAULT '0',
+  counter int(11) DEFAULT '0' NOT NULL,
+  cr_date int(11) DEFAULT '0' NOT NULL,
+  tstamp int(11) DEFAULT '0' NOT NULL,
+  rootpage_id int(11) DEFAULT '0' NOT NULL,
   PRIMARY KEY (url_hash,rootpage_id),
   KEY counter (counter,tstamp)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -2229,13 +2215,13 @@ DROP TABLE IF EXISTS tx_realurl_pathcache;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE tx_realurl_pathcache (
-  cache_id int(11) NOT NULL AUTO_INCREMENT,
-  page_id int(11) NOT NULL DEFAULT '0',
-  language_id int(11) NOT NULL DEFAULT '0',
-  rootpage_id int(11) NOT NULL DEFAULT '0',
+  cache_id int(11) NOT NULL auto_increment,
+  page_id int(11) DEFAULT '0' NOT NULL,
+  language_id int(11) DEFAULT '0' NOT NULL,
+  rootpage_id int(11) DEFAULT '0' NOT NULL,
   mpvar tinytext NOT NULL,
   pagepath text NOT NULL,
-  expire int(11) NOT NULL DEFAULT '0',
+  expire int(11) DEFAULT '0' NOT NULL,
   PRIMARY KEY (cache_id),
   KEY pathq1 (rootpage_id,pagepath(32),expire),
   KEY pathq2 (page_id,language_id,rootpage_id,expire),
@@ -2260,13 +2246,13 @@ DROP TABLE IF EXISTS tx_realurl_redirects;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE tx_realurl_redirects (
-  url_hash int(11) NOT NULL DEFAULT '0',
+  url_hash int(11) DEFAULT '0' NOT NULL,
   url text NOT NULL,
   destination text NOT NULL,
   last_referer text NOT NULL,
-  counter int(11) NOT NULL DEFAULT '0',
-  tstamp int(11) NOT NULL DEFAULT '0',
-  has_moved int(11) NOT NULL DEFAULT '0',
+  counter int(11) DEFAULT '0' NOT NULL,
+  tstamp int(11) DEFAULT '0' NOT NULL,
+  has_moved int(11) DEFAULT '0' NOT NULL,
   PRIMARY KEY (url_hash)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -2288,15 +2274,15 @@ DROP TABLE IF EXISTS tx_realurl_uniqalias;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE tx_realurl_uniqalias (
-  uid int(11) NOT NULL AUTO_INCREMENT,
-  tstamp int(11) NOT NULL DEFAULT '0',
-  tablename varchar(255) DEFAULT NULL,
-  field_alias varchar(255) DEFAULT NULL,
-  field_id varchar(60) DEFAULT NULL,
-  value_alias varchar(255) DEFAULT NULL,
-  value_id int(11) NOT NULL DEFAULT '0',
-  lang int(11) NOT NULL DEFAULT '0',
-  expire int(11) NOT NULL DEFAULT '0',
+  uid int(11) NOT NULL auto_increment,
+  tstamp int(11) DEFAULT '0' NOT NULL,
+  tablename varchar(255) DEFAULT '' NOT NULL,
+  field_alias varchar(255) DEFAULT '' NOT NULL,
+  field_id varchar(60) DEFAULT '' NOT NULL,
+  value_alias varchar(255) DEFAULT '' NOT NULL,
+  value_id int(11) DEFAULT '0' NOT NULL,
+  lang int(11) DEFAULT '0' NOT NULL,
+  expire int(11) DEFAULT '0' NOT NULL,
   PRIMARY KEY (uid),
   KEY tablename (tablename),
   KEY bk_realurl01 (field_alias(20),field_id,value_id,lang,expire),
@@ -2321,14 +2307,14 @@ DROP TABLE IF EXISTS tx_realurl_urldecodecache;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE tx_realurl_urldecodecache (
-  url_hash char(32) NOT NULL DEFAULT '',
+  url_hash char(32) DEFAULT '' NOT NULL,
   spurl tinytext NOT NULL,
   content blob NOT NULL,
-  page_id int(11) NOT NULL DEFAULT '0',
-  rootpage_id int(11) NOT NULL DEFAULT '0',
-  tstamp int(11) NOT NULL DEFAULT '0',
+  page_id int(11) DEFAULT '0' NOT NULL,
+  rootpage_id int(11) DEFAULT '0' NOT NULL,
+  tstamp int(11) DEFAULT '0' NOT NULL,
   PRIMARY KEY (url_hash),
-  KEY page_id (page_id)
+  KEY page_id (page_id),
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -2349,12 +2335,12 @@ DROP TABLE IF EXISTS tx_realurl_urlencodecache;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE tx_realurl_urlencodecache (
-  url_hash char(32) NOT NULL,
+  url_hash char(32) DEFAULT '' NOT NULL,
   origparams tinytext NOT NULL,
   internalExtras tinytext NOT NULL,
   content text NOT NULL,
-  page_id int(11) NOT NULL DEFAULT '0',
-  tstamp int(11) NOT NULL DEFAULT '0',
+  page_id int(11) DEFAULT '0' NOT NULL,
+  tstamp int(11) DEFAULT '0' NOT NULL,
   PRIMARY KEY (url_hash),
   KEY page_id (page_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -2377,18 +2363,18 @@ DROP TABLE IF EXISTS tx_rtehtmlarea_acronym;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE tx_rtehtmlarea_acronym (
-  uid int(11) unsigned NOT NULL AUTO_INCREMENT,
-  pid int(11) unsigned NOT NULL DEFAULT '0',
-  deleted tinyint(4) unsigned NOT NULL DEFAULT '0',
-  hidden tinyint(4) unsigned NOT NULL DEFAULT '0',
-  starttime int(11) unsigned NOT NULL DEFAULT '0',
-  endtime int(11) unsigned NOT NULL DEFAULT '0',
-  sorting int(11) unsigned NOT NULL DEFAULT '0',
-  sys_language_uid int(11) NOT NULL DEFAULT '0',
-  `type` tinyint(3) unsigned NOT NULL DEFAULT '1',
-  term varchar(255) DEFAULT NULL,
-  acronym varchar(255) DEFAULT NULL,
-  static_lang_isocode int(11) unsigned NOT NULL DEFAULT '0',
+  uid int(11) unsigned NOT NULL auto_increment,
+  pid int(11) unsigned DEFAULT '0' NOT NULL,
+  deleted tinyint(4) unsigned DEFAULT '0' NOT NULL,
+  hidden tinyint(4) unsigned DEFAULT '0' NOT NULL,
+  starttime int(11) unsigned DEFAULT '0' NOT NULL,
+  endtime int(11) unsigned DEFAULT '0' NOT NULL,
+  sorting int(11) unsigned DEFAULT '0' NOT NULL,
+  sys_language_uid int(11) DEFAULT '0' NOT NULL,
+  type tinyint(3) unsigned DEFAULT '1' NOT NULL,
+  term varchar(255) DEFAULT '' NOT NULL,
+  acronym varchar(255) DEFAULT '' NOT NULL,
+  static_lang_isocode int(11) unsigned DEFAULT '0' NOT NULL,
   PRIMARY KEY (uid),
   KEY parent (pid)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
@@ -2411,14 +2397,14 @@ DROP TABLE IF EXISTS tx_scheduler_task;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE tx_scheduler_task (
-  uid int(11) unsigned NOT NULL AUTO_INCREMENT,
-  crdate int(11) unsigned NOT NULL DEFAULT '0',
-  `disable` tinyint(4) unsigned NOT NULL DEFAULT '0',
-  classname varchar(255) DEFAULT NULL,
-  nextexecution int(11) unsigned NOT NULL DEFAULT '0',
-  lastexecution_time int(11) unsigned NOT NULL DEFAULT '0',
+  uid int(11) unsigned DEFAULT '0' NOT NULL auto_increment,
+  crdate int(11) unsigned DEFAULT '0' NOT NULL,
+  disable tinyint(4) unsigned DEFAULT '0' NOT NULL,
+  classname varchar(255) DEFAULT '' NOT NULL,
+  nextexecution int(11) unsigned DEFAULT '0' NOT NULL,
+  lastexecution_time int(11) unsigned DEFAULT '0' NOT NULL,
   lastexecution_failure text NOT NULL,
-  lastexecution_context char(3) DEFAULT NULL,
+  lastexecution_context char(3) DEFAULT '' NOT NULL,
   serialized_task_object blob,
   serialized_executions blob,
   PRIMARY KEY (uid),
@@ -2444,15 +2430,15 @@ DROP TABLE IF EXISTS tx_wtspamshield_log;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE tx_wtspamshield_log (
-  uid int(11) NOT NULL AUTO_INCREMENT,
-  pid int(11) NOT NULL DEFAULT '0',
-  tstamp int(11) NOT NULL DEFAULT '0',
-  crdate int(11) NOT NULL DEFAULT '0',
-  cruser_id int(11) NOT NULL DEFAULT '0',
-  deleted tinyint(4) NOT NULL DEFAULT '0',
+  uid int(11) NOT NULL auto_increment,
+  pid int(11) DEFAULT '0' NOT NULL,
+  tstamp int(11) DEFAULT '0' NOT NULL,
+  crdate int(11) DEFAULT '0' NOT NULL,
+  cruser_id int(11) DEFAULT '0' NOT NULL,
+  deleted tinyint(4) DEFAULT '0' NOT NULL,
   form tinytext NOT NULL,
   errormsg text NOT NULL,
-  pageid tinyint(5) NOT NULL DEFAULT '0',
+  pageid tinyint(5) DEFAULT '0' NOT NULL,
   formvalues text NOT NULL,
   ip tinytext NOT NULL,
   useragent tinytext NOT NULL,
@@ -2478,8 +2464,8 @@ DROP TABLE IF EXISTS tx_wtspamshield_veguestbooktemp;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE tx_wtspamshield_veguestbooktemp (
-  uid int(11) NOT NULL AUTO_INCREMENT,
-  tstamp int(11) NOT NULL DEFAULT '0',
+  uid int(11) NOT NULL auto_increment,
+  tstamp int(11) DEFAULT '0' NOT NULL,
   PRIMARY KEY (uid)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
