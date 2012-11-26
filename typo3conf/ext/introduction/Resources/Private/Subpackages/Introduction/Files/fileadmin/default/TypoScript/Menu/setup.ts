@@ -6,8 +6,8 @@ other menu's, without writing the whole menu configuration all over again for
 all kinds of menu's.
 */
 
-menu = HMENU
-menu {
+menu.template = HMENU
+menu.template {
 	1 = TMENU
 	1 {
 		wrap = <ul>|</ul>

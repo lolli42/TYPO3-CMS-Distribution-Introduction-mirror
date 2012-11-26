@@ -11,7 +11,7 @@ settings of the entryLevel.
 # You can use the TypoScript Object Browser to view the end result of this.
 # (go to the Template module and select 'Typoscript Object Browser' in the selectbox in the right frame.)
 
-menu.secondlevel < menu
+menu.secondlevel < menu.template
 menu.secondlevel {
 	entryLevel = 1
 
