@@ -1,5 +1,5 @@
-menu = HMENU
-menu {
+menu.template = HMENU
+menu.template {
 	1 = TMENU
 	1 {
 		wrap = <ul>|</ul>
