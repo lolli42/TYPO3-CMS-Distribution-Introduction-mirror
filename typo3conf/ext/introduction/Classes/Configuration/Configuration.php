@@ -107,8 +107,8 @@ class tx_introduction_configuration {
 			}
 		}
 
-		if ($this->InstallerObject->isGD()) {
-			$this->InstallerObject->INSTALL['LocalConfiguration']['TTFdpi'] = $this->determineDPI();
+		$this->InstallerObject->INSTALL['LocalConfiguration']['TTFdpi'] = $this->determineDPI();
+		if (function_exists('gd_info')) {
 			$gdInfo = gd_info();
 			if (intval($gdInfo['GD Version']) >= 2) {
 					// 2.0 or higher
