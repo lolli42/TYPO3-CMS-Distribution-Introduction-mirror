@@ -155,7 +155,7 @@ class tx_introduction_controller {
 	 */
 	private function performUpdates($subpackageToInstall) {
 		// As we use some GD functions to deterime the negate mask we need to check if GD is available
-		if ($this->installer->isGD()) {
+		if (\TYPO3\CMS\Introduction\Utility\ImageCapability::isGD()) {
 			$this->configuration->modifyNegateMask();
 		}
 
@@ -211,7 +211,7 @@ class tx_introduction_controller {
 			'typo3temp/',
 			'uploads/',
 		);
-		
+
 		$nonWritableDirectories = '';
 		foreach($directories as $directory) {
 			if (!$this->configuration->isDirectoryWritable($directory)) {
@@ -299,7 +299,7 @@ class tx_introduction_controller {
 	 */
 	public function finishAction(&$message) {
 		require_once(t3lib_extMgm::extPath('introduction', 'Classes/View/Finish.php'));
-		
+
 		$this->clearCache();
 
 		// Enable or disable realURL
@@ -375,7 +375,7 @@ class tx_introduction_controller {
 		}
 		return $subpackage;
 	}
-	
+
 	/**
 	 * Clears the TYPO3 cache by creating a BE session
 	 *
